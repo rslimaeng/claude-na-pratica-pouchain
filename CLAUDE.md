@@ -9,6 +9,11 @@ Material de apoio de um **treinamento in-company presencial de 12 horas** na **P
 - **Perfil:** gestores, coordenadores e analistas que **já usam o Claude Chat**. Não são técnicos. Vocabulário operacional-tático, zero jargão de programação sem tradução
 - **O site é o material que fica depois do curso** — o "PPT deles", só que navegável e vivo
 
+**Repo público:** https://github.com/rslimaeng/claude-na-pratica-pouchain
+**Site publicado:** https://rslimaeng.github.io/claude-na-pratica-pouchain/
+
+> 🔒 **O repositório é público — e isso vale para os `.md` de governança também.** Nada de material interno de consultoria entra aqui: nem número, nem nome de pessoa, nem achado de diagnóstico. Se precisar registrar algo assim, vai em `../`, fora deste repo.
+
 **Documentos que mandam neste projeto** (ficam um nível acima, em `../`):
 
 | Arquivo | O que decide |
@@ -124,6 +129,8 @@ Gabarito **não é resposta certa única** — é versão de referência. Vem se
 
 ## 11. Disciplina de execução
 
+- **Autor de todos os commits:** `Rafael Lima <rslima.eng@gmail.com>`. O trabalho é dele; os commits não mencionam o Claude Code
+- **Nunca** `--amend` em commit já pushado · **nunca** `push --force` · **nunca** `--no-verify`
 - 1 onda = 1 goal em `goals/goal-NN-slug.md`, escrito **antes** de a onda começar
 - `goals/README.md` mantém a tabela das 9 ondas
 - Toda onda fecha com os **8 gates de qualidade** do `goal-01` §5, verificados por `grep` — auditoria de conteúdo não substitui `grep` de componente

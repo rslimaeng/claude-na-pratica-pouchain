@@ -4,9 +4,11 @@ Material de apoio do treinamento in-company **Claude na Prática** — 12 horas,
 
 O site é o material que fica **depois** do curso: cada aula é uma página navegável, com o exercício, o arquivo de partida e o gabarito.
 
+## 👉 https://rslimaeng.github.io/claude-na-pratica-pouchain/
+
 ## Como abrir
 
-Cada página é um HTML autossuficiente. Basta abrir `index.html` no navegador — não precisa de servidor, não precisa instalar nada. Também funciona offline, num pen drive.
+Online, no link acima. Ou localmente: cada página é um HTML autossuficiente — basta abrir `index.html` no navegador, sem servidor e sem instalar nada. Também funciona offline, num pen drive.
 
 ## Estrutura
 
