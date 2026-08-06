@@ -1,6 +1,6 @@
 # Design tokens · Claude na Prática (Pouchain)
 
-Referência humana dos tokens. **Cada página HTML replica esses tokens no `<style>` inline** — mantém cada arquivo single-file portável, que é o que permite abrir a página sem servidor, num pen drive ou offline na sala.
+Referência humana dos tokens. **Cada página HTML replica esses tokens no `<style>` inline**, o que mantém cada arquivo single-file portável, que é o que permite abrir a página sem servidor, num pen drive ou offline na sala.
 
 Base herdada do Workshop Maria Pitanga, com o accent trocado.
 
@@ -8,7 +8,7 @@ Base herdada do Workshop Maria Pitanga, com o accent trocado.
 
 ```css
 /* Fundo e superfícies */
---bg:            #F0EEE6;   /* creme Claude — fundo principal */
+--bg:            #F0EEE6;   /* creme Claude · fundo principal */
 --bg-elev:       #FFFFFF;   /* elevação (cards) */
 --bg-warm:       #E8E6DC;   /* creme mais escuro (chips, toolbars) */
 --bg-code:       #F5F3EA;   /* fundo de bloco de código */
@@ -22,7 +22,7 @@ Base herdada do Workshop Maria Pitanga, com o accent trocado.
 --border:        rgba(20,20,19,.10);
 --border-strong: rgba(20,20,19,.18);
 
-/* Accent — AZUL TINTA (referência à tinta de impressão) */
+/* Accent · AZUL TINTA (referência à tinta de impressão) */
 --accent:        #1A5670;   /* accent principal · contraste ~7:1 sobre o creme */
 --accent-dark:   #10394C;   /* hover */
 --accent-soft:   #DDEAF0;   /* fundo tingido para chip e callout accent */
@@ -68,7 +68,7 @@ Base herdada do Workshop Maria Pitanga, com o accent trocado.
 - Emoji só em callout curto pontual, **nunca** em card decorativo
 - Header sticky com `backdrop-filter: blur(10px)` sobre `rgba(240,238,230,.92)`
 - Sem gradiente, sem glassmorphism, sem dark mode
-- `localStorage` sempre com prefixo `pcp-` (Pouchain Claude na Prática) — evita colisão com outros sites do Rafael
+- `localStorage` sempre com prefixo `pcp-` (Pouchain Claude na Prática), evita colisão com outros sites do Rafael
 - Grid responsivo: colapsa em `900px` e `720px`
 - `@media (prefers-reduced-motion:reduce)` em toda página
 
@@ -79,7 +79,11 @@ Base herdada do Workshop Maria Pitanga, com o accent trocado.
 | `.site-header` + `.brand` + `.chip` | Header sticky, todas as páginas |
 | `.crumbs` | Breadcrumb mono, páginas internas |
 | `.chip` · `.chip-accent` · `.chip-ementa` | Pílulas de metadado. `.chip-ementa` marca o De/Para com a ementa vendida |
-| `.trilha` + `.nivel-row` | **A trilha dos 6 níveis.** Só na landing — é o mapa que a pessoa consulta o curso inteiro |
+| `.trilha` + `.nivel-row` | **A trilha dos 6 níveis.** Só na landing, é o mapa que a pessoa consulta o curso inteiro |
+| **`.fluxo` + `.fluxo-passo` + `.fluxo-seta`** | 📊 Etapas de um processo em sequência. `.final` destaca a etapa que continua sendo humana. Colapsa em coluna no `900px`, com a seta girando 90° |
+| **`.ctx` + `.ctx-bar` + `.ctx-seg`** | 📊 Barra de ocupação segmentada. Usada para a janela de contexto enchendo ao longo da conversa. Serve para qualquer "quanto de X está ocupado por Y" |
+| **`.pilha` + `.pilha-camada` + `.pilha-result`** | 📊 Camadas que somam num resultado único. Variante `.conflito` pinta as camadas que brigam. Usada para o empilhamento das instruções |
+| **`.dilui` + `.pag`** | 📊 Grade de páginas com `.certa` (verde) e `.parecida` (âmbar). Mostra diluição de busca: 3 páginas × 40 páginas |
 | `.pre-req` | Bloco de pré-requisitos da landing |
 | `.aula-card` | Card de aula no hub do módulo |
 | `.step` + `.step-num` + `.step-title` | Bloco numerado de seção de aula (01…08) |
@@ -94,4 +98,4 @@ Base herdada do Workshop Maria Pitanga, com o accent trocado.
 | `.hook` | A trava que a aula não resolve → abre a próxima |
 | `.nav-bottom` | ← anterior · próxima → |
 
-**Fonte da verdade:** `m1/a3-regra-que-fica/index.html` — é a página mais completa. Copiar e adaptar.
+**Fonte da verdade:** `m1/a3-regra-que-fica/index.html`, é a página mais completa. Copiar e adaptar.

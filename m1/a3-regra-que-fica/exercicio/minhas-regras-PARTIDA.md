@@ -2,10 +2,10 @@
 
 > **Como usar este arquivo.** Preencha as cinco seções abaixo. Depois cole o conteúdo
 > inteiro nas **Instruções** de um Project do Claude. No Módulo 2 esse mesmo texto vira
-> um arquivo que o Cowork lê sozinho — você não vai reescrever nada.
+> um arquivo que o Cowork lê sozinho, você não vai reescrever nada.
 >
 > **Regra de ouro:** cada linha que você escrever aqui tem que ser uma correção que você
-> **já precisou repetir**. Se você nunca precisou corrigir, não escreva — está sobrando.
+> **já precisou repetir**. Se você nunca precisou corrigir, não escreva, está sobrando.
 >
 > **Tamanho-alvo: 20 a 40 linhas.** Menos que isso não muda nada. Muito mais que isso
 > começa a atrapalhar, e você vai entender por quê no fim da aula.
@@ -19,7 +19,7 @@
 **Pergunta que esta seção responde:** se ele não soubesse nada sobre você, o que ele
 precisaria saber para não te tratar como estudante fazendo trabalho de faculdade?
 
-*Exemplo de outra área (não copie — é para você ver o formato):*
+*Exemplo de outra área (não copie, é para você ver o formato):*
 *"Sou analista de Compras numa indústria gráfica. Compro papel, tinta e material de
 acabamento. Quem lê o que eu produzo é o gerente industrial e o financeiro."*
 
@@ -52,7 +52,7 @@ Tabela em vez de texto? Sem introdução? Português? Valor em real com vírgula
 
 *Exemplo de outra área:*
 *"Responda em português do Brasil. Tabela sempre que houver mais de 3 itens.
-Sem parágrafo de introdução e sem parágrafo de conclusão — eu colo direto no e-mail.
+Sem parágrafo de introdução e sem parágrafo de conclusão, eu colo direto no e-mail.
 Data no formato DD/MM/AAAA. Valor em reais, com vírgula decimal."*
 
 <!-- escreva aqui -->

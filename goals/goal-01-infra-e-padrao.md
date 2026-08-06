@@ -16,8 +16,8 @@
 | 4 | Tokens de design | `_shared/design-tokens.md` |
 | 5 | **Landing** com a trilha visual dos 6 níveis | `index.html` |
 | 6 | **Hub do M1** | `m1/index.html` |
-| 7 | **Aula 1.1** — O ecossistema e a física | `m1/a1-ecossistema-e-fisica/index.html` |
-| 8 | **Aula 1.3** — A regra que fica (+ exercício + gabarito) | `m1/a3-regra-que-fica/` |
+| 7 | **Aula 1.1** · O ecossistema e a física | `m1/a1-ecossistema-e-fisica/index.html` |
+| 8 | **Aula 1.3** · A regra que fica (+ exercício + gabarito) | `m1/a3-regra-que-fica/` |
 | 9 | Esqueleto do kit | `kit/LEIA-ME.md` |
 
 ### Não entra (explicitamente)
@@ -25,16 +25,16 @@
 - Aulas 1.2 e 1.4 → Onda 2
 - Qualquer coisa de M2 e M3 → Ondas 3 a 8
 - `recursos/` e o `kit-participante.zip` montado → Onda 9
-- Planilhas `.xlsx` da Gráfica Aurora — nesta onda os insumos são **`.csv` e `.md`**, porque o M1 roda em chat e o aluno cola texto. As planilhas entram na Onda 3, quando o Cowork aparece.
+- Planilhas dos outros setores da Gráfica Aurora (compras, ponto, currículos). Nesta onda existe só a de produção; as demais entram junto com as aulas que as usam.
 
 ---
 
 ## 2. Por que a 1.3 vem fora de ordem
 
 A **1.1** é a porta de entrada: define a primeira impressão, mas é conceitual e tem exercício leve.
-A **1.3** é a aula mais rica do M1 — exercício forte, gabarito, e o **momento uau nº 1** (mesmo prompt com e sem regra fixa, lado a lado).
+A **1.3** é a aula mais rica do M1: exercício forte, gabarito, e o **momento uau nº 1** (mesmo prompt com e sem regra fixa, lado a lado).
 
-Fazendo as duas juntas, o Rafael valida **os dois extremos do padrão** de uma vez: a página conceitual e a página de construção com exercício. Se só a 1.1 entrasse, o padrão de exercício só seria testado na Onda 2 — tarde para corrigir.
+Fazendo as duas juntas, o Rafael valida **os dois extremos do padrão** de uma vez: a página conceitual e a página de construção com exercício. Se só a 1.1 entrasse, o padrão de exercício só seria testado na Onda 2, e aí é tarde para corrigir.
 
 ---
 
@@ -67,7 +67,7 @@ site/
 │   ├── index.html
 │   ├── a1-ecossistema-e-fisica/
 │   │   ├── index.html
-│   │   └── exercicio/pedidos-em-producao.csv
+│   │   └── exercicio/pedidos-em-producao.xlsx
 │   └── a3-regra-que-fica/
 │       ├── index.html
 │       ├── exercicio/minhas-regras-PARTIDA.md
@@ -77,11 +77,11 @@ site/
 
 ---
 
-## 5. 🚦 Os 8 gates de qualidade
+## 5. 🚦 Os 10 gates de qualidade
 
-**Nenhuma onda fecha com gate reprovado.** Cada gate tem verificação mecânica — auditoria de conteúdo não substitui `grep` de componente. Esta lição é do Mallory, onde o `.md` estava limpo e o HTML estava pela metade.
+**Nenhuma onda fecha com gate reprovado.** Cada gate tem verificação mecânica. Auditoria de conteúdo não substitui `grep` de componente. Esta lição é do Mallory, onde o `.md` estava limpo e o HTML estava pela metade.
 
-### G1 · Estrutura — a anatomia está inteira?
+### G1 · Estrutura, a anatomia está inteira?
 
 Toda página de aula tem os 8 blocos + destino + checkpoint + hook + nav.
 
@@ -97,9 +97,9 @@ done
 ```
 **Reprova se:** qualquer contagem = 0.
 
-> ⚠️ **Usar `grep -ci`, com o `-i`.** O caixa-alta dos títulos vem do CSS (`text-transform:uppercase`), não da fonte. Um gate case-sensitive reprova página correta — foi o que aconteceu na primeira rodada da Onda 1.
+> ⚠️ **Usar `grep -ci`, com o `-i`.** O caixa-alta dos títulos vem do CSS (`text-transform:uppercase`), não da fonte. Um gate case-sensitive reprova página correta, foi o que aconteceu na primeira rodada da Onda 1.
 
-### G2 · Gabarito escondido — dá para tentar antes de ver?
+### G2 · Gabarito escondido · dá para tentar antes de ver?
 
 ```bash
 grep -c "<details" m1/a3-regra-que-fica/index.html      # ≥ 1
@@ -107,18 +107,18 @@ grep -c "open>" m1/a3-regra-que-fica/index.html         # deve ser 0
 ```
 **Reprova se:** não há `<details>`, ou há `<details open>`. Gabarito aberto não é exercício, é demonstração.
 
-### G3 · Higiene de dados — nada real vaza
+### G3 · Higiene de dados · nada real vaza
 
 ```bash
-grep -rniE "pouchain" --include="*.html" --include="*.csv" --include="*.md" m1/ kit/ index.html
-grep -rniE "(zenith|GE )" --include="*.html" --include="*.csv" m1/
+grep -rniE "pouchain" --include="*.html" --include="*.xlsx" --include="*.md" m1/ kit/ index.html
+grep -rniE "(zenith|GE )" --include="*.html" --include="*.xlsx" m1/
 ```
 **Reprova se:** o nome do cliente aparece **dentro de insumo, exemplo ou dado**. Aparecer no `CLAUDE.md` e no rodapé como "quem contratou" é esperado e correto.
 **Reprova também se:** houver qualquer nome de pessoa real, número vindo do material interno de consultoria, ou nome de sistema real da casa.
 
-> 🔒 **Este repositório é público.** Nada de material interno de consultoria entra aqui — nem em `.md` de governança. A regra vale para o repo inteiro, não só para as páginas.
+> 🔒 **Este repositório é público.** Nada de material interno de consultoria entra aqui, nem em `.md` de governança. A regra vale para o repo inteiro, não só para as páginas.
 
-### G4 · Fatos técnicos — tudo rastreável
+### G4 · Fatos técnicos, tudo rastreável
 
 Toda afirmação técnica cruza com `../FATOS-VERIFICADOS.md`. Todo número de produto carrega data.
 
@@ -127,7 +127,7 @@ grep -oE "(200 mil|1M|[0-9]+ (mil )?tokens|[0-9]+%|R\$ ?[0-9]|US\$ ?[0-9])" m1/*
 ```
 **Reprova se:** algum número de produto aparece sem "verificado em DD/MM/AAAA" por perto.
 
-### G5 · Didática — cabe na cabeça de quem está na sala?
+### G5 · Didática · cabe na cabeça de quem está na sala?
 
 Verificação humana, com critério fechado:
 
@@ -139,7 +139,7 @@ Verificação humana, com critério fechado:
 | **A dor é situação, não citação atribuída** | Alguém identificável aparece |
 | **Jargão traduzido** | "token", "contexto", "retrieval" aparecem sem uma frase de tradução ao lado |
 
-### G6 · Navegação — nenhum link morto
+### G6 · Navegação · nenhum link morto
 
 ```bash
 grep -ohE 'href="[^"#h][^"]*"' index.html m1/index.html m1/*/index.html \
@@ -148,7 +148,7 @@ grep -ohE 'href="[^"#h][^"]*"' index.html m1/index.html m1/*/index.html \
 Conferir um a um se o caminho existe.
 **Reprova se:** qualquer link relativo aponta para arquivo inexistente. **Aula com botão de download quebrado quebra na sala.**
 
-### G7 · Render — a página abre e se comporta
+### G7 · Render, a página abre e se comporta
 
 ```bash
 python3 -c "import html.parser,sys
@@ -164,9 +164,9 @@ p=P();p.feed(open(sys.argv[1]).read());print('abertas ao fim:',p.st)" ARQUIVO.ht
 Mais, em cada página: `viewport` presente · `lang="pt-BR"` · `<title>` único · media query de `720px` presente · `prefers-reduced-motion` presente.
 **Reprova se:** tag desalinhada, ou falta responsividade. Metade da sala abre no celular no intervalo.
 
-### G7-ter · 🔴 Classe usada sem CSS — a lição do Mallory, generalizada
+### G7-ter · 🔴 Classe usada sem CSS, a lição do Mallory, generalizada
 
-**O gate que pegou o defeito real desta onda.** Como cada página é single-file, uma classe pode ser usada no HTML e não existir no `<style>` daquela página — o componente aparece **cru**, sem borda, sem fundo, sem nada. Conteúdo perfeito, componente pela metade. Nenhuma leitura de texto pega isso.
+**O gate que pegou o defeito real desta onda.** Como cada página é single-file, uma classe pode ser usada no HTML e não existir no `<style>` daquela página, o componente aparece **cru**, sem borda, sem fundo, sem nada. Conteúdo perfeito, componente pela metade. Nenhuma leitura de texto pega isso.
 
 ```bash
 for f in index.html m1/index.html m1/*/index.html; do
@@ -182,9 +182,9 @@ print(f"{'FALHA' if missing else 'OK   '}  {sys.argv[1]}", missing or "")
 PY
 done
 ```
-**Reprova se:** qualquer classe aparece na lista. **Sem exceção conhecida** — se uma classe é só marcador semântico, dê a ela uma regra CSS de uma linha. Gate com exceção permanente para de ser gate.
+**Reprova se:** qualquer classe aparece na lista. **Sem exceção conhecida**, se uma classe é só marcador semântico, dê a ela uma regra CSS de uma linha. Gate com exceção permanente para de ser gate.
 
-### G8 · 🔴 Exercício executável — o aluno consegue fazer AGORA?
+### G8 · 🔴 Exercício executável, o aluno consegue fazer AGORA?
 
 O gate mais importante, e o que nenhuma ferramenta pega sozinha.
 
@@ -192,16 +192,46 @@ O gate mais importante, e o que nenhuma ferramenta pega sozinha.
 |---|---|
 | O exercício exige só o que o aluno tem **naquele ponto do curso**? | Aula de M1 pede terminal, instalação, Cowork ou Code |
 | O arquivo de partida **existe** e baixa? | O `href` aponta para arquivo que não está no repo |
-| O insumo funciona **sem upload de arquivo**? | Em M1 o dado não pode depender de anexo — tem que dar para colar no chat |
+| O insumo funciona **sem upload de arquivo**? | Em M1 o dado não pode depender de anexo, tem que dar para colar no chat |
 | O gabarito é alcançável a partir da partida? | O gabarito tem seções que a partida não pede |
 | Cabe no tempo declarado? | Exercício de 12 min que leva 30 |
-| Tem callout "o seu vai ser diferente"? | Falta — e aí gestor não-técnico trava achando que errou |
+| Tem callout "o seu vai ser diferente"? | Falta, e aí gestor não-técnico trava achando que errou |
+
+### G9 · Travessão: zero, em qualquer arquivo
+
+```bash
+grep -rc "$(printf '\u2014')" --include="*.html" --include="*.md" . | grep -v ":0$"
+```
+**Reprova se:** qualquer arquivo retornar contagem maior que zero. Inclui `<title>`, heading e comentário de CSS.
+**Como corrigir:** pontuação portuguesa normal, nunca substituição mecânica por vírgula. Ver `CLAUDE.md` §7.
+
+### G10 · Formato dos insumos
+
+```bash
+find . -name "*.csv" -o -name "*.txt" | grep -v node_modules
+```
+**Reprova se:** houver `.csv` ou `.txt` como arquivo de exercício. Planilha é `.xlsx`, documento é `.docx`, prompt é `.md`.
+
+**E a sujeira proposital precisa estar no arquivo**, não só prometida na página:
+
+```bash
+python3 - <<'PY'
+from openpyxl import load_workbook
+import glob
+for f in glob.glob("**/*.xlsx", recursive=True):
+    s = load_workbook(f).active
+    linhas = list(s.iter_rows(values_only=True))
+    print(f, "| mescladas:", len(s.merged_cells.ranges),
+          "| em branco no meio:", sum(1 for r in linhas[4:] if not any(v is not None for v in r)))
+PY
+```
+**Reprova se:** a planilha estiver limpa. Uma planilha limpa demais ensina o caso que não existe no trabalho deles.
 
 ---
 
 ## 6. Matriz de auditoria desta onda
 
-**Rodada em 05/08/2026.** Contagem, não impressão. As contagens de classe incluem a definição no CSS — por isso "7 linhas de nível" aparece como 13.
+**Rodada em 05/08/2026.** Contagem, não impressão. As contagens de classe incluem a definição no CSS, por isso "7 linhas de nível" aparece como 13.
 
 | Componente esperado | Onde | Verificação | Contagem | Veredicto |
 |---|---|---|---|---|
@@ -228,7 +258,7 @@ O gate mais importante, e o que nenhuma ferramenta pega sozinha.
 
 ### 🔴 O defeito que a auditoria pegou
 
-**`m1/a3-regra-que-fica/index.html` usava `.prompt-box`, `.prompt-toolbar`, `.prompt-btn` e `.prompt-content` sem ter o CSS delas.** O bloco de prompt copiável teria aparecido **cru** — texto solto, sem caixa, sem botão estilizado, sem fonte mono.
+**`m1/a3-regra-que-fica/index.html` usava `.prompt-box`, `.prompt-toolbar`, `.prompt-btn` e `.prompt-content` sem ter o CSS delas.** O bloco de prompt copiável teria aparecido **cru**: texto solto, sem caixa, sem botão estilizado, sem fonte mono.
 
 Nenhuma leitura do conteúdo pegaria isso: o texto estava certo, a estrutura estava certa, o botão existia. **Só a contagem de classe × CSS pega.** É exatamente o padrão do Mallory, e é por isso que o `G7-ter` virou gate permanente.
 
@@ -247,7 +277,7 @@ O passo que só ele pode fazer: **rodar o exercício de verdade e conferir se a 
 | 1.1 · prompt vago × específico | | | |
 | 1.3 · regras da minha função | | | |
 
-**Por que é inegociável:** um exercício que promete uma saída e entrega outra quebra na frente de 20 pessoas, ao vivo, sem chance de recuperar. Nenhuma auditoria de código detecta isso — só rodar detecta.
+**Por que é inegociável:** um exercício que promete uma saída e entrega outra quebra na frente de 20 pessoas, ao vivo, sem chance de recuperar. Nenhuma auditoria de código detecta isso, só rodar detecta.
 
 ---
 

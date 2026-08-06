@@ -1,14 +1,14 @@
 # Gabarito comentado · As regras da minha função
 
 > **O seu vai ser diferente do meu, e tudo bem.** Este é o texto de um **coordenador
-> de PCP da Gráfica Aurora** — uma pessoa fictícia, de uma empresa fictícia. Se você
+> de PCP da Gráfica Aurora**, uma pessoa fictícia, de uma empresa fictícia. Se você
 > é do Financeiro, do RH ou do Comercial, o seu vai ter outras linhas.
 >
 > **Compare a estrutura, não o conteúdo.** As perguntas certas são: as minhas cinco
 > seções estão preenchidas? Cada linha minha veio de uma correção que eu de fato
 > repeti? Ficou entre 20 e 40 linhas?
 >
-> Os blocos marcados com 💬 são o comentário do professor — eles **não** entram no
+> Os blocos marcados com 💬 são o comentário do professor. Eles **não** entram no
 > arquivo de verdade.
 
 ---
@@ -22,7 +22,7 @@ e o gerente industrial, na reunião semanal.
 
 > 💬 **Por que estas quatro linhas.** A última é a mais importante e é a que quase
 > todo mundo esquece: **quem lê**. Sem ela, o Claude escreve para você. Com ela,
-> ele escreve para a reunião — e o tom, o tamanho e o nível de detalhe mudam sozinhos.
+> ele escreve para a reunião, e o tom, o tamanho e o nível de detalhe mudam sozinhos.
 
 ---
 
@@ -51,7 +51,7 @@ coluna com espaço no nome e linha em branco no meio. Normalize antes de analisa
 
 Responda sempre em português do Brasil.
 Use tabela sempre que houver mais de 3 itens para comparar.
-Sem parágrafo de introdução e sem parágrafo de conclusão — eu colo direto na pauta.
+Sem parágrafo de introdução e sem parágrafo de conclusão, eu colo direto na pauta.
 Data no formato DD/MM/AAAA. Valor em reais, com vírgula decimal.
 Quando falar de prazo, diga também quantos dias úteis faltam a partir de hoje.
 
@@ -69,14 +69,14 @@ Quando falar de prazo, diga também quantos dias úteis faltam a partir de hoje.
 Nunca invente número que não esteja no dado que eu mandei.
 Nunca arredonde valor sem me avisar que arredondou.
 Nunca conclua que uma OS está atrasada sem me mostrar a conta: prazo × data de hoje.
-Não me devolva comunicado ou e-mail pronto para enviar — eu reviso antes, sempre.
+Não me devolva comunicado ou e-mail pronto para enviar, eu reviso antes, sempre.
 
 > 💬 **A terceira linha é a mais valiosa das quatro.** "Me mostre a conta" transforma
 > uma resposta que você teria que acreditar numa resposta que você consegue conferir
 > em cinco segundos. Guarde essa ideia: ela vira um módulo inteiro no M3.
 >
 > 💬 Repare que nenhuma linha aqui diz "seja cuidadoso" ou "capriche". Regra que não
-> dá para julgar como verdadeira ou falsa não é regra — é torcida.
+> dá para julgar como verdadeira ou falsa não é regra, é torcida.
 
 ---
 
@@ -88,7 +88,7 @@ Se a resposta puder ir para dois caminhos, me mostre os dois e diga qual você
 escolheria, com o motivo.
 
 > 💬 **É a seção mais curta e a que muda mais o dia a dia.** Sem ela, o Claude
-> preenche buraco com hipótese plausível — e hipótese plausível dentro de um número
+> preenche buraco com hipótese plausível, e hipótese plausível dentro de um número
 > é exatamente o erro que passa batido na reunião.
 
 ---
@@ -99,7 +99,7 @@ escolheria, com o motivo.
 |---|---|
 | As cinco seções estão preenchidas? | Volte na que ficou vazia. Se você não tem nada a escrever ali, provavelmente ainda não reparou nas correções que faz |
 | Cada linha veio de uma correção que você **repetiu**? | Apague a que você inventou agora. Regra sem dor de origem só ocupa espaço |
-| Ficou entre 20 e 40 linhas? | Muito curto: falta olhar as anotações. Muito longo: você misturou regra de "sempre" com regra de "às vezes" — e isso é o gancho da próxima aula |
+| Ficou entre 20 e 40 linhas? | Muito curto: falta olhar as anotações. Muito longo: você misturou regra de "sempre" com regra de "às vezes", e isso é o gancho da próxima aula |
 | Alguma linha diz "seja cuidadoso", "capriche", "seja conciso"? | Reescreva. Se não dá para dizer se foi cumprida ou não, ele não tem como cumprir |
 | Tem dado sensível aqui dentro? | Tire. Nome de pessoa, valor de contrato e tabela de preço não pública não entram |
 

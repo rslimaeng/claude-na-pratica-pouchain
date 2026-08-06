@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aula 1.3 · A regra que fica — Claude na Prática</title>
+<title>Aula 1.3 · A regra que fica · Claude na Prática</title>
 <meta name="description" content="Onde guardar a regra que não pode se perder no fim da conversa: instruções persistentes, o arquivo CLAUDE.md e por que encher de documento piora.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -180,6 +180,51 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
   padding:11px 14px;border-radius:var(--radius-sm);margin:0 22px 0;color:var(--text);
   line-height:1.5}
 
+/* VISUAL · DILUIÇÃO (quantas páginas você sobe) */
+.dilui{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:24px 0}
+.dilui-col{border:1px solid var(--border);border-radius:var(--radius);
+  background:var(--bg-elev);padding:20px 22px}
+.dilui-label{font-family:var(--font-mono);font-size:11px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--text-dim);margin-bottom:14px}
+.dilui-grid{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;min-height:76px;
+  align-content:flex-start}
+.pag{width:15px;height:20px;border-radius:2px;background:var(--bg-warm);
+  border:1px solid var(--border)}
+.pag.certa{background:var(--success);border-color:var(--success)}
+.pag.parecida{background:#E2C36B;border-color:#C9A84E}
+.dilui-legenda{font-size:13.5px;color:var(--text-muted);line-height:1.5}
+.dilui-legenda strong{color:var(--text)}
+.dilui-chave{display:flex;flex-wrap:wrap;gap:16px;font-size:12.5px;
+  color:var(--text-dim);margin:0 0 24px}
+.dilui-chave span{display:flex;align-items:center;gap:6px}
+.dilui-chave i{width:11px;height:14px;border-radius:2px;display:inline-block}
+
+/* VISUAL · PILHA DE INSTRUÇÕES */
+.pilha{border:1px solid var(--border);border-radius:var(--radius-lg);
+  background:var(--bg-elev);padding:22px;margin:24px 0}
+.pilha-camada{display:grid;grid-template-columns:190px 1fr;gap:16px;align-items:center;
+  padding:12px 16px;border:1px solid var(--border);border-radius:var(--radius-sm);
+  background:var(--bg-code);margin-bottom:6px}
+.pilha-tag{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;
+  color:var(--accent-dark);text-transform:uppercase}
+.pilha-txt{font-size:14.5px;color:var(--text-muted)}
+.pilha-txt strong{color:var(--text)}
+.pilha-seta{text-align:center;color:var(--accent);font-size:19px;
+  font-weight:600;padding:8px 0}
+.pilha-result{background:var(--accent-soft);border:1px solid var(--accent-line);
+  border-radius:var(--radius-sm);padding:14px 18px;font-size:15px;
+  color:var(--accent-dark);text-align:center}
+.pilha-result strong{color:var(--accent-dark)}
+.pilha.conflito .pilha-camada.briga{background:var(--danger-soft);
+  border-color:rgba(184,92,92,.30)}
+.pilha.conflito .pilha-result{background:var(--danger-soft);
+  border-color:rgba(184,92,92,.30);color:#8A3A3A}
+.pilha.conflito .pilha-result strong{color:#8A3A3A}
+@media (max-width:720px){
+  .dilui{grid-template-columns:1fr}
+  .pilha-camada{grid-template-columns:1fr;gap:5px}
+}
+
 /* PROMPT BOX */
 .prompt-box{background:var(--bg-code);border:1px solid var(--border);
   border-radius:var(--radius);margin:18px 0;overflow:hidden}
@@ -352,7 +397,7 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
     <div class="hero-kicker">Aula 1.3 · 25 minutos · Nível 2</div>
     <h1>A regra que fica</h1>
     <p class="hero-sub">
-      Toda vez que a conversa acaba, tudo que você explicou vai junto. Esta aula é sobre <strong>onde guardar o que não pode se perder</strong> — e sobre por que guardar demais atrapalha em vez de ajudar.
+      Toda vez que a conversa acaba, tudo que você explicou vai junto. Esta aula é sobre <strong>onde guardar o que não pode se perder</strong>, e sobre por que guardar demais atrapalha em vez de ajudar.
     </p>
     <div class="hero-meta">
       <span class="meta-label">Você leva</span>
@@ -366,8 +411,8 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
   <div class="destino">
     <div class="destino-title">🎯 O que você vai saber fazer daqui a 25 minutos</div>
     <ul>
-      <li>Escrever, do zero, o texto de regras da sua função — e ter ele funcionando antes do fim da aula</li>
-      <li>Decidir se uma informação vai nas <strong>instruções</strong> ou nos <strong>documentos</strong> — e por que a diferença importa</li>
+      <li>Escrever, do zero, o texto de regras da sua função, e ter ele funcionando antes do fim da aula</li>
+      <li>Decidir se uma informação vai nas <strong>instruções</strong> ou nos <strong>documentos</strong>, e por que a diferença importa</li>
       <li>Reconhecer as duas coisas que estragam um arquivo de regras: encher demais e escrever regra que ninguém consegue conferir</li>
     </ul>
   </div>
@@ -386,13 +431,13 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
         O problema é que, quando eu vou pedir de novo, ele faz de outro jeito.
       </p>
       <p>
-        Essa frase foi dita por uma gestora sobre um painel que ela tinha conseguido montar no Claude — e que ficou <strong>bom</strong>. O painel não era o problema. O problema era a segunda vez.
+        Essa frase foi dita por uma gestora sobre um painel que ela tinha conseguido montar no Claude. E ficou <strong>bom</strong>. O painel não era o problema. O problema era a segunda vez.
       </p>
       <p>
-        Ela tinha explicado o que era cada coluna, como calcular, em que formato queria, o que ignorar. Funcionou. No dia seguinte, conversa nova, <strong>tudo aquilo tinha ido embora</strong> — e ela explicou de novo, com outras palavras, e saiu outra coisa.
+        Ela tinha explicado o que era cada coluna, como calcular, em que formato queria, o que ignorar. Funcionou. No dia seguinte, em conversa nova, <strong>tudo aquilo tinha ido embora</strong>. Ela explicou de novo, com outras palavras, e saiu outra coisa.
       </p>
       <p>
-        Repare que isso não é um defeito escondido. É exatamente o que a aula 1.1 mostrou: <strong>a mesa é limpa quando a conversa acaba.</strong> Tudo que estava nela some. A pergunta certa, então, não é "por que ele esqueceu" — é <strong>"onde é que eu deveria ter guardado isso?"</strong>
+        Repare que isso não é um defeito escondido. É exatamente o que a aula 1.1 mostrou: <strong>a mesa é limpa quando a conversa acaba.</strong> Tudo que estava nela some. A pergunta certa, então, não é "por que ele esqueceu", é <strong>"onde é que eu deveria ter guardado isso?"</strong>
       </p>
       <p>
         É o que esta aula responde. E ela fecha o arco: a frase que abriu o curso tem solução, e a solução leva 15 minutos.
@@ -416,7 +461,7 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
         É um texto curto que <strong>é lido no começo de toda conversa</strong>, sem você colar. Ele diz quem você é, como a sua casa funciona e como você quer a resposta.
       </p>
       <p>
-        Ele tem nomes diferentes em cada superfície — e essa é a única coisa que muda:
+        Ele tem nomes diferentes em cada superfície, e essa é a única coisa que muda:
       </p>
 
       <div class="table-wrap">
@@ -428,7 +473,7 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
             <tr>
               <td><strong>Chat</strong></td>
               <td class="td-nao">não existe</td>
-              <td class="td-nao">você recola toda vez — é exatamente a dor da gestora</td>
+              <td class="td-nao">você recola toda vez, é exatamente a dor da gestora</td>
             </tr>
             <tr>
               <td><strong>Project</strong></td>
@@ -450,7 +495,7 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
       </div>
 
       <div class="callout callout-info">
-        <div class="callout-title">O texto é o mesmo — o lugar é que muda</div>
+        <div class="callout-title">O texto é o mesmo, o lugar é que muda</div>
         <p>
           O que você vai escrever hoje serve para as quatro colunas. Hoje ele entra nas <strong>Instruções do Project</strong>, porque é onde funciona no navegador. No Módulo 2, o <strong>mesmo texto, sem mudar uma linha</strong>, vira um arquivo chamado <code>CLAUDE.md</code> dentro da sua pasta.
         </p>
@@ -466,13 +511,13 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
           É só isso. Não existe modelo pronto que funcione melhor que esse critério, porque <strong>ninguém sabe as suas correções melhor que você</strong>.
         </p>
         <p>
-          Por isso o módulo pediu que você anotasse desde a aula 1.1. Aquelas anotações não eram tarefa de casa — <strong>elas são o exercício de agora.</strong>
+          Por isso o módulo pediu que você anotasse desde a aula 1.1. Aquelas anotações não eram tarefa de casa. <strong>Elas são o exercício de agora.</strong>
         </p>
       </div>
 
       <h4>Conceito 2 · Encher dilui</h4>
       <p>
-        Todo Project tem também um lugar para <strong>documentos</strong> — manuais, normas, planilhas de referência. É diferente das instruções, e a diferença pega quase todo mundo:
+        Todo Project tem também um lugar para <strong>documentos</strong>: manuais, normas, planilhas de referência. É diferente das instruções, e a diferença pega quase todo mundo:
       </p>
 
       <div class="table-wrap">
@@ -494,7 +539,7 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
             <tr>
               <td><strong>Tamanho certo</strong></td>
               <td>Curto. 20 a 40 linhas</td>
-              <td>Pode ser longo — mas <strong>poucos</strong> arquivos</td>
+              <td>Pode ser longo, mas <strong>poucos</strong> arquivos</td>
             </tr>
             <tr>
               <td><strong>O que dá errado</strong></td>
@@ -506,13 +551,56 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
       </div>
 
       <p>
-        O erro clássico é achar que documento é como armário: <em>"quanto mais eu guardar, mais completo fica"</em>. Não é. Ele <strong>procura</strong> nos documentos o trecho que tem a ver com a sua pergunta — e quanto mais coisa parecida tem lá dentro, <strong>mais chance de ele trazer o trecho errado</strong>.
+        O erro clássico é achar que documento é como armário: <em>"quanto mais eu guardar, mais completo fica"</em>. Não é. Ele <strong>procura</strong> nos documentos o trecho que tem a ver com a sua pergunta, e quanto mais coisa parecida tem lá dentro, <strong>mais chance de ele trazer o trecho errado</strong>.
       </p>
+
+      <div class="dilui">
+        <div class="dilui-col">
+          <div class="dilui-label">Você sobe 3 páginas certas</div>
+          <div class="dilui-grid">
+            <span class="pag certa"></span><span class="pag"></span><span class="pag"></span>
+          </div>
+          <p class="dilui-legenda">
+            Ele procura o trecho que responde à sua pergunta. <strong>Só tem um candidato, e é o certo.</strong>
+          </p>
+        </div>
+        <div class="dilui-col">
+          <div class="dilui-label">Você sobe o manual de 40 páginas</div>
+          <div class="dilui-grid">
+            <span class="pag certa"></span><span class="pag parecida"></span><span class="pag"></span>
+            <span class="pag"></span><span class="pag parecida"></span><span class="pag"></span>
+            <span class="pag"></span><span class="pag"></span><span class="pag parecida"></span>
+            <span class="pag"></span><span class="pag parecida"></span><span class="pag"></span>
+            <span class="pag"></span><span class="pag"></span><span class="pag"></span>
+            <span class="pag parecida"></span><span class="pag"></span><span class="pag"></span>
+            <span class="pag"></span><span class="pag"></span><span class="pag parecida"></span>
+            <span class="pag"></span><span class="pag"></span><span class="pag"></span>
+            <span class="pag"></span><span class="pag parecida"></span><span class="pag"></span>
+            <span class="pag"></span><span class="pag"></span><span class="pag"></span>
+            <span class="pag parecida"></span><span class="pag"></span><span class="pag"></span>
+            <span class="pag"></span><span class="pag"></span><span class="pag parecida"></span>
+            <span class="pag"></span><span class="pag"></span><span class="pag"></span>
+            <span class="pag"></span>
+          </div>
+          <p class="dilui-legenda">
+            O trecho certo continua lá. <strong>Só que agora ele disputa com oito parecidos</strong>, e às vezes perde.
+          </p>
+        </div>
+      </div>
+
+      <div class="dilui-chave">
+        <span><i class="pag certa"></i> o trecho que responde de verdade</span>
+        <span><i class="pag parecida"></i> trecho parecido, de outro caso</span>
+        <span><i class="pag"></i> não tem a ver com a pergunta</span>
+      </div>
 
       <div class="callout callout-warn">
         <div class="callout-title">3 páginas certas ganham de 40 páginas completas</div>
         <p>
-          Não é opinião: a documentação oficial da Anthropic diz que contexto irrelevante demais <strong>piora</strong> o desempenho. Guia de 3 páginas com o que interessa vence o manual inteiro — e vence com folga.
+          Não é opinião: a documentação oficial da Anthropic diz que contexto irrelevante demais <strong>piora</strong> o desempenho. Guia de 3 páginas com o que interessa vence o manual inteiro, e vence com folga.
+        </p>
+        <p>
+          E repare no detalhe cruel: <strong>o problema não são as páginas que não têm nada a ver.</strong> São as parecidas. Um manual grande tem muito trecho parecido, e é aí que ele erra.
         </p>
       </div>
     </div>
@@ -524,7 +612,7 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
       <div class="step-num">03</div>
       <div class="step-title-block">
         <div class="step-eyebrow">Como funciona</div>
-        <div class="step-title">As instruções se empilham — e não brigam</div>
+        <div class="step-title">As instruções se empilham, e não brigam</div>
       </div>
     </div>
     <div class="step-body">
@@ -549,11 +637,53 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
       <div class="callout callout-warn">
         <div class="callout-title">⚠️ Aqui mora o erro mais caro desta aula</div>
         <p>
-          Não existe "o de baixo manda mais que o de cima". <strong>Os quatro são lidos juntos, empilhados.</strong> Se dois se contradizem, o Claude escolhe um — e <strong>você não controla qual</strong>.
+          Não existe "o de baixo manda mais que o de cima". <strong>Os quatro são lidos juntos, empilhados.</strong> Se dois se contradizem, o Claude escolhe um, e <strong>você não controla qual</strong>.
         </p>
         <p>
           Ou seja: <strong>regra contraditória não é uma questão de prioridade. É um defeito.</strong> Tem que ser corrigida no texto, não resolvida por hierarquia.
         </p>
+      </div>
+
+      <div class="pilha">
+        <div class="pilha-camada">
+          <span class="pilha-tag">Política da organização</span>
+          <span class="pilha-txt">"Nenhum dado de cliente identificável sai da empresa"</span>
+        </div>
+        <div class="pilha-camada">
+          <span class="pilha-tag">Seu arquivo pessoal</span>
+          <span class="pilha-txt">"Responda sempre em português do Brasil"</span>
+        </div>
+        <div class="pilha-camada">
+          <span class="pilha-tag">Arquivo da pasta</span>
+          <span class="pilha-txt">"Nesta pasta, valor sempre com vírgula decimal"</span>
+        </div>
+        <div class="pilha-camada">
+          <span class="pilha-tag">Arquivo local</span>
+          <span class="pilha-txt">"Só na minha máquina: pode me chamar pelo primeiro nome"</span>
+        </div>
+        <div class="pilha-seta" aria-hidden="true">↓</div>
+        <div class="pilha-result">
+          O que o Claude lê: <strong>as quatro, juntas, uma colada na outra</strong>
+        </div>
+      </div>
+
+      <p>
+        Repare que <strong>nenhuma delas cancela a outra</strong>. Elas somam. Enquanto falam de coisas diferentes, funciona bem. O problema aparece quando duas falam da mesma coisa e discordam:
+      </p>
+
+      <div class="pilha conflito">
+        <div class="pilha-camada briga">
+          <span class="pilha-tag">Arquivo da pasta</span>
+          <span class="pilha-txt">"Valor sempre com <strong>vírgula</strong> decimal"</span>
+        </div>
+        <div class="pilha-camada briga">
+          <span class="pilha-tag">Arquivo local</span>
+          <span class="pilha-txt">"Valor sempre com <strong>ponto</strong> decimal"</span>
+        </div>
+        <div class="pilha-seta" aria-hidden="true">↓</div>
+        <div class="pilha-result">
+          Ele obedece <strong>uma das duas</strong>, e você não controla qual
+        </div>
       </div>
 
       <div class="analogia">
@@ -562,7 +692,7 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
           No quadro tem o comunicado do RH, o aviso do líder de turno e o bilhete que você mesmo colou. <strong>O operador lê os três.</strong>
         </p>
         <p>
-          Se um diz "parada às 15h" e o outro diz "parada às 16h", ele não tem como saber qual vale — e vai fazer o que entendeu. A solução nunca é discutir qual papel é mais importante. <strong>É tirar um dos dois do quadro.</strong>
+          Se um diz "parada às 15h" e o outro diz "parada às 16h", ele não tem como saber qual vale, e vai fazer o que entendeu. A solução nunca é discutir qual papel é mais importante. <strong>É tirar um dos dois do quadro.</strong>
         </p>
       </div>
 
@@ -615,7 +745,7 @@ informações:
 2. O que você considera "situação"?
 3. Que tipo de análise você espera?</div>
             <div class="uau-nota">
-              Ele não sabe o que é OS na sua casa, não tem o dado, não sabe para quem é. <strong>Devolve a pergunta.</strong> E aí você digita tudo de novo — de um jeito um pouco diferente do de ontem.
+              Ele não sabe o que é OS na sua casa, não tem o dado, não sabe para quem é. <strong>Devolve a pergunta.</strong> E aí você digita tudo de novo, de um jeito um pouco diferente do de ontem.
             </div>
           </div>
           <div class="uau-col">
@@ -630,9 +760,9 @@ Offset 2 com 5, Flexo 1 com 3, Flexo 2 com 3.
 
 Para decidir amanhã:
 1. A 2427 e a 2434 estão as duas na
-   Offset 1 — qual entra primeiro?</div>
+   Offset 1. Qual entra primeiro?</div>
             <div class="uau-nota">
-              Tabela, data em DD/MM/AAAA, sem introdução, já apontando o que você precisa decidir. <strong>Você não pediu nada disso agora</strong> — pediu uma vez, quando escreveu as regras.
+              Tabela, data em DD/MM/AAAA, sem introdução, já apontando o que você precisa decidir. <strong>Você não pediu nada disso agora</strong>. Pediu uma vez, quando escreveu as regras.
             </div>
           </div>
         </div>
@@ -644,7 +774,7 @@ Para decidir amanhã:
           <ol class="demo-passos">
             <li>Mostro <strong>onde ficam as Instruções</strong> de um Project, e crio um do zero em menos de um minuto.</li>
             <li>Colo as regras do coordenador de PCP e faço o pedido de uma frase. É o painel da direita, ao vivo.</li>
-            <li>Acrescento de propósito uma <strong>regra que contradiz</strong> outra ("valor sempre com vírgula" e, três linhas abaixo, "valor sempre com ponto") e rodo de novo. <strong>Ele obedece uma das duas — e não dá para prever qual.</strong> É o quadro de avisos com dois papéis brigando.</li>
+            <li>Acrescento de propósito uma <strong>regra que contradiz</strong> outra ("valor sempre com vírgula" e, três linhas abaixo, "valor sempre com ponto") e rodo de novo. <strong>Ele obedece uma das duas, e não dá para prever qual.</strong> É o quadro de avisos com dois papéis brigando.</li>
             <li>Jogo <strong>um manual longo</strong> nos documentos e faço uma pergunta específica. A resposta piora: ele traz o trecho de outro capítulo, parecido e errado. <strong>É o "encher dilui" acontecendo na frente de vocês.</strong></li>
           </ol>
         </div>
@@ -663,7 +793,7 @@ Para decidir amanhã:
     </div>
     <div class="step-body">
       <p>
-        Você não vai preencher um modelo genérico. Você vai <strong>transcrever as suas próprias correções</strong> — as que você anotou nas aulas 1.1 e 1.2. Se você anotou pouco, olhe a conversa do exercício anterior: as correções estão lá.
+        Você não vai preencher um modelo genérico. Você vai <strong>transcrever as suas próprias correções</strong>, as que você anotou nas aulas 1.1 e 1.2. Se você anotou pouco, olhe a conversa do exercício anterior: as correções estão lá.
       </p>
 
       <div class="download-card">
@@ -688,17 +818,17 @@ Para decidir amanhã:
         <li>
           <div class="passo-title">Fique entre 20 e 40 linhas</div>
           <p>
-            Menos que isso não muda nada. Muito mais que isso e você já está caindo na armadilha do "encher dilui" — e vai sentir na próxima aula.
+            Menos que isso não muda nada. Muito mais que isso e você já está caindo na armadilha do "encher dilui", e vai sentir na próxima aula.
           </p>
         </li>
         <li>
           <div class="passo-title">Crie um Project e cole o texto nas Instruções</div>
           <p>
-            No Claude, no navegador: <strong>Projects → criar projeto → Instruções</strong>. Dê ao projeto o nome da sua função, não o nome de uma tarefa — ele vai servir para várias.
+            No Claude, no navegador: <strong>Projects → criar projeto → Instruções</strong>. Dê ao projeto o nome da sua função, não o nome de uma tarefa, ele vai servir para várias.
           </p>
         </li>
         <li>
-          <div class="passo-title">Teste — e este passo é o exercício de verdade</div>
+          <div class="passo-title">Teste, e este passo é o exercício de verdade</div>
           <p>
             Dentro do Project, faça <strong>o mesmo pedido vago do exercício da aula 1.1</strong>, colando os mesmos dados:
           </p>
@@ -713,7 +843,7 @@ Para decidir amanhã:
             <strong>Compare com o que tinha saído lá.</strong> A pergunta a responder é uma só: <em>quantas correções eu não precisei fazer desta vez?</em>
           </p>
           <p>
-            Se você não tiver mais os dados à mão, <a href="../a1-ecossistema-e-fisica/exercicio/pedidos-em-producao.csv" download>baixe o arquivo de novo aqui</a>.
+            Se você não tiver mais os dados à mão, <a href="../a1-ecossistema-e-fisica/exercicio/pedidos-em-producao.xlsx" download>baixe a planilha de novo aqui</a>.
           </p>
         </li>
       </ol>
@@ -721,7 +851,7 @@ Para decidir amanhã:
       <div class="callout callout-info">
         <div class="callout-title">Se sobrar tempo</div>
         <p>
-          Pegue uma regra sua que esteja vaga — do tipo "seja objetivo" — e reescreva de um jeito que dê para conferir. É o exercício mais valioso da aula, e é o que menos gente faz.
+          Pegue uma regra sua que esteja vaga, do tipo "seja objetivo", e reescreva de um jeito que dê para conferir. É o exercício mais valioso da aula, e é o que menos gente faz.
         </p>
       </div>
     </div>
@@ -738,7 +868,7 @@ Para decidir amanhã:
     </div>
     <div class="step-body">
       <p>
-        Escreva o seu antes de abrir. O gabarito é de um <strong>coordenador de PCP da Gráfica Aurora</strong> — se você é do Financeiro, do RH ou do Comercial, o seu vai ter outras linhas, e está certo assim.
+        Escreva o seu antes de abrir. O gabarito é de um <strong>coordenador de PCP da Gráfica Aurora</strong>, se você é do Financeiro, do RH ou do Comercial, o seu vai ter outras linhas, e está certo assim.
       </p>
 
       <details class="gabarito">
@@ -751,20 +881,20 @@ Para decidir amanhã:
           <div class="callout callout-info" style="margin-top:0">
             <div class="callout-title">O seu vai ser diferente do meu, e tudo bem</div>
             <p>
-              Não existe resposta certa única aqui — existe versão de referência. <strong>Compare a estrutura, não o conteúdo.</strong> As perguntas certas são: as cinco seções estão preenchidas? Cada linha veio de uma correção que eu repeti de verdade? Ficou entre 20 e 40 linhas?
+              Não existe resposta certa única aqui, existe versão de referência. <strong>Compare a estrutura, não o conteúdo.</strong> As perguntas certas são: as cinco seções estão preenchidas? Cada linha veio de uma correção que eu repeti de verdade? Ficou entre 20 e 40 linhas?
             </p>
           </div>
 
-          <h4>Trecho 1 · Quem eu sou — e a linha que quase todo mundo esquece</h4>
+          <h4>Trecho 1 · Quem eu sou, e a linha que quase todo mundo esquece</h4>
           <div class="gab-trecho">Sou coordenador de PCP numa indústria gráfica de médio porte.
 Programo a produção de duas máquinas offset e duas flexográficas.
 Quem usa o que eu produzo: os líderes de máquina, na reunião diária
 das 8h, e o gerente industrial, na reunião semanal.</div>
           <p>
-            A última linha é a mais importante e a que quase ninguém escreve: <strong>quem lê</strong>. Sem ela, o Claude escreve para você. Com ela, ele escreve para a reunião — e o tom, o tamanho e o nível de detalhe se ajustam sozinhos.
+            A última linha é a mais importante e a que quase ninguém escreve: <strong>quem lê</strong>. Sem ela, o Claude escreve para você. Com ela, ele escreve para a reunião, e o tom, o tamanho e o nível de detalhe se ajustam sozinhos.
           </p>
 
-          <h4>Trecho 2 · Como a casa funciona — o que só quem trabalha lá sabe</h4>
+          <h4>Trecho 2 · Como a casa funciona, o que só quem trabalha lá sabe</h4>
           <div class="gab-trecho">OS = ordem de serviço. Tiragem = quantidade impressa.
 "Fechar a OS" = liberar para faturamento. NÃO significa terminar
 a impressão.
@@ -772,19 +902,19 @@ O relatório sai do sistema em CSV com ponto e vírgula. Ele vem sujo:
 data em formatos diferentes, status ora em maiúscula ora não, e
 linha em branco no meio. Normalize antes de analisar.</div>
           <p>
-            As três últimas linhas valem o arquivo inteiro — nasceram de uma correção que se repetia toda semana (<em>"as datas estão erradas"</em>). Escritas uma vez, nunca mais.
+            As três últimas linhas valem o arquivo inteiro. Nasceram de uma correção que se repetia toda semana (<em>"as datas estão erradas"</em>). Escritas uma vez, nunca mais.
           </p>
           <p>
             E a linha do <em>"fechar a OS"</em> é o tipo de coisa que <strong>só quem trabalha na casa sabe</strong>. É exatamente por isso que precisa estar escrita: o Claude sabe muito sobre gráfica em geral e <strong>nada</strong> sobre a sua gráfica.
           </p>
 
-          <h4>Trecho 3 · O que nunca fazer — a linha mais valiosa das quatro</h4>
+          <h4>Trecho 3 · O que nunca fazer, a linha mais valiosa das quatro</h4>
           <div class="gab-trecho">Nunca invente número que não esteja no dado que eu mandei.
 Nunca arredonde valor sem me avisar que arredondou.
 Nunca conclua que uma OS está atrasada sem me mostrar a conta:
 prazo × data de hoje.</div>
           <p>
-            "Me mostre a conta" transforma uma resposta que você teria que <strong>acreditar</strong> numa resposta que você consegue <strong>conferir em cinco segundos</strong>. Guarde essa ideia — ela vira um módulo inteiro no M3.
+            "Me mostre a conta" transforma uma resposta que você teria que <strong>acreditar</strong> numa resposta que você consegue <strong>conferir em cinco segundos</strong>. Guarde essa ideia, ela vira um módulo inteiro no M3.
           </p>
 
           <h4>📏 Confira o seu</h4>
@@ -794,7 +924,7 @@ prazo × data de hoje.</div>
               <tbody>
                 <tr><td>As cinco seções estão preenchidas?</td><td>Volte na vazia. Se não tem o que escrever, provavelmente você ainda não reparou nas correções que faz</td></tr>
                 <tr><td>Cada linha veio de uma correção <strong>repetida</strong>?</td><td>Apague a que você inventou agora</td></tr>
-                <tr><td>Ficou entre 20 e 40 linhas?</td><td>Curto demais: falta olhar as anotações. Longo demais: você misturou regra de "sempre" com regra de "às vezes" — e esse é o gancho da próxima aula</td></tr>
+                <tr><td>Ficou entre 20 e 40 linhas?</td><td>Curto demais: falta olhar as anotações. Longo demais: você misturou regra de "sempre" com regra de "às vezes", e esse é o gancho da próxima aula</td></tr>
                 <tr><td>Tem alguma linha do tipo "capriche", "seja conciso"?</td><td>Reescreva. Se não dá para dizer se foi cumprida, ele não tem como cumprir</td></tr>
                 <tr><td>Tem dado sensível aí dentro?</td><td>Tire agora. Nome de pessoa, valor de contrato e tabela de preço não pública não entram</td></tr>
               </tbody>
@@ -823,10 +953,10 @@ prazo × data de hoje.</div>
       <div class="callout callout-warn">
         <div class="callout-title">⚠️ A decepção nº 1 com Projects</div>
         <p>
-          <strong>Conversas diferentes dentro do mesmo Project não compartilham o histórico entre si.</strong> O que fica guardado são as <em>instruções</em> e os <em>documentos</em> — não o que você conversou ontem.
+          <strong>Conversas diferentes dentro do mesmo Project não compartilham o histórico entre si.</strong> O que fica guardado são as <em>instruções</em> e os <em>documentos</em>, não o que você conversou ontem.
         </p>
         <p>
-          É a descoberta que faz mais gente abandonar o recurso achando que "não funciona". Funciona — só não é isso que ele faz. <strong>Se você quer que algo sobreviva à conversa, escreva nas instruções.</strong>
+          É a descoberta que faz mais gente abandonar o recurso achando que "não funciona". Funciona, só não é isso que ele faz. <strong>Se você quer que algo sobreviva à conversa, escreva nas instruções.</strong>
         </p>
       </div>
 
@@ -839,7 +969,7 @@ prazo × data de hoje.</div>
         <div class="compare-col bom">
           <div class="compare-label">O que funciona</div>
           <div class="compare-quote">"Só o que eu já precisei corrigir duas vezes."</div>
-          <p>Curto, específico, com dor de origem. Cresce sozinho conforme você usa — e é assim que tem que ser.</p>
+          <p>Curto, específico, com dor de origem. Cresce sozinho conforme você usa, e é assim que tem que ser.</p>
         </div>
       </div>
 
@@ -860,12 +990,12 @@ prazo × data de hoje.</div>
         <div class="compare-col ruim">
           <div class="compare-label">O que trava</div>
           <div class="compare-quote">"Deixei as duas regras, ele que decida a melhor."</div>
-          <p>Ele não decide — ele escolhe uma, e você não controla qual. <strong>Regra contraditória é defeito, não é flexibilidade.</strong></p>
+          <p>Ele não decide, ele escolhe uma, e você não controla qual. <strong>Regra contraditória é defeito, não é flexibilidade.</strong></p>
         </div>
         <div class="compare-col bom">
           <div class="compare-label">O que funciona</div>
           <div class="compare-quote">"Reli o texto inteiro procurando contradição antes de salvar."</div>
-          <p>Leva dois minutos e evita o erro mais difícil de diagnosticar depois — porque ele acontece só às vezes.</p>
+          <p>Leva dois minutos e evita o erro mais difícil de diagnosticar depois, porque ele acontece só às vezes.</p>
         </div>
       </div>
     </div>
@@ -889,16 +1019,16 @@ prazo × data de hoje.</div>
         <div class="callout-title">🔒 O que nunca entra em instrução nem em documento</div>
         <ul>
           <li><strong>Nome de pessoa junto com informação sobre ela.</strong> "O fulano costuma atrasar entrega" numa instrução é avaliação de desempenho escrita num lugar que você não controla quem lê.</li>
-          <li><strong>Senha, chave ou token</strong> — nunca, em lugar nenhum, de jeito nenhum.</li>
+          <li><strong>Senha, chave ou token</strong>: nunca, em lugar nenhum, de jeito nenhum.</li>
           <li><strong>Tabela de preço, margem ou custo não público</strong>, salvo autorização por escrito.</li>
-          <li><strong>Documento com dado pessoal de colaborador</strong> — folha, ficha médica, avaliação. Se precisar da estrutura, suba uma versão com os nomes trocados por código.</li>
+          <li><strong>Documento com dado pessoal de colaborador</strong>: folha, ficha médica, avaliação. Se precisar da estrutura, suba uma versão com os nomes trocados por código.</li>
         </ul>
       </div>
 
       <div class="callout callout-info">
         <div class="callout-title">Sua política pessoal × a política da empresa</div>
         <p>
-          O que você monta hoje é <strong>seu</strong>, na sua conta. Antes de virar padrão da equipe — no Módulo 2, quando esse texto virar arquivo compartilhado — passa a valer a política da empresa, e vale conversar com o TI antes.
+          O que você monta hoje é <strong>seu</strong>, na sua conta. Antes de virar padrão da equipe, no Módulo 2, quando esse texto virar arquivo compartilhado, passa a valer a política da empresa, e vale conversar com o TI antes.
         </p>
         <p>
           <strong>Não é burocracia:</strong> arquivo que vira padrão de área é lido por gente que não estava nesta sala e não viu esta cerca. Quem escreveu responde pelo que está escrito lá.
@@ -908,12 +1038,12 @@ prazo × data de hoje.</div>
   </section>
 
   <div class="checkpoint">
-    <div class="checkpoint-title">✅ Checkpoint — você agora sabe</div>
+    <div class="checkpoint-title">✅ Checkpoint, você agora sabe</div>
     <ul>
       <li>Escrever uma instrução persistente a partir das suas próprias correções repetidas</li>
       <li>Decidir o que vai em <strong>instrução</strong> e o que vai em <strong>documento</strong></li>
       <li>Explicar por que encher de arquivo piora, em vez de melhorar</li>
-      <li>Reconhecer que as instruções se empilham e <strong>não</strong> obedecem hierarquia — regra contraditória é defeito</li>
+      <li>Reconhecer que as instruções se empilham e <strong>não</strong> obedecem hierarquia. Regra contraditória é defeito</li>
       <li>Distinguir uma regra que dá para conferir de uma que é só torcida</li>
       <li>Dizer o que nunca entra num texto que fica guardado</li>
     </ul>
@@ -925,7 +1055,7 @@ prazo × data de hoje.</div>
       Seu texto tem 200 linhas e metade não serve para a tarefa de agora.
     </div>
     <p>
-      Você acabou de aprender que a regra de <strong>sempre</strong> vai na instrução. Mas a maior parte do seu trabalho não é "sempre" — é <strong>"quando aparece uma cotação"</strong>, <strong>"quando fecha o mês"</strong>, <strong>"quando abre uma vaga"</strong>. Cada uma dessas tem um método próprio, e enfiar todos no mesmo texto piora tudo.
+      Você acabou de aprender que a regra de <strong>sempre</strong> vai na instrução. Mas a maior parte do seu trabalho não é "sempre", é <strong>"quando aparece uma cotação"</strong>, <strong>"quando fecha o mês"</strong>, <strong>"quando abre uma vaga"</strong>. Cada uma dessas tem um método próprio, e enfiar todos no mesmo texto piora tudo.
     </p>
     <p>
       A próxima aula é o mapa: para cada tipo de regra, onde ela mora. <a href="../">Voltar ao módulo →</a>
@@ -933,7 +1063,7 @@ prazo × data de hoje.</div>
   </div>
 
   <p class="ementa-nota">
-    <strong>Cobertura da ementa:</strong> esta aula entrega o item <strong>1.2 — CLAUDE.md, o manual do funcionário (global e local, estrutura obrigatória)</strong>. O conceito, os quatro níveis de empilhamento e a estrutura de seções são exatamente os do <code>CLAUDE.md</code>. A <strong>criação do arquivo</strong> acontece no Módulo 2, quando existe uma pasta de trabalho para recebê-lo — e o texto que você escreveu hoje vai para lá sem mudar uma linha. Fazer o arquivo antes de existir a pasta seria decorar um caminho, não aprender o conceito.
+    <strong>Cobertura da ementa:</strong> esta aula entrega o item <strong>1.2 · CLAUDE.md, o manual do funcionário (global e local, estrutura obrigatória)</strong>. O conceito, os quatro níveis de empilhamento e a estrutura de seções são exatamente os do <code>CLAUDE.md</code>. A <strong>criação do arquivo</strong> acontece no Módulo 2, quando existe uma pasta de trabalho para recebê-lo, e o texto que você escreveu hoje vai para lá sem mudar uma linha. Fazer o arquivo antes de existir a pasta seria decorar um caminho, não aprender o conceito.
   </p>
 
   <nav class="nav-bottom">
