@@ -1,0 +1,20 @@
+OS;Cliente;Produto; Tiragem ;Entrada;Prazo;Status;Maquina;Valor
+2418;Distribuidora Sertão;Rótulo adesivo;12000;03/07/2026;10/07/2026;Em produção;Flexo 1;8.450,00
+2419;Laticínios Vale Verde;Caixa cartucho;3500;03/07/2026;09/07/2026;Aguardando papel;Offset 2;12300
+2420;Farmácia Popular Norte;Bula;25000;2026-07-04;2026-07-11;Em produção;Offset 1;6.120,50
+2421;Distribuidora Sertão;Rótulo adesivo;8000;04/07/2026;08/07/2026;ENTREGUE;Flexo 1;5980,00
+
+2422;Móveis Cariri;Catálogo 24p;1200;05-jul-26;15/07/2026;Em produção;Offset 2;18.900,00
+2423;Laticínios Vale Verde;Rótulo adesivo;15000;05/07/2026;12/07/2026;Aguardando aprovação;Flexo 2;9.750,00
+2424;Supermercado Bom Preço;Encarte 8p;40000;2026-07-08;2026-07-14;Em produção;Offset 1;22.400,00
+2425;Farmácia Popular Norte;Caixa cartucho;2000;08/07/2026;16/07/2026;Aguardando papel;Offset 2;7.850,00
+2426;Óticas Miranda;Sacola personalizada;5000;09/07/2026;20/07/2026;Em produção;Flexo 2;11.200,00
+2427;Distribuidora Sertão;Encarte 8p;30000;2026-07-09;2026-07-13;Atrasado;Offset 1;16.800,00
+2428;Móveis Cariri;Rótulo adesivo;6000;10/07/2026;17/07/2026;Em produção;Flexo 1;4.300,00
+2429;Supermercado Bom Preço;Caixa cartucho;9000;10-jul-26;22/07/2026;Aguardando aprovação;Offset 2;27.600,00
+2430;Padaria Central;Bula;18000;11/07/2026;18/07/2026;Em produção;Offset 1;5.400,00
+2431;Laticínios Vale Verde;Catálogo 24p;800;2026-07-12;2026-07-25;Aguardando papel;Offset 2;14.100,00
+2432;Óticas Miranda;Rótulo adesivo;11000;12/07/2026;19/07/2026;entregue;Flexo 2;7.900,00
+2433;Distribuidora Sertão;Sacola personalizada;4000;15/07/2026;28/07/2026;Em produção;Flexo 1;9.600,00
+2434;Farmácia Popular Norte;Encarte 8p;35000;15/07/2026;21/07/2026;Atrasado;Offset 1;19.250,00
+2435;Padaria Central;Caixa cartucho;2500;16-jul-26;24/07/2026;Aguardando aprovação;Offset 2;8.700,00
