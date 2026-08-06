@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aula 1.3 · A regra que fica · Claude na Prática</title>
-<meta name="description" content="Onde guardar a regra que não pode se perder no fim da conversa: instruções persistentes, o arquivo CLAUDE.md e por que encher de documento piora.">
+<title>Aula 1.2 · Pedir para entregar · Claude na Prática</title>
+<meta name="description" content="Como escrever um pedido de um jeito que a primeira resposta ja sirva: pedir o resultado em vez da tarefa, e as tres perguntas de todo pedido.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -369,6 +369,12 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
   .brand-sub{display:none}
 }
 
+/* BREAKOUT · figura e tabela saem da coluna de leitura, prosa fica */
+.table-wrap,.fluxo,.dilui,.compare,.uau,.pilha,.ctx,.setores,.trilha,
+.facts,.pre-req,.modules,.aulas,.fio-passos,.leva,.entrega{
+  width:min(var(--col-wide),calc(100vw - 40px));min-width:100%;
+  margin-left:50%;transform:translateX(-50%)}
+
 /* ============================================================
    VALIDADOR DE FIM DE AULA
    Camada 1 do harness traduzida: critério objetivo, que o aluno
@@ -443,7 +449,7 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
   letter-spacing:.05em;text-transform:uppercase;color:var(--text-dim);
   display:flex;align-items:center;line-height:1.3}
 .os-val{padding:13px 18px;font-size:14.5px;color:var(--text);line-height:1.45;
-  display:flex;align-items:center}
+  display:flex;align-items:center;flex-wrap:wrap}
 .os-val + .os-val{border-left:1px solid var(--border)}
 .os-titulos .os-val{font-family:var(--font-mono);font-size:10.5px;
   letter-spacing:.08em;text-transform:uppercase;color:var(--accent-dark)}
@@ -521,12 +527,6 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
 
 .rodadas-chave i.perdida{background:#F2DEDE;border-color:rgba(184,92,92,.42)}
 .rodadas-chave i.util{background:#DCEEDD;border-color:rgba(46,125,50,.45)}
-
-/* BREAKOUT · figura e tabela saem da coluna de leitura, prosa fica */
-.table-wrap,.fluxo,.dilui,.compare,.uau,.pilha,.ctx,.setores,.trilha,
-.facts,.pre-req,.modules,.aulas,.fio-passos,.leva,.entrega{
-  width:min(var(--col-wide),calc(100vw - 40px));min-width:100%;
-  margin-left:50%;transform:translateX(-50%)}
 </style>
 </head>
 <body>
@@ -541,7 +541,7 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
       </div>
     </a>
     <div class="header-meta">
-      <span class="chip chip-accent">Módulo 1 · Aula 3 de 4</span>
+      <span class="chip chip-accent">Módulo 1 · Aula 2 de 4</span>
     </div>
   </div>
 </header>
@@ -551,32 +551,32 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
   <span class="sep">›</span>
   <a href="../">Módulo 1</a>
   <span class="sep">›</span>
-  <span>Aula 1.3 · A regra que fica</span>
+  <span>Aula 1.2 · Pedir para entregar</span>
 </div>
 
 <main class="wrap">
 
   <section class="hero">
-    <div class="hero-kicker">Aula 1.3 · 25 minutos · Nível 2</div>
-    <h1>A regra que fica</h1>
+    <div class="hero-kicker">Aula 1.2 · 25 minutos · Nível 1</div>
+    <h1>Pedir para entregar</h1>
     <p class="hero-sub">
-      Toda vez que a conversa acaba, tudo que você explicou vai junto. Esta aula é sobre <strong>onde guardar o que não pode se perder</strong>, e sobre por que guardar demais atrapalha em vez de ajudar.
+      A resposta veio genérica, você explicou melhor, veio quase, você explicou de novo. Esta aula é sobre escrever o pedido de um jeito que <strong>a primeira resposta já sirva</strong>.
     </p>
     <div class="hero-meta">
       <span class="meta-label">Você leva</span>
-      <span class="chip chip-accent">O texto das regras da sua função, funcionando</span>
+      <span class="chip chip-accent">Um pedido seu reescrito e testado</span>
       <span class="meta-label" style="margin-left:12px">Precisa de</span>
-      <span class="chip">Suas anotações das aulas 1.1 e 1.2</span>
-      <span class="chip chip-ementa">Ementa 1.2</span>
+      <span class="chip">Suas anotações da aula 1.1</span>
+      <span class="chip chip-ementa">Ementa 1.4</span>
     </div>
   </section>
 
   <div class="destino">
     <div class="destino-title">🎯 O que você vai saber fazer daqui a 25 minutos</div>
     <ul>
-      <li>Escrever, do zero, o texto de regras da sua função, e ter ele funcionando antes do fim da aula</li>
-      <li>Decidir se uma informação vai nas <strong>instruções</strong> ou nos <strong>documentos</strong>, e por que a diferença importa</li>
-      <li>Reconhecer as duas coisas que estragam um arquivo de regras: encher demais e escrever regra que ninguém consegue conferir</li>
+      <li>Reescrever um pedido real seu de forma que a <strong>primeira</strong> resposta já sirva para levar adiante</li>
+      <li>Olhar para um pedido e apontar qual das <strong>três perguntas</strong> ficou sem resposta, antes de mandar</li>
+      <li>Reconhecer a hora de parar de melhorar o pedido, porque a partir dali o problema deixou de ser o pedido</li>
     </ul>
   </div>
 
@@ -586,25 +586,35 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
       <div class="step-num">01</div>
       <div class="step-title-block">
         <div class="step-eyebrow">A situação</div>
-        <div class="step-title">A frase que abriu este curso</div>
+        <div class="step-title">A conta que ninguém faz</div>
       </div>
     </div>
     <div class="step-body">
       <p class="frase-dor">
-        O problema é que, quando eu vou pedir de novo, ele faz de outro jeito.
+        Eu peço, vem mais ou menos. Eu explico melhor, vem mais ou menos de novo.
       </p>
       <p>
-        Essa frase foi dita por uma gestora sobre um painel que ela tinha conseguido montar no Claude. E ficou <strong>bom</strong>. O painel não era o problema. O problema era a segunda vez.
+        Na aula passada você viu a mesa de trabalho encher, e por que a conversa longa piora. Agora o outro lado do problema: mesmo com a mesa vazia, <strong>no começo da conversa</strong>, a resposta vem genérica.
       </p>
       <p>
-        Ela tinha explicado o que era cada coluna, como calcular, em que formato queria, o que ignorar. Funcionou. No dia seguinte, em conversa nova, <strong>tudo aquilo tinha ido embora</strong>. Ela explicou de novo, com outras palavras, e saiu outra coisa.
+        O padrão é sempre o mesmo. Você pede. Vem uma resposta razoável que não serve. Você explica o que faltou. Vem melhor. Você explica de novo. Na quarta ou na quinta, serve.
       </p>
       <p>
-        Repare que isso não é um defeito escondido. É exatamente o que a aula 1.1 mostrou: <strong>a mesa é limpa quando a conversa acaba.</strong> Tudo que estava nela some. A pergunta certa, então, não é "por que ele esqueceu", é <strong>"onde é que eu deveria ter guardado isso?"</strong>
+        Aí vem a conta que ninguém faz: <strong>as quatro primeiras rodadas não foram trabalho.</strong> Foram você descobrindo, no escuro, o que devia ter escrito na primeira mensagem.
       </p>
-      <p>
-        É o que esta aula responde. E ela fecha o arco: a frase que abriu o curso tem solução, e a solução leva 15 minutos.
-      </p>
+
+      <div class="analogia">
+        <div class="analogia-title">💡 Vocês já resolveram isso, em outro lugar</div>
+        <p>
+          Numa gráfica ninguém manda para a produção um bilhete dizendo <strong>"imprime um negócio aí"</strong>. Existe uma OS. E a OS traz tiragem, formato, papel, cores, acabamento, prazo e quem retira.
+        </p>
+        <p>
+          Repare no que acontece quando um campo da OS vem em branco: <strong>a produção para e liga perguntando.</strong> Ela não chuta o papel. O sistema inteiro foi desenhado para não adivinhar, porque adivinhar custa uma tiragem inteira.
+        </p>
+        <p>
+          O Claude adivinha. Ele nunca para para perguntar, a não ser que você peça. É esse o problema inteiro desta aula, e a solução é a mesma que a gráfica já usa: <strong>preencher os campos antes de mandar para a produção.</strong>
+        </p>
+      </div>
     </div>
   </section>
 
@@ -614,158 +624,105 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
       <div class="step-num">02</div>
       <div class="step-title-block">
         <div class="step-eyebrow">O conceito · são dois, só</div>
-        <div class="step-title">A instrução que persiste, e por que encher piora</div>
+        <div class="step-title">Peça o resultado, e responda três perguntas</div>
       </div>
     </div>
     <div class="step-body">
 
-      <h4>Conceito 1 · Instrução persistente</h4>
+      <h4>Conceito 1 · Peça o resultado, não a tarefa</h4>
       <p>
-        É um texto curto que <strong>é lido no começo de toda conversa</strong>, sem você colar. Ele diz quem você é, como a sua casa funciona e como você quer a resposta.
+        "Resuma este relatório" é uma <strong>tarefa</strong>. Resumir para quê? Em quantas linhas? Para quem vai ler? O que pode ficar de fora sem prejuízo?
       </p>
       <p>
-        Ele tem nomes diferentes em cada superfície, e essa é a única coisa que muda:
+        Nenhuma dessas respostas está no pedido. Então ele escolhe. E aqui está a regra que vale para o curso inteiro: <strong>quando você pede a tarefa, quem escolhe o critério é ele. Quando você pede o resultado, quem escolheu foi você.</strong>
       </p>
 
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr><th>Superfície</th><th>Como se chama lá</th><th>Onde fica</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Chat</strong></td>
-              <td class="td-nao">não existe</td>
-              <td class="td-nao">você recola toda vez, é exatamente a dor da gestora</td>
-            </tr>
-            <tr>
-              <td><strong>Project</strong></td>
-              <td><strong>Instruções do projeto</strong></td>
-              <td>Um campo de texto dentro do próprio Claude, no navegador</td>
-            </tr>
-            <tr>
-              <td><strong>Cowork</strong></td>
-              <td><code>CLAUDE.md</code></td>
-              <td>Um arquivo de texto dentro da pasta de trabalho</td>
-            </tr>
-            <tr>
-              <td><strong>Code</strong></td>
-              <td><code>CLAUDE.md</code></td>
-              <td>Um arquivo de texto dentro da pasta do projeto</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="compare">
+        <div class="compare-col ruim">
+          <div class="compare-label">Pedido pela tarefa</div>
+          <div class="compare-quote">Resuma este relatório de vendas.</div>
+          <p>Ele não sabe o tamanho, nem quem lê, nem o que você vai fazer com isso. Vai devolver um resumo correto e inútil, porque o critério dele não é o seu.</p>
+        </div>
+        <div class="compare-col bom">
+          <div class="compare-label">Pedido pelo resultado</div>
+          <div class="compare-quote">Deste relatório de vendas, preciso levar três decisões para a reunião de segunda com o diretor comercial. Cada decisão em uma frase, com o número que sustenta ela.</div>
+          <p>Agora o formato, o tamanho, o leitor e o critério de corte estão definidos. Só existe um jeito de responder isso.</p>
+        </div>
       </div>
+
+      <p>
+        O segundo pedido não é mais longo por capricho. <strong>Cada pedaço a mais fecha uma porta</strong> por onde sairia uma resposta que você ia descartar.
+      </p>
+
+      <h4>Conceito 2 · As três perguntas de todo pedido</h4>
+      <p>
+        Não precisa decorar fórmula. Antes de mandar, passe o olho no seu pedido e veja se ele responde estas três:
+      </p>
+      <ol>
+        <li><strong>O que é "pronto"?</strong> Formato, tamanho, para quem. É uma tabela ou um texto? Cabe numa página? Quem lê é o diretor ou é a sua equipe?</li>
+        <li><strong>Quais são as restrições?</strong> O que ignorar, o que não pode aparecer, o que fazer com dado que falta. As linhas canceladas entram na conta? Pode citar nome de cliente?</li>
+        <li><strong>O que fazer na dúvida?</strong> Perguntar antes de continuar, ou seguir e declarar o que assumiu.</li>
+      </ol>
 
       <div class="callout callout-info">
-        <div class="callout-title">O texto é o mesmo, o lugar é que muda</div>
+        <div class="callout-title">A terceira é a que quase ninguém escreve</div>
         <p>
-          O que você vai escrever hoje serve para as quatro colunas. Hoje ele entra nas <strong>Instruções do Project</strong>, porque é onde funciona no navegador. No Módulo 2, o <strong>mesmo texto, sem mudar uma linha</strong>, vira um arquivo chamado <code>CLAUDE.md</code> dentro da sua pasta.
+          E é a que mais economiza rodada. Sem ela, quando ele encontra uma dúvida no meio do caminho (uma data em branco, um status escrito de dois jeitos, um valor que não fecha) ele <strong>decide sozinho e não te conta</strong>. Você só descobre depois, conferindo.
         </p>
         <p>
-          Guarde essa ideia, porque ela se repete o curso inteiro: <strong>você aprende o conceito uma vez e usa nas quatro superfícies.</strong> Não são quatro coisas para decorar.
-        </p>
-      </div>
-
-      <h4>💡 A regra do 2×: como saber o que escrever</h4>
-      <div class="analogia">
-        <div class="analogia-title">Corrigiu a mesma coisa duas vezes? Vira linha do arquivo.</div>
-        <p>
-          É só isso. Não existe modelo pronto que funcione melhor que esse critério, porque <strong>ninguém sabe as suas correções melhor que você</strong>.
-        </p>
-        <p>
-          Por isso o módulo pediu que você anotasse desde a aula 1.1. Aquelas anotações não eram tarefa de casa. <strong>Elas são o exercício de agora.</strong>
+          Com ela, ele para e pergunta. Uma pergunta custa trinta segundos. Um número errado que passou custa a reunião inteira.
         </p>
       </div>
 
-      <h4>Conceito 2 · Encher dilui</h4>
+      <h4>A OS do pedido, lado a lado</h4>
       <p>
-        Todo Project tem também um lugar para <strong>documentos</strong>: manuais, normas, planilhas de referência. É diferente das instruções, e a diferença pega quase todo mundo:
+        Os campos que a sua OS de produção já tem há vinte anos são exatamente os campos que faltam no pedido genérico:
       </p>
 
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr><th></th><th>Instruções</th><th>Documentos</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Quando é lido</strong></td>
-              <td class="td-ok">Sempre. Em toda conversa</td>
-              <td>Só quando a pergunta tem a ver com ele</td>
-            </tr>
-            <tr>
-              <td><strong>Para que serve</strong></td>
-              <td>Regra, jeito da casa, formato</td>
-              <td>Consulta: norma, manual, tabela</td>
-            </tr>
-            <tr>
-              <td><strong>Tamanho certo</strong></td>
-              <td>Curto. 20 a 40 linhas</td>
-              <td>Pode ser longo, mas <strong>poucos</strong> arquivos</td>
-            </tr>
-            <tr>
-              <td><strong>O que dá errado</strong></td>
-              <td>Virar manual de 200 linhas</td>
-              <td>Jogar 40 arquivos e esperar que ele ache o certo</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="os">
+        <div class="os-head">
+          <span>Os mesmos campos, dois contextos</span>
+          <span>Gráfica Aurora</span>
+        </div>
+        <div class="os-linha os-titulos">
+          <div class="os-campo">Campo</div>
+          <div class="os-val">Na OS de impressão</div>
+          <div class="os-val">No pedido ao Claude</div>
+        </div>
+        <div class="os-linha">
+          <div class="os-campo">Produto</div>
+          <div class="os-val">Catálogo 32 páginas</div>
+          <div class="os-val">O que você quer de volta</div>
+        </div>
+        <div class="os-linha">
+          <div class="os-campo">Tiragem</div>
+          <div class="os-val">5.000 exemplares</div>
+          <div class="os-val">3 itens, 1 página, 5 linhas</div>
+        </div>
+        <div class="os-linha">
+          <div class="os-campo">Papel</div>
+          <div class="os-val">Couché fosco 150g</div>
+          <div class="os-val">Tabela, texto corrido ou lista</div>
+        </div>
+        <div class="os-linha">
+          <div class="os-campo">Prazo</div>
+          <div class="os-val">Sexta, 14h</div>
+          <div class="os-val">Para qual reunião, e quando</div>
+        </div>
+        <div class="os-linha">
+          <div class="os-campo">Não pode</div>
+          <div class="os-val">Sangria menor que 3mm</div>
+          <div class="os-val">O que ignorar, o que não citar</div>
+        </div>
+        <div class="os-linha">
+          <div class="os-campo">Na dúvida</div>
+          <div class="os-val">Parar e ligar para o cliente</div>
+          <div class="os-val os-vazio">Quase sempre em branco</div>
+        </div>
       </div>
-
       <p>
-        O erro clássico é achar que documento é como armário: <em>"quanto mais eu guardar, mais completo fica"</em>. Não é. Ele <strong>procura</strong> nos documentos o trecho que tem a ver com a sua pergunta, e quanto mais coisa parecida tem lá dentro, <strong>mais chance de ele trazer o trecho errado</strong>.
+        Leia a última linha das duas colunas. Na OS de impressão o campo está preenchido e é sagrado. No pedido ao Claude ele quase nunca é escrito, e é justamente ele que separa quatro rodadas de uma.
       </p>
-
-      <div class="dilui">
-        <div class="dilui-col">
-          <div class="dilui-label">Você sobe 3 páginas certas</div>
-          <div class="dilui-grid">
-            <span class="pag certa"></span><span class="pag"></span><span class="pag"></span>
-          </div>
-          <p class="dilui-legenda">
-            Ele procura o trecho que responde à sua pergunta. <strong>Só tem um candidato, e é o certo.</strong>
-          </p>
-        </div>
-        <div class="dilui-col">
-          <div class="dilui-label">Você sobe o manual de 40 páginas</div>
-          <div class="dilui-grid">
-            <span class="pag certa"></span><span class="pag parecida"></span><span class="pag"></span>
-            <span class="pag"></span><span class="pag parecida"></span><span class="pag"></span>
-            <span class="pag"></span><span class="pag"></span><span class="pag parecida"></span>
-            <span class="pag"></span><span class="pag parecida"></span><span class="pag"></span>
-            <span class="pag"></span><span class="pag"></span><span class="pag"></span>
-            <span class="pag parecida"></span><span class="pag"></span><span class="pag"></span>
-            <span class="pag"></span><span class="pag"></span><span class="pag parecida"></span>
-            <span class="pag"></span><span class="pag"></span><span class="pag"></span>
-            <span class="pag"></span><span class="pag parecida"></span><span class="pag"></span>
-            <span class="pag"></span><span class="pag"></span><span class="pag"></span>
-            <span class="pag parecida"></span><span class="pag"></span><span class="pag"></span>
-            <span class="pag"></span><span class="pag"></span><span class="pag parecida"></span>
-            <span class="pag"></span><span class="pag"></span><span class="pag"></span>
-            <span class="pag"></span>
-          </div>
-          <p class="dilui-legenda">
-            O trecho certo continua lá. <strong>Só que agora ele disputa com oito parecidos</strong>, e às vezes perde.
-          </p>
-        </div>
-      </div>
-
-      <div class="dilui-chave">
-        <span><i class="pag certa"></i> o trecho que responde de verdade</span>
-        <span><i class="pag parecida"></i> trecho parecido, de outro caso</span>
-        <span><i class="pag"></i> não tem a ver com a pergunta</span>
-      </div>
-
-      <div class="callout callout-warn">
-        <div class="callout-title">3 páginas certas ganham de 40 páginas completas</div>
-        <p>
-          Não é opinião: a documentação oficial da Anthropic diz que contexto irrelevante demais <strong>piora</strong> o desempenho. Guia de 3 páginas com o que interessa vence o manual inteiro, e vence com folga.
-        </p>
-        <p>
-          E repare no detalhe cruel: <strong>o problema não são as páginas que não têm nada a ver.</strong> São as parecidas. Um manual grande tem muito trecho parecido, e é aí que ele erra.
-        </p>
-      </div>
     </div>
   </section>
 
@@ -775,107 +732,141 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
       <div class="step-num">03</div>
       <div class="step-title-block">
         <div class="step-eyebrow">Como funciona</div>
-        <div class="step-title">As instruções se empilham, e não brigam</div>
+        <div class="step-title">Onde vão as rodadas que você perde</div>
       </div>
     </div>
     <div class="step-body">
       <p>
-        No Cowork e no Code, a instrução persistente pode existir em <strong>mais de um lugar ao mesmo tempo</strong>, e todas valem juntas:
+        Mesmo pedido, mesmo arquivo, mesma pessoa. Só muda o que estava escrito na primeira mensagem:
       </p>
 
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr><th>Nível</th><th>Quem escreve</th><th>Vale para</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><strong>Política da organização</strong></td><td>O TI da empresa</td><td>Todo mundo, em toda máquina</td></tr>
-            <tr><td><strong>Seu arquivo pessoal</strong></td><td>Você</td><td>Tudo que você faz, em qualquer pasta</td></tr>
-            <tr><td><strong>Arquivo da pasta</strong></td><td>Você ou a equipe</td><td>Só o trabalho daquela pasta</td></tr>
-            <tr><td><strong>Arquivo local</strong></td><td>Você</td><td>Só a sua máquina, sem ir para o time</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="callout callout-warn">
-        <div class="callout-title">⚠️ Aqui mora o erro mais caro desta aula</div>
-        <p>
-          Não existe "o de baixo manda mais que o de cima". <strong>Os quatro são lidos juntos, empilhados.</strong> Se dois se contradizem, o Claude escolhe um, e <strong>você não controla qual</strong>.
-        </p>
-        <p>
-          Ou seja: <strong>regra contraditória não é uma questão de prioridade. É um defeito.</strong> Tem que ser corrigida no texto, não resolvida por hierarquia.
-        </p>
-      </div>
-
-      <div class="pilha">
-        <div class="pilha-camada">
-          <span class="pilha-tag">Política da organização</span>
-          <span class="pilha-txt">"Nenhum dado de cliente identificável sai da empresa"</span>
+      <div class="rodadas">
+        <div class="rodadas-linha">
+          <div class="rodadas-nome">
+            <span class="rodadas-t">Pedido pela tarefa</span>
+            "Resuma este relatório de vendas"
+          </div>
+          <div class="rodadas-barra">
+            <span class="rodada perdida">1</span>
+            <span class="rodada perdida">2</span>
+            <span class="rodada perdida">3</span>
+            <span class="rodada perdida">4</span>
+            <span class="rodada util">5</span>
+            <span class="rodadas-total">5 mensagens, 4 só corrigindo</span>
+          </div>
         </div>
-        <div class="pilha-camada">
-          <span class="pilha-tag">Seu arquivo pessoal</span>
-          <span class="pilha-txt">"Responda sempre em português do Brasil"</span>
-        </div>
-        <div class="pilha-camada">
-          <span class="pilha-tag">Arquivo da pasta</span>
-          <span class="pilha-txt">"Nesta pasta, valor sempre com vírgula decimal"</span>
-        </div>
-        <div class="pilha-camada">
-          <span class="pilha-tag">Arquivo local</span>
-          <span class="pilha-txt">"Só na minha máquina: pode me chamar pelo primeiro nome"</span>
-        </div>
-        <div class="pilha-seta" aria-hidden="true">↓</div>
-        <div class="pilha-result">
-          O que o Claude lê: <strong>as quatro, juntas, uma colada na outra</strong>
+        <div class="rodadas-linha">
+          <div class="rodadas-nome">
+            <span class="rodadas-t">Pedido pelo resultado</span>
+            Com as três perguntas respondidas
+          </div>
+          <div class="rodadas-barra">
+            <span class="rodada perdida">?</span>
+            <span class="rodada util">1</span>
+            <span class="rodadas-total">2 mensagens, e a primeira é pergunta dele</span>
+          </div>
         </div>
       </div>
+      <div class="rodadas-chave">
+        <span><i class="perdida" aria-hidden="true"></i> rodada que não produziu entrega</span>
+        <span><i class="util" aria-hidden="true"></i> rodada que entregou</span>
+      </div>
 
+      <p style="margin-top:20px">
+        As caixas claras da primeira linha são rodadas em que <strong>você não produziu nada</strong>, só explicou o que já sabia desde o começo. É esse tempo que o pedido bem escrito devolve.
+      </p>
       <p>
-        Repare que <strong>nenhuma delas cancela a outra</strong>. Elas somam. Enquanto falam de coisas diferentes, funciona bem. O problema aparece quando duas falam da mesma coisa e discordam:
+        E repare na segunda linha. A caixa com <strong>"?"</strong> também não entregou nada, mas ela não é desperdício: é ele avisando que achou um problema no dado <strong>antes</strong> de o problema virar número no seu relatório. Foi a terceira pergunta que produziu isso.
       </p>
 
-      <div class="pilha conflito">
-        <div class="pilha-camada briga">
-          <span class="pilha-tag">Arquivo da pasta</span>
-          <span class="pilha-txt">"Valor sempre com <strong>vírgula</strong> decimal"</span>
-        </div>
-        <div class="pilha-camada briga">
-          <span class="pilha-tag">Arquivo local</span>
-          <span class="pilha-txt">"Valor sempre com <strong>ponto</strong> decimal"</span>
-        </div>
-        <div class="pilha-seta" aria-hidden="true">↓</div>
-        <div class="pilha-result">
-          Ele obedece <strong>uma das duas</strong>, e você não controla qual
-        </div>
-      </div>
+      <h4>O mesmo conceito, no seu setor</h4>
+      <div class="exemplos">
+        <p class="exemplos-lead">Abra o mais parecido com o seu trabalho. Cada um é um pedido pronto, para copiar e rodar.</p>
 
-      <div class="analogia">
-        <div class="analogia-title">💡 É o quadro de avisos da fábrica</div>
-        <p>
-          No quadro tem o comunicado do RH, o aviso do líder de turno e o bilhete que você mesmo colou. <strong>O operador lê os três.</strong>
-        </p>
-        <p>
-          Se um diz "parada às 15h" e o outro diz "parada às 16h", ele não tem como saber qual vale, e vai fazer o que entendeu. A solução nunca é discutir qual papel é mais importante. <strong>É tirar um dos dois do quadro.</strong>
-        </p>
-      </div>
+        <details class="exemplo">
+          <summary>
+            <span class="exemplo-setor">Compras</span>
+            <span class="exemplo-titulo">Comparar três propostas de fornecedor</span>
+          </summary>
+          <div class="exemplo-body">
+            <p><strong>O pedido pela tarefa:</strong> "Compare essas três propostas."</p>
+            <p><strong>O que falta:</strong> comparar por qual critério? Preço, prazo, condição de pagamento? E se uma proposta não trouxer o prazo, o que fazer?</p>
+            <div class="prompt-box">
+              <div class="prompt-toolbar">
+                <span>Pedido pelo resultado</span>
+                <button class="prompt-btn" type="button">Copiar</button>
+              </div>
+              <div class="prompt-content">Anexei três propostas para o mesmo insumo.
 
-      <h4>Como se escreve uma regra que funciona</h4>
-      <div class="compare">
-        <div class="compare-col ruim">
-          <div class="compare-label">Regra que não funciona</div>
-          <div class="compare-quote">"Seja conciso e cuidadoso com os números."</div>
-          <p>Você não consegue dizer se ele cumpriu ou não. <strong>E se você não consegue julgar, ele não consegue cumprir.</strong></p>
-        </div>
-        <div class="compare-col bom">
-          <div class="compare-label">Regra que funciona</div>
-          <div class="compare-quote">"Máximo 5 linhas por item. Nunca afirme um total sem mostrar a soma que chegou nele."</div>
-          <p>Dá para olhar e responder sim ou não. <strong>Regra que não dá para verificar é torcida, não é regra.</strong></p>
-        </div>
-      </div>
+O que eu preciso: uma tabela comparando as três em preço unitário, prazo de entrega em dias e condição de pagamento. Abaixo da tabela, uma recomendação de uma frase dizendo qual fechar e por quê.
 
-      <p>
-        Este é um dos critérios mais úteis do curso inteiro, e ele volta com força no Módulo 3: <strong>se a regra não pode ser avaliada como verdadeira ou falsa, reescreva.</strong> "Adequadamente", "com cuidado", "de forma clara" são bandeira vermelha.
-      </p>
+Restrições: considere preço já com frete. Se a proposta não trouxer frete separado, não estime, marque a célula como "não informado".
+
+Na dúvida: se algum dado estiver faltando ou ambíguo, me pergunte antes de montar a tabela. Não preencha por estimativa.</div>
+            </div>
+            <div class="exemplo-volta">
+              <b class="rot">O que muda na resposta</b>
+              Sem a última linha, uma proposta sem frete vira um número estimado que parece real e entra na sua recomendação. Com ela, ele para e pergunta.
+            </div>
+          </div>
+        </details>
+
+        <details class="exemplo">
+          <summary>
+            <span class="exemplo-setor">Financeiro</span>
+            <span class="exemplo-titulo">Explicar por que o resultado do mês caiu</span>
+          </summary>
+          <div class="exemplo-body">
+            <p><strong>O pedido pela tarefa:</strong> "Analisa esses números e me diz o que aconteceu."</p>
+            <p><strong>O que falta:</strong> analisar contra o quê? Mês anterior, mesmo mês do ano passado, orçamento? E quem vai ler isso?</p>
+            <div class="prompt-box">
+              <div class="prompt-toolbar">
+                <span>Pedido pelo resultado</span>
+                <button class="prompt-btn" type="button">Copiar</button>
+              </div>
+              <div class="prompt-content">Anexei o fechamento deste mês e o do mês anterior.
+
+O que eu preciso: as três maiores causas da variação do resultado, em ordem de impacto em reais. Cada causa em uma frase, com o valor da variação ao lado. Vou levar isso para a reunião de diretoria, então escreva para quem não abre planilha.
+
+Restrições: compare contra o mês anterior, não contra orçamento. Ignore as linhas de rateio, que distorcem a comparação.
+
+Na dúvida: se as duas planilhas tiverem contas com nomes diferentes que parecem ser a mesma coisa, não junte por conta própria. Liste os pares suspeitos e me pergunte.</div>
+            </div>
+            <div class="exemplo-volta">
+              <b class="rot">O que muda na resposta</b>
+              "Escreva para quem não abre planilha" é o campo <em>para quem</em> da OS. Sem ele, volta um texto cheio de nome de conta contábil que você teria que traduzir na mão.
+            </div>
+          </div>
+        </details>
+
+        <details class="exemplo">
+          <summary>
+            <span class="exemplo-setor">RH e DP</span>
+            <span class="exemplo-titulo">Triar currículos para uma vaga</span>
+          </summary>
+          <div class="exemplo-body">
+            <p><strong>O pedido pela tarefa:</strong> "Vê quais desses currículos servem para a vaga."</p>
+            <p><strong>O que falta:</strong> servem segundo qual critério, e o que fazer com quem chega perto mas não bate em tudo.</p>
+            <div class="prompt-box">
+              <div class="prompt-toolbar">
+                <span>Pedido pelo resultado</span>
+                <button class="prompt-btn" type="button">Copiar</button>
+              </div>
+              <div class="prompt-content">Anexei a descrição da vaga e uma planilha com as inscrições.
+
+O que eu preciso: três listas. Atende a todos os requisitos obrigatórios. Atende a todos menos um, com a indicação de qual falta. Não atende. Só isso, sem ranking e sem nota.
+
+Restrições: use apenas os requisitos marcados como obrigatórios na descrição. Não infira senioridade por tempo de casa em outra empresa.
+
+Na dúvida: se um requisito da vaga estiver escrito de um jeito que dá para entender de duas formas, me pergunte antes de aplicar o critério em todo mundo.</div>
+            </div>
+            <div class="exemplo-volta">
+              <b class="rot">O que muda na resposta</b>
+              "Sem ranking e sem nota" é uma restrição de propósito. Ranking de pessoa gerado por IA vira número que parece objetivo e não é, e você levaria ele para uma decisão sobre gente. A lista do meio é a que salva candidato bom que seria descartado.
+            </div>
+          </div>
+        </details>
+      </div>
     </div>
   </section>
 
@@ -885,60 +876,22 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
       <div class="step-num">04</div>
       <div class="step-title-block">
         <div class="step-eyebrow">Demonstração · na tela do Rafael</div>
-        <div class="step-title">O mesmo pedido, com e sem regra</div>
+        <div class="step-title">O mesmo arquivo, dois pedidos</div>
       </div>
     </div>
     <div class="step-body">
       <p>
-        Duas conversas. <strong>Exatamente o mesmo pedido</strong>, de uma frase só. A única diferença é que a segunda roda dentro de um Project com as regras do coordenador de PCP da Gráfica Aurora.
+        Você não precisa fazer nada agora. Só acompanhar e reparar em <strong>uma coisa</strong>: em que momento a conversa deixa de ser correção e vira trabalho.
       </p>
-
-      <div class="uau">
-        <div class="uau-head">Momento-chave · o mesmo pedido, dois resultados</div>
-        <div class="uau-prompt">Me dá a situação das OS de hoje.</div>
-        <div class="uau-grid">
-          <div class="uau-col">
-            <div class="uau-col-label">Sem regra · Chat comum</div>
-            <div class="uau-out">Claro! Para eu te ajudar com a situação
-das OS de hoje, preciso de algumas
-informações:
-
-1. Você poderia compartilhar os dados
-   das ordens de serviço?
-2. O que você considera "situação"?
-3. Que tipo de análise você espera?</div>
-            <div class="uau-nota">
-              Ele não sabe o que é OS na sua casa, não tem o dado, não sabe para quem é. <strong>Devolve a pergunta.</strong> E aí você digita tudo de novo, de um jeito um pouco diferente do de ontem.
-            </div>
-          </div>
-          <div class="uau-col">
-            <div class="uau-col-label">Com regra · Project configurado</div>
-            <div class="uau-out">| OS   | Cliente        | Prazo      | Situação |
-|------|----------------|------------|----------|
-| 2427 | Distribuidora… | 13/07/2026 | Atrasada |
-| 2434 | Farmácia Pop…  | 21/07/2026 | Atrasada |
-
-Carga por máquina: Offset 1 com 5 OS,
-Offset 2 com 5, Flexo 1 com 3, Flexo 2 com 3.
-
-Para decidir amanhã:
-1. A 2427 e a 2434 estão as duas na
-   Offset 1. Qual entra primeiro?</div>
-            <div class="uau-nota">
-              Tabela, data em DD/MM/AAAA, sem introdução, já apontando o que você precisa decidir. <strong>Você não pediu nada disso agora</strong>. Pediu uma vez, quando escreveu as regras.
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div class="demo">
-        <div class="demo-head">O que mais acontece na tela</div>
+        <div class="demo-head">Roteiro da demonstração</div>
         <div class="demo-body">
           <ol class="demo-passos">
-            <li>Mostro <strong>onde ficam as Instruções</strong> de um Project, e crio um do zero em menos de um minuto.</li>
-            <li>Colo as regras do coordenador de PCP e faço o pedido de uma frase. É o painel da direita, ao vivo.</li>
-            <li>Acrescento de propósito uma <strong>regra que contradiz</strong> outra ("valor sempre com vírgula" e, três linhas abaixo, "valor sempre com ponto") e rodo de novo. <strong>Ele obedece uma das duas, e não dá para prever qual.</strong> É o quadro de avisos com dois papéis brigando.</li>
-            <li>Jogo <strong>um manual longo</strong> nos documentos e faço uma pergunta específica. A resposta piora: ele traz o trecho de outro capítulo, parecido e errado. <strong>É o "encher dilui" acontecendo na frente de vocês.</strong></li>
+            <li>Abro uma conversa nova e anexo a mesma planilha da aula 1.1. Peço <strong>"resuma esses pedidos"</strong>, e leio em voz alta o que volta.</li>
+            <li>Corrijo. Corrijo de novo. Vamos <strong>contando juntos</strong> quantas mensagens até sair algo que eu levaria para uma reunião.</li>
+            <li>Abro <strong>outra conversa nova</strong>, do zero, e mando o pedido com as três perguntas respondidas.</li>
+            <li>Comparo o relógio, e não a qualidade. As duas respostas finais são parecidas. <strong>O que mudou foi o tempo até chegar nela.</strong></li>
+            <li>Por último, mostro o caso da terceira pergunta: mando um arquivo com uma data em branco e vemos ele <strong>parar e perguntar</strong> em vez de inventar.</li>
           </ol>
         </div>
       </div>
@@ -951,70 +904,48 @@ Para decidir amanhã:
       <div class="step-num">05</div>
       <div class="step-title-block">
         <div class="step-eyebrow">Sua vez · 12 minutos</div>
-        <div class="step-title">Escreva as regras da sua função</div>
+        <div class="step-title">Reescreva um pedido, e depois o seu</div>
       </div>
     </div>
     <div class="step-body">
       <p>
-        Você não vai preencher um modelo genérico. Você vai <strong>transcrever as suas próprias correções</strong>, as que você anotou nas aulas 1.1 e 1.2. Se você anotou pouco, olhe a conversa do exercício anterior: as correções estão lá.
+        Primeiro você treina num pedido que não é seu, para errar sem custo. Depois faz no de verdade.
       </p>
 
       <div class="download-card">
         <div class="download-info">
           <div class="download-filename">
-            <div class="download-icon">md</div>
-            minhas-regras-PARTIDA.md
+            <span class="download-icon">DOC</span>
+            <span>pedidos-para-reescrever.docx</span>
           </div>
-          <div class="download-meta">Esqueleto com 5 seções · abre no Bloco de Notas ou no Word</div>
+          <div class="download-meta">Três pedidos mal escritos da Gráfica Aurora, um por setor. Word, abre em qualquer máquina.</div>
         </div>
-        <a class="download-btn" href="exercicio/minhas-regras-PARTIDA.md" download>Baixar a partida ↓</a>
+        <a class="download-btn" href="exercicio/pedidos-para-reescrever.docx" download>Baixar</a>
       </div>
 
       <ol class="passos">
         <li>
-          <div class="passo-title">Abra o arquivo de partida e preencha as cinco seções</div>
-          <p>
-            Quem eu sou · Como a casa funciona · Como eu quero a resposta · O que nunca fazer · Na dúvida.
-            <strong>Escreva só o que você já precisou corrigir.</strong> Regra que você inventou agora não tem dor de origem e só ocupa espaço.
-          </p>
+          <div class="passo-title">Escolha o pedido do setor mais parecido com o seu</div>
+          <p>Se nenhum for parecido, pegue o de Compras. A estrutura é a mesma para todos.</p>
         </li>
         <li>
-          <div class="passo-title">Fique entre 20 e 40 linhas</div>
-          <p>
-            Menos que isso não muda nada. Muito mais que isso e você já está caindo na armadilha do "encher dilui", e vai sentir na próxima aula.
-          </p>
+          <div class="passo-title">Antes de reescrever, marque o que falta</div>
+          <p>No próprio documento tem três caixas para marcar: o que é pronto, quais as restrições, o que fazer na dúvida. Marque as que o pedido original <strong>não</strong> responde. Faça isso antes de escrever qualquer coisa.</p>
         </li>
         <li>
-          <div class="passo-title">Crie um Project e cole o texto nas Instruções</div>
-          <p>
-            No Claude, no navegador: <strong>Projects → criar projeto → Instruções</strong>. Dê ao projeto o nome da sua função, não o nome de uma tarefa, ele vai servir para várias.
-          </p>
+          <div class="passo-title">Reescreva e rode no Claude Chat</div>
+          <p>Conversa nova. Cole o pedido reescrito. <strong>Conte quantas mensagens</strong> até a resposta servir. Anote esse número, ele é a sua nota nesta aula.</p>
         </li>
         <li>
-          <div class="passo-title">Teste, e este passo é o exercício de verdade</div>
-          <p>
-            Dentro do Project, faça <strong>o mesmo pedido vago do exercício da aula 1.1</strong>, colando os mesmos dados:
-          </p>
-          <div class="prompt-box">
-            <div class="prompt-toolbar">
-              <span>o mesmo pedido vago da aula 1.1</span>
-              <button class="prompt-btn" data-copy="p-teste">Copiar</button>
-            </div>
-            <div class="prompt-content" id="p-teste">Analisa esses pedidos e me diz o que está acontecendo.</div>
-          </div>
-          <p>
-            <strong>Compare com o que tinha saído lá.</strong> A pergunta a responder é uma só: <em>quantas correções eu não precisei fazer desta vez?</em>
-          </p>
-          <p>
-            Se você não tiver mais os dados à mão, <a href="../a1-ecossistema-e-fisica/exercicio/pedidos-em-producao.xlsx" download>baixe a planilha de novo aqui</a>.
-          </p>
+          <div class="passo-title">Agora o de verdade</div>
+          <p>Pegue um pedido que <strong>você</strong> fez ao Claude nesta semana e que deu trabalho. Reescreva com as três perguntas. Rode numa conversa nova e compare com o que tinha acontecido antes.</p>
         </li>
       </ol>
 
-      <div class="callout callout-info">
-        <div class="callout-title">Se sobrar tempo</div>
+      <div class="callout callout-warn">
+        <div class="callout-title">Se você não usou o Claude esta semana</div>
         <p>
-          Pegue uma regra sua que esteja vaga, do tipo "seja objetivo", e reescreva de um jeito que dê para conferir. É o exercício mais valioso da aula, e é o que menos gente faz.
+          Use um pedido que você fez para uma <strong>pessoa</strong>: um e-mail pedindo um relatório, um WhatsApp pedindo um levantamento. O exercício funciona igual, e a descoberta costuma ser mais desconfortável.
         </p>
       </div>
     </div>
@@ -1031,72 +962,50 @@ Para decidir amanhã:
     </div>
     <div class="step-body">
       <p>
-        Escreva o seu antes de abrir. O gabarito é de um <strong>coordenador de PCP da Gráfica Aurora</strong>, se você é do Financeiro, do RH ou do Comercial, o seu vai ter outras linhas, e está certo assim.
+        Abra só <strong>depois</strong> de ter escrito o seu. Ler antes transforma exercício em demonstração, e você perde a parte que ensina.
       </p>
 
       <details class="gabarito">
         <summary>
-          Revelar o gabarito comentado
-          <span class="gabarito-sub">abra só depois de escrever o seu</span>
+          Ver o gabarito do pedido de Compras
+          <span class="gabarito-sub">versão de referência</span>
         </summary>
         <div class="gabarito-body">
+          <div class="callout callout-info">
+            <div class="callout-title">Antes de comparar</div>
+            <p>O seu vai ser diferente do meu, e tudo bem. <strong>Compare a estrutura, não as palavras.</strong> A pergunta certa é "o meu responde às três?", não "o meu ficou igual?".</p>
+          </div>
 
-          <div class="callout callout-info" style="margin-top:0">
-            <div class="callout-title">O seu vai ser diferente do meu, e tudo bem</div>
+          <h4>O pedido original, do documento</h4>
+          <div class="gab-trecho">Preciso que você veja essas cotações e me diga qual é a melhor.</div>
+
+          <h4>O que falta nele</h4>
+          <p>
+            <strong>Pronto:</strong> não diz o formato nem o tamanho. "Me diga qual é a melhor" pode voltar como uma palavra ou como três páginas.<br>
+            <strong>Restrições:</strong> "melhor" segundo o quê? Preço, prazo, histórico do fornecedor? Não está escrito, então ele escolhe.<br>
+            <strong>Na dúvida:</strong> em branco. Se uma cotação estiver sem prazo, ele vai assumir alguma coisa e seguir.
+          </p>
+
+          <h4>Uma versão que funciona</h4>
+          <div class="gab-trecho">Anexei três cotações do mesmo papel couché.
+
+O que eu preciso: uma tabela com fornecedor, preço por milheiro, prazo em dias úteis e forma de pagamento. Embaixo, uma frase dizendo qual eu deveria fechar considerando que a produção precisa do papel em 10 dias.
+
+Restrições: preço com frete incluído. Ignore desconto condicionado a volume que a gente não compra.
+
+Na dúvida: se faltar prazo ou frete em alguma cotação, me pergunte. Não estime.</div>
+
+          <h4>Por que essa versão resolve em uma rodada</h4>
+          <p>
+            Ela responde às três, e faz mais uma coisa: <strong>diz o que você vai fazer com a resposta</strong> ("a produção precisa em 10 dias"). Esse pedaço faz ele pesar prazo contra preço sozinho, sem você ter que explicar o critério de desempate numa segunda mensagem.
+          </p>
+
+          <div class="callout callout-ok">
+            <div class="callout-title">O número que importa</div>
             <p>
-              Não existe resposta certa única aqui, existe versão de referência. <strong>Compare a estrutura, não o conteúdo.</strong> As perguntas certas são: as cinco seções estão preenchidas? Cada linha veio de uma correção que eu repeti de verdade? Ficou entre 20 e 40 linhas?
+              Se o seu pedido reescrito resolveu em <strong>uma ou duas mensagens</strong>, está no ponto. Se ainda levou quatro, quase sempre é a pergunta 1 que ficou vaga: você disse o assunto, mas não disse o formato nem o tamanho.
             </p>
           </div>
-
-          <h4>Trecho 1 · Quem eu sou, e a linha que quase todo mundo esquece</h4>
-          <div class="gab-trecho">Sou coordenador de PCP numa indústria gráfica de médio porte.
-Programo a produção de duas máquinas offset e duas flexográficas.
-Quem usa o que eu produzo: os líderes de máquina, na reunião diária
-das 8h, e o gerente industrial, na reunião semanal.</div>
-          <p>
-            A última linha é a mais importante e a que quase ninguém escreve: <strong>quem lê</strong>. Sem ela, o Claude escreve para você. Com ela, ele escreve para a reunião, e o tom, o tamanho e o nível de detalhe se ajustam sozinhos.
-          </p>
-
-          <h4>Trecho 2 · Como a casa funciona, o que só quem trabalha lá sabe</h4>
-          <div class="gab-trecho">OS = ordem de serviço. Tiragem = quantidade impressa.
-"Fechar a OS" = liberar para faturamento. NÃO significa terminar
-a impressão.
-O relatório sai do sistema em CSV com ponto e vírgula. Ele vem sujo:
-data em formatos diferentes, status ora em maiúscula ora não, e
-linha em branco no meio. Normalize antes de analisar.</div>
-          <p>
-            As três últimas linhas valem o arquivo inteiro. Nasceram de uma correção que se repetia toda semana (<em>"as datas estão erradas"</em>). Escritas uma vez, nunca mais.
-          </p>
-          <p>
-            E a linha do <em>"fechar a OS"</em> é o tipo de coisa que <strong>só quem trabalha na casa sabe</strong>. É exatamente por isso que precisa estar escrita: o Claude sabe muito sobre gráfica em geral e <strong>nada</strong> sobre a sua gráfica.
-          </p>
-
-          <h4>Trecho 3 · O que nunca fazer, a linha mais valiosa das quatro</h4>
-          <div class="gab-trecho">Nunca invente número que não esteja no dado que eu mandei.
-Nunca arredonde valor sem me avisar que arredondou.
-Nunca conclua que uma OS está atrasada sem me mostrar a conta:
-prazo × data de hoje.</div>
-          <p>
-            "Me mostre a conta" transforma uma resposta que você teria que <strong>acreditar</strong> numa resposta que você consegue <strong>conferir em cinco segundos</strong>. Guarde essa ideia, ela vira um módulo inteiro no M3.
-          </p>
-
-          <h4>📏 Confira o seu</h4>
-          <div class="table-wrap">
-            <table>
-              <thead><tr><th>Pergunta</th><th>Se a resposta for não</th></tr></thead>
-              <tbody>
-                <tr><td>As cinco seções estão preenchidas?</td><td>Volte na vazia. Se não tem o que escrever, provavelmente você ainda não reparou nas correções que faz</td></tr>
-                <tr><td>Cada linha veio de uma correção <strong>repetida</strong>?</td><td>Apague a que você inventou agora</td></tr>
-                <tr><td>Ficou entre 20 e 40 linhas?</td><td>Curto demais: falta olhar as anotações. Longo demais: você misturou regra de "sempre" com regra de "às vezes", e esse é o gancho da próxima aula</td></tr>
-                <tr><td>Tem alguma linha do tipo "capriche", "seja conciso"?</td><td>Reescreva. Se não dá para dizer se foi cumprida, ele não tem como cumprir</td></tr>
-                <tr><td>Tem dado sensível aí dentro?</td><td>Tire agora. Nome de pessoa, valor de contrato e tabela de preço não pública não entram</td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <p style="margin-bottom:0">
-            <a class="download-btn ghost" href="gabarito/minhas-regras-GABARITO.md" download>Baixar o gabarito completo ↓</a>
-          </p>
         </div>
       </details>
     </div>
@@ -1112,59 +1021,34 @@ prazo × data de hoje.</div>
       </div>
     </div>
     <div class="step-body">
-
       <div class="callout callout-warn">
-        <div class="callout-title">⚠️ A decepção nº 1 com Projects</div>
+        <div class="callout-title">1 · Confundir pedido longo com pedido bom</div>
         <p>
-          <strong>Conversas diferentes dentro do mesmo Project não compartilham o histórico entre si.</strong> O que fica guardado são as <em>instruções</em> e os <em>documentos</em>, não o que você conversou ontem.
-        </p>
-        <p>
-          É a descoberta que faz mais gente abandonar o recurso achando que "não funciona". Funciona, só não é isso que ele faz. <strong>Se você quer que algo sobreviva à conversa, escreva nas instruções.</strong>
+          Pedido bom não é pedido comprido. Escrever três parágrafos sobre a história da empresa não responde nenhuma das três perguntas. <strong>Um pedido de cinco linhas que responde às três ganha de um de trinta linhas que não responde.</strong>
         </p>
       </div>
-
-      <div class="compare">
-        <div class="compare-col ruim">
-          <div class="compare-label">O que trava</div>
-          <div class="compare-quote">"Vou colocar tudo que eu sei aqui, para ele ficar completo."</div>
-          <p>Instrução de 200 linhas vira ruído. Metade não tem a ver com a tarefa de agora, e <strong>ocupa a mesa do mesmo jeito</strong>.</p>
-        </div>
-        <div class="compare-col bom">
-          <div class="compare-label">O que funciona</div>
-          <div class="compare-quote">"Só o que eu já precisei corrigir duas vezes."</div>
-          <p>Curto, específico, com dor de origem. Cresce sozinho conforme você usa, e é assim que tem que ser.</p>
-        </div>
+      <div class="callout callout-warn">
+        <div class="callout-title">2 · Pedir e corrigir na mesma conversa, para sempre</div>
+        <p>
+          Quando você corrige cinco vezes, a conversa fica cheia das quatro versões erradas, e ele continua enxergando todas elas. Depois de duas correções, <strong>abra conversa nova</strong> e escreva o pedido bom de uma vez. É mais rápido e sai melhor. Esse é o efeito da mesa cheia, da aula 1.1.
+        </p>
       </div>
-
-      <div class="compare">
-        <div class="compare-col ruim">
-          <div class="compare-label">O que trava</div>
-          <div class="compare-quote">"Subi os 40 arquivos do setor nos documentos."</div>
-          <p>Ele procura o trecho parecido com a sua pergunta. <strong>Com 40 arquivos parecidos, a chance de trazer o errado sobe.</strong></p>
-        </div>
-        <div class="compare-col bom">
-          <div class="compare-label">O que funciona</div>
-          <div class="compare-quote">"Subi as 3 páginas que tratam desta rotina."</div>
-          <p>E testei: perguntei algo cuja resposta está no documento e pedi para ele citar o trecho. <strong>Cinco minutos que separam o projeto que você espera que funcione do que você sabe que funciona.</strong></p>
-        </div>
+      <div class="callout callout-warn">
+        <div class="callout-title">3 · Escrever "seja detalhado" ou "seja profissional"</div>
+        <p>
+          Não são instruções, são elogios. Detalhado quanto: uma página ou dez? Profissional para quem: para o diretor ou para o cliente? <strong>Se você não consegue conferir se ele cumpriu, não era instrução.</strong> Esse teste vai voltar na aula 1.4 e é a base do módulo 3 inteiro.
+        </p>
       </div>
-
-      <div class="compare">
-        <div class="compare-col ruim">
-          <div class="compare-label">O que trava</div>
-          <div class="compare-quote">"Deixei as duas regras, ele que decida a melhor."</div>
-          <p>Ele não decide, ele escolhe uma, e você não controla qual. <strong>Regra contraditória é defeito, não é flexibilidade.</strong></p>
-        </div>
-        <div class="compare-col bom">
-          <div class="compare-label">O que funciona</div>
-          <div class="compare-quote">"Reli o texto inteiro procurando contradição antes de salvar."</div>
-          <p>Leva dois minutos e evita o erro mais difícil de diagnosticar depois, porque ele acontece só às vezes.</p>
-        </div>
+      <div class="callout callout-warn">
+        <div class="callout-title">4 · Melhorar o pedido para sempre</div>
+        <p>
+          Existe um limite. Se você já respondeu às três perguntas e ainda não sai, o problema deixou de ser o pedido: ou <strong>falta contexto que ele não tem</strong> (quem é você, como a casa faz), e isso é a aula 1.3, ou <strong>falta acesso ao dado</strong>, e isso é o módulo 2. Continuar reescrevendo o pedido não resolve nenhum dos dois.
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- 08 CERCA -->
+  <!-- 08 A CERCA -->
   <section class="step" id="s08">
     <div class="step-header">
       <div class="step-num">08</div>
@@ -1175,142 +1059,111 @@ prazo × data de hoje.</div>
     </div>
     <div class="step-body">
       <p>
-        Na aula 1.1 a cerca era sobre <strong>o que você cola numa conversa</strong>. Agora ela cresce, porque tem uma diferença importante: o que você escreve aqui <strong>fica guardado</strong>, e pode ser lido por quem tiver acesso ao Project.
+        Cada nível deste curso tem uma cerca. Não é aula de compliance no fim do dia: é o cuidado que nasce junto com a capacidade que você acabou de ganhar.
       </p>
-
       <div class="callout callout-cerca">
-        <div class="callout-title">🔒 O que nunca entra em instrução nem em documento</div>
-        <ul>
-          <li><strong>Nome de pessoa junto com informação sobre ela.</strong> "O fulano costuma atrasar entrega" numa instrução é avaliação de desempenho escrita num lugar que você não controla quem lê.</li>
-          <li><strong>Senha, chave ou token</strong>: nunca, em lugar nenhum, de jeito nenhum.</li>
-          <li><strong>Tabela de preço, margem ou custo não público</strong>, salvo autorização por escrito.</li>
-          <li><strong>Documento com dado pessoal de colaborador</strong>: folha, ficha médica, avaliação. Se precisar da estrutura, suba uma versão com os nomes trocados por código.</li>
-        </ul>
-      </div>
-
-      <div class="callout callout-info">
-        <div class="callout-title">Sua política pessoal × a política da empresa</div>
+        <div class="callout-title">Contexto não é desculpa para colar dado de pessoa</div>
         <p>
-          O que você monta hoje é <strong>seu</strong>, na sua conta. Antes de virar padrão da equipe, no Módulo 2, quando esse texto virar arquivo compartilhado, passa a valer a política da empresa, e vale conversar com o TI antes.
+          Pedido bom pede contexto, e a tentação é colar tudo que existe "para ele entender melhor". <strong>Dado de pessoa identificável não entra:</strong> CPF, endereço, salário individual, avaliação de desempenho, atestado, motivo de afastamento.
         </p>
         <p>
-          <strong>Não é burocracia:</strong> arquivo que vira padrão de área é lido por gente que não estava nesta sala e não viu esta cerca. Quem escreveu responde pelo que está escrito lá.
+          O pedido funciona igual sem isso. Em vez de colar a planilha com nomes, troque por "colaborador 1, 2, 3", ou peça sobre o padrão e não sobre a pessoa. Você perde zero e sai do risco.
+        </p>
+      </div>
+      <div class="callout callout-cerca">
+        <div class="callout-title">Decisão que leva a sua assinatura continua sua</div>
+        <p>
+          Um pedido bem escrito devolve uma recomendação convincente, e é exatamente aí que mora o risco. <strong>Reprovar fornecedor, liberar crédito, desligar alguém e reprovar candidato são decisões assinadas por gente.</strong> Ele monta o quadro. Quem decide é você, e você precisa saber explicar a decisão sem citar que a IA sugeriu.
         </p>
       </div>
     </div>
   </section>
 
+  <!-- VALIDADOR -->
   <div class="checagem">
     <div class="checagem-head">
       <div class="checagem-title">Confira você mesmo, antes de seguir</div>
-      <p class="checagem-lead">Quatro conferências objetivas sobre o texto que você acabou de escrever. <strong>Nenhuma delas depende do meu gosto</strong>, todas você faz sozinho.</p>
+      <p class="checagem-lead">
+        Quatro conferências objetivas. <strong>Nenhuma delas é "ficou bom?"</strong>, porque isso ninguém consegue responder sozinho. Se alguma falhar, o próprio item diz para onde voltar.
+      </p>
     </div>
     <ol class="checagem-lista">
       <li>
-        <div class="checagem-o">O seu texto cabe em uma página</div>
-        <div class="checagem-como"><b class="rot">Como conferir</b> Se passou de uma página, quase certo que entrou procedimento de tarefa específica. Isso não é instrução, e a aula 1.4 mostra onde ele mora.</div>
+        <div class="checagem-o">O seu pedido reescrito responde às três perguntas</div>
+        <div class="checagem-como"><b class="rot">Como conferir</b> Leia o pedido e aponte com o dedo, no texto, onde está cada uma. Se você precisa explicar de cabeça onde está, ela não está escrita.</div>
       </li>
       <li>
-        <div class="checagem-o">Toda regra sua é conferível</div>
-        <div class="checagem-como"><b class="rot">Como conferir</b> Leia cada linha e pergunte: <strong>eu consigo dizer se ele cumpriu?</strong> "Seja organizado" não passa. "Valor sempre com vírgula decimal" passa. Reescreva ou apague as que não passarem.</div>
+        <div class="checagem-o">Ele resolveu em duas mensagens ou menos</div>
+        <div class="checagem-como"><b class="rot">Como conferir</b> Conte as suas mensagens na conversa nova. Pergunta que ele fez não conta como rodada perdida.</div>
       </li>
       <li>
-        <div class="checagem-o">Você testou em conversa nova e a resposta mudou</div>
-        <div class="checagem-como"><b class="rot">Como conferir</b> Faça o mesmo pedido antes e depois de salvar as regras, em duas conversas novas. Se a resposta não mudou nada, as regras não estão sendo aplicadas ou são genéricas demais.</div>
+        <div class="checagem-o">Não sobrou nenhum elogio no lugar de instrução</div>
+        <div class="checagem-como"><b class="rot">Como conferir</b> Procure por "detalhado", "completo", "profissional", "bem feito". Para cada um, pergunte: eu consigo conferir se cumpriu? Se não, troque por número ou formato.</div>
       </li>
       <li>
-        <div class="checagem-o">Você separou o que é instrução do que é documento</div>
-        <div class="checagem-como"><b class="rot">Como conferir</b> Instrução é como trabalhar. Documento é material de consulta. Se você colou uma tabela de preços dentro das instruções, ela está no lugar errado.</div>
+        <div class="checagem-o">Não tem dado de pessoa identificável no pedido</div>
+        <div class="checagem-como"><b class="rot">Como conferir</b> Procure por nome próprio, CPF, valor de salário individual. Deve dar zero.</div>
       </li>
     </ol>
-    <div class="checagem-falhou"><strong>Se o item 3 falhou:</strong> antes de reescrever tudo, confira se o texto foi salvo no lugar certo e se a conversa nova foi aberta <strong>dentro</strong> do Project. Conversa fora do Project não enxerga as instruções dele.</div>
+    <div class="checagem-falhou">
+      <strong>Se o item 2 falhou e os outros passaram:</strong> o pedido está certo e o problema é outro. Não reescreva de novo. Anote o caso e leve para a aula 1.3, que é sobre exatamente isso.
+    </div>
   </div>
 
   <div class="checkpoint">
     <div class="checkpoint-title">✅ Checkpoint, você agora sabe</div>
     <ul>
-      <li>Escrever uma instrução persistente a partir das suas próprias correções repetidas</li>
-      <li>Decidir o que vai em <strong>instrução</strong> e o que vai em <strong>documento</strong></li>
-      <li>Explicar por que encher de arquivo piora, em vez de melhorar</li>
-      <li>Reconhecer que as instruções se empilham e <strong>não</strong> obedecem hierarquia. Regra contraditória é defeito</li>
-      <li>Distinguir uma regra que dá para conferir de uma que é só torcida</li>
-      <li>Dizer o que nunca entra num texto que fica guardado</li>
+      <li>Pedir pelo resultado em vez de pela tarefa, e por que isso decide quem escolhe o critério</li>
+      <li>Passar as três perguntas em qualquer pedido antes de mandar</li>
+      <li>Usar a terceira pergunta para ele parar e perguntar, em vez de inventar e seguir</li>
+      <li>Reconhecer quando o problema deixou de ser o pedido</li>
     </ul>
   </div>
 
   <div class="hook">
     <div class="hook-label">➜ A trava que esta aula não resolve</div>
     <div class="hook-frase">
-      Seu texto tem 200 linhas e metade não serve para a tarefa de agora.
+      Você escreveu um pedido ótimo. Amanhã, em conversa nova, ele não existe mais.
     </div>
     <p>
-      Você acabou de aprender que a regra de <strong>sempre</strong> vai na instrução. Mas a maior parte do seu trabalho não é "sempre", é <strong>"quando aparece uma cotação"</strong>, <strong>"quando fecha o mês"</strong>, <strong>"quando abre uma vaga"</strong>. Cada uma dessas tem um método próprio, e enfiar todos no mesmo texto piora tudo.
-    </p>
-    <p>
-      A próxima aula é o mapa: para cada tipo de regra, onde ela mora. <a href="../">Voltar ao módulo →</a>
+      E não é só o pedido: quem você é, o que a sua área faz, como a casa escreve, o que nunca pode aparecer. Tudo isso você vai reexplicar amanhã, e na sexta, e no mês que vem. A próxima aula é sobre onde guardar o que não pode se perder no fim da conversa. <a href="../a3-regra-que-fica/">Ir para a aula 1.3 →</a>
     </p>
   </div>
 
   <p class="ementa-nota">
-    <strong>Cobertura da ementa:</strong> esta aula entrega o item <strong>1.2 · CLAUDE.md, o manual do funcionário (global e local, estrutura obrigatória)</strong>. O conceito, os quatro níveis de empilhamento e a estrutura de seções são exatamente os do <code>CLAUDE.md</code>. A <strong>criação do arquivo</strong> acontece no Módulo 2, quando existe uma pasta de trabalho para recebê-lo, e o texto que você escreveu hoje vai para lá sem mudar uma linha. Fazer o arquivo antes de existir a pasta seria decorar um caminho, não aprender o conceito.
+    Cobertura da ementa: esta aula entrega o item <strong>1.4 · Prompting como conversa vs como sistema</strong>. A ordem no site troca os itens 1.2 e 1.4 da ementa por motivo pedagógico: pedir bem vem antes de guardar a regra, porque não faz sentido guardar um pedido ruim.
   </p>
 
   <nav class="nav-bottom">
-    <a href="../a2-pedir-para-entregar/" class="nav-link back">
-      <span class="nav-link-label">← anterior</span>
-      <span class="nav-link-title">Aula 1.2 · Pedir para entregar</span>
+    <a class="nav-link back" href="../a1-ecossistema-e-fisica/">
+      <span class="nav-link-label">← Anterior</span>
+      <span class="nav-link-title">1.1 · O ecossistema e a física</span>
     </a>
-    <a href="../a4-o-mapa/" class="nav-link next">
-      <span class="nav-link-label">próxima →</span>
-      <span class="nav-link-title">Aula 1.4 · O mapa: onde cada regra mora</span>
+    <a class="nav-link next" href="../a3-regra-que-fica/">
+      <span class="nav-link-label">Próxima →</span>
+      <span class="nav-link-title">1.3 · A regra que fica</span>
     </a>
   </nav>
 
+  <footer class="site-footer">
+    Claude na Prática · Treinamento in-company · <a href="../../">voltar ao início</a>
+  </footer>
 </main>
 
-<footer class="site-footer">
-  <div class="wrap">
-    <p>
-      Claude na Prática · treinamento in-company conduzido por Rafael Lima
-      · <a href="https://www.instagram.com/iacomrafael/" target="_blank" rel="noopener">@iacomrafael</a>
-    </p>
-    <p style="margin-top:8px">
-      O gabarito é de uma pessoa fictícia da <strong>Gráfica Aurora</strong>, indústria gráfica inventada para o treinamento. Nada aqui é dado real.
-    </p>
-  </div>
-</footer>
-
-<div class="toast" id="toast">Copiado ✓</div>
+<div class="toast" id="toast">Prompt copiado</div>
 
 <script>
-(function(){
-  var toast = document.getElementById('toast');
-  function show(msg){
-    toast.textContent = msg;
-    toast.classList.add('show');
-    setTimeout(function(){ toast.classList.remove('show'); }, 1800);
-  }
-  document.querySelectorAll('[data-copy]').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var el = document.getElementById(btn.getAttribute('data-copy'));
-      if(!el) return;
-      var text = el.textContent;
-      if(navigator.clipboard && navigator.clipboard.writeText){
-        navigator.clipboard.writeText(text).then(function(){ show('Copiado ✓'); },
-          function(){ fallback(text); });
-      } else { fallback(text); }
+document.querySelectorAll('.prompt-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var box = btn.closest('.prompt-box');
+    var txt = box ? box.querySelector('.prompt-content').innerText : '';
+    navigator.clipboard.writeText(txt).then(function(){
+      var t = document.getElementById('toast');
+      t.classList.add('show');
+      setTimeout(function(){ t.classList.remove('show'); }, 1800);
     });
   });
-  function fallback(text){
-    var ta = document.createElement('textarea');
-    ta.value = text;
-    document.body.appendChild(ta);
-    ta.select();
-    try{ document.execCommand('copy'); show('Copiado ✓'); }
-    catch(e){ show('Não foi possível copiar'); }
-    document.body.removeChild(ta);
-  }
-})();
+});
 </script>
 
 </body>

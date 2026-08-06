@@ -99,3 +99,20 @@ Base herdada do Workshop Maria Pitanga, com o accent trocado.
 | `.nav-bottom` | ← anterior · próxima → |
 
 **Fonte da verdade:** `m1/a3-regra-que-fica/index.html`, é a página mais completa. Copiar e adaptar.
+
+## Componentes da Onda 2
+
+| Classe | 📊 | O que mostra | Nasceu em |
+|---|---|---|---|
+| `.checagem` | | O validador de fim de aula. Item objetivo + como conferir + para onde voltar | todas as 4 aulas |
+| `.rodadas` | 📊 | Quantas idas e vindas cada versão do pedido custou, em caixinhas | 1.2 |
+| `.os` | 📊 | A ordem de serviço da gráfica ao lado da OS de um pedido, campo a campo | 1.2 |
+| `.exemplos` | | O mesmo conceito no setor de cada um, em accordion. Abre e roda | 1.2 e 1.4 |
+| `.mapa` | 📊 | Onde cada tipo de regra mora, em cinco faixas. Artefato impresso do M1 | 1.4 |
+| `.rot` | | Rótulo que precisa ser bloco. **Use esta classe**, nunca `display:block` num seletor de tag inline | todas |
+
+### Layout
+
+- `--col: 780px` é a coluna de leitura. Prosa enche ela inteira, sem `max-width` próprio
+- `--col-wide: 1140px` é o breakout. Figura, tabela e grade saem da coluna
+- A regra `BREAKOUT` fica no **fim** do `<style>`, porque precisa ganhar o `margin-left` do componente

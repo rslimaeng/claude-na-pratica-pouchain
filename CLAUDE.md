@@ -143,6 +143,30 @@ Use pontuação portuguesa normal:
 
 **A sujeira é de propósito e precisa estar lá:** cabeçalho mesclado antes da tabela, data em formatos diferentes, coluna com espaço no nome, status em duas caixas, valor ora número ora texto, linha em branco no meio.
 
+## 8-quater. Coluna de leitura e breakout
+
+A página tem **duas larguras, e só duas**:
+
+| Token | Valor | Quem usa |
+|---|---|---|
+| `--col` | `780px` | `.wrap`, a coluna de leitura. **Toda prosa enche ela inteira** |
+| `--col-wide` | `1140px` | header, breadcrumb, e as figuras que estouram a coluna |
+
+**Prosa não tem `max-width` próprio.** A coluna já é a medida. Nove larguras diferentes dentro de um `.wrap` largo é o que faz o texto parecer órfão, e foi o defeito que o Rafael reportou na Onda 1.
+
+**Figura, tabela e grade estouram para `--col-wide`**, com a regra `BREAKOUT` no fim do `<style>`. Diagrama mais largo que o texto é intencional e lê como editorial; texto mais estreito que o diagrama, sem motivo, lê como quebrado.
+
+**O número que manda:** ~80 caracteres por linha. Acima de 90 a leitura cai de verdade. Confira medindo, não estimando: `ch` no Inter vale ~1,34 caractere, então a conta de cabeça erra em 30%.
+
+## 8-quinquies. 🔴 A frase não pode quebrar no meio
+
+Dois jeitos de quebrar uma frase sem perceber, os dois já aconteceram aqui:
+
+1. **`display:block` num seletor de tag inline.** `.pre-req-item strong{display:block}` pega *todo* `<strong>` do bloco, inclusive o que está dentro de um `<p>`. A frase parte em duas e a segunda metade começa com vírgula. Gate **G11**.
+2. **`display:flex` ou `display:grid` no pai**, com texto solto e tag inline como irmãos. Cada pedaço vira um item de flex e a frase se espalha. Gate **G11b**.
+
+**Como escrever sem cair:** rótulo que precisa ser bloco ganha **classe** (`.rot`), nunca seletor de tag. Container flex tem **um elemento por item**, nunca texto solto ao lado de tag.
+
 ## 9. Anatomia fixa de página de aula
 
 ```
@@ -157,13 +181,15 @@ HERO  kicker + H1 + subtítulo + chips [Nível] [artefato] [pré-requisito] [eme
 06 · CONFIRA · GABARITO           ← ATRÁS DE <details>
 07 · PEGADINHAS
 08 · 🔒 A CERCA                   ← "neste nível, o que nunca pode acontecer"
+[✅ CONFIRA VOCÊ MESMO]           ← o validador. Critério objetivo, o aluno confere sozinho
 [✅ checkpoint] [➜ HOOK] [nav-bottom]
 ```
 
 **Dois detalhes de UX inegociáveis:**
 
 1. **O gabarito fica atrás de `<details>`.** Aberto, ninguém tenta. É a diferença entre exercício e demonstração.
-2. **O hook fecha toda página.** Não é retórica, é o que faz 19 aulas serem uma corrente, não uma lista.
+2. **O hook fecha toda página.** Não é retórica, é o que faz 19 aulas serem uma corrente, não uma lista. Na última aula do módulo ele fecha o **módulo**, e não a aula.
+3. **O validador não pergunta "ficou bom?".** Ele é a camada 1 do harness traduzida: cada item é contável ou é sim/não, e diz para onde voltar se falhar. Critério que depende do instrutor não entra, porque numa sala de 20 o instrutor não escala.
 
 ## 10. Regra dura de exercício
 
@@ -181,7 +207,8 @@ Gabarito **não é resposta certa única**, é versão de referência. Vem sempr
 - **Nunca** `--amend` em commit já pushado · **nunca** `push --force` · **nunca** `--no-verify`
 - 1 onda = 1 goal em `goals/goal-NN-slug.md`, escrito **antes** de a onda começar
 - `goals/README.md` mantém a tabela das 9 ondas
-- Toda onda fecha com os **10 gates de qualidade** do `goal-01` §5, verificados por `grep`. Auditoria de conteúdo não substitui `grep` de componente
+- Toda onda fecha com **`python3 goals/gates.py`**, rodado da raiz do repo. Sai com código 1 se algo falhar. Auditoria de leitura não substitui gate mecânico
+- **Gate com exceção permanente deixa de ser gate.** Se um gate acusa, conserta o código. E gate que procura uma palavra não pode rodar contra o arquivo que enuncia a regra sobre ela, senão se auto-reprova
 - Nenhuma onda começa antes de o Rafael validar a anterior no navegador
 - `.nojekyll` obrigatório na raiz (impede o Jekyll de renderizar `.md`)
 
