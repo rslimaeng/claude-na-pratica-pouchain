@@ -183,6 +183,32 @@ for f in HTML:
     fp = Flexy(alvo); fp.feed(body)
     diz(not fp.achados, "G11b", f, str(sorted(fp.achados)) if fp.achados else "")
 
+# ─────────────── G11c · o atalho `margin:` que mata a centralização do bloco largo
+titulo("G11c · BLOCO LARGO COM `margin:` DEPOIS DA REGRA DE SANGRAMENTO")
+print("        (o atalho zera o margin-left:50% e o bloco vai 570px para a esquerda)")
+# A regra de sangramento centra o bloco largo com margin-left:50% +
+# transform:translateX(-50%). Qualquer regra POSTERIOR que use o atalho
+# `margin:` zera o margin-left e sobra só o transform, que empurra o bloco
+# meia largura para a esquerda. O .compare escapava por sorte: a regra dele
+# vem ANTES do sangramento. Defeito invisível em grep de conteúdo, e só
+# aparece em tela larga, porque em 1280 a coluna quase encosta na borda.
+for f in HTML:
+    css = "\n".join(re.findall(r"<style>(.*?)</style>",
+                               open(f, encoding="utf-8").read(), re.S))
+    css = re.sub(r"/\*.*?\*/", "", css, flags=re.S)   # comentário entra no seletor
+    regras = [(m.start(), m.group(1).strip(), re.sub(r"\s+", " ", m.group(2)))
+              for m in re.finditer(r"([^{}@]+)\{([^}]*)\}", css)]
+    sangra = [(p, s) for p, s, b in regras if "margin-left:50%" in b.replace(" ", "")]
+    if not sangra:
+        diz(True, "G11c", f, "sem regra de sangramento"); continue
+    pos_s, sel_s = sangra[0]
+    largos = {c.strip().lstrip(".") for c in sel_s.split(",") if c.strip().startswith(".")}
+    ruins = sorted({s.strip() for p, s, b in regras
+                    if p > pos_s and s.strip().lstrip(".") in largos
+                    and re.search(r"(^|;)\s*margin\s*:", b)})
+    diz(not ruins, "G11c", f,
+        f"atalho margin: em {ruins}" if ruins else f"{len(largos)} blocos largos, 0 quebrado")
+
 # ─────────────────────── G12 · o nome do nível é o aprovado, e vem com o recurso
 titulo("G12 · NOME DE NÍVEL APROVADO + RECURSO OFICIAL DO CLAUDE AO LADO")
 print("        (vocabulário interno não vai para a tela · ver CLAUDE.md §5 e §7-bis)")
