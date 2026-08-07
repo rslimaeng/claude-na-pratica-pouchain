@@ -357,6 +357,27 @@ for f in AULAS:
         f"{passos} passos · {repare} repare · {prompt} prompts · 0 seco"
         if not faltas else str(faltas))
 
+# ─────────── G14b · o G14 só olhava demonstracao/, e o defeito voltou pela porta
+#             de fora: o card que aponta para ela continuava descrevendo roteiro.
+#             gate que cobre parte da superfície deixa o erro voltar pelo resto.
+titulo("G14b · NENHUMA PÁGINA DO ALUNO FALA COM O INSTRUTOR")
+print("        (vale para TODO html do site, não só para a demonstração)")
+# \b evita o falso positivo: "a sala" não pode casar dentro de "nesta sala"
+CENA = [r"pergunte à (sala|turma)", r"pergunte a (sala|turma)", r"\bplano b\b",
+        r"\ba sala\b (responde|dita|classific|precisa ver|conserta)",
+        r"vire (para|pra) a sala", r"anote no quadro", r"espere o silêncio",
+        r"não responda você", r"aponte (na tela|isto)", r"diga em voz alta",
+        r"minutos de palco", r"se der errado", r"se a sala\b",
+        # vocabulário do roteiro velho: a demonstração tem passos, não momentos
+        r"\broteiro\b", r"momento \d+ d", r"os (três|quatro|cinco|seis) momentos",
+        r"com o que apontar", r"executa ao vivo", r"travar na sala"]
+CENA_RE = re.compile("|".join(CENA), re.I)
+for f in HTML:
+    limpo = re.sub(r"<[^>]+>", " ", open(f, encoding="utf-8").read())
+    limpo = re.sub(r"\s+", " ", limpo)
+    achados = sorted({m.group(0).strip() for m in CENA_RE.finditer(limpo)})
+    diz(not achados, "G14b", f, f"FALA COM O INSTRUTOR: {achados}" if achados else "")
+
 # ─────────── G15 · duração não vai para o material do aluno, em lugar nenhum
 titulo("G15 · SEM DURAÇÃO EM NENHUMA PÁGINA DO ALUNO")
 print("        (tempo é controle interno e vive fora do site · CLAUDE.md §9-ter)")

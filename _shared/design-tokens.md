@@ -158,6 +158,8 @@ Gate **G15**: varre **todas** as páginas do aluno, inclusive as de demonstraç�
 
 **Regra de cada passo:** nenhum passo pode ser só instrução. Todo passo entrega alguma coisa para o aluno levar: `.repare`, `.ensina` ou `.lista`. Conferido pelo gate **G14**.
 
+**O card que aponta para a demonstração segue a mesma regra.** Ele descreve **o que o aluno vai encontrar lá** (os passos, os prompts, o número que aparece), nunca o que o instrutor faz. Vocabulário proibido no card: *momentos*, *roteiro*, *o que apontar*, *plano B*, *a sala responde*. Conferido pelo **G14b**, que roda contra todo `.html`.
+
 **Gerador:** as quatro páginas saem de um script único, com o conteúdo separado da renderização. Editar conteúdo é editar o dicionário, não o HTML. O gerador também varre **19 frases de direção de cena** e acusa antes de gravar.
 
 ### Onde cada coisa vive

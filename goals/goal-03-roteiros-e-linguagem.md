@@ -213,6 +213,30 @@ A página `exemplo/` foi **regerada inteira** dos dados novos, por script: big n
 
 **124 checagens no total.**
 
+## 7-quater. Onda 3-ter · o card que apontava para a demonstração
+
+A onda 3-bis limpou as quatro demonstrações e parou ali. Uma varredura de `.html` depois mostrou que **a página de aula estava limpa no corpo e suja no card de saída**, que é o link para a demonstração. Cinco trechos, em cinco arquivos:
+
+| Onde | O que dizia | O que diz agora |
+|---|---|---|
+| aula 1.1, card | *"a pergunta que a sala responde antes da explicação, e o plano B se travar"* | *"o que reparar em cada passo"* |
+| aula 1.2, card | *"Os quatro momentos, com o que apontar em cada um"* · *"O momento 2 é onde vocês preenchem"* | *"Os quatro passos, do pedido de uma frase ao arquivo preenchido"* · *"O passo 3 é a OS com os três campos preenchidos"* |
+| aula 1.3, card | *"a sala ditando o que entra no arquivo"* · **"o número muda de 2 para 7"** | *"o arquivo escrito uma vez só"* · **"30 OS atrasadas e o campo Status marca 4"** |
+| aula 1.4, card | *"O momento 4 é a sala classificando em voz alta"* | *"três regras reais de uma gráfica e onde cada uma mora"* |
+| `exemplo/` | *"resultado do **momento 5 do roteiro**, que o Rafael executa ao vivo"* · *"ser o plano B se a geração travar na sala"* | *"resultado do **passo 5 da demonstração**"* · o plano B saiu (já vive no `ROTEIRO-DE-PALCO-M1.md`, linhas 22 e 84) |
+
+**O 2 para 7 da aula 1.3 era erro de fato, não só de linguagem.** A planilha foi para 120 linhas na onda 3-bis e o corpo da página já dizia 30, mas o card ficou com o número da planilha velha. Foi a mesma varredura que pegou os dois.
+
+### G14b
+
+O **G14** só lê `demonstracao/index.html`. Foi por isso que passou. O **G14b** roda a lista de palco, com `\b`, contra **todo `.html` do site**, mais o vocabulário do roteiro: `roteiro`, `momento N da`, `os quatro momentos`, `com o que apontar`, `executa ao vivo`, `travar na sala`.
+
+Testado contra uma cópia com os cinco textos reprovados de volta: **acusa os cinco**, e não dá falso positivo em *"ninguém nesta sala"* nem em *"o mural na parede da sala"*, que são texto legítimo do aluno.
+
+**16 gates, 136 checagens.**
+
+> A lição, que vale para toda onda futura: **gate que cobre parte da superfície não protege a regra, só o pedaço que ele olha.** Ao corrigir uma página, pergunte o que aponta para ela.
+
 ## 8. Aberto
 
 - 🔴 **Teste de mesa das 4 aulas**, que nenhuma onda substitui

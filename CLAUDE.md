@@ -312,6 +312,12 @@ HERO  kicker + H1 + subtítulo + chips [Nível] [artefato] [pré-requisito] [eme
 
 **Regra de conteúdo de cada passo:** nenhum passo pode ser só instrução. Todo passo entrega alguma coisa para o aluno levar (`repare`, `ensina` ou `lista`). Conferido pelo gate **G14**, que também reprova **19 frases de direção de cena** por busca literal.
 
+**A regra não é da pasta `demonstracao/`, é do site inteiro.** O primeiro G14 só olhava a demonstração, e o defeito voltou pela porta de fora: as páginas de aula estavam limpas no corpo, mas **o card que aponta para a demonstração continuava descrevendo o roteiro velho** (*"os quatro momentos, com o que apontar"*, *"a sala ditando o que entra no arquivo"*, *"o plano B se travar"*). A página de exemplo era pior: chamava a demonstração de *roteiro* e citava o instrutor pelo nome. O **G14b** roda a mesma lista contra **todo `.html`** do site, mais o vocabulário do roteiro (`roteiro`, `momento N da`, `os quatro momentos`, `com o que apontar`, `executa ao vivo`).
+
+> **A lição que fica:** gate que cobre parte da superfície não protege a regra, só o pedaço que ele olha. Quando você corrigir uma página, pergunte **o que aponta para ela**.
+
+O G14b usa `\b` de propósito. *"a sala responde"* é direção de cena; *"ninguém nesta sala"* e *"o mural na parede da sala"* são texto legítimo para o aluno, e continuam passando.
+
 #### As duas regras que sobreviveram da primeira correção
 
 **R1 · A demonstração roda na mesma superfície do exercício.** Se o aluno vai fazer no Chat, a demonstração é no Chat. Ferramenta que ele não tem vira mágica.

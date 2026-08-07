@@ -67,7 +67,8 @@ a:hover{color:var(--accent-dark)}
 .saida.principal .s-rot{color:var(--accent)}
 .s-titulo{display:block;font-size:18px;font-weight:600;letter-spacing:-.01em;
   line-height:1.3;margin-bottom:7px}
-.s-desc{display:block;font-size:14.5px;line-height:1.55;color:var(--text-muted)}
+.s-desc{display:block;font-size:14.5px;line-height:1.55;color:var(--text-muted);
+        max-width:58ch}  /* ~78 caracteres · 1ch no Inter vale 1,34 caractere */
 .s-cta{display:block;font-size:14px;font-weight:600;color:var(--accent);margin-top:auto;
   padding-top:12px}
 .rec{display:inline-flex;align-items:center;font-family:var(--font-mono);
@@ -990,8 +991,8 @@ Para decidir hoje:
       <div class="saidas">
         <a class="saida principal" href="./demonstracao/">
           <span class="s-rot">A demonstração, passo a passo</span>
-          <span class="s-titulo">Os quatro momentos, com o que apontar em cada um</span>
-          <span class="s-desc">O mesmo pedido antes e depois das regras, com <strong>a sala ditando o que entra no arquivo</strong>. Traz também o momento em que o número de atrasadas muda de 2 para 7, e por quê.</span>
+          <span class="s-titulo">Os quatro passos, do pedido sem contexto às regras valendo</span>
+          <span class="s-desc">O mesmo pedido antes e depois das regras, com o arquivo escrito uma vez só. No último passo, <strong>a resposta diz 30 OS atrasadas e o campo Status marca 4</strong>, e a demonstração mostra de onde vem a diferença.</span>
           <span class="s-cta">ver a demonstração &rarr;</span>
         </a>
       </div>
