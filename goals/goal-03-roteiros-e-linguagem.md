@@ -450,6 +450,77 @@ selecionável de propósito, para esse caso.
 **Gates:** 17 gates, 163 checagens, exit 0. Quem protegeu esta onda foi o
 **G7-ter**: toda classe nova do quadro nasceu com regra de CSS.
 
+## 7-nonies. Onda 3-octies · a 1.3 contra a documentação oficial
+
+**Pedido do Rafael em 07/08/2026:** cruzar a aula 1.3 com `insumos/claude-project.md`,
+três vídeos sobre Projects, sendo o primeiro do canal oficial da Anthropic.
+*"Não acho que ela esteja ruim, é mais para ver se tem o que melhorar."*
+
+A leitura confirmou que a aula já cobria 9 dos ~14 pontos do insumo, e em vários
+casos explica melhor que a fonte. Mas achou **um erro de fato publicado**.
+
+### 🔴 A "decepção nº 1" estava desatualizada
+
+A seção 07 dizia que num Project *"o que fica guardado são as instruções e os
+documentos, não o que você conversou ontem"*. **Existe memória por projeto**, e a
+segunda metade da frase é falsa. Fonte e detalhes em `../../FATOS-VERIFICADOS.md`.
+
+Por que era P0 e não detalhe: alguém da sala levanta a mão. A memória apareceu no
+Claude deles, e a aula perderia autoridade justamente onde pede para escrever um
+arquivo de regras.
+
+**A resposta certa reforça a tese.** Virou um bloco novo no Conceito 1, com tabela
+memória × instrução e a frase que resolve: **memória é o que ele lembrou,
+instrução é o que você mandou.** A pegadinha da seção 07 passou a dizer só o que
+continua verdade, mais um callout que remete ao bloco.
+
+### Os três enriquecimentos, e todos viraram figura
+
+O Rafael foi explícito: *"mantenha os elementos didáticos que não são só texto."*
+Nenhum acréscimo entrou como parágrafo solto.
+
+| Enriquecimento | Virou | Componente |
+|---|---|---|
+| A terceira gaveta: o anexo da conversa | Terceira coluna da tabela de gavetas + callout com a pergunta prática *"onde eu ponho a planilha de hoje?"* | `table-wrap` |
+| Um projeto, um trabalho | Duas colunas: `"Gráfica Aurora"` contra `"Coordenação de PCP"` | `.compare` |
+| O empilhamento já existe no Chat | Pilha de 3 camadas: preferências do perfil, estilo, instruções do projeto | `.pilha` |
+
+Os três **reaproveitaram componente existente**, nenhuma classe nova, nenhum CSS
+novo. É o §8-bis do `CLAUDE.md` funcionando: reaproveite antes de inventar.
+
+### A tensão que eu quase criei, e como ficou resolvida
+
+O insumo diz *"one project for one task"*. A aula manda **dar ao projeto o nome da
+função**. Escrito sem cuidado, o acréscimo contradiria o exercício da própria aula.
+
+A formulação que resolve não é nenhuma das duas: **o critério é coerência, não
+tamanho.** Um projeto cabe quantos pedidos você quiser, desde que o mesmo texto de
+regras sirva para todos. O teste que ficou na página: *"as minhas instruções valem
+para tudo que eu vou pedir aqui dentro?"* Se a resposta é "para metade", virou dois.
+
+### O que ficou de fora, de propósito
+
+| Ponto | Por quê |
+|---|---|
+| O nome "RAG" | A figura do "encher dilui" explica melhor que a sigla |
+| Salvar planilha como `.csv` | Contradiz o `CLAUDE.md` §8-ter |
+| Projeto do Cowork ≠ projeto do claude.ai | É do M2. Na 1.3 seria antecipar assunto |
+| *"Projects are the room, skills are the playbook"* | É da **1.4**, que é exatamente sobre isso |
+
+Da distinção projeto × skill, a 1.3 ficou só com o critério de corte, no validador:
+**se a regra serve também fora deste projeto, ela não é do projeto.** Uma linha, e
+prepara a 1.4 sem invadir.
+
+### Um erro de método que quase se repetiu
+
+A primeira medição da página saiu com `viewport: 0`, porque a aba tinha sido
+recriada. Número medido em viewport inválido é número inventado. Refeita a 1280px:
+a tabela de 4 colunas cabe em 1138px sem rolar, nenhum bloco fora do eixo, e a
+aula fica com **3 pilhas, 1 grade, 5 comparativos e 5 tabelas**, muito acima do
+piso de 3 figuras.
+
+**Gates:** 17 gates, 163 checagens, exit 0.
+
 ## 8. Aberto
 
 - 🔴 **Teste de mesa das 4 aulas**, que nenhuma onda substitui

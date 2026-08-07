@@ -609,7 +609,7 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
     <div class="destino-title">🎯 O que você vai saber fazer</div>
     <ul>
       <li>Escrever, do zero, o texto de regras da sua função, e ter ele funcionando antes do fim da aula</li>
-      <li>Decidir se uma informação vai nas <strong>instruções</strong> ou nos <strong>documentos</strong>, e por que a diferença importa</li>
+      <li>Decidir se uma informação vai nas <strong>instruções</strong>, nos <strong>documentos</strong> ou no <strong>anexo da conversa</strong>, e por que a diferença importa</li>
       <li>Reconhecer as duas coisas que estragam um arquivo de regras: encher demais e escrever regra que ninguém consegue conferir</li>
     </ul>
     <div class="destino-quando">
@@ -705,6 +705,51 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
         </p>
       </div>
 
+      <h4>"Mas o Claude já tem memória. Isso não resolve sozinho?"</h4>
+      <p>
+        Resolve outra coisa. O Claude guarda uma <strong>memória separada para cada projeto</strong>: ele resume sozinho o que vocês conversaram e traz de volta em conversa nova. É útil de verdade, e mesmo assim <strong>não substitui</strong> o texto que você vai escrever hoje. São duas coisas diferentes, e vale ver lado a lado:
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th></th><th>A memória</th><th>A instrução</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Quem escreve</strong></td>
+              <td>O Claude, resumindo sozinho</td>
+              <td class="td-ok">Você, linha por linha</td>
+            </tr>
+            <tr>
+              <td><strong>O que fica guardado</strong></td>
+              <td>O que <strong>ele</strong> achou que importava</td>
+              <td>O que <strong>você</strong> decidiu que vale sempre</td>
+            </tr>
+            <tr>
+              <td><strong>Quando você vê</strong></td>
+              <td>Depois de pronta. Dá para ler e apagar</td>
+              <td class="td-ok">Antes. Você escreve do jeito que quer</td>
+            </tr>
+            <tr>
+              <td><strong>Vale para regra que não pode falhar</strong></td>
+              <td class="td-nao">Não. Ele pode não trazer a linha certa na hora certa</td>
+              <td class="td-ok">Sim. Está lá, igual, em toda conversa</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout-info">
+        <div class="callout-title">A diferença em uma frase</div>
+        <p>
+          <strong>Memória é o que ele lembrou. Instrução é o que você mandou.</strong> Para "valor sempre com vírgula decimal" você não quer lembrança, quer regra: escrita, igual toda vez, e que você consegue abrir e conferir.
+        </p>
+        <p>
+          E tem um detalhe que pega: a memória <strong>vem desligada</strong>, precisa ser ativada nos Ajustes, e o administrador pode desligar para a empresa inteira. Ou seja, ela pode simplesmente não existir na sua conta. O seu texto de regras funciona igual nos dois casos. <em>Verificado na documentação da Anthropic em 07/08/2026.</em>
+        </p>
+      </div>
+
       <h4>💡 A regra do 2×: como saber o que escrever</h4>
       <div class="analogia">
         <div class="analogia-title">Corrigiu a mesma coisa duas vezes? Vira linha do arquivo.</div>
@@ -718,37 +763,51 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
 
       <h4>Conceito 2 · Encher dilui</h4>
       <p>
-        Todo Project tem também um lugar para <strong>documentos</strong>: manuais, normas, planilhas de referência. É diferente das instruções, e a diferença pega quase todo mundo:
+        Todo Project tem também um lugar para <strong>documentos</strong>: manuais, normas, planilhas de referência. E existe um terceiro lugar, que quase ninguém percebe que é diferente: <strong>o arquivo que você anexa dentro de uma conversa</strong>. São três gavetas, e confundir duas delas é o erro mais comum desta aula:
       </p>
 
       <div class="table-wrap">
         <table>
           <thead>
-            <tr><th></th><th>Instruções</th><th>Documentos</th></tr>
+            <tr><th></th><th>Instruções</th><th>Documentos</th><th>Anexo da conversa</th></tr>
           </thead>
           <tbody>
             <tr>
               <td><strong>Quando é lido</strong></td>
               <td class="td-ok">Sempre. Em toda conversa</td>
               <td>Só quando a pergunta tem a ver com ele</td>
+              <td>Só naquela conversa, enquanto ela durar</td>
             </tr>
             <tr>
               <td><strong>Para que serve</strong></td>
               <td>Regra, jeito da casa, formato</td>
               <td>Consulta: norma, manual, tabela</td>
+              <td>O dado <strong>de hoje</strong>: a planilha da semana, o relatório do mês</td>
             </tr>
             <tr>
               <td><strong>Tamanho certo</strong></td>
               <td>Curto. 20 a 40 linhas</td>
               <td>Pode ser longo, mas <strong>poucos</strong> arquivos</td>
+              <td>Do tamanho que for. Ele some junto com a conversa</td>
             </tr>
             <tr>
               <td><strong>O que dá errado</strong></td>
               <td>Virar manual de 200 linhas</td>
               <td>Jogar 40 arquivos e esperar que ele ache o certo</td>
+              <td>Subir para os documentos o que era de um dia só</td>
             </tr>
           </tbody>
         </table>
+      </div>
+
+      <div class="callout callout-ok">
+        <div class="callout-title">A pergunta que resolve na hora: "onde eu ponho a planilha de hoje?"</div>
+        <p>
+          <strong>No anexo da conversa.</strong> Arquivo anexado dentro de um chat fica só naquele chat: ele não entra no conhecimento do projeto e as outras conversas não enxergam. É exatamente o que você quer para o relatório desta semana, que na semana que vem já está velho.
+        </p>
+        <p>
+          O critério é o mesmo do curso inteiro: <strong>esta informação precisa estar no contexto sempre, às vezes, ou só hoje?</strong> Sempre é instrução. Às vezes é documento. Só hoje é anexo.
+        </p>
       </div>
 
       <p>
@@ -803,6 +862,47 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
         <p>
           E repare no detalhe cruel: <strong>o problema não são as páginas que não têm nada a ver.</strong> São as parecidas. Um manual grande tem muito trecho parecido, e é aí que ele erra.
         </p>
+        <p>
+          <strong>Duas coisas simples que ajudam muito:</strong> dê ao arquivo um nome que diga o que ele é, porque é pelo nome que ele decide o que abrir. <code>tabela-de-papel-2026.xlsx</code> é achado; <code>documento4.xlsx</code> não. E prefira poucos arquivos curtos a um grandão: no arquivo curto ele lê tudo, no arquivo enorme ele lê pedaços, e o pedaço pode ser o errado.
+        </p>
+      </div>
+
+      <h4>A outra forma de encher, que ninguém chama de encher</h4>
+      <p>
+        Até aqui falamos de encher de <strong>arquivo</strong>. Existe uma segunda, mais silenciosa: encher de <strong>assunto</strong>. É quando o projeto cresce e passa a abrigar trabalhos que não têm nada a ver entre si.
+      </p>
+
+      <div class="compare">
+        <div class="compare-col ruim">
+          <div class="compare-label">Project grande demais</div>
+          <div class="compare-quote">"Gráfica Aurora"</div>
+          <p>
+            Lá dentro: programação de máquina, fechamento do mês e triagem de currículo. <strong>Nenhuma regra vale para os três.</strong> "Valor sempre com vírgula" não diz nada para um currículo, e "sempre com o código do candidato" não diz nada para uma OS.
+          </p>
+          <p>
+            Resultado: as instruções ficam vagas para caber em tudo, a resposta volta genérica, e a pessoa culpa o pedido.
+          </p>
+        </div>
+        <div class="compare-col bom">
+          <div class="compare-label">Project do tamanho certo</div>
+          <div class="compare-quote">"Coordenação de PCP"</div>
+          <p>
+            Lá dentro só entra programação de produção. <strong>As mesmas regras valem para tudo</strong> que você pede ali: o que é OS, como normalizar a data, quem lê o relatório.
+          </p>
+          <p>
+            Fechamento do mês e triagem de currículo viram <em>outros</em> projetos, cada um com as suas regras.
+          </p>
+        </div>
+      </div>
+
+      <div class="callout callout-info">
+        <div class="callout-title">O teste, e ele leva dez segundos</div>
+        <p>
+          Olhe para as suas instruções e pergunte: <strong>elas valem para tudo que eu vou pedir aqui dentro?</strong> Se a resposta honesta for "para metade, sim", o projeto está grande demais e virou dois.
+        </p>
+        <p>
+          Repare que o critério não é "uma tarefa por projeto". É <strong>coerência</strong>: um projeto cabe quantos pedidos você quiser, desde que o mesmo texto de regras sirva para todos eles.
+        </p>
       </div>
     </div>
   </section>
@@ -818,7 +918,34 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
     </div>
     <div class="step-body">
       <p>
-        No Cowork e no Code, a instrução persistente pode existir em <strong>mais de um lugar ao mesmo tempo</strong>, e todas valem juntas:
+        Antes de olhar para o Módulo 2, repare que <strong>o empilhamento já acontece hoje</strong>, no Project que você vai criar daqui a pouco. Não é um conceito para o futuro. São três textos lidos juntos, em toda conversa dentro do projeto:
+      </p>
+
+      <div class="pilha">
+        <div class="pilha-camada">
+          <span class="pilha-tag">Preferências do perfil</span>
+          <span class="pilha-txt">O que você configurou uma vez e vale em <strong>todo</strong> o Claude, dentro e fora de projeto</span>
+        </div>
+        <div class="pilha-camada">
+          <span class="pilha-tag">Estilo da conversa</span>
+          <span class="pilha-txt">O jeito de escrever que você escolhe na hora, conversa a conversa</span>
+        </div>
+        <div class="pilha-camada">
+          <span class="pilha-tag">Instruções do projeto</span>
+          <span class="pilha-txt">O texto que você vai escrever na seção 05, e que vale só dentro deste projeto</span>
+        </div>
+        <div class="pilha-seta" aria-hidden="true">↓</div>
+        <div class="pilha-result">
+          As três, juntas, em <strong>toda conversa dentro do Project</strong>
+        </div>
+      </div>
+
+      <p>
+        Isso explica uma coisa que confunde muita gente: <strong>às vezes ele faz algo que você não pediu neste texto.</strong> Quase sempre veio de cima, das preferências ou do estilo. É o primeiro lugar a olhar quando a instrução parece não estar sendo obedecida, antes de reescrever o texto inteiro. <em>Verificado na documentação da Anthropic em 07/08/2026.</em>
+      </p>
+
+      <p>
+        No Cowork e no Code, que chegam no Módulo 2, a mesma coisa acontece com mais camadas. A instrução persistente pode existir em <strong>mais de um lugar ao mesmo tempo</strong>, e todas valem juntas:
       </p>
 
       <div class="table-wrap">
@@ -1170,10 +1297,20 @@ prazo × data de hoje.</div>
       <div class="callout callout-warn">
         <div class="callout-title">⚠️ A decepção nº 1 com Projects</div>
         <p>
-          <strong>Conversas diferentes dentro do mesmo Project não compartilham o histórico entre si.</strong> O que fica guardado são as <em>instruções</em> e os <em>documentos</em>, não o que você conversou ontem.
+          <strong>Conversas diferentes dentro do mesmo Project não compartilham o histórico entre si.</strong> A conversa de ontem não está aberta dentro da de hoje. Se você combinou alguma coisa lá e não escreveu em lugar nenhum, ela não chega aqui.
         </p>
         <p>
           É a descoberta que faz mais gente abandonar o recurso achando que "não funciona". Funciona, só não é isso que ele faz. <strong>Se você quer que algo sobreviva à conversa, escreva nas instruções.</strong>
+        </p>
+      </div>
+
+      <div class="callout callout-info">
+        <div class="callout-title">E a memória, que a gente viu na seção 02?</div>
+        <p>
+          Ela ameniza, não resolve. A memória do projeto guarda <strong>um resumo</strong> feito pelo Claude, não a conversa. Ele pode ter resumido justamente a parte que não importava, e você só descobre quando a resposta sai errada.
+        </p>
+        <p>
+          Vale a mesma frase: <strong>memória é o que ele lembrou, instrução é o que você mandou.</strong> Para o que não pode falhar, você escreve.
         </p>
       </div>
 
@@ -1248,6 +1385,9 @@ prazo × data de hoje.</div>
           O que você monta hoje é <strong>seu</strong>, na sua conta. Antes de virar padrão da equipe, no Módulo 2, quando esse texto virar arquivo compartilhado, passa a valer a política da empresa, e vale conversar com o TI antes.
         </p>
         <p>
+          <strong>E compartilhar não é só "abrir".</strong> Quem cria o projeto escolhe se cada pessoa só lê ou também edita, e pode tirar o acesso depois. Vale saber disso antes de escrever, não depois: <strong>quem edita muda as suas regras</strong>, e a resposta que sai deixa de ser a que você configurou.
+        </p>
+        <p>
           <strong>Não é burocracia:</strong> arquivo que vira padrão de área é lido por gente que não estava nesta sala e não viu esta cerca. Quem escreveu responde pelo que está escrito lá.
         </p>
       </div>
@@ -1273,8 +1413,12 @@ prazo × data de hoje.</div>
         <div class="checagem-como"><b class="rot">Como conferir</b> Faça o mesmo pedido antes e depois de salvar as regras, em duas conversas novas. Se a resposta não mudou nada, as regras não estão sendo aplicadas ou são genéricas demais.</div>
       </li>
       <li>
-        <div class="checagem-o">Você separou o que é instrução do que é documento</div>
-        <div class="checagem-como"><b class="rot">Como conferir</b> Instrução é como trabalhar. Documento é material de consulta. Se você colou uma tabela de preços dentro das instruções, ela está no lugar errado.</div>
+        <div class="checagem-o">Você separou as três gavetas</div>
+        <div class="checagem-como"><b class="rot">Como conferir</b> Instrução é como trabalhar, sempre. Documento é material de consulta, às vezes. Anexo da conversa é o dado de hoje. Se você colou uma tabela de preços dentro das instruções, ou subiu a planilha desta semana para os documentos, está no lugar errado.</div>
+      </li>
+      <li>
+        <div class="checagem-o">Nenhuma linha sua serve também fora deste projeto</div>
+        <div class="checagem-como"><b class="rot">Como conferir</b> Leia cada linha e pergunte: <strong>isso vale só aqui, ou eu ia querer em qualquer lugar do Claude?</strong> Se vale em qualquer lugar, ela não é do projeto, e a aula 1.4 mostra onde ela mora de verdade. Deixá-la aqui obriga você a repetir a mesma linha em cada projeto novo.</div>
       </li>
     </ol>
     <div class="checagem-falhou"><strong>Se o item 3 falhou:</strong> antes de reescrever tudo, confira se o texto foi salvo no lugar certo e se a conversa nova foi aberta <strong>dentro</strong> do Project. Conversa fora do Project não enxerga as instruções dele.</div>
@@ -1284,7 +1428,8 @@ prazo × data de hoje.</div>
     <div class="checkpoint-title">✅ Checkpoint, você agora sabe</div>
     <ul>
       <li>Escrever uma instrução persistente a partir das suas próprias correções repetidas</li>
-      <li>Decidir o que vai em <strong>instrução</strong> e o que vai em <strong>documento</strong></li>
+      <li>Decidir o que vai em <strong>instrução</strong>, o que vai em <strong>documento</strong> e o que é só <strong>anexo do dia</strong></li>
+      <li>Dizer por que a <strong>memória</strong> do Claude não substitui um texto de regras escrito por você</li>
       <li>Explicar por que encher de arquivo piora, em vez de melhorar</li>
       <li>Reconhecer que as instruções se empilham e <strong>não</strong> obedecem hierarquia. Regra contraditória é defeito</li>
       <li>Distinguir uma regra que dá para conferir de uma que é só torcida</li>
