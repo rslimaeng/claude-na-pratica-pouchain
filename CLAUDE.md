@@ -55,19 +55,27 @@ Toda aula ancora nessa dor. Nunca em "produtividade" genérica.
 
 Frase de abertura do curso (citação neutra, não identificável, autorizada): *"o problema é que quando eu vou pedir de novo ele faz de outro jeito."*
 
-## 5. Os 6 níveis (a espinha)
+## 5. 🔤 Os 6 níveis · o nome que vai para a tela
 
-| # | Nível | A trava que resolve | Excel |
-|---|---|---|---|
-| 0 | A física | *"por que ele fica burro na conversa longa?"* | a célula tem tipo |
-| 1 | Pedir | *"a resposta vem genérica e eu reescrevo tudo"* | fórmula |
-| 2 | Contextualizar | *"reexplico quem sou toda vez"* | tabela nomeada |
-| 3 | Procedimentar | *"cada tarefa tem um método"* | tabela dinâmica |
-| 4 | Alcançar | *"ele não enxerga meus arquivos"* | conectar à fonte |
-| 5 | Conferir | *"como sei que está certo?"* | validação de dados |
-| 6 | Delegar | *"ainda sou eu que aperto o play"* | **macro** |
+**Esta tabela é a fonte da verdade do texto.** Aprovada pelo Rafael em 07/08/2026. Nenhuma página inventa nome novo para nível; copia daqui.
 
-**Eixo duplo:** capacidade (vertical, é a progressão) × superfície (horizontal: Chat · Project · Cowork · Code). O aluno aprende **5 conceitos**, não 4 ferramentas × 5 conceitos.
+A estrutura pedagógica (por que a ordem é essa, o que cada nível ensina) fica em `../TAXONOMIA-CURSO.md` §5. Aqui ficam **as palavras**.
+
+| # | O que vai para a tela | No Claude é | A trava que ele resolve | Excel | Nome interno |
+|---|---|---|---|---|---|
+| 0 | **Por que ele piora na conversa longa** | Chat · Janela de contexto | *"por que ele fica burro na conversa longa?"* | a célula tem tipo | a física |
+| 1 | **Pedir uma vez e receber pronto** | Chat | *"a resposta vem genérica e eu reescrevo tudo"* | fórmula | pedir |
+| 2 | **Ele já começa sabendo as suas regras** | Project · Instruções · `CLAUDE.md` | *"reexplico quem eu sou e como a casa funciona toda vez"* | tabela nomeada | contextualizar |
+| 3 | **Cada tarefa puxa o seu próprio procedimento** | Skill · Comando | *"cada tarefa tem um método, e pôr tudo junto piorou"* | tabela dinâmica | procedimentar |
+| 4 | **Ele abre os arquivos onde você trabalha** | Cowork · Conector (MCP) | *"ele não enxerga meus arquivos, eu vivo copiando e colando"* | conectar na fonte | alcançar |
+| 5 | **Você prova que está certo antes de mandar** | Checklist · rubrica · hook | *"tudo bem, mas como é que eu sei que está certo?"* | validação de dados | conferir |
+| 6 | **Roda sem você apertar o play** | Rotina agendada · plugin | *"ainda sou eu que aperto o play toda manhã"* | macro | delegar |
+
+**A última coluna existe só para nós.** Ela aparece no HTML como comentário, nunca como texto visível. Ver §7-bis · P1.
+
+> ⚠️ **O nível 2 é que fecha o laço com a frase de abertura do curso.** *"Quando eu vou pedir de novo ele faz de outro jeito"* é respondida na aula 1.3, que é o nível 2, não no 3. O nível 3 é sobre a tarefa ter método próprio, que é outra coisa.
+
+**Eixo duplo:** capacidade (vertical, é a progressão) × superfície (horizontal: Chat · Project · Cowork · Code). O aluno aprende **6 capacidades**, não 4 ferramentas vezes 6 capacidades.
 
 ## 6. Regras duras de conteúdo
 

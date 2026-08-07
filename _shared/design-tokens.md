@@ -111,6 +111,19 @@ Base herdada do Workshop Maria Pitanga, com o accent trocado.
 | `.mapa` | 📊 | Onde cada tipo de regra mora, em cinco faixas. Artefato impresso do M1 | 1.4 |
 | `.rot` | | Rótulo que precisa ser bloco. **Use esta classe**, nunca `display:block` num seletor de tag inline | todas |
 
+## Componentes da Onda 3 · linguagem de rotina
+
+Nasceram ao aplicar os 4 padrões de `CLAUDE.md` §7-bis.
+
+| Classe | 📊 | O que mostra | Onde |
+|---|---|---|---|
+| `.rec` | | **Chip do recurso oficial do Claude.** Variante `.livre` (cinza) para o que não exige instalar nada, ou seja níveis 0 e 1 | trilha · hub · hero das aulas |
+| `.nivel-rec` | | A célula da trilha que empilha os chips `.rec` | landing |
+| `.fluxo-mata` | 📊 | Dentro de cada etapa da dor-mãe, qual nível a elimina. Usa `margin-top:auto` para colar na base e alinhar as caixas | landing |
+| `.fluxo-base` | 📊 | A faixa que diz que os níveis 0 a 2 não removem etapa nenhuma, e por que vêm antes assim mesmo | landing |
+| `.nao-faz` + `.nao-item` + `.nao-mas` | | O bloco "o que estas 12 horas não fazem". Rótulo com `.rot`, nunca `strong` puro | landing |
+| `.destino-quando` | | A promessa com hora marcada, embaixo da lista do destino. Rótulo com `.rot` | 4 aulas |
+
 ### Layout
 
 - `--col: 780px` é a coluna de leitura. Prosa enche ela inteira, sem `max-width` próprio

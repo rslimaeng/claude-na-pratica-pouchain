@@ -97,7 +97,7 @@ a:hover{color:var(--accent-dark)}
   align-items:stretch;margin:0 0 20px}
 .fluxo-passo{background:var(--bg-elev);border:1px solid var(--border);
   border-radius:var(--radius);padding:20px 22px;
-  display:flex;flex-direction:column;justify-content:center;min-height:106px}
+  display:flex;flex-direction:column;justify-content:flex-start;min-height:106px}
 .fluxo-passo-num{font-family:var(--font-mono);font-size:11px;letter-spacing:.09em;
   color:var(--text-dim);margin-bottom:8px}
 .fluxo-passo-txt{font-size:17px;font-weight:600;line-height:1.3;letter-spacing:-.01em}
@@ -120,12 +120,12 @@ a:hover{color:var(--accent-dark)}
 /* TRILHA DOS 6 NÍVEIS */
 .trilha{border:1px solid var(--border);border-radius:var(--radius-lg);
   overflow:hidden;background:var(--bg-elev);margin-bottom:20px}
-.trilha-head{display:grid;grid-template-columns:64px 1.05fr 1.5fr .85fr 96px;
+.trilha-head{display:grid;grid-template-columns:52px 1.16fr .94fr 1.22fr .74fr 76px;
   gap:16px;padding:12px 22px;background:var(--bg-warm);
   border-bottom:1px solid var(--border);
   font-family:var(--font-mono);font-size:10.5px;letter-spacing:.09em;
   text-transform:uppercase;color:var(--text-dim)}
-.nivel-row{display:grid;grid-template-columns:64px 1.05fr 1.5fr .85fr 96px;
+.nivel-row{display:grid;grid-template-columns:52px 1.16fr .94fr 1.22fr .74fr 76px;
   gap:16px;padding:18px 22px;border-bottom:1px solid var(--border);
   align-items:center}
 .nivel-row:last-child{border-bottom:none}
@@ -143,6 +143,36 @@ a:hover{color:var(--accent-dark)}
   display:inline-block;justify-self:start}
 .nivel-row.base .nivel-mod{background:var(--bg-warm);color:var(--text-dim)}
 .trilha-nota{font-size:13.5px;color:var(--text-dim);margin-bottom:60px;max-width:var(--measure)}
+
+/* recurso oficial do Claude, dentro da trilha */
+.nivel-rec{display:flex;flex-direction:column;gap:4px;align-items:flex-start}
+.rec{font-family:var(--font-mono);font-size:10.5px;font-weight:500;line-height:1.35;
+  background:var(--accent-soft);color:var(--accent-dark);padding:4px 8px;border-radius:var(--radius-sm)}
+.rec.livre{background:var(--bg-warm);color:var(--text-dim)}
+
+/* qual nível mata cada etapa da dor-mãe */
+.fluxo-mata{margin-top:auto;padding-top:10px;border-top:1px solid var(--border)}
+.fluxo-passo.final .fluxo-mata{border-top-color:var(--accent-line)}
+.fluxo-mata-lv{display:block;font-family:var(--font-mono);font-size:9.5px;letter-spacing:.06em;
+  color:var(--accent);font-weight:500;margin-bottom:4px}
+.fluxo-mata-tx{display:block;font-size:12.5px;line-height:1.42;color:var(--text-muted)}
+.fluxo-passo.final .fluxo-mata-lv{color:var(--success)}
+.fluxo-base{display:flex;gap:16px;align-items:baseline;margin:0 0 20px;
+  border:1px dashed var(--border-strong);border-radius:var(--radius);
+  background:var(--bg-warm);padding:13px 18px}
+.fluxo-base-lv{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.06em;
+  color:var(--accent);font-weight:500;white-space:nowrap}
+.fluxo-base-tx{font-size:14px;line-height:1.5;color:var(--text-muted)}
+
+/* o que estas 12 horas NÃO fazem */
+.nao-faz{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:0 0 22px}
+.nao-item{background:var(--bg-elev);border:1px solid var(--border);
+  border-radius:var(--radius);padding:17px 18px}
+.nao-item .rot{display:block;font-size:15px;font-weight:600;line-height:1.32;
+  margin-bottom:7px;color:var(--text)}
+.nao-item p{font-size:14px;line-height:1.55;color:var(--text-muted);margin:0}
+.nao-mas{font-size:16px;line-height:1.6;color:var(--text-muted);margin:0 0 56px}
+.nao-mas strong{color:var(--text)}
 
 /* MÓDULOS */
 .modules{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
@@ -204,7 +234,11 @@ a:hover{color:var(--accent-dark)}
   .fluxo-seta{padding:6px 0;transform:rotate(90deg)}
   .trilha-head{display:none}
   .nivel-row{grid-template-columns:52px 1fr;gap:14px;row-gap:8px;align-items:start}
-  .nivel-trava,.nivel-excel,.nivel-mod{grid-column:2}
+  .nivel-trava,.nivel-excel,.nivel-rec{grid-column:2}
+  .nivel-row > div:last-child{grid-column:2}
+  .nivel-rec{flex-direction:row;flex-wrap:wrap}
+  .nao-faz{grid-template-columns:1fr}
+  .fluxo-base{flex-direction:column;gap:6px}
 }
 @media (max-width:720px){
   .hero{padding:44px 0 8px}
@@ -302,22 +336,43 @@ a:hover{color:var(--accent-dark)}
       <div class="fluxo-passo">
         <div class="fluxo-passo-num">01</div>
         <div class="fluxo-passo-txt">Exporto o relatório do sistema</div>
+        <div class="fluxo-mata">
+          <span class="fluxo-mata-lv">MORRE NO NÍVEL 4 · M2</span>
+          <span class="fluxo-mata-tx">O Cowork abre a pasta onde o arquivo já cai</span>
+        </div>
       </div>
       <div class="fluxo-seta" aria-hidden="true">→</div>
       <div class="fluxo-passo">
         <div class="fluxo-passo-num">02</div>
         <div class="fluxo-passo-txt">Colo numa planilha</div>
+        <div class="fluxo-mata">
+          <span class="fluxo-mata-lv">MORRE NO NÍVEL 4 · M2</span>
+          <span class="fluxo-mata-tx">Ele lê o arquivo direto, sem você copiar e colar</span>
+        </div>
       </div>
       <div class="fluxo-seta" aria-hidden="true">→</div>
       <div class="fluxo-passo">
         <div class="fluxo-passo-num">03</div>
         <div class="fluxo-passo-txt">Monto na mão</div>
+        <div class="fluxo-mata">
+          <span class="fluxo-mata-lv">MORRE NO NÍVEL 3 · M2</span>
+          <span class="fluxo-mata-tx">A skill monta do mesmo jeito toda vez, sem você relembrar como era</span>
+        </div>
       </div>
       <div class="fluxo-seta" aria-hidden="true">→</div>
       <div class="fluxo-passo final">
         <div class="fluxo-passo-num">04</div>
         <div class="fluxo-passo-txt">Decido</div>
+        <div class="fluxo-mata">
+          <span class="fluxo-mata-lv">CONTINUA SUA · NÍVEL 5 · M3</span>
+          <span class="fluxo-mata-tx">O nível 5 não tira esta etapa. Ele te dá com que conferir antes de assinar</span>
+        </div>
       </div>
+    </div>
+
+    <div class="fluxo-base">
+      <span class="fluxo-base-lv">NÍVEIS 0 · 1 · 2 &nbsp;/&nbsp; MÓDULO 1</span>
+      <span class="fluxo-base-tx">Não removem nenhuma etapa, e é exatamente por isso que vêm primeiro: sem eles, o que está acima acontece uma vez e não repete igual amanhã.</span>
     </div>
 
     <p class="fluxo-nota">
@@ -362,83 +417,111 @@ a:hover{color:var(--accent-dark)}
     <div class="trilha">
       <div class="trilha-head">
         <div>Nível</div>
-        <div>O que você aprende</div>
+        <div>O que muda na sua rotina</div>
+        <div>No Claude é</div>
         <div>A trava que ele resolve</div>
         <div>No Excel seria</div>
         <div>Módulo</div>
       </div>
 
+      <!-- nome interno de projeto: a física · ver ../TAXONOMIA-CURSO.md §5 -->
       <div class="nivel-row base">
         <div class="nivel-num">0</div>
         <div>
-          <div class="nivel-nome">A física</div>
+          <div class="nivel-nome">Por que ele piora na conversa longa</div>
           <div class="nivel-sub">não é aula, é a régua dos outros seis</div>
+        </div>
+        <div class="nivel-rec">
+          <span class="rec livre">Chat</span>
+          <span class="rec livre">Janela de contexto</span>
         </div>
         <div class="nivel-trava">"por que ele fica burro na conversa longa?"</div>
         <div class="nivel-excel">saber que a célula tem tipo</div>
         <div><span class="nivel-mod">M1</span></div>
       </div>
 
+      <!-- nome interno de projeto: pedir · ver ../TAXONOMIA-CURSO.md §5 -->
       <div class="nivel-row">
         <div class="nivel-num">1</div>
         <div>
-          <div class="nivel-nome">Pedir</div>
-          <div class="nivel-sub">sair da conversa e chegar no entregável</div>
+          <div class="nivel-nome">Pedir uma vez e receber pronto</div>
+        </div>
+        <div class="nivel-rec">
+          <span class="rec livre">Chat</span>
         </div>
         <div class="nivel-trava">"a resposta vem genérica e eu reescrevo tudo"</div>
         <div class="nivel-excel">fórmula</div>
         <div><span class="nivel-mod">M1</span></div>
       </div>
 
+      <!-- nome interno de projeto: contextualizar · ver ../TAXONOMIA-CURSO.md §5 -->
       <div class="nivel-row">
         <div class="nivel-num">2</div>
         <div>
-          <div class="nivel-nome">Contextualizar</div>
-          <div class="nivel-sub">a regra que sobrevive ao fim da conversa</div>
+          <div class="nivel-nome">Ele já começa sabendo as suas regras</div>
+        </div>
+        <div class="nivel-rec">
+          <span class="rec">Project · Instruções</span>
+          <span class="rec">CLAUDE.md</span>
         </div>
         <div class="nivel-trava">"reexplico quem eu sou e como a casa funciona toda vez"</div>
         <div class="nivel-excel">tabela nomeada</div>
         <div><span class="nivel-mod">M1 · M3</span></div>
       </div>
 
+      <!-- nome interno de projeto: procedimentar · ver ../TAXONOMIA-CURSO.md §5 -->
       <div class="nivel-row">
         <div class="nivel-num">3</div>
         <div>
-          <div class="nivel-nome">Procedimentar</div>
-          <div class="nivel-sub">o método da casa, escrito uma vez</div>
+          <div class="nivel-nome">Cada tarefa puxa o seu próprio procedimento</div>
+        </div>
+        <div class="nivel-rec">
+          <span class="rec">Skill · Comando</span>
         </div>
         <div class="nivel-trava">"cada tarefa tem um método, e pôr tudo junto piorou"</div>
         <div class="nivel-excel">tabela dinâmica</div>
         <div><span class="nivel-mod">M2</span></div>
       </div>
 
+      <!-- nome interno de projeto: alcançar · ver ../TAXONOMIA-CURSO.md §5 -->
       <div class="nivel-row">
         <div class="nivel-num">4</div>
         <div>
-          <div class="nivel-nome">Alcançar</div>
-          <div class="nivel-sub">onde o seu trabalho realmente vive</div>
+          <div class="nivel-nome">Ele abre os arquivos onde você trabalha</div>
+        </div>
+        <div class="nivel-rec">
+          <span class="rec">Cowork</span>
+          <span class="rec">Conector (MCP)</span>
         </div>
         <div class="nivel-trava">"ele não enxerga meus arquivos, eu vivo copiando e colando"</div>
         <div class="nivel-excel">conectar na fonte</div>
         <div><span class="nivel-mod">M2 · M3</span></div>
       </div>
 
+      <!-- nome interno de projeto: conferir · ver ../TAXONOMIA-CURSO.md §5 -->
       <div class="nivel-row">
         <div class="nivel-num">5</div>
         <div>
-          <div class="nivel-nome">Conferir</div>
-          <div class="nivel-sub">o degrau que separa isto de um tutorial</div>
+          <div class="nivel-nome">Você prova que está certo antes de mandar</div>
+        </div>
+        <div class="nivel-rec">
+          <span class="rec">Checklist · rubrica</span>
+          <span class="rec">Hook</span>
         </div>
         <div class="nivel-trava">"tudo bem, mas como é que eu sei que está certo?"</div>
         <div class="nivel-excel">validação de dados</div>
         <div><span class="nivel-mod">M3</span></div>
       </div>
 
+      <!-- nome interno de projeto: delegar · ver ../TAXONOMIA-CURSO.md §5 -->
       <div class="nivel-row">
         <div class="nivel-num">6</div>
         <div>
-          <div class="nivel-nome">Delegar</div>
-          <div class="nivel-sub">o que continua rodando depois da aula</div>
+          <div class="nivel-nome">Roda sem você apertar o play</div>
+        </div>
+        <div class="nivel-rec">
+          <span class="rec">Rotina agendada</span>
+          <span class="rec">Plugin</span>
         </div>
         <div class="nivel-trava">"ainda sou eu que aperto o play toda manhã"</div>
         <div class="nivel-excel">macro</div>
@@ -502,6 +585,32 @@ a:hover{color:var(--accent-dark)}
       </div>
 
     </div>
+  </section>
+
+  <section id="nao-faz">
+    <div class="section-title">O que estas 12 horas não fazem</div>
+    <p class="section-lead">
+      Está aqui em cima, e não em nota de rodapé, porque expectativa errada é o que estraga treinamento. Melhor você saber agora.
+    </p>
+
+    <div class="nao-faz">
+      <div class="nao-item">
+        <strong class="rot">Não ensina a programar</strong>
+        <p>No módulo 3 você usa o Claude Code, mas para orquestrar arquivo, documento e processo. Ninguém aqui vai ler nem escrever software.</p>
+      </div>
+      <div class="nao-item">
+        <strong class="rot">Não entrega nada pronto para você usar</strong>
+        <p>Não existe um pacote que a gente instala e você só aperta o botão. O que sai daqui você monta, com o dado do seu setor, durante a própria aula.</p>
+      </div>
+      <div class="nao-item">
+        <strong class="rot">Não substitui ninguém do seu time</strong>
+        <p>O que sai do seu caminho é a espera e a montagem manual. Decisão, relação e julgamento continuam sendo trabalho de gente.</p>
+      </div>
+    </div>
+
+    <p class="nao-mas">
+      <strong>O que ele faz é outra coisa:</strong> devolver para você as horas que hoje vão embora transportando dado de um lugar para o outro, e deixar montado, na sua máquina, o que continua rodando depois que a turma acabar.
+    </p>
   </section>
 
   <section>

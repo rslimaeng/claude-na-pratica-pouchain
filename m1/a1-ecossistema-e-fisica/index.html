@@ -49,6 +49,15 @@ a:hover{color:var(--accent-dark)}
 .chip-accent{background:var(--accent-soft);color:var(--accent-dark)}
 .chip-ementa{background:transparent;border:1px solid var(--border-strong);
   color:var(--text-dim);font-family:var(--font-mono);font-size:11px}
+.rec{display:inline-flex;align-items:center;font-family:var(--font-mono);
+  font-size:11px;font-weight:500;background:var(--accent-soft);color:var(--accent-dark);
+  padding:4px 9px;border-radius:var(--radius-sm)}
+.rec.livre{background:var(--bg-warm);color:var(--text-dim)}
+.destino-quando{margin-top:16px;padding-top:14px;border-top:1px solid var(--accent-line);
+  font-size:15.5px;line-height:1.55;color:var(--text-muted)}
+.destino-quando .rot{display:block;font-family:var(--font-mono);font-size:10.5px;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--accent);margin-bottom:5px}
+
 .header-meta{display:flex;gap:8px;flex-shrink:0}
 
 .crumbs{max-width:var(--col-wide);margin:0 auto;padding:20px 24px 0;
@@ -518,7 +527,7 @@ td code{font-family:var(--font-mono);font-size:12.5px;background:var(--bg-code);
 <main class="wrap">
 
   <section class="hero">
-    <div class="hero-kicker">Aula 1.1 · 25 minutos · Nível 0</div>
+    <div class="hero-kicker">Aula 1.1 · 25 minutos · Nível 0 de 6</div>
     <h1>O ecossistema e a física</h1>
     <p class="hero-sub">
       São quatro Claudes com o mesmo cérebro e acessos diferentes, e existe um limite físico que explica <strong>por que a conversa longa piora</strong>. Entender isso muda como você usa a ferramenta amanhã de manhã.
@@ -528,6 +537,8 @@ td code{font-family:var(--font-mono);font-size:12.5px;background:var(--bg-code);
       <span class="chip chip-accent">Sua lista de correções repetidas</span>
       <span class="meta-label" style="margin-left:12px">Precisa de</span>
       <span class="chip">Claude Chat, só</span>
+      <span class="meta-label" style="margin-left:12px">No Claude</span>
+      <span class="rec">Chat · as 4 superfícies</span>
       <span class="chip chip-ementa">Ementa 1.1</span>
     </div>
   </section>
@@ -539,6 +550,10 @@ td code{font-family:var(--font-mono);font-size:12.5px;background:var(--bg-code);
       <li>Explicar para um colega por que a conversa longa começa a errar, e o que fazer quando isso acontece</li>
       <li>Perceber, na prática, que pedido vago sai mais caro que pedido situado, e ver o Claude entregar um documento pronto para imprimir a partir de uma planilha suja</li>
     </ul>
+    <div class="destino-quando">
+      <b class="rot">Onde isso aparece na sua semana</b>
+      Na próxima vez que você for exportar um relatório. Você decide em qual das quatro superfícies abrir <strong>antes</strong> de começar, em vez de descobrir no meio do caminho que escolheu a errada.
+    </div>
   </div>
 
   <!-- 01 SITUAÇÃO -->

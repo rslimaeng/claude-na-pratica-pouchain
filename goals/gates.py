@@ -183,6 +183,32 @@ for f in HTML:
     fp = Flexy(alvo); fp.feed(body)
     diz(not fp.achados, "G11b", f, str(sorted(fp.achados)) if fp.achados else "")
 
+# ─────────────────────── G12 · o nome do nível é o aprovado, e vem com o recurso
+titulo("G12 · NOME DE NÍVEL APROVADO + RECURSO OFICIAL DO CLAUDE AO LADO")
+print("        (vocabulário interno não vai para a tela · ver CLAUDE.md §5 e §7-bis)")
+NOMES_OK = ["Por que ele piora na conversa longa",
+            "Pedir uma vez e receber pronto",
+            "Ele já começa sabendo as suas regras",
+            "Cada tarefa puxa o seu próprio procedimento",
+            "Ele abre os arquivos onde você trabalha",
+            "Você prova que está certo antes de mandar",
+            "Roda sem você apertar o play"]
+land = open("index.html", encoding="utf-8").read()
+achados = re.findall(r'class="nivel-nome">([^<]+)<', land)
+diz(achados == NOMES_OK, "G12", "index.html · nomes da trilha",
+    "" if achados == NOMES_OK else f"divergem de CLAUDE.md §5: {set(achados) ^ set(NOMES_OK)}")
+# toda linha da trilha mostra pelo menos um recurso oficial
+linhas = land.split('class="nivel-row')[1:]
+sem = [i for i, b in enumerate(linhas) if 'class="rec' not in b.split("</div>\n      </div>")[0]]
+diz(not sem, "G12", "index.html · recurso em toda linha",
+    "" if not sem else f"linhas sem .rec: {sem}")
+# hero de aula e card do hub carregam o recurso
+for f in AULAS + ["m1/index.html"]:
+    src = open(f, encoding="utf-8").read()
+    n = len(re.findall(r'class="rec[" ]', src))
+    esperado = 4 if f.endswith("m1/index.html") else 1
+    diz(n >= esperado, "G12", f, f"chips de recurso={n} (mínimo {esperado})")
+
 # ─────────────────────────────────────────────────── veredicto
 print("\n" + "=" * 72)
 if falhas:

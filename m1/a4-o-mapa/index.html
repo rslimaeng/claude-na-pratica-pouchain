@@ -49,6 +49,15 @@ a:hover{color:var(--accent-dark)}
 .chip-accent{background:var(--accent-soft);color:var(--accent-dark)}
 .chip-ementa{background:transparent;border:1px solid var(--border-strong);
   color:var(--text-dim);font-family:var(--font-mono);font-size:11px}
+.rec{display:inline-flex;align-items:center;font-family:var(--font-mono);
+  font-size:11px;font-weight:500;background:var(--accent-soft);color:var(--accent-dark);
+  padding:4px 9px;border-radius:var(--radius-sm)}
+.rec.livre{background:var(--bg-warm);color:var(--text-dim)}
+.destino-quando{margin-top:16px;padding-top:14px;border-top:1px solid var(--accent-line);
+  font-size:15.5px;line-height:1.55;color:var(--text-muted)}
+.destino-quando .rot{display:block;font-family:var(--font-mono);font-size:10.5px;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--accent);margin-bottom:5px}
+
 .header-meta{display:flex;gap:8px;flex-shrink:0}
 
 .crumbs{max-width:var(--col-wide);margin:0 auto;padding:20px 24px 0;
@@ -557,7 +566,7 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
 <main class="wrap">
 
   <section class="hero">
-    <div class="hero-kicker">Aula 1.4 · 25 minutos · Nível 3</div>
+    <div class="hero-kicker">Aula 1.4 · 25 minutos · Nível 3 de 6</div>
     <h1>O mapa: onde cada regra mora</h1>
     <p class="hero-sub">
       Você já sabe pedir bem e já tem as regras que ficam. Agora o problema é de organização: <strong>nem toda regra cabe no mesmo lugar</strong>, e enfiar tudo no mesmo texto estraga as duas.
@@ -567,6 +576,8 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
       <span class="chip chip-accent">A tabela de decisão preenchida e impressa</span>
       <span class="meta-label" style="margin-left:12px">Precisa de</span>
       <span class="chip">Seu texto de regras da aula 1.3</span>
+      <span class="meta-label" style="margin-left:12px">No Claude</span>
+      <span class="rec">Skill · Comando · MCP · Plugin</span>
       <span class="chip chip-ementa">Ementa 1.3</span>
     </div>
   </section>
@@ -578,6 +589,10 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
       <li>Explicar para o seu time o que é skill, comando, conector e plugin, <strong>sem usar jargão</strong></li>
       <li>Reconhecer a regra que <strong>não pode morar em texto nenhum</strong>, e o que fazer com ela</li>
     </ul>
+    <div class="destino-quando">
+      <b class="rot">Onde isso aparece na sua semana</b>
+      Na primeira vez que o seu texto de regras passar de duas páginas. Você vai saber o que tirar de lá, e para qual dos cinco lugares mandar cada pedaço.
+    </div>
   </div>
 
   <!-- 01 SITUAÇÃO -->
