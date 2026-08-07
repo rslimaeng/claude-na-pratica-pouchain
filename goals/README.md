@@ -24,7 +24,7 @@ O plano completo está em [`../../PLANO-DE-PRODUCAO.md`](../../PLANO-DE-PRODUCAO
 Toda aula passa pelos três antes de ser considerada pronta:
 
 1. **Produção**, o terminal produz segundo a anatomia e o goal da onda
-2. **Auditoria**, `python3 goals/gates.py` rodado da raiz. São 16 gates e 136 checagens, e o script sai com código 1 se alguma falhar
+2. **Auditoria**, `python3 goals/gates.py` rodado da raiz. São 17 gates e 163 checagens, e o script sai com código 1 se alguma falhar
 3. **Teste de mesa (Rafael)** 🔴, ele roda o exercício de verdade e confere se a saída bate com o gabarito
 
 O passo 3 é o único que pega *"o exercício não funciona"*. Nenhuma auditoria de código detecta isso.

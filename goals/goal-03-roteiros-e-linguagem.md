@@ -390,7 +390,7 @@ Ficou só a capa, 840×473, JPEG de 56 KB em `_shared/`. Título, fonte, duraç�
 >
 > Ficou `\salt="`, que exige espaço antes do atributo. É a mesma lição da Regra 5 em outra roupa: **gate não testado é gate que você acha que tem.**
 
-**18 gates, 165 checagens.**
+**17 gates, 163 checagens.** (O G6b imprime dentro do título do G6, então não conta como gate separado na contagem de cabeçalhos.)
 
 ## 8. Aberto
 
