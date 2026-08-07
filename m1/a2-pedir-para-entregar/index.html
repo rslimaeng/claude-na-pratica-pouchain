@@ -594,6 +594,91 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
 
 .rodadas-chave i.perdida{background:#F2DEDE;border-color:rgba(184,92,92,.42)}
 .rodadas-chave i.util{background:#DCEEDD;border-color:rgba(46,125,50,.45)}
+
+/* Quadro do pedido · a folha do exercício dentro da própria página.
+   A pessoa responde as três perguntas, vê o pedido se montando e copia
+   pronto para colar no Claude. O .docx continua ali para quem preferir
+   papel, e para a parte 4, que ela faz com um pedido dela.            */
+.quadro{background:var(--bg-elev);border:1px solid var(--border);
+  border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);
+  margin-top:24px;margin-bottom:10px;overflow:hidden}
+.quadro-topo{display:flex;align-items:center;justify-content:space-between;
+  gap:14px;flex-wrap:wrap;padding:15px 24px;background:var(--bg-warm);
+  border-bottom:1px solid var(--border)}
+.quadro-titulo{font-size:15.5px;font-weight:600;color:var(--text)}
+.quadro-salvo{font-family:var(--font-mono);font-size:11px;
+  letter-spacing:.05em;color:var(--text-dim)}
+.quadro-corpo{padding:24px}
+
+.campo{margin-bottom:22px}
+.campo-topo{display:flex;align-items:flex-start;gap:9px;margin-bottom:5px}
+.campo-num{width:21px;height:21px;border-radius:6px;background:var(--accent);
+  color:#fff;font-family:var(--font-mono);font-size:11.5px;font-weight:600;
+  display:grid;place-items:center;flex-shrink:0;margin-top:2px}
+.campo-label{font-size:16px;font-weight:600;color:var(--text);line-height:1.45}
+.campo-dica{font-size:14px;color:var(--text-dim);line-height:1.55;
+  margin-bottom:9px;max-width:62ch}
+.campo-in,.campo-sel{width:100%;box-sizing:border-box;display:block;
+  font-family:var(--font-body);font-size:15.5px;color:var(--text);
+  background:var(--bg-code);border:1px solid var(--border-strong);
+  border-radius:var(--radius);padding:11px 14px;line-height:1.55;
+  transition:border-color .15s,background .15s}
+.campo-in{resize:vertical;min-height:66px}
+.campo-in:focus,.campo-sel:focus{outline:none;border-color:var(--accent);
+  background:var(--bg-elev)}
+.campo-sel{cursor:pointer}
+
+.original{background:var(--danger-soft);border:1px solid rgba(184,92,92,.28);
+  border-radius:var(--radius);padding:14px 18px;margin-top:10px}
+.original-h{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.07em;
+  text-transform:uppercase;color:#8E4646;margin-bottom:6px}
+.original-txt{font-size:15.5px;color:var(--text);line-height:1.5;font-style:italic}
+
+.falta{background:var(--bg-code);border:1px solid var(--border);
+  border-radius:var(--radius);padding:16px 18px;margin-bottom:24px}
+.falta-h{font-size:15px;font-weight:600;color:var(--text);line-height:1.45}
+.falta-sub{font-size:13.5px;color:var(--text-dim);line-height:1.5;
+  margin-top:3px;max-width:62ch}
+.falta-item{display:flex;align-items:flex-start;gap:10px;margin-top:11px}
+.falta-item input{width:17px;height:17px;margin:2px 0 0;flex-shrink:0;
+  accent-color:var(--accent);cursor:pointer}
+.falta-item label{font-size:15px;color:var(--text-muted);line-height:1.5;
+  cursor:pointer}
+
+.idas{display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  border-top:1px dashed var(--border-strong);margin-top:4px;padding-top:18px}
+.idas-label{font-size:15.5px;color:var(--text);line-height:1.5;font-weight:600}
+.idas-in{width:76px;text-align:center;font-family:var(--font-mono);
+  font-size:16px;color:var(--text);background:var(--bg-code);
+  border:1px solid var(--border-strong);border-radius:var(--radius);
+  padding:9px 6px}
+.idas-in:focus{outline:none;border-color:var(--accent);background:var(--bg-elev)}
+.idas-nota{width:100%;font-size:13.5px;color:var(--text-dim);line-height:1.55;
+  max-width:62ch}
+
+.previa{border-top:1px solid var(--border);background:var(--bg-code);
+  padding:19px 24px 22px}
+.previa-h{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--text-dim);margin-bottom:9px}
+.previa-corpo{font-family:var(--font-mono);font-size:12.5px;line-height:1.65;
+  color:var(--text);white-space:pre-wrap;word-wrap:break-word;
+  background:var(--bg-elev);border:1px solid var(--border);
+  border-radius:var(--radius);padding:16px;max-height:340px;overflow-y:auto}
+.previa-corpo.vazio{color:var(--text-dim)}
+.quadro-acoes{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.quadro-btn{padding:11px 20px;background:var(--accent);color:#fff;
+  border:1px solid var(--accent);border-radius:var(--radius);
+  font-family:var(--font-body);font-weight:600;font-size:14.5px;
+  cursor:pointer;transition:background .15s}
+.quadro-btn:hover{background:var(--accent-dark)}
+.quadro-btn.ghost{background:transparent;color:var(--accent);
+  border-color:var(--accent-line)}
+.quadro-btn.ghost:hover{background:var(--accent-tinted);color:var(--accent-dark)}
+
+@media (max-width:640px){
+  .quadro-corpo,.previa{padding-left:18px;padding-right:18px}
+  .quadro-topo{padding-left:18px;padding-right:18px}
+}
 </style>
 </head>
 <body>
@@ -1109,18 +1194,8 @@ Na dúvida: se um requisito da vaga estiver escrito de um jeito que dá para ent
     <div class="step-body">
       <p>
         Primeiro você treina num pedido que não é seu, para errar sem custo. Depois faz no de verdade.
+        O quadro logo abaixo monta o pedido enquanto você responde, e no fim copia tudo pronto para colar no Claude.
       </p>
-
-      <div class="download-card">
-        <div class="download-info">
-          <div class="download-filename">
-            <span class="download-icon">DOC</span>
-            <span>pedidos-para-reescrever.docx</span>
-          </div>
-          <div class="download-meta">A folha onde você marca o que falta e escreve a sua versão. Três casos, um por setor. Word, abre em qualquer máquina.</div>
-        </div>
-        <a class="download-btn" href="exercicio/pedidos-para-reescrever.docx" download>Baixar</a>
-      </div>
 
       <p class="arquivos-nota">
         <strong>Baixe também o arquivo do seu caso.</strong> Sem ele o pedido não roda, e é rodando que você conta as idas e vindas.
@@ -1166,17 +1241,125 @@ Na dúvida: se um requisito da vaga estiver escrito de um jeito que dá para ent
         </li>
         <li>
           <div class="passo-title">Antes de reescrever, marque o que falta</div>
-          <p>No próprio documento tem três caixas para marcar: o que é pronto, quais as restrições, o que fazer na dúvida. Marque as que o pedido original <strong>não</strong> responde. Faça isso antes de escrever qualquer coisa.</p>
+          <p>São três caixas para marcar: o que é pronto, quais as restrições, o que fazer na dúvida. Marque as que o pedido original <strong>não</strong> responde. Faça isso antes de escrever qualquer coisa: marcar primeiro é o que faz você enxergar o buraco.</p>
         </li>
         <li>
-          <div class="passo-title">Reescreva e rode no Claude Chat</div>
-          <p>Conversa nova. <strong>Anexe o arquivo do seu caso</strong> e cole o pedido reescrito. <strong>Conte quantas mensagens</strong> até a resposta servir. Anote esse número, ele é a sua nota nesta aula.</p>
+          <div class="passo-title">Responda as três e copie o pedido</div>
+          <p>O quadro monta o texto enquanto você escreve. Quando terminar, clique em <strong>copiar</strong>.</p>
+        </li>
+        <li>
+          <div class="passo-title">Rode no Claude Chat</div>
+          <p>Conversa nova. <strong>Anexe o arquivo do seu caso</strong> e cole o pedido. <strong>Conte quantas mensagens</strong> até a resposta servir. Anote esse número no quadro, ele é a sua nota nesta aula.</p>
         </li>
         <li>
           <div class="passo-title">Agora o de verdade</div>
-          <p>Pegue um pedido que <strong>você</strong> fez ao Claude nesta semana e que deu trabalho. Reescreva com as três perguntas. Rode numa conversa nova e compare com o que tinha acontecido antes.</p>
+          <p>Pegue um pedido que <strong>você</strong> fez ao Claude nesta semana e que deu trabalho. Volte ao quadro, troque o caso para <em>o meu pedido de verdade</em> e responda as três de novo. Rode numa conversa nova e compare com o que tinha acontecido antes.</p>
         </li>
       </ol>
+
+      <div class="quadro" id="quadro-pedido">
+        <div class="quadro-topo">
+          <div class="quadro-titulo">Monte aqui o seu pedido</div>
+          <div class="quadro-salvo" id="quadro-salvo">salva neste navegador</div>
+        </div>
+
+        <div class="quadro-corpo">
+          <div class="campo">
+            <div class="campo-topo">
+              <div class="campo-label">Qual caso você vai fazer</div>
+            </div>
+            <select class="campo-sel" id="q-caso">
+              <option value="">escolha um caso</option>
+              <option value="compras">Compras · cotacoes-fornecedores.xlsx</option>
+              <option value="financeiro">Financeiro · fechamento-dois-meses.xlsx</option>
+              <option value="rh">RH e DP · inscricoes-vaga-auxiliar-offset.xlsx</option>
+              <option value="meu">O meu pedido de verdade</option>
+            </select>
+            <div class="original" id="q-original" hidden>
+              <div class="original-h">O pedido como ele foi feito</div>
+              <div class="original-txt" id="q-original-txt"></div>
+            </div>
+          </div>
+
+          <div class="falta">
+            <div class="falta-h">Quais destas o pedido original não responde?</div>
+            <div class="falta-sub">Marque antes de escrever. Cada caixa marcada é um buraco a tapar.</div>
+            <div class="falta-item">
+              <input type="checkbox" id="q-m1">
+              <label for="q-m1">Não diz o que é "pronto"</label>
+            </div>
+            <div class="falta-item">
+              <input type="checkbox" id="q-m2">
+              <label for="q-m2">Não diz quais são as restrições</label>
+            </div>
+            <div class="falta-item">
+              <input type="checkbox" id="q-m3">
+              <label for="q-m3">Não diz o que fazer na dúvida</label>
+            </div>
+          </div>
+
+          <div class="campo">
+            <div class="campo-topo">
+              <div class="campo-label">O que você precisa, em uma frase</div>
+            </div>
+            <div class="campo-dica">A tarefa em si. Sem detalhe ainda, só o que você quer que aconteça.</div>
+            <textarea class="campo-in" id="q-tarefa" rows="2" placeholder="ex: Preciso decidir de quem comprar os insumos deste mês."></textarea>
+          </div>
+
+          <div class="campo">
+            <div class="campo-topo">
+              <div class="campo-num">1</div>
+              <div class="campo-label">O que é "pronto"</div>
+            </div>
+            <div class="campo-dica">Formato, tamanho e para quem vai. É a que mais economiza ida e volta.</div>
+            <textarea class="campo-in" id="q-pronto" rows="3" placeholder="ex: Uma tabela com fornecedor, valor total e prazo, mais um parágrafo dizendo qual você recomenda e por quê. Vai para a diretoria, então cabe em uma página."></textarea>
+          </div>
+
+          <div class="campo">
+            <div class="campo-topo">
+              <div class="campo-num">2</div>
+              <div class="campo-label">Quais são as restrições</div>
+            </div>
+            <div class="campo-dica">O que ignorar, o que não pode aparecer, o que já está decidido.</div>
+            <textarea class="campo-in" id="q-restricoes" rows="3" placeholder="ex: Ignore fornecedor que não cotou tudo. Prazo acima de 15 dias está fora. Não invente valor que não esteja na planilha."></textarea>
+          </div>
+
+          <div class="campo">
+            <div class="campo-topo">
+              <div class="campo-num">3</div>
+              <div class="campo-label">O que fazer na dúvida</div>
+            </div>
+            <div class="campo-dica">Perguntar antes, ou seguir e declarar o que assumiu. Escolha uma das duas.</div>
+            <textarea class="campo-in" id="q-duvida" rows="3" placeholder="ex: siga e me diga no fim o que você assumiu, em vez de parar e perguntar."></textarea>
+          </div>
+
+          <div class="idas">
+            <div class="idas-label">Quantas idas e vindas até a resposta servir?</div>
+            <input class="idas-in" id="q-idas" type="number" min="1" max="99" placeholder="0">
+            <div class="idas-nota">Este número é a sua nota nesta aula, e ele não entra no texto copiado.</div>
+          </div>
+        </div>
+
+        <div class="previa">
+          <div class="previa-h">O que vai ser copiado</div>
+          <div class="previa-corpo vazio" id="q-previa">Responda os campos acima e o pedido aparece aqui.</div>
+          <div class="quadro-acoes">
+            <button class="quadro-btn" type="button" id="q-copiar">Copiar o pedido</button>
+            <button class="quadro-btn ghost" type="button" id="q-limpar">Limpar o quadro</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="download-card">
+        <div class="download-info">
+          <div class="download-filename">
+            <span class="download-icon">DOC</span>
+            <span>pedidos-para-reescrever.docx</span>
+          </div>
+          <div class="download-meta">A mesma folha em Word, para quem prefere escrever no papel ou levar impresso. Traz os três casos e o espaço da parte 5.</div>
+        </div>
+        <a class="download-btn ghost" href="exercicio/pedidos-para-reescrever.docx" download>Baixar</a>
+      </div>
 
       <div class="callout callout-warn">
         <div class="callout-title">Se você não usou o Claude esta semana</div>
@@ -1393,17 +1576,154 @@ Na dúvida: se faltar prazo ou frete em alguma cotação, me pergunte. Não esti
 <div class="toast" id="toast">Prompt copiado</div>
 
 <script>
-document.querySelectorAll('.prompt-btn').forEach(function(btn){
-  btn.addEventListener('click', function(){
-    var box = btn.closest('.prompt-box');
-    var txt = box ? box.querySelector('.prompt-content').innerText : '';
-    navigator.clipboard.writeText(txt).then(function(){
-      var t = document.getElementById('toast');
-      t.classList.add('show');
-      setTimeout(function(){ t.classList.remove('show'); }, 1800);
+(function(){
+  'use strict';
+
+  var toastEl = document.getElementById('toast');
+  var toastTimer;
+  function toast(msg){
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toastEl.classList.remove('show'); }, 2000);
+  }
+
+  // copia em duas tentativas: a API moderna exige contexto seguro, e o
+  // participante pode abrir a página de um pendrive na sala.
+  function copiar(txt, ok){
+    function velho(){
+      var ta = document.createElement('textarea');
+      ta.value = txt;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      var deu = false;
+      try { deu = document.execCommand('copy'); } catch(e){}
+      document.body.removeChild(ta);
+      toast(deu ? ok : 'Não deu para copiar. Selecione o texto e use Ctrl+C');
+    }
+    if(navigator.clipboard && window.isSecureContext){
+      navigator.clipboard.writeText(txt).then(function(){ toast(ok); }, velho);
+    } else {
+      velho();
+    }
+  }
+
+  document.querySelectorAll('.prompt-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var box = btn.closest('.prompt-box');
+      var txt = box ? box.querySelector('.prompt-content').innerText : '';
+      copiar(txt, 'Prompt copiado');
     });
   });
-});
+
+  // ── Quadro do pedido ────────────────────────────────────────────────
+  var quadro = document.getElementById('quadro-pedido');
+  if(!quadro) return;
+
+  var CHAVE = 'pouchain_a12_quadro_v1';
+  var TEXTOS = ['tarefa', 'pronto', 'restricoes', 'duvida', 'idas'];
+  var MARCAS = ['m1', 'm2', 'm3'];
+  var CASOS = {
+    compras:    { arq: 'cotacoes-fornecedores.xlsx',
+                  pedido: 'Dá uma olhada nessas cotações e monta o pedido de compra.' },
+    financeiro: { arq: 'fechamento-dois-meses.xlsx',
+                  pedido: 'Analisa esses números do mês e me diz o que aconteceu.' },
+    rh:         { arq: 'inscricoes-vaga-auxiliar-offset.xlsx',
+                  pedido: 'Vê quais desses candidatos servem para a vaga.' }
+  };
+
+  var el = {};
+  ['caso','tarefa','pronto','restricoes','duvida','idas','m1','m2','m3',
+   'previa','original','original-txt','salvo','copiar','limpar'].forEach(function(k){
+    el[k] = document.getElementById('q-' + k);
+  });
+  el.salvo = document.getElementById('quadro-salvo');
+
+  function ler(){
+    var v = { caso: el.caso.value };
+    TEXTOS.forEach(function(k){ v[k] = el[k].value.trim(); });
+    MARCAS.forEach(function(k){ v[k] = el[k].checked; });
+    return v;
+  }
+
+  // O texto sai como pedido escrito, não como formulário preenchido:
+  // é assim que ele vai ser colado do outro lado.
+  function montar(v){
+    var caso = CASOS[v.caso];
+    var l = [];
+    if(caso) l.push('Anexei o arquivo ' + caso.arq + '.');
+    if(v.tarefa) l.push(v.tarefa);
+    if(v.pronto) l.push('O que eu preciso receber: ' + v.pronto);
+    if(v.restricoes) l.push('Restrições: ' + v.restricoes);
+    if(v.duvida) l.push('Na dúvida: ' + v.duvida);
+    return l.join('\n\n');
+  }
+
+  function pintar(){
+    var v = ler();
+    var caso = CASOS[v.caso];
+    if(caso){
+      el['original-txt'].textContent = '"' + caso.pedido + '"';
+      el.original.hidden = false;
+    } else {
+      el.original.hidden = true;
+    }
+    var txt = montar(v);
+    el.previa.textContent = txt || 'Responda os campos acima e o pedido aparece aqui.';
+    el.previa.classList.toggle('vazio', !txt);
+  }
+
+  function salvar(){
+    try {
+      localStorage.setItem(CHAVE, JSON.stringify(ler()));
+      el.salvo.textContent = 'rascunho salvo';
+    } catch(e){
+      el.salvo.textContent = 'este navegador não guarda rascunho';
+    }
+  }
+
+  function carregar(){
+    var bruto;
+    try { bruto = localStorage.getItem(CHAVE); } catch(e){ return; }
+    if(!bruto) return;
+    try {
+      var v = JSON.parse(bruto);
+      if(v.caso) el.caso.value = v.caso;
+      TEXTOS.forEach(function(k){ if(v[k]) el[k].value = v[k]; });
+      MARCAS.forEach(function(k){ el[k].checked = !!v[k]; });
+      el.salvo.textContent = 'rascunho salvo';
+    } catch(e){}
+  }
+
+  carregar();
+  pintar();
+
+  ['caso'].concat(TEXTOS).concat(MARCAS).forEach(function(k){
+    el[k].addEventListener('input', function(){ pintar(); salvar(); });
+    el[k].addEventListener('change', function(){ pintar(); salvar(); });
+  });
+
+  el.copiar.addEventListener('click', function(){
+    var v = ler();
+    if(!v.tarefa || !v.pronto){
+      toast('Falta o que você precisa e o que é "pronto"');
+      return;
+    }
+    copiar(montar(v), 'Pedido copiado · cole no Claude');
+  });
+
+  el.limpar.addEventListener('click', function(){
+    if(!confirm('Apagar tudo o que você escreveu no quadro?')) return;
+    el.caso.value = '';
+    TEXTOS.forEach(function(k){ el[k].value = ''; });
+    MARCAS.forEach(function(k){ el[k].checked = false; });
+    try { localStorage.removeItem(CHAVE); } catch(e){}
+    el.salvo.textContent = 'salva neste navegador';
+    pintar();
+  });
+})();
 </script>
 
 </body>

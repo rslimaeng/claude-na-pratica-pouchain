@@ -392,6 +392,60 @@ Ficou só a capa, 840×473, JPEG de 56 KB em `_shared/`. Título, fonte, duraç�
 
 **17 gates, 163 checagens.** (O G6b imprime dentro do título do G6, então não conta como gate separado na contagem de cabeçalhos.)
 
+## 7-octies. Onda 3-septies · o quadro do pedido dentro da página
+
+**Pedido do Rafael em 07/08/2026**, com referência: o canvas do
+`workshop-ia-maria-pitanga/m5/`. Na seção 05 da 1.2 o exercício saía do site
+(baixar o `.docx`, preencher fora, voltar). Agora ele acontece na página.
+
+### O que o quadro tem
+
+| Bloco | Por que existe |
+|---|---|
+| Seletor de caso | Ao escolher, aparece **o pedido original como ele foi feito**. É contra ele que a pessoa escreve |
+| Três caixas de diagnóstico | O passo *"marque antes de escrever"* virou ação de verdade, não instrução |
+| Os três campos | O que é "pronto", as restrições, o que fazer na dúvida |
+| Contador de idas e vindas | A nota da aula. **Não entra no texto copiado**, e o quadro diz isso |
+| Prévia ao vivo | O pedido se montando enquanto ela escreve. É a tese da aula em movimento |
+| Copiar e limpar | Rascunho salvo em `localStorage` |
+
+### A decisão que mudou o exercício
+
+O `.docx` tinha uma caixa livre: *"reescreva aqui"*. O quadro **monta o pedido a
+partir das três respostas**. A diferença não é de interface, é de exercício: numa
+caixa livre a pessoa conserta o que já tinha percebido, e era exatamente contra
+isso que o passo de marcar antes existia.
+
+O texto sai como **pedido escrito**, nunca como formulário colado. Rótulo que
+força repetição foi trocado: `Se algo ficar ambíguo:` seguido de uma resposta que
+começava com *"Se um valor estiver ambíguo"* virou `Na dúvida:`.
+
+O `.docx` continua na página, agora como botão secundário, para quem prefere
+papel. Ele ainda é o único suporte da parte 5.
+
+### 📏 A medida de linha, medida e não estimada
+
+`max-width:58ch` num texto de **14px** entrega **66 caracteres por linha**, não os
+78 que a regra de bolso `1ch = 1,34 caractere` promete. Aquela conta foi feita no
+corpo de 16,5px e não transporta para tamanho menor. Ficou **62ch**, medido em
+~80, que é o alvo do `CLAUDE.md` §8-quater.
+
+Quatro dicas sobravam uma palavra sozinha na segunda linha. Depois de encurtadas,
+o maior texto auxiliar do quadro tem 74 caracteres e **os seis cabem em uma linha**.
+
+> A lição repete a Regra 5 numa terceira roupa: **medida herdada de outro contexto
+> é estimativa.** O navegador responde em 10 segundos, e responde certo.
+
+### O copiar tem dois caminhos
+
+`navigator.clipboard` exige contexto seguro, e o participante pode abrir a página
+de um pendrive na sala. A função tenta a API, cai para `execCommand` e, se as duas
+falharem, o toast manda selecionar e usar Ctrl+C. A prévia fica visível e
+selecionável de propósito, para esse caso.
+
+**Gates:** 17 gates, 163 checagens, exit 0. Quem protegeu esta onda foi o
+**G7-ter**: toda classe nova do quadro nasceu com regra de CSS.
+
 ## 8. Aberto
 
 - 🔴 **Teste de mesa das 4 aulas**, que nenhuma onda substitui
