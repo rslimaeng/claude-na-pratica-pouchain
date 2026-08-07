@@ -160,6 +160,27 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
 .fala-quem{margin-top:12px;font-family:var(--font-mono);font-size:11.5px;
   letter-spacing:.06em;text-transform:uppercase;color:var(--text-dim)}
 
+/* FONTE · o card que leva para o vídeo original. Sem cor pelo mesmo motivo
+   do .fala: é material de apoio, não é a coisa que o aluno precisa notar */
+.fonte{display:flex;gap:20px;align-items:center;text-decoration:none;
+  background:var(--bg-elev);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:16px 20px 16px 16px;
+  margin-top:8px;margin-bottom:26px;max-width:var(--measure);flex-wrap:wrap}
+.fonte:hover{border-color:var(--accent);background:var(--bg-elev)}
+.fonte-capa{width:224px;height:auto;max-width:100%;border-radius:var(--radius);
+  display:block;flex-shrink:0;border:1px solid var(--border)}
+.fonte-txt{flex:1;min-width:210px;display:flex;flex-direction:column;gap:5px}
+.fonte-rot{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--text-dim)}
+.fonte-titulo{font-size:15.5px;font-weight:600;color:var(--text);line-height:1.35}
+.fonte-meta{font-size:12.5px;color:var(--text-dim);line-height:1.45}
+.fonte-cta{margin-top:3px;font-size:13.5px;font-weight:600;color:var(--accent)}
+.fonte:hover .fonte-cta{color:var(--accent-dark)}
+@media (max-width:520px){
+  .fonte{gap:14px}
+  .fonte-capa{width:100%}
+}
+
 .analogia{background:var(--bg-elev);border:1px solid var(--border);
   border-radius:var(--radius-lg);padding:26px 28px;margin:28px 0}
 .analogia-title{font-size:17px;font-weight:600;margin-bottom:12px;
@@ -738,6 +759,18 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
         <div class="fala-quem">Boris Cherny · criador do Claude Code · no dia seguinte ao lançamento do Opus 5</div>
       </div>
 
+      <a class="fonte" href="https://www.youtube.com/watch?v=qyPCVqFUyDo" target="_blank" rel="noopener">
+        <img class="fonte-capa" src="../../_shared/boris-cherny-startup-school.jpg"
+             width="840" height="473" loading="lazy"
+             alt="Capa do vídeo: In conversation with Boris Cherny, Head of Claude Code, Anthropic. Y Combinator Startup School 2026.">
+        <div class="fonte-txt">
+          <span class="fonte-rot">A conversa inteira, se você quiser ver</span>
+          <span class="fonte-titulo">Boris Cherny: We Cut 80% of Claude Code&rsquo;s Prompt</span>
+          <span class="fonte-meta">Y Combinator Startup School 2026 &middot; 35 minutos &middot; em inglês, com legenda automática do YouTube</span>
+          <span class="fonte-cta">assistir no YouTube &rarr;</span>
+        </div>
+      </a>
+
       <p>
         Na mesma conversa ele conta que a equipe <strong>apagou 80% das instruções internas do Claude Code</strong> quando o Opus 5 saiu, porque a maior parte delas existia para corrigir coisa que o modelo já faz sozinho.
       </p>
@@ -767,6 +800,44 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
           É a sua terceira pergunta. Escrita numa linha, dentro do pedido.
         </p>
       </div>
+
+      <h4>"Mas o pedido da aula 1.1 tinha sessenta linhas"</h4>
+      <p>
+        Tinha. E continua certo. <strong>Comprido não é o problema. Comprido no lugar errado é.</strong>
+      </p>
+      <p>
+        Aquele pedido é longo dizendo <strong>o que "pronto" significa</strong>: quais seções, que formato, o que confirmar antes de gerar. Em nenhuma linha ele diz <em>como</em> chegar lá, que passo dar primeiro, ou em que ordem pensar. É aí que mora a diferença:
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Comprido no lugar certo</th><th>Comprido no lugar errado</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>"Quero seis seções, nesta ordem, em A4 imprimível"</td>
+              <td>"Primeiro leia o arquivo, depois monte a tabela, depois some a coluna"</td>
+            </tr>
+            <tr>
+              <td>"Ignore as linhas canceladas"</td>
+              <td>"Use a função SOMASE para calcular"</td>
+            </tr>
+            <tr>
+              <td>"Se faltar dado, me pergunte antes"</td>
+              <td>"Pense passo a passo antes de responder"</td>
+            </tr>
+            <tr>
+              <td><strong>descreve o destino</strong></td>
+              <td><strong>dita o trajeto</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        E o bloco <strong>ANTES DE GERAR</strong> daquele pedido, o que manda ele confirmar o plano em três bullets e esperar o seu OK, é exatamente a conferência que a fala acima chama de mais importante. <strong>Ela já estava lá antes de você saber o nome dela.</strong>
+      </p>
 
       <h4>Onde isso vai dar, nos módulos 2 e 3</h4>
       <p>

@@ -77,16 +77,35 @@ for f in AULAS:
     diz(n == 0 or d >= 1, "G4", f, f"afirmações={n} datas={d}")
 
 # ─────────────────────────────────────────────────── G6 · navegação
-titulo("G6 · NAVEGAÇÃO · link interno que não existe")
-mortos = []
+titulo("G6 · NAVEGAÇÃO · link ou arquivo referenciado que não existe")
+# `src` entra junto com `href`: a primeira imagem do site entrou em 07/08 e o
+# gate olhava só href, então um caminho de imagem errado passaria em silêncio.
+mortos, n_ref = [], 0
 for f in HTML:
     base = os.path.dirname(f)
-    for href in re.findall(r'href="([^"#][^"]*)"', open(f, encoding="utf-8").read()):
-        if href.startswith(("http", "mailto")): continue
-        alvo = os.path.normpath(os.path.join(base, href))
+    src = open(f, encoding="utf-8").read()
+    for attr, ref in re.findall(r'(href|src)="([^"#][^"]*)"', src):
+        if ref.startswith(("http", "mailto", "data:")): continue
+        n_ref += 1
+        alvo = os.path.normpath(os.path.join(base, ref))
         if os.path.isdir(alvo): alvo = os.path.join(alvo, "index.html")
-        if not os.path.exists(alvo): mortos.append(f"{f} -> {href}")
-diz(not mortos, "G6", "todos os links", str(mortos) if mortos else "0 morto(s)")
+        if not os.path.exists(alvo): mortos.append(f"{f} -> {attr}={ref}")
+diz(not mortos, "G6", "todos os links e arquivos",
+    str(mortos) if mortos else f"{n_ref} referências, 0 morta")
+
+# toda imagem precisa de alt, e de width/height para não pular o layout ao carregar
+sem = []
+for f in HTML:
+    for tag in re.findall(r"<img\b[^>]*>", open(f, encoding="utf-8").read()):
+        # o atributo tem que vir depois de ESPAÇO. `data-alt="` contém `alt="`
+        # como substring, e `\b` não resolve porque o hífen já é fronteira de
+        # palavra. Os dois furos apareceram testando o gate contra defeito
+        # injetado, não lendo o código.
+        falta = [a for a in ("alt", "width", "height")
+                 if not re.search(rf'\s{a}="', tag)]
+        if falta: sem.append(f"{f} {falta}")
+diz(not sem, "G6b", "toda <img> com alt, width e height",
+    str(sem) if sem else "")
 
 # ─────────────────────────────────────────────────── G7 · render
 titulo("G7 · RENDER · balanço de tags")
