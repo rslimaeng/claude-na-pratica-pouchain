@@ -171,6 +171,48 @@ A demonstração caiu de **12 para 10 minutos**. Com os 12 do exercício, dá 22
 
 **Só a 1.1 está no padrão novo.** Os roteiros da 1.2, 1.3 e 1.4 continuam com as seis cores, o `.papeis`, o `.preparo` em âmbar e o prompt aberto no meio da página. Esperam o Rafael validar a 1.1. Registrado também no `_shared/design-tokens.md`, com o aviso de **copiar da 1.1, nunca das outras três**.
 
+## 7-ter. 🔴 A terceira reprovação: público errado
+
+**07/08/2026, fim do dia.** O Rafael abriu a página publicada e reprovou o **gênero** do texto, não o conteúdo:
+
+> *"É como se você tivesse ensinando pra mim o que eu tenho que fazer. Eu não vou ficar lendo isso para eles. Esse material é o material que eu vou dar aula no curso: o que aparecer de texto e o que eu for ler tem que ser para o usuário final. Eu quero um passo a passo."*
+
+**O erro:** eu escrevi um **roteiro de palco** e publiquei no site do aluno. *Pergunte à sala · espere o silêncio passar · zoom do navegador em 150% · antes de a turma entrar · plano B por momento.* Tudo isso é anotação de bastidor. Na tela do aluno não ensina nada, e ainda faz o instrutor parecer que está lendo instrução de como dar a própria aula.
+
+**O padrão do meu erro, e é o terceiro da série:** eu otimizei para a mecânica pedagógica e esqueci **quem lê**. A andragogia estava certa; o destinatário estava errado.
+
+### O que existe agora
+
+| O que é | Onde |
+|---|---|
+| Passo a passo, prompts, o que aparece na tela, o que reparar, o que aquilo ensina | `site/m1/aN/demonstracao/` · **público** |
+| Pergunta para a sala, quando esperar, quadro, plano B, preparo, minutagem | `../ROTEIRO-DE-PALCO-M1.md` · **interno** |
+
+Os seis blocos permitidos na página pública estão no `CLAUDE.md` §9. **Nenhum passo pode ser só instrução:** todo passo entrega `repare`, `ensina` ou `lista`.
+
+### As planilhas subiram para o piso de 100
+
+> *"Algo sempre mais robusto de 100 ou mais linhas, pois lembre-se da sensação do ganho de produtividade."*
+
+| Planilha | De | Para | O que o volume comprou |
+|---|---|---|---|
+| `pedidos-em-producao` (exercício, PCP) | 18 | **120 OS** | OS duplicada, cliente com dois nomes, máquina em branco |
+| `cotacoes-fornecedores` (demonstração, Compras) | 56 | **104 linhas** | 26 insumos × 4 fornecedores |
+
+**O número que carrega a aula 1.3:** o campo Status marca **4 atrasadas**, a data de prazo diz **30**. E a OS 2442 e a OS 2490 estão as duas com 13 dias de atraso, com o sistema marcando só a primeira.
+
+A página `exemplo/` foi **regerada inteira** dos dados novos, por script: big numbers, tabela das atrasadas, carga das seis máquinas, vence em 3 dias e as três decisões.
+
+### Os gates mudaram de lado
+
+| Gate | Antes | Agora |
+|---|---|---|
+| **G14** | **exigia** `.pergunta`, `.aponte` e `.planoB` | **reprova 19 frases de direção de cena**, e exige que nenhum passo seja só instrução |
+| **G15** | exigia que o roteiro **tivesse** duração | reprova duração em **todas** as páginas do aluno |
+| **G13** | 11 checagens | **24**, mais o piso de 100 linhas nas duas planilhas |
+
+**124 checagens no total.**
+
 ## 8. Aberto
 
 - 🔴 **Teste de mesa das 4 aulas**, que nenhuma onda substitui
