@@ -124,6 +124,18 @@ Nasceram ao aplicar os 4 padrões de `CLAUDE.md` §7-bis.
 | `.nao-faz` + `.nao-item` + `.nao-mas` | | O bloco "o que estas 12 horas não fazem". Rótulo com `.rot`, nunca `strong` puro | landing |
 | `.destino-quando` | | A promessa com hora marcada, embaixo da lista do destino. Rótulo com `.rot` | 4 aulas |
 
+## Componentes da Onda 3-bis · o aluno não começa em branco
+
+| Classe | 📊 | O que mostra | Nasceu em |
+|---|---|---|---|
+| `.caminhos` + `.cam` | 📊 | **Colunas paralelas com cabeçalho.** Dois ou três caminhos comparados campo a campo. A estrutura de referência que o Rafael mandou | 1.1 §04 |
+| `.cam-mesa` | 📊 | Barra da janela de contexto miniaturizada, dentro de uma coluna de comparação | 1.1 |
+| `.bif` + `.bif-fora` | 📊 | **A bifurcação.** Uma pergunta, três respostas, três lugares. `.bif-fora` é o caso que a pergunta não cobre | 1.4 §02 |
+| `.ver-pronto` | | Cartão que leva ao artefato pronto. Fica **antes** do exercício, não depois | 1.1 §04 |
+| `.fig-leg` | | A frase de leitura embaixo da figura. Era regra do `CLAUDE.md` §8-bis e não tinha classe | 1.4 |
+
+**Página de exemplo pronto:** `m1/a1-ecossistema-e-fisica/exemplo/`. Tem identidade visual própria (Fraunces serif, off-white quente, azul-noite e terracota) **de propósito**: ela mostra o que o pedido situado manda gerar, não o que o site é. Moldura do site em cima, documento embaixo, CSS de impressão A4 embutido.
+
 ### Layout
 
 - `--col: 780px` é a coluna de leitura. Prosa enche ela inteira, sem `max-width` próprio

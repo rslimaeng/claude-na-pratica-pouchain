@@ -264,18 +264,37 @@ HERO  kicker + H1 + subtítulo + chips [Nível] [artefato] [pré-requisito] [eme
 2. **O hook fecha toda página.** Não é retórica, é o que faz 19 aulas serem uma corrente, não uma lista. Na última aula do módulo ele fecha o **módulo**, e não a aula.
 3. **O validador não pergunta "ficou bom?".** Ele é a camada 1 do harness traduzida: cada item é contável ou é sim/não, e diz para onde voltar se falhar. Critério que depende do instrutor não entra, porque numa sala de 20 o instrutor não escala.
 
-### O padrão "clica e abre o exemplo"
+### 🔴 O aluno nunca começa em branco
 
-Herdado do Workshop Maria Pitanga (`m2/exemplos/radar-reviews/`) e da própria documentação da Anthropic. **Pedido explícito do Rafael:** vários módulos pequenos, a pessoa clica, abre uma página e executa.
+**Pedido do Rafael em 07/08/2026**, validando a aula 1.1: *"senti falta dos arquivos de exemplos para executar. A ideia é deixar algo mais prático e direcionado ao invés de eu começar em branco."*
 
-Dois formatos, e a escolha é por tamanho:
+**Toda aula que promete uma saída tem de mostrar essa saída pronta, antes do exercício.** Não é o gabarito: gabarito é para conferir depois. Isto é para saber o que se está perseguindo antes de tentar.
 
-| Tamanho do exemplo | Formato | Onde já existe |
+| Se a saída da aula é | O exemplo pronto vai | Exemplo vivo |
 |---|---|---|
-| Cabe em um parágrafo e um prompt | Accordion `.exemplos` dentro da aula, um item por setor | aulas 1.2 e 1.4 |
-| Tem artefato pronto para mostrar | **Página própria**, autocontida, linkada da aula | ainda não usado |
+| **Um documento visual** (parecer, painel, apresentação) | **Página própria**, autocontida, linkada da seção 04 | `m1/a1-ecossistema-e-fisica/exemplo/` |
+| **Texto** (um pedido, um texto de regras, uma classificação) | Dentro da aula, num bloco lado a lado | `.uau` da 1.3 · `.os` da 1.2 |
+| **Um conceito por setor** | Accordion `.exemplos`, um item por setor | aulas 1.2 e 1.4 |
+
+**Regra de ouro do exemplo pronto:** ele é gerado **dos dados reais do insumo daquela aula**, nunca inventado. Um exemplo que não bate com a planilha ensina o aluno a perseguir um resultado que ele não vai conseguir.
 
 > Ver o resultado antes de tentar reduz o medo de começar. É o mesmo princípio do gabarito, aplicado na entrada em vez da saída.
+
+## 9-bis. 📊 Texto corrido longo é defeito, não estilo
+
+**Complemento do §8-bis, com o critério que faltava.** O Rafael mandou dois desenhos de referência e a regra que sai deles:
+
+> **Nenhuma seção de aula passa de dois parágrafos seguidos sem uma figura, uma tabela ou um bloco estruturado.** Lista numerada de cinco itens em prosa é texto corrido disfarçado.
+
+**Três estruturas que resolvem quase tudo**, e vieram das referências dele:
+
+| Estrutura | Quando usar | Onde já existe |
+|---|---|---|
+| **Colunas paralelas com cabeçalho** | Comparar dois ou três caminhos, campo a campo | `.caminhos` da 1.1 · `.os` da 1.2 |
+| **Faixas empilhadas com rótulo lateral** | Uma coisa que tem camadas ou lugares | `.mapa` da 1.4 · `.pilha` da 1.3 |
+| **Barra segmentada com legenda** | Quanto de X está ocupado por Y | `.ctx` da 1.1 · `.cam-mesa` |
+
+**Piso por aula: 3 figuras.** Ao fechar uma aula, contar. Se tiver menos, a aula está explicando com palavra o que dava para mostrar.
 
 ## 10. Regra dura de exercício
 

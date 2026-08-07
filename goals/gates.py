@@ -209,6 +209,43 @@ for f in AULAS + ["m1/index.html"]:
     esperado = 4 if f.endswith("m1/index.html") else 1
     diz(n >= esperado, "G12", f, f"chips de recurso={n} (mínimo {esperado})")
 
+# ─────────────── G13 · número sobre a planilha tem que sair da planilha
+titulo("G13 · OS NÚMEROS DA GRÁFICA AURORA BATEM COM O .XLSX")
+print("        (a aula 1.3 mostrava 'Offset 2 com 5' quando são 6, e 2434 como atrasada)")
+try:
+    from openpyxl import load_workbook
+    from datetime import datetime
+    ws = load_workbook("m1/a1-ecossistema-e-fisica/exercicio/pedidos-em-producao.xlsx",
+                       data_only=True).active
+    HOJE = datetime(2026, 7, 16)
+    def data(v):
+        if isinstance(v, datetime): return v
+        for fmt in ("%d/%m/%Y", "%d-%b-%y"):
+            try: return datetime.strptime(str(v).replace("jul", "Jul"), fmt)
+            except ValueError: pass
+        return None
+    linhas = [r for r in ws.iter_rows(min_row=5, values_only=True) if r[0]]
+    vivas  = [r for r in linhas if str(r[6]).strip().lower() != "entregue"]
+    atrasadas = [r for r in vivas if (d := data(r[5])) and d < HOJE]
+    carga = {}
+    for r in vivas: carga[r[7]] = carga.get(r[7], 0) + 1
+    fatos = {"OS no arquivo": len(linhas), "em produção": len(vivas),
+             "atrasadas pela data": len(atrasadas),
+             **{f"carga {k}": v for k, v in sorted(carga.items())}}
+    for k, v in fatos.items(): print(f"        {k:26} {v}")
+    # o que as páginas afirmam tem que bater
+    ex = open("m1/a1-ecossistema-e-fisica/exemplo/index.html", encoding="utf-8").read()
+    a3 = open("m1/a3-regra-que-fica/index.html", encoding="utf-8").read()
+    checagens = [
+        (f'>{len(vivas)}<' in ex,            "exemplo · OS em produção"),
+        (f'alerta">{len(atrasadas)}<' in ex, "exemplo · atrasadas"),
+        (f"{len(atrasadas)} atrasadas" in a3, "aula 1.3 · atrasadas"),
+        (f"Offset 2 com {carga.get('Offset 2')}" in a3, "aula 1.3 · carga da Offset 2"),
+    ]
+    for ok, nome in checagens: diz(ok, "G13", nome)
+except ImportError:
+    print("        openpyxl ausente, gate pulado")
+
 # ─────────────────────────────────────────────────── veredicto
 print("\n" + "=" * 72)
 if falhas:

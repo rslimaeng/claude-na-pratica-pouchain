@@ -533,7 +533,8 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
 
 /* BREAKOUT · figura e tabela saem da coluna de leitura, prosa fica */
 .table-wrap,.fluxo,.dilui,.compare,.uau,.pilha,.ctx,.setores,.trilha,
-.facts,.pre-req,.modules,.aulas,.fio-passos,.leva,.entrega{
+.facts,.pre-req,.modules,.aulas,.fio-passos,.leva,.entrega,
+.mapa,.os,.rodadas,.caminhos,.caminhos-nota,.bif,.bif-fora,.nao-faz{
   width:min(var(--col-wide),calc(100vw - 40px));min-width:100%;
   margin-left:50%;transform:translateX(-50%)}
 </style>
@@ -928,19 +929,24 @@ informações:
           </div>
           <div class="uau-col">
             <div class="uau-col-label">Com regra · Project configurado</div>
-            <div class="uau-out">| OS   | Cliente        | Prazo      | Situação |
+            <div class="uau-out">| OS   | Cliente        | Prazo      | Atraso   |
 |------|----------------|------------|----------|
-| 2427 | Distribuidora… | 13/07/2026 | Atrasada |
-| 2434 | Farmácia Pop…  | 21/07/2026 | Atrasada |
+| 2419 | Laticínios Va… | 09/07/2026 | 7 dias   |
+| 2418 | Distribuidora… | 10/07/2026 | 6 dias   |
+| 2420 | Farmácia Pop…  | 11/07/2026 | 5 dias   |
 
-Carga por máquina: Offset 1 com 5 OS,
-Offset 2 com 5, Flexo 1 com 3, Flexo 2 com 3.
+7 atrasadas no total. Carga: Offset 1
+com 5 OS, Offset 2 com 6, Flexo 1 com 3,
+Flexo 2 com 2. Duas OS já entregues.
 
 Para decidir amanhã:
-1. A 2427 e a 2434 estão as duas na
-   Offset 1. Qual entra primeiro?</div>
+1. A Offset 2 tem 5 das 6 OS paradas
+   esperando papel ou aprovação.</div>
             <div class="uau-nota">
               Tabela, data em DD/MM/AAAA, sem introdução, já apontando o que você precisa decidir. <strong>Você não pediu nada disso agora</strong>. Pediu uma vez, quando escreveu as regras.
+            </div>
+            <div class="uau-nota" style="margin-top:9px">
+              Repare no <strong>7 atrasadas</strong>. O campo de status da planilha só marca duas. A regra que você escreveu mandou conferir pela data, e é por isso que o número mudou. <a href="../a1-ecossistema-e-fisica/exemplo/">O artefato pronto da aula 1.1</a> mostra a conta inteira.
             </div>
           </div>
         </div>
