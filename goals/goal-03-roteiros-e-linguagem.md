@@ -319,7 +319,7 @@ O conserto do gabarito virou `corrige_maquinas_gabarito.py`, que **lê a lista d
 
 **16 gates, 151 checagens.**
 
-> **A lição, terceira variação do mesmo tema:** o insumo é a fonte da verdade e o texto obedece. Toda vez que uma planilha muda de tamanho, **tudo que a descreve mente até prova em contrário** — inclusive gabarito, exemplo de resposta genérica e prompt de outra aula.
+> **A lição, terceira variação do mesmo tema:** o insumo é a fonte da verdade e o texto obedece. Toda vez que uma planilha muda de tamanho, **tudo que a descreve mente até prova em contrário**, inclusive gabarito, exemplo de resposta genérica e prompt de outra aula.
 
 ## 8. Aberto
 

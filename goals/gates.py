@@ -503,3 +503,18 @@ for f in AULAS + ["m1/index.html"] + sorted(glob.glob("m1/a*/demonstracao/index.
     s = open(f, encoding="utf-8").read()
     achados = [t for pat in SLOTS for t in re.findall(pat, s) if TEMPO.search(t)]
     diz(not achados, "G15", f, str(achados) if achados else "")
+
+# ─────────── o fecho que faltava
+# A lista `falhas` existia desde a onda 1 e NADA a lia: o script imprimia
+# FALHA e saia com codigo 0. O README prometia o contrario havia quatro
+# ondas. Gate que reprova sem falhar a execucao nao e gate, e aviso.
+print()
+print("═" * 74)
+if falhas:
+    print(f"  {len(falhas)} FALHA(S):")
+    for f in falhas:
+        print(f"    · {f}")
+    print("═" * 74)
+    sys.exit(1)
+print("  TUDO OK · nenhuma falha")
+print("═" * 74)
