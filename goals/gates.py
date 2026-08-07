@@ -370,12 +370,32 @@ CENA = [r"pergunte à (sala|turma)", r"pergunte a (sala|turma)", r"\bplano b\b",
         r"minutos de palco", r"se der errado", r"se a sala\b",
         # vocabulário do roteiro velho: a demonstração tem passos, não momentos
         r"\broteiro\b", r"momento \d+ d", r"os (três|quatro|cinco|seis) momentos",
-        r"com o que apontar", r"executa ao vivo", r"travar na sala"]
+        r"com o que apontar", r"executa ao vivo", r"travar na sala",
+        # a plateia. "vocês" sozinho NÃO é defeito: "o dia a dia de vocês" e
+        # "vocês já resolveram isso" tratam a turma como profissionais da
+        # gráfica, e é dos melhores trechos do material. O defeito é a turma
+        # como plateia assistindo alguém operar o teclado.
+        r"na tela do rafael", r"pergunt\w* (para|pra) vocês",
+        r"(na frente|diante) de vocês", r"mostr\w* (para|pra) vocês",
+        r"vocês (veem|verão|vão ver|responderem|preenchem|acompanham)",
+        r"o que eu quero", r"leio em voz alta", r"vamos contando"]
 CENA_RE = re.compile("|".join(CENA), re.I)
+
+# a lista de palavra não cobre PESSOA GRAMATICAL: "leia em voz alta" reprovava,
+# "leio em voz alta" passava. Dentro do bloco que narra a demonstração, verbo em
+# primeira pessoa do singular é o instrutor se descrevendo na página do aluno.
+EU = re.compile(r"\b(Abro|Anexo|Peço|Corrijo|Mostro|Comparo|Mando|Rodo|Colo|Leio"
+                r"|Explico|Pergunto|Escrevo|Faço|Jogo|Acrescento|Crio|Desligo"
+                r"|Paro|Aponto|Digo|Chamo|Ligo|Uso|Gero|Repito|Volto)\b")
 for f in HTML:
-    limpo = re.sub(r"<[^>]+>", " ", open(f, encoding="utf-8").read())
-    limpo = re.sub(r"\s+", " ", limpo)
+    bruto = open(f, encoding="utf-8").read()
+    limpo = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", bruto))
     achados = sorted({m.group(0).strip() for m in CENA_RE.finditer(limpo)})
+    # o bloco .demo descreve o que aparece na tela, nunca quem opera o teclado
+    for demo in re.findall(r'<div class="demo-body">(.*?)</div>\s*</div>', bruto, re.S):
+        texto = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", demo))
+        achados += sorted({"1ª pessoa: " + m.group(0) for m in EU.finditer(texto)})
+    achados = sorted(set(achados))
     diz(not achados, "G14b", f, f"FALA COM O INSTRUTOR: {achados}" if achados else "")
 
 # ─────────── G15 · duração não vai para o material do aluno, em lugar nenhum
