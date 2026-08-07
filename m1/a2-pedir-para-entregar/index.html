@@ -150,6 +150,16 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
 .td-nao{color:var(--text-dim)}
 .td-ok{color:var(--success);font-weight:600}
 
+/* FALA · voz de fora da sala, citada. Sem cor: cor aqui é decoração,
+   e a única caixa colorida da página tem que ser a que o aluno precisa notar */
+.fala{border-left:3px solid var(--border-strong);background:var(--bg-code);
+  border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;
+  margin-top:22px;margin-bottom:22px;max-width:var(--measure)}
+.fala-txt{font-size:17px;line-height:1.62;color:var(--text)}
+.fala-txt strong{color:var(--text)}
+.fala-quem{margin-top:12px;font-family:var(--font-mono);font-size:11.5px;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--text-dim)}
+
 .analogia{background:var(--bg-elev);border:1px solid var(--border);
   border-radius:var(--radius-lg);padding:26px 28px;margin:28px 0}
 .analogia-title{font-size:17px;font-weight:600;margin-bottom:12px;
@@ -713,6 +723,73 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
         </p>
         <p>
           Com ela, ele para e pergunta. Uma pergunta custa trinta segundos. Um número errado que passou custa a reunião inteira.
+        </p>
+      </div>
+
+      <h4>Se você já fez curso de prompt, repare no que mudou</h4>
+      <p>
+        Até pouco tempo atrás, pedido bem escrito era <strong>pedido comprido</strong>: papel, tom, exemplos, e o passo a passo do que fazer primeiro, depois, e depois. Isso envelheceu. E quem diz é quem construiu o Claude Code.
+      </p>
+
+      <div class="fala">
+        <div class="fala-txt">
+          "Um erro comum é dar instrução específica demais: faça assim, assim e assim, primeiro 1, depois 2, depois 3. Para os modelos de hoje <strong>não é esse o caminho</strong>. Descreva a tarefa, descreva os limites, descreva o critério de pronto, e deixe rodar."
+        </div>
+        <div class="fala-quem">Boris Cherny · criador do Claude Code · no dia seguinte ao lançamento do Opus 5</div>
+      </div>
+
+      <p>
+        Na mesma conversa ele conta que a equipe <strong>apagou 80% das instruções internas do Claude Code</strong> quando o Opus 5 saiu, porque a maior parte delas existia para corrigir coisa que o modelo já faz sozinho.
+      </p>
+      <p>
+        <strong>Repare no que sobrou.</strong> A tarefa, os limites e o critério de pronto. São as três perguntas que você acabou de ler, com outro nome:
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>A pergunta, como você vai usar</th><th>O nome que ela tem lá fora</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>O que é "pronto"?</strong></td><td>critério de pronto (<em>exit criteria</em>)</td></tr>
+            <tr><td><strong>Quais são as restrições?</strong></td><td>limites (<em>guardrails</em>)</td></tr>
+            <tr><td><strong>O que fazer na dúvida?</strong></td><td>o jeito de ele <strong>conferir o próprio trabalho</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout-info">
+        <div class="callout-title">A terceira, de novo, e agora com a palavra dele</div>
+        <p>
+          Perguntado sobre o que separa quem tira muito da ferramenta de quem tira pouco, ele respondeu que hoje a habilidade é <strong>dar uma tarefa que pareça difícil demais</strong> e, junto, um jeito de a máquina <strong>conferir o próprio trabalho</strong>. E completou: essa conferência é <strong>"provavelmente a coisa mais importante que as pessoas não acertam"</strong>.
+        </p>
+        <p>
+          É a sua terceira pergunta. Escrita numa linha, dentro do pedido.
+        </p>
+      </div>
+
+      <h4>Onde isso vai dar, nos módulos 2 e 3</h4>
+      <p>
+        Duas coisas nascem dessa terceira pergunta. Nenhuma das duas é para hoje, e as duas voltam com nome e com prática:
+      </p>
+
+      <div class="compare">
+        <div class="compare-col">
+          <div class="compare-label">Módulo 2 · loop</div>
+          <p>Quando o <strong>"confira antes de me entregar"</strong> sai de dentro da conversa e vira uma etapa separada, com nota de corte. Não passou, volta e refaz, quantas vezes precisar.</p>
+          <p>É a mesma razão pela qual a tiragem é conferida <strong>contra a prova aprovada</strong>, e não contra a lembrança de quem acertou a máquina. Quem fez carrega o motivo de cada decisão, e o motivo atrapalha na hora de julgar.</p>
+        </div>
+        <div class="compare-col">
+          <div class="compare-label">Módulo 3 · grafo</div>
+          <p>Quando, em vez de uma tarefa de cada vez, <strong>várias rodam ao mesmo tempo</strong>, cada uma com o seu conferente, e no fim tudo se junta num resultado só.</p>
+          <p>É a diferença entre uma máquina imprimindo dez OS em fila e as seis rodando em paralelo. O trabalho é o mesmo. O relógio, não.</p>
+        </div>
+      </div>
+
+      <div class="callout callout-ok">
+        <div class="callout-title">O que fica para hoje</div>
+        <p>
+          Você não precisa de nada disso para o exercício da seção 05. A terceira pergunta, escrita numa linha, <strong>já é a versão de bolso das duas</strong>. O resto é a mesma ideia com mais gente trabalhando ao mesmo tempo.
         </p>
       </div>
 
