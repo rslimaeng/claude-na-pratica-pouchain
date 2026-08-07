@@ -360,15 +360,37 @@ O bloco entra depois do Conceito 2, com quatro peças: o que mudou · a fala cit
 
 O bloco `.fala` é **sem cor de propósito**: a única caixa colorida da página continua sendo a que o aluno precisa notar (§8-bis).
 
-### 🟡 A tensão que isso criou, e que ainda está aberta
+### A tensão que isso criou, resolvida nas duas aulas
 
-O **"pedido situado"** da aula 1.1 tem **60 linhas**, com `## PAPEL`, `## CONTEXTO`, `## ESTILO DE SAÍDA (CRÍTICO)`, `## TAREFA`, `## ANTES DE GERAR` e `## LINGUAGEM`. O aluno veterano que ler a pincelada da 1.2 e lembrar daquele prompt tem uma pergunta legítima: *"mas vocês acabaram de me mostrar um prompt de sessenta linhas".*
+O **"pedido situado"** da aula 1.1 tem **60 linhas**, com `## PAPEL`, `## CONTEXTO`, `## ESTILO DE SAÍDA (CRÍTICO)`, `## TAREFA`, `## ANTES DE GERAR` e `## LINGUAGEM`. O veterano que ler a pincelada da 1.2 e lembrar daquele prompt tem uma pergunta legítima: *"mas vocês acabaram de me mostrar um prompt de sessenta linhas".*
 
-**A resposta existe e é boa, só não está escrita em lugar nenhum:** aquele prompt é comprido **no lugar certo**, que é dizer o que "pronto" significa (formato, seções, o que confirmar antes). Ele **não** diz o passo a passo de como chegar lá. Boris reclama de especificar o *como*, não o *quê*. E o bloco `## ANTES DE GERAR` daquele prompt é literalmente a verificação que ele chama de mais importante.
+**Rafael pediu para escrever nas duas.** A resposta é a mesma, com peso diferente:
 
-Aguarda decisão do Rafael sobre onde escrever isso: na 1.1, na 1.2, ou nas duas.
+| Onde | O que entrou |
+|---|---|
+| **1.1**, callout logo depois do prompt | Ele é longo **dizendo o que "pronto" significa**, e em nenhuma linha diz *como* fazer. Cria o gancho para a 1.2, que é onde o conceito tem nome |
+| **1.2**, bloco próprio | Tabela De/Para de quatro linhas, fechando em **"descreve o destino"** contra **"dita o trajeto"**. E aponta que o `## ANTES DE GERAR` do prompt da 1.1 **já era a conferência** que a fala chama de mais importante |
 
-**17 gates, 162 checagens.**
+A tabela usa exemplos que são a memória muscular do veterano no lado errado: *"primeiro leia o arquivo, depois monte a tabela, depois some a coluna"* · *"use a função SOMASE"* · *"pense passo a passo antes de responder"*.
+
+### O card da fonte, e a primeira imagem do site
+
+Capa do vídeo mais link para o YouTube, ao lado da citação. **A imagem foi recortada do print** por dois motivos: os selos *"289 VPH"* e *"31.8x"* são de uma extensão do Rafael e não são conteúdo, e *"há 11 dias"* é **data relativa**, que apodrece num site que fica depois do curso.
+
+Ficou só a capa, 840×473, JPEG de 56 KB em `_shared/`. Título, fonte, duração e idioma **viraram HTML**: selecionável, responsivo, traduzível e sem data que envelhece. Original em `insumos/assets-fotos/`.
+
+**Dois gates cresceram, porque era a primeira imagem do site:**
+
+- **G6** passa a conferir `src` junto com `href`. Ele olhava só `href`, e caminho de imagem errado passaria em silêncio
+- **G6b** exige `alt`, `width` e `height` em toda `<img>`. Sem `width`/`height` o layout pula quando a imagem carrega
+
+> **O G6b nasceu errado duas vezes, e as duas só apareceram testando contra defeito injetado, não lendo o código:**
+> 1. `'alt="' in tag` casa dentro de `data-alt="`
+> 2. `\balt="` também casa, porque **o hífen já é fronteira de palavra**
+>
+> Ficou `\salt="`, que exige espaço antes do atributo. É a mesma lição da Regra 5 em outra roupa: **gate não testado é gate que você acha que tem.**
+
+**18 gates, 165 checagens.**
 
 ## 8. Aberto
 
