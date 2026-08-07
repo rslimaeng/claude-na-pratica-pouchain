@@ -49,7 +49,7 @@ Corpo do texto subiu de 16px para 18,5px. Resultado medido: **81 caracteres por 
 
 | | |
 |---|---|
-| **1.2 · Pedir para entregar** | Ementa 1.4. Conceitos: pedir o resultado e não a tarefa · as três perguntas. Analogia: a **OS de impressão**, que a casa já usa há vinte anos e nunca deixa campo em branco. Exercício em `.docx` com 3 pedidos ruins, um por setor |
+| **1.2 · Pedir de um jeito que a primeira resposta já sirva** | Ementa 1.4. Conceitos: pedir o resultado e não a tarefa · as três perguntas. Analogia: a **OS de impressão**, que a casa já usa há vinte anos e nunca deixa campo em branco. Exercício em `.docx` com 3 pedidos ruins, um por setor |
 | **1.4 · O mapa: onde cada regra mora** | Ementa 1.3. Conceitos: uma pergunta escolhe entre os 5 lugares · regra que precisa valer 100% não mora em texto. Entrega o **2º artefato do M1**, a tabela de decisão impressa |
 
 **Componentes visuais novos:** `.rodadas` (idas e vindas por versão do pedido), `.os` (a OS de impressão ao lado da OS de pedido, campo a campo), `.mapa` (as 5 faixas), `.exemplos` (accordion por setor), `.checagem` (o validador).

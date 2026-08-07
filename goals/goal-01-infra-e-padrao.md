@@ -16,7 +16,7 @@
 | 4 | Tokens de design | `_shared/design-tokens.md` |
 | 5 | **Landing** com a trilha visual dos 6 níveis | `index.html` |
 | 6 | **Hub do M1** | `m1/index.html` |
-| 7 | **Aula 1.1** · O ecossistema e a física | `m1/a1-ecossistema-e-fisica/index.html` |
+| 7 | **Aula 1.1** · Onde abrir, e por que ele piora no meio da conversa | `m1/a1-ecossistema-e-fisica/index.html` |
 | 8 | **Aula 1.3** · A regra que fica (+ exercício + gabarito) | `m1/a3-regra-que-fica/` |
 | 9 | Esqueleto do kit | `kit/LEIA-ME.md` |
 

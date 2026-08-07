@@ -32,8 +32,8 @@ A ementa vendida define os **módulos e os subtemas**. O número de aulas dentro
 
 | Aula do site | Cobre na ementa |
 |---|---|
-| 1.1 O ecossistema e a física | 1.1 O ecossistema Claude em 2026 |
-| 1.2 Pedir para entregar | 1.4 Prompting como conversa vs como sistema |
+| 1.1 Onde abrir, e por que ele piora no meio da conversa | 1.1 O ecossistema Claude em 2026 |
+| 1.2 Pedir de um jeito que a primeira resposta já sirva | 1.4 Prompting como conversa vs como sistema |
 | 1.3 A regra que fica | 1.2 CLAUDE.md, o manual do funcionário |
 | 1.4 O mapa: skill, comando, MCP, plugin | 1.3 Skills, plugins, MCPs e comandos |
 
