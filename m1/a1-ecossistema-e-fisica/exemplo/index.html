@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O artefato pronto · Pauta de produção da Gráfica Aurora</title>
+<meta name="description" content="O documento que sai do pedido situado da aula 1.1, gerado a partir da planilha suja da Gráfica Aurora. Veja o resultado antes de tentar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* a moldura do site */
+  --site-bg:#F0EEE6; --site-accent:#1A5670; --site-accent-soft:#DDEAF0;
+  --site-text:#141413; --site-dim:#87867F; --site-border:rgba(20,20,19,.12);
+  /* o documento, com a identidade que o pedido situado manda */
+  --pg:#FBF9F4; --pg-line:rgba(31,42,68,.13); --pg-line-soft:rgba(31,42,68,.07);
+  --noite:#1F2A44; --terra:#A05A3F;
+  --corpo:#3A4152; --fraco:#7C8394;
+  --atraso:#9E3B32; --atraso-bg:#F6EBEA;
+  --atencao:#9A6B15; --atencao-bg:#F8F1E2;
+  --emdia:#4C6B3F; --emdia-bg:#EDF2E9;
+  --serif:'Fraunces',Georgia,serif;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,'SF Mono','Menlo',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--site-bg);font-family:var(--sans);color:var(--site-text);
+  -webkit-font-smoothing:antialiased;line-height:1.6}
+a{color:var(--site-accent);text-decoration:none}
+a:hover{text-decoration:underline}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ═══════════ MOLDURA DO SITE ═══════════ */
+.moldura{max-width:1000px;margin:0 auto;padding:26px 24px 6px}
+.volta{font-family:var(--mono);font-size:12px;color:var(--site-dim);
+  letter-spacing:.04em;margin-bottom:18px}
+.moldura h1{font-size:27px;line-height:1.22;letter-spacing:-.02em;
+  font-weight:700;margin-bottom:10px}
+.moldura-lead{font-size:16.5px;line-height:1.6;color:#3D3D3A;max-width:720px}
+.moldura-lead strong{color:var(--site-text)}
+.antes{margin:20px 0 8px;background:#fff;border:1px solid var(--site-border);
+  border-radius:12px;padding:18px 20px}
+.antes-rot{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--site-accent);margin-bottom:10px}
+.antes ol{margin-left:18px}
+.antes li{font-size:14.5px;line-height:1.55;color:#3D3D3A;margin-bottom:6px}
+.antes li:last-child{margin-bottom:0}
+.antes-nota{font-size:14px;color:var(--site-dim);line-height:1.55;margin-top:12px;
+  padding-top:11px;border-top:1px solid var(--site-border)}
+.divisor{max-width:1000px;margin:26px auto 0;padding:0 24px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--site-dim);display:flex;
+  align-items:center;gap:14px}
+.divisor::after{content:"";flex:1;height:1px;background:var(--site-border)}
+
+/* ═══════════ O DOCUMENTO ═══════════ */
+.folha{background:var(--pg);max-width:1000px;margin:14px auto 60px;
+  padding:22mm;border-radius:4px;
+  box-shadow:0 1px 2px rgba(20,20,19,.05),0 10px 34px rgba(20,20,19,.07)}
+.doc-kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--terra);margin-bottom:14px}
+.doc-titulo{font-family:var(--serif);font-size:40px;font-weight:600;line-height:1.1;
+  letter-spacing:-.015em;color:var(--noite);margin-bottom:16px}
+.doc-titulo i{font-style:italic;font-weight:500}
+.doc-meta{font-family:var(--mono);font-size:11.5px;color:var(--fraco);
+  letter-spacing:.02em;padding-top:14px;border-top:1px solid var(--pg-line)}
+
+.sec{margin-top:46px;display:grid;grid-template-columns:76px 1fr;gap:18px;
+  align-items:start}
+.sec-n{font-family:var(--serif);font-size:52px;font-weight:600;line-height:.86;
+  color:var(--pg-line);letter-spacing:-.03em}
+.sec-corpo{min-width:0}
+.sec-titulo{font-family:var(--serif);font-size:23px;font-weight:600;color:var(--noite);
+  line-height:1.24;margin-bottom:5px}
+.sec-sub{font-size:14px;color:var(--fraco);line-height:1.5;margin-bottom:18px}
+
+/* big numbers */
+.bignums{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+.bn-val{display:block;font-family:var(--serif);font-size:42px;font-weight:600;
+  line-height:1;color:var(--noite);letter-spacing:-.025em}
+.bn-val.alerta{color:var(--atraso)}
+.bn-reg{display:block;width:26px;height:1px;background:var(--pg-line);margin:11px 0 9px}
+.bn-rot{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--fraco);line-height:1.5}
+
+/* tabela */
+.tw{overflow-x:auto}
+.tb{width:100%;border-collapse:collapse;font-size:13.5px}
+.tb th{text-align:left;font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--fraco);font-weight:500;
+  padding:0 10px 8px 0;border-bottom:1px solid var(--pg-line)}
+.tb td{padding:10px 10px 10px 0;border-bottom:1px solid var(--pg-line-soft);
+  color:var(--corpo);vertical-align:top;line-height:1.45}
+.tb tr:last-child td{border-bottom:none}
+.tb .os{font-family:var(--mono);font-size:12.5px;color:var(--noite);font-weight:500}
+.tb .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pin{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:500;
+  padding:2px 7px;border-radius:3px;white-space:nowrap}
+.pin.d{background:var(--atraso-bg);color:var(--atraso)}
+.pin.a{background:var(--atencao-bg);color:var(--atencao)}
+.pin.e{background:var(--emdia-bg);color:var(--emdia)}
+
+/* carga por máquina */
+.maq{display:flex;flex-direction:column;gap:15px}
+.maq-linha{display:grid;grid-template-columns:88px 1fr 108px;gap:14px;align-items:center}
+.maq-nome{font-family:var(--mono);font-size:12px;color:var(--noite);font-weight:500}
+.maq-barra{display:flex;height:22px;border-radius:3px;overflow:hidden;
+  background:var(--pg-line-soft)}
+.maq-seg{display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:10px;color:#fff}
+.maq-seg.prod{background:#4C6B3F}
+.maq-seg.papel{background:#A05A3F}
+.maq-seg.aprov{background:#9A6B15}
+.maq-seg.atras{background:#9E3B32}
+.maq-val{font-family:var(--mono);font-size:11.5px;color:var(--corpo);
+  text-align:right;font-variant-numeric:tabular-nums}
+.legenda{display:flex;flex-wrap:wrap;gap:16px;margin-top:16px;padding-top:13px;
+  border-top:1px solid var(--pg-line)}
+.lg{display:flex;align-items:center;gap:6px;font-family:var(--mono);
+  font-size:10px;color:var(--fraco)}
+.lg-cor{width:9px;height:9px;border-radius:2px;flex-shrink:0}
+.lg-tx{line-height:1.4}
+
+/* callout */
+.nota{background:#F5F0E4;border-left:2px solid var(--terra);
+  padding:15px 18px;margin-top:20px;border-radius:0 3px 3px 0}
+.nota-rot{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--terra);margin-bottom:7px}
+.nota p{font-size:14px;line-height:1.6;color:var(--corpo)}
+.nota p + p{margin-top:9px}
+.nota strong{color:var(--noite)}
+
+/* decisões */
+.decs{display:flex;flex-direction:column;gap:20px}
+.dec{display:grid;grid-template-columns:30px 1fr;gap:16px;padding-bottom:20px;
+  border-bottom:1px solid var(--pg-line-soft)}
+.decs .dec:last-child{border-bottom:none;padding-bottom:0}
+.dec-n{font-family:var(--serif);font-size:26px;font-weight:600;color:var(--terra);
+  line-height:1}
+.dec-frase{font-family:var(--serif);font-size:18.5px;font-weight:600;color:var(--noite);
+  line-height:1.32;margin-bottom:11px}
+.dec-por{margin-bottom:8px}
+.dec-rot{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--fraco);margin-bottom:3px}
+.dec-tx{display:block;font-size:14px;line-height:1.55;color:var(--corpo)}
+.dec-tx strong{color:var(--noite)}
+
+.rodape{margin-top:52px;padding-top:16px;border-top:1px solid var(--pg-line);
+  font-family:var(--mono);font-size:10.5px;color:var(--fraco);line-height:1.7}
+
+@media (max-width:820px){
+  .folha{padding:26px 22px}
+  .sec{grid-template-columns:1fr;gap:6px}
+  .sec-n{font-size:34px}
+  .bignums{grid-template-columns:repeat(2,1fr);gap:22px}
+  .maq-linha{grid-template-columns:1fr;gap:6px}
+  .maq-val{text-align:left}
+  .doc-titulo{font-size:30px}
+}
+@media print{
+  body{background:#fff}
+  .moldura,.divisor{display:none}
+  .folha{box-shadow:none;margin:0;max-width:none;padding:16mm}
+  .sec{break-inside:avoid}
+  @page{size:A4;margin:12mm}
+}
+</style>
+</head>
+<body>
+
+<div class="moldura">
+  <div class="volta"><a href="../">← voltar para a aula 1.1</a></div>
+  <h1>O artefato pronto, antes de você tentar</h1>
+  <p class="moldura-lead">
+    Este é o documento que sai do <strong>pedido situado</strong> da aula 1.1, gerado a partir da mesma planilha suja da Gráfica Aurora que você vai baixar. Uma rodada, sem correção. <strong>Olhe primeiro, tente depois:</strong> ver o resultado antes reduz o medo de começar, e você passa a saber o que está perseguindo.
+  </p>
+
+  <div class="antes">
+    <span class="antes-rot">O que ele confirmou antes de gerar</span>
+    <ol>
+      <li>Encontrou <strong>18 linhas úteis</strong> e descartou 4: duas de cabeçalho do sistema, uma em branco no meio e a linha do filtro.</li>
+      <li>Normalizou <strong>três formatos de data</strong> para um só, e o status para caixa única. O valor virou número em todas as linhas.</li>
+      <li>Escolheu as 3 decisões pelo critério <strong>"trava dinheiro ou trava máquina, e depende de alguém fora da produção"</strong>.</li>
+    </ol>
+    <p class="antes-nota">
+      Ele parou aqui e esperou o OK. São 30 segundos que evitam um documento inteiro construído em cima de um entendimento errado.
+    </p>
+  </div>
+</div>
+
+<div class="divisor">A partir daqui é o documento</div>
+
+<div class="folha">
+
+  <div class="doc-kicker">Pauta de produção · reunião diária</div>
+  <h2 class="doc-titulo">O que precisa ser <i>decidido</i> amanhã às 8h</h2>
+  <div class="doc-meta">16/07/2026 · TURNO A · COORDENAÇÃO DE PCP · 18 OS ANALISADAS</div>
+
+  <!-- 01 ─────────────────────────────── -->
+  <div class="sec">
+    <div class="sec-n">01</div>
+    <div class="sec-corpo">
+      <h3 class="sec-titulo">O dia em números</h3>
+      <p class="sec-sub">Duas OS foram entregues e saem da conta de produção.</p>
+      <div class="bignums">
+        <div>
+          <span class="bn-val">16</span>
+          <span class="bn-reg"></span>
+          <span class="bn-rot">OS em produção</span>
+        </div>
+        <div>
+          <span class="bn-val alerta">7</span>
+          <span class="bn-reg"></span>
+          <span class="bn-rot">Atrasadas pela data</span>
+        </div>
+        <div>
+          <span class="bn-val">1</span>
+          <span class="bn-reg"></span>
+          <span class="bn-rot">Vence hoje e não entrou</span>
+        </div>
+        <div>
+          <span class="bn-val">202,7<span style="font-size:24px"> mil</span></span>
+          <span class="bn-reg"></span>
+          <span class="bn-rot">Reais em produção</span>
+        </div>
+      </div>
+
+      <div class="nota">
+        <span class="nota-rot">Antes de qualquer coisa, um aviso sobre o próprio relatório</span>
+        <p>
+          A coluna <strong>Status</strong> marca duas OS como "Atrasado". <strong>Pela data de prazo, são sete.</strong> E uma das duas marcadas, a <strong>2434</strong>, tem prazo para 21/07, ou seja, daqui a cinco dias.
+        </p>
+        <p>
+          Este relatório usa a <strong>data</strong>, não o campo de status. Se alguém na reunião trouxer o número do sistema, vai trazer 2.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 ─────────────────────────────── -->
+  <div class="sec">
+    <div class="sec-n">02</div>
+    <div class="sec-corpo">
+      <h3 class="sec-titulo">O que está atrasado</h3>
+      <p class="sec-sub">Da mais atrasada para a menos. Soma R$ 94.720,50.</p>
+      <div class="tw">
+        <table class="tb">
+          <thead>
+            <tr>
+              <th>OS</th><th>Cliente</th><th>Produto</th><th>Prazo</th>
+              <th class="num">Atraso</th><th>Máquina</th><th>Situação real</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="os">2419</td><td>Laticínios Vale Verde</td><td>Caixa cartucho</td><td>09/07</td><td class="num">7 dias</td><td>Offset 2</td><td><span class="pin d">Aguardando papel</span></td></tr>
+            <tr><td class="os">2418</td><td>Distribuidora Sertão</td><td>Rótulo adesivo</td><td>10/07</td><td class="num">6 dias</td><td>Flexo 1</td><td><span class="pin e">Em produção</span></td></tr>
+            <tr><td class="os">2420</td><td>Farmácia Popular Norte</td><td>Bula</td><td>11/07</td><td class="num">5 dias</td><td>Offset 1</td><td><span class="pin e">Em produção</span></td></tr>
+            <tr><td class="os">2423</td><td>Laticínios Vale Verde</td><td>Rótulo adesivo</td><td>12/07</td><td class="num">4 dias</td><td>Flexo 2</td><td><span class="pin a">Aguardando aprovação</span></td></tr>
+            <tr><td class="os">2427</td><td>Distribuidora Sertão</td><td>Encarte 8p</td><td>13/07</td><td class="num">3 dias</td><td>Offset 1</td><td><span class="pin d">Marcada como atrasada</span></td></tr>
+            <tr><td class="os">2424</td><td>Supermercado Bom Preço</td><td>Encarte 8p</td><td>14/07</td><td class="num">2 dias</td><td>Offset 1</td><td><span class="pin e">Em produção</span></td></tr>
+            <tr><td class="os">2422</td><td>Móveis Cariri</td><td>Catálogo 24p</td><td>15/07</td><td class="num">1 dia</td><td>Offset 2</td><td><span class="pin e">Em produção</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="nota">
+        <span class="nota-rot">A leitura que a tabela sozinha não dá</span>
+        <p>
+          Das sete atrasadas, <strong>duas não estão rodando em máquina nenhuma</strong>: a 2419 espera papel há sete dias e a 2423 espera aprovação do cliente há quatro. Essas duas não são problema de produção, e por isso não se resolvem na reunião de produção.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 ─────────────────────────────── -->
+  <div class="sec">
+    <div class="sec-n">03</div>
+    <div class="sec-corpo">
+      <h3 class="sec-titulo">Carga por máquina</h3>
+      <p class="sec-sub">Cada barra é uma máquina, dividida pela situação real das OS.</p>
+      <div class="maq">
+        <div class="maq-linha">
+          <span class="maq-nome">Offset 1</span>
+          <span class="maq-barra">
+            <span class="maq-seg prod" style="width:60%">3 em produção</span>
+            <span class="maq-seg atras" style="width:40%">2</span>
+          </span>
+          <span class="maq-val">R$ 69.970</span>
+        </div>
+        <div class="maq-linha">
+          <span class="maq-nome">Offset 2</span>
+          <span class="maq-barra">
+            <span class="maq-seg prod" style="width:16.6%">1</span>
+            <span class="maq-seg papel" style="width:50%">3 sem papel</span>
+            <span class="maq-seg aprov" style="width:33.4%">2 sem aprovação</span>
+          </span>
+          <span class="maq-val">R$ 89.450</span>
+        </div>
+        <div class="maq-linha">
+          <span class="maq-nome">Flexo 1</span>
+          <span class="maq-barra">
+            <span class="maq-seg prod" style="width:100%">3 em produção</span>
+          </span>
+          <span class="maq-val">R$ 22.350</span>
+        </div>
+        <div class="maq-linha">
+          <span class="maq-nome">Flexo 2</span>
+          <span class="maq-barra">
+            <span class="maq-seg prod" style="width:50%">1</span>
+            <span class="maq-seg aprov" style="width:50%">1 sem aprovação</span>
+          </span>
+          <span class="maq-val">R$ 20.950</span>
+        </div>
+      </div>
+      <div class="legenda">
+        <span class="lg"><span class="lg-cor" style="background:#4C6B3F"></span><span class="lg-tx">Rodando</span></span>
+        <span class="lg"><span class="lg-cor" style="background:#A05A3F"></span><span class="lg-tx">Parada por falta de papel</span></span>
+        <span class="lg"><span class="lg-cor" style="background:#9A6B15"></span><span class="lg-tx">Parada por falta de aprovação</span></span>
+        <span class="lg"><span class="lg-cor" style="background:#9E3B32"></span><span class="lg-tx">Marcada como atrasada no sistema</span></span>
+      </div>
+
+      <div class="nota">
+        <span class="nota-rot">O gargalo, dito com todas as letras</span>
+        <p>
+          A <strong>Offset 2 concentra 44% do valor em produção</strong> e tem <strong>cinco das seis OS paradas</strong>. Só a 2422 está rodando.
+        </p>
+        <p>
+          O gargalo não é capacidade de máquina, é <strong>entrada</strong>: papel que não chegou e aprovação que não voltou. Comprar hora-máquina não resolve nada disto.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 ─────────────────────────────── -->
+  <div class="sec">
+    <div class="sec-n">04</div>
+    <div class="sec-corpo">
+      <h3 class="sec-titulo">Vence em até 3 dias e ainda não entrou em produção</h3>
+      <p class="sec-sub">É a seção que evita o atraso da semana que vem.</p>
+      <div class="tw">
+        <table class="tb">
+          <thead>
+            <tr><th>OS</th><th>Cliente</th><th>Prazo</th><th>Falta</th><th>Máquina</th><th>Travada em</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="os">2425</td><td>Farmácia Popular Norte</td><td>16/07</td><td><span class="pin d">Vence hoje</span></td><td>Offset 2</td><td>Papel</td></tr>
+            <tr><td class="os">2428</td><td>Móveis Cariri</td><td>17/07</td><td>1 dia</td><td>Flexo 1</td><td><span class="pin e">Já rodando</span></td></tr>
+            <tr><td class="os">2430</td><td>Padaria Central</td><td>18/07</td><td>2 dias</td><td>Offset 1</td><td><span class="pin e">Já rodando</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="nota">
+        <span class="nota-rot">Só uma linha precisa de você</span>
+        <p>
+          A <strong>2425 vence hoje e ainda espera papel</strong>. As outras duas já estão em máquina e vão sair no prazo sem ninguém fazer nada.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 ─────────────────────────────── -->
+  <div class="sec">
+    <div class="sec-n">05</div>
+    <div class="sec-corpo">
+      <h3 class="sec-titulo">As 3 decisões de amanhã</h3>
+      <p class="sec-sub">Cada uma é sua, e nenhuma é do líder de máquina.</p>
+      <div class="decs">
+
+        <div class="dec">
+          <div class="dec-n">1</div>
+          <div>
+            <div class="dec-frase">Escalar a compra do papel da Offset 2 hoje, ou repriorizar a fila dela.</div>
+            <div class="dec-por">
+              <span class="dec-rot">Por que é minha</span>
+              <span class="dec-tx">São três OS (2419, 2425, 2431) e <strong>R$ 34.250</strong> parados esperando insumo. Isso é conversa com Compras, e o líder de máquina não abre chamado em Compras.</span>
+            </div>
+            <div>
+              <span class="dec-rot">Se eu não decidir hoje</span>
+              <span class="dec-tx">A 2425 vence hoje e vira a quarta OS atrasada da Offset 2. A 2419 chega a oito dias de atraso.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dec">
+          <div class="dec-n">2</div>
+          <div>
+            <div class="dec-frase">Liberar a 2423 sem a aprovação formal, ou assumir o atraso e cobrar o cliente.</div>
+            <div class="dec-por">
+              <span class="dec-rot">Por que é minha</span>
+              <span class="dec-tx">Produzir sem aprovação é <strong>risco de refugo por conta da casa</strong>. Quem assume esse risco é a coordenação, não a máquina. Junto com a 2429 e a 2435, são R$ 46.050 travados em aprovação.</span>
+            </div>
+            <div>
+              <span class="dec-rot">Se eu não decidir hoje</span>
+              <span class="dec-tx">A 2423 acumula o quinto dia de atraso e o cliente Laticínios Vale Verde fica com duas OS atrasadas ao mesmo tempo, a 2419 e a 2423.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dec">
+          <div class="dec-n">3</div>
+          <div>
+            <div class="dec-frase">Definir qual número de atraso vale na reunião: o do sistema ou o da data.</div>
+            <div class="dec-por">
+              <span class="dec-rot">Por que é minha</span>
+              <span class="dec-tx">O sistema diz <strong>2 atrasadas</strong>, a data diz <strong>7</strong>, e uma das marcadas nem está atrasada. Enquanto não houver um número oficial, cada líder chega na sala com o seu.</span>
+            </div>
+            <div>
+              <span class="dec-rot">Se eu não decidir hoje</span>
+              <span class="dec-tx">A reunião gasta os primeiros 15 minutos discutindo qual planilha está certa, em vez de discutir o que fazer.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="rodape">
+    GRÁFICA AURORA · INDÚSTRIA GRÁFICA FICTÍCIA CRIADA PARA O TREINAMENTO<br>
+    GERADO A PARTIR DE PEDIDOS-EM-PRODUCAO.XLSX · 18 OS · DADOS INVENTADOS
+  </div>
+
+</div>
+
+</body>
+</html>

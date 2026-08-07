@@ -49,6 +49,53 @@ a:hover{color:var(--accent-dark)}
 .chip-accent{background:var(--accent-soft);color:var(--accent-dark)}
 .chip-ementa{background:transparent;border:1px solid var(--border-strong);
   color:var(--text-dim);font-family:var(--font-mono);font-size:11px}
+/* OS DOIS CAMINHOS · colunas paralelas, uma por tipo de pedido */
+.caminhos{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:26px 0 0}
+.cam{border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;
+  background:var(--bg-elev);display:flex;flex-direction:column}
+.cam-head{padding:13px 18px;border-bottom:1px solid var(--border)}
+.cam-tipo{display:block;font-family:var(--font-mono);font-size:10.5px;
+  letter-spacing:.09em;text-transform:uppercase;margin-bottom:3px}
+.cam-nome{display:block;font-size:16.5px;font-weight:600;letter-spacing:-.01em;
+  line-height:1.25}
+.cam.ruim .cam-head{background:var(--danger-soft)}
+.cam.ruim .cam-tipo{color:var(--danger)}
+.cam.bom .cam-head{background:var(--success-soft)}
+.cam.bom .cam-tipo{color:var(--success)}
+.cam-passos{padding:6px 18px 18px;display:flex;flex-direction:column;flex:1}
+.cam-p{padding:13px 0;border-bottom:1px solid var(--border)}
+.cam-p:last-child{border-bottom:none;padding-bottom:0}
+.cam-rot{display:block;font-family:var(--font-mono);font-size:9.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--text-dim);margin-bottom:5px}
+.cam-val{display:block;font-size:15px;line-height:1.42;color:var(--text)}
+.cam-val b{font-weight:600}
+.cam.ruim .cam-val b{color:var(--danger)}
+.cam.bom .cam-val b{color:var(--success)}
+.cam-mesa{display:flex;height:16px;border-radius:3px;overflow:hidden;
+  background:var(--bg-warm);margin-top:7px}
+.cam-mesa-seg{height:100%}
+.mesa-dado{background:var(--accent)}
+.mesa-conversa{background:var(--danger)}
+.mesa-livre{background:transparent}
+.cam-legenda{display:block;font-size:12px;color:var(--text-dim);line-height:1.45;
+  margin-top:6px}
+.caminhos-nota{font-size:15px;line-height:1.6;color:var(--text-muted);
+  margin:16px 0 0;padding:14px 16px;background:var(--bg-warm);
+  border-radius:var(--radius);border:1px solid var(--border)}
+.caminhos-nota strong{color:var(--text)}
+
+/* CARTÃO · ver o artefato pronto antes de tentar */
+.ver-pronto{display:block;margin:24px 0 0;padding:20px 22px;
+  background:var(--accent-tinted);border:1px solid var(--accent-line);
+  border-radius:var(--radius-lg);color:var(--text)}
+.ver-pronto:hover{border-color:var(--accent);background:var(--accent-soft)}
+.vp-rot{display:block;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.vp-titulo{display:block;font-size:18px;font-weight:600;letter-spacing:-.01em;
+  line-height:1.3;margin-bottom:7px}
+.vp-desc{display:block;font-size:14.5px;line-height:1.55;color:var(--text-muted)}
+.vp-cta{display:block;font-size:14px;font-weight:600;color:var(--accent);margin-top:11px}
+@media (max-width:720px){.caminhos{grid-template-columns:1fr}}
 .rec{display:inline-flex;align-items:center;font-family:var(--font-mono);
   font-size:11px;font-weight:500;background:var(--accent-soft);color:var(--accent-dark);
   padding:4px 9px;border-radius:var(--radius-sm)}
@@ -786,6 +833,81 @@ td code{font-family:var(--font-mono);font-size:12.5px;background:var(--bg-code);
         </div>
       </div>
 
+      <h4>Os dois caminhos, lado a lado</h4>
+      <div class="caminhos">
+
+        <div class="cam ruim">
+          <div class="cam-head">
+            <span class="cam-tipo">Caminho A</span>
+            <span class="cam-nome">Pedido vago</span>
+          </div>
+          <div class="cam-passos">
+            <div class="cam-p">
+              <span class="cam-rot">O que você escreve</span>
+              <span class="cam-val"><b>8 palavras.</b> Trinta segundos.</span>
+            </div>
+            <div class="cam-p">
+              <span class="cam-rot">O que acontece depois</span>
+              <span class="cam-val"><b>4 idas e vindas</b> de correção, e cada uma carrega a conversa inteira de novo.</span>
+            </div>
+            <div class="cam-p">
+              <span class="cam-rot">Como fica a mesa no fim</span>
+              <span class="cam-mesa" aria-hidden="true">
+                <span class="cam-mesa-seg mesa-dado" style="width:18%"></span>
+                <span class="cam-mesa-seg mesa-conversa" style="width:57%"></span>
+                <span class="cam-mesa-seg mesa-livre" style="width:25%"></span>
+              </span>
+              <span class="cam-legenda">Azul é a planilha. Vermelho é a conversa das correções. <b>Ela ficou maior que o dado.</b></span>
+            </div>
+            <div class="cam-p">
+              <span class="cam-rot">O que sai</span>
+              <span class="cam-val">Uma resposta que você <b>ainda arruma antes de mostrar</b> para alguém.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cam bom">
+          <div class="cam-head">
+            <span class="cam-tipo">Caminho B</span>
+            <span class="cam-nome">Pedido situado</span>
+          </div>
+          <div class="cam-passos">
+            <div class="cam-p">
+              <span class="cam-rot">O que você escreve</span>
+              <span class="cam-val"><b>60 palavras.</b> Três minutos, e só na primeira vez.</span>
+            </div>
+            <div class="cam-p">
+              <span class="cam-rot">O que acontece depois</span>
+              <span class="cam-val"><b>1 rodada.</b> Ele confirma o plano em três bullets e espera o seu OK.</span>
+            </div>
+            <div class="cam-p">
+              <span class="cam-rot">Como fica a mesa no fim</span>
+              <span class="cam-mesa" aria-hidden="true">
+                <span class="cam-mesa-seg mesa-dado" style="width:18%"></span>
+                <span class="cam-mesa-seg mesa-conversa" style="width:12%"></span>
+                <span class="cam-mesa-seg mesa-livre" style="width:70%"></span>
+              </span>
+              <span class="cam-legenda">O mesmo dado, quase nenhuma conversa. <b>Sobra mesa para continuar a tarefa.</b></span>
+            </div>
+            <div class="cam-p">
+              <span class="cam-rot">O que sai</span>
+              <span class="cam-val">Um documento <b>pronto para imprimir</b> e levar para a reunião.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <p class="caminhos-nota">
+        <strong>Leia as duas barras juntas.</strong> A largura azul é igual nos dois: é a mesma planilha. O que muda é o vermelho, que é conversa, e não é trabalho. No caminho A ele ficou maior que o próprio dado.
+      </p>
+
+      <a class="ver-pronto" href="./exemplo/">
+        <span class="vp-rot">Antes de tentar, veja o que você está perseguindo</span>
+        <span class="vp-titulo">O artefato pronto · pauta de produção da Gráfica Aurora</span>
+        <span class="vp-desc">O documento inteiro que sai do caminho B, gerado desta mesma planilha. Abre numa página própria, dá para imprimir. Ver o resultado antes reduz o medo de começar.</span>
+        <span class="vp-cta">abrir o exemplo pronto →</span>
+      </a>
+
       <div class="callout callout-info">
         <div class="callout-title">A conta que fica</div>
         <p>
@@ -1024,6 +1146,10 @@ Se tem o que falar, fala.</div>
               Cada conversa com o Claude é diferente da anterior, mesmo com o mesmo prompt. <strong>Compare a estrutura, não o conteúdo</strong>, se você precisou de 3 rodadas em vez de 5, ou se ele chamou a coluna de outro nome, está certo do mesmo jeito. O que tem que bater é a diferença <em>entre</em> as duas conversas.
             </p>
           </div>
+
+          <p style="margin-top:16px">
+            Para comparar com uma referência inteira: <a href="./exemplo/">o artefato pronto está aqui</a>, com as seis seções e os números que saem desta mesma planilha.
+          </p>
         </div>
       </details>
     </div>
