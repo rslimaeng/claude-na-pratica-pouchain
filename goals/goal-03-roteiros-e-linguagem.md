@@ -114,6 +114,52 @@ Os **7 níveis** ganharam nome público em `CLAUDE.md` §5, que passa a ser a fo
 
 **Recomendação: B.** Mas isso muda a distribuição das 2h do M1, e a conta é do Rafael.
 
+## 7-bis. 🔴 A segunda reprovação: o roteiro rodava no terminal
+
+**07/08/2026, mesmo dia.** O Rafael abriu o roteiro da 1.1 publicado e reprovou de novo:
+
+> *"Já começa dizendo que vai rodar no Claude Code e roda o context. Isso aqui para mim não está nada didático. Eu queria um exemplo similar: o que eles vão fazer. Eu mostrar a diferença, rodando com sequência de prompts, que eu posso simular uma conversa normal e um ali que já vai estar pronto. Esse aqui que você criou, eu achei até anti-andragógico. Tem um monte de cor."*
+
+**Ele estava certo em três frentes de uma vez:**
+
+| | O defeito | Por que é grave |
+|---|---|---|
+| **Superfície** | Momentos 1, 2 e 4 rodavam no **Claude Code**, com `/context` | Minuto 3 de 12 horas, e a sala olha um terminal que só chega no M3. Três dos cinco momentos estavam marcados *"a sala assiste"*, então não dava para dizer *"agora façam igual"* |
+| **Conceito** | `/context` mostra **um número** | A conversa degradando ao vivo mostra a mesma coisa e o aluno **repete sozinho na segunda-feira**. Escolhi a prova mais bonita em vez da que ensina |
+| **Superfície visual** | **Seis fundos coloridos por momento**, um por tipo de bloco | Fura o `CLAUDE.md` §8-bis, que já dizia *"cor sempre semântica, nunca decorativa"*. Tipo de bloco não é semântica |
+
+**Eu tinha respeitado a letra do §10** (*conceito que precisa de terminal vai para a demonstração*) **e quebrado o espírito inteiro.** A regra virou R1: primeiro se procura como mostrar o conceito **na superfície do aluno**; terminal é último recurso, não atalho.
+
+### O que a 1.1 é agora
+
+Duas conversas no Claude Chat, 10 minutos de palco:
+
+| # | min | O que acontece |
+|---|---|---|
+| 1 | 1 | Anexa o mapa de cotação e faz o pedido vago. Ele responde com toda a segurança |
+| **2** | **3** | 🔴 *"O que falta nesta resposta para você fechar essa compra hoje?"* A sala dita, vai para o quadro |
+| 3 | 2 | Três correções na mesma conversa. Melhora, não fecha, e na terceira ele larga o prazo |
+| 4 | 2 | Conversa nova, pedido pronto. *"É o que vocês me disseram há três minutos, só que escrito antes"* |
+| 5 | 2 | Sai o documento com dois achados que ninguém tinha visto |
+
+**Insumo novo:** `demonstracao/cotacoes-fornecedores.xlsx`, de **Compras**. O exercício continua com a planilha de PCP. Ver R2.
+
+**A armadilha da planilha tem três camadas**, e as três são o momento 5:
+
+1. **Insumos Delta** parece o mais barato, mas o frete é FOB (mais R$ 890) e o prazo é 12 dias, com a máquina rodando em 6
+2. **Gráfica Suprimentos** parece mais barato ainda, mas **não cotou o papel offset 90g**. Comparar total contra total é comparar coisas diferentes
+3. **Papelaria Norte** é a única que entrega tudo a tempo, e é a que o pedido vago descarta primeiro
+
+**O G13 agora recalcula essa planilha** e confere as duas frases do momento 5, o atraso de 6 dias e o item não cotado. Testado contra cópia quebrada: as duas checagens falham quando o número muda.
+
+### Efeito colateral bom: o relógio da 1.1 fechou
+
+A demonstração caiu de **12 para 10 minutos**. Com os 12 do exercício, dá 22 nos 25 da aula. **O problema do §7 se resolveu sozinho**, e a distribuição de 2h do M1 não precisa mudar.
+
+### Dívida
+
+**Só a 1.1 está no padrão novo.** Os roteiros da 1.2, 1.3 e 1.4 continuam com as seis cores, o `.papeis`, o `.preparo` em âmbar e o prompt aberto no meio da página. Esperam o Rafael validar a 1.1. Registrado também no `_shared/design-tokens.md`, com o aviso de **copiar da 1.1, nunca das outras três**.
+
 ## 8. Aberto
 
 - 🔴 **Teste de mesa das 4 aulas**, que nenhuma onda substitui
