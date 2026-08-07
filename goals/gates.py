@@ -483,6 +483,74 @@ if os.path.exists(REG):
 else:
     diz(False, "G13b", REG, "arquivo não existe")
 
+# ─── G13c · o Project de verdade da página de exemplo é descrito por números
+#      que vêm de dois arquivos reais. Se um deles mudar de tamanho, a página
+#      mente. Mesma lição do G13: número que a página afirma, o gate recalcula.
+titulo("G13c · OS NÚMEROS DO PROJECT DE VERDADE BATEM COM OS ARQUIVOS")
+print("        (a página de exemplo cita 128 linhas, 2.030 linhas e 15 especialistas)")
+FONTE = "../insumos/exemplos/m1-aula-3"
+EXEMPLO = "m1/a3-regra-que-fica/exemplo/index.html"
+if os.path.isdir(FONTE):
+    pag = open(EXEMPLO, encoding="utf-8").read()
+    inst = os.path.join(FONTE, "00-System_Instruction.md")
+    base = os.path.join(FONTE, "02-brand-squad.md")
+    diz(os.path.exists(inst) and os.path.exists(base), "G13c",
+        "os dois arquivos de origem estão lá")
+    if os.path.exists(inst) and os.path.exists(base):
+        n_inst = len(open(inst, encoding="utf-8").read().splitlines())
+        linhas_base = open(base, encoding="utf-8").read().splitlines()
+        n_base = len(linhas_base)
+        # o roster: cada especialista é um "### " antes da matriz de roteamento
+        fim = next((i for i, l in enumerate(linhas_base)
+                    if l.startswith("## ") and "ROUTING" in l.upper()), len(linhas_base))
+        n_esp = len([l for i, l in enumerate(linhas_base)
+                     if l.startswith("### ") and i < fim])
+        # o número vai para a tela com ponto de milhar, do jeito pt-BR
+        def br(n): return f"{n:,}".replace(",", ".")
+        diz(f"{n_esp} especialistas" in pag, "G13c", "especialistas no roster",
+            f"a página precisa dizer '{n_esp} especialistas'")
+        outros = [n for n in re.findall(r"(\d{1,3}) especialistas", pag) if int(n) != n_esp]
+        diz(not outros, "G13c", f"nenhum outro número de especialistas que {n_esp}",
+            str(outros) if outros else "")
+        # Contagem de linhas: presença sozinha não protege, porque o número
+        # aparece em mais de um lugar e trocar UM deles passaria batido.
+        # Então cada "N linhas" dentro dos rótulos do painel é conferido.
+        ROTULOS = r'class="(?:fcard-meta|forma-nome|painel-meta)">([^<]*)'
+        citados = [int(n.replace(".", ""))
+                   for bloco in re.findall(ROTULOS, pag)
+                   for n in re.findall(r"([\d.]+) linhas", bloco)]
+        validos = {n_inst, n_base}
+        errados = [n for n in citados if n not in validos]
+        diz(not errados, "G13c", "todo número de linhas do painel bate com o arquivo",
+            f"{errados} não são {sorted(validos)}" if errados
+            else f"{len(citados)} citações conferidas")
+        diz(set(citados) == validos, "G13c", "os dois arquivos aparecem com o tamanho certo",
+            f"achei {sorted(set(citados))}, esperava {sorted(validos)}")
+else:
+    print(f"  PULADO  {FONTE} não existe nesta máquina, os 5 números não foram conferidos")
+
+# ─── G16 · o nome do campo é o que aparece na tela do aluno, não o do help center
+titulo("G16 · O CAMPO SE CHAMA COMO ESTÁ ESCRITO NA TELA")
+print("        (é 'Contexto' no claude.ai em pt-BR · verificado em 07/08/2026)")
+# só o que o aluno lê: páginas e os .md publicados dentro de m1/.
+# Os goals descrevem a regra e citam o nome velho de propósito.
+DO_ALUNO = HTML + sorted(glob.glob("m1/**/*.md", recursive=True))
+VELHOS = ["Conhecimento do projeto", "conhecimento do projeto", "Project knowledge"]
+achados = []
+for f in DO_ALUNO:
+    s = open(f, encoding="utf-8").read()
+    for v in VELHOS:
+        if v in s: achados.append(f"{f} diz '{v}'")
+diz(not achados, "G16", "nenhuma página do aluno usa o nome antigo do campo",
+    str(achados) if achados else f"{len(DO_ALUNO)} arquivos varridos")
+# e a aula que ensina a anatomia precisa nomear os três blocos da tela
+ANAT = "m1/a3-regra-que-fica/index.html"
+s = open(ANAT, encoding="utf-8").read() if os.path.exists(ANAT) else ""
+faltam = [b for b in ["Instruções", "Memória", "Contexto"]
+          if f'class="tela-caixa-rot">{b}<' not in s]
+diz(not faltam, "G16", "a tela da 1.3 mostra os três blocos com o nome da tela",
+    f"faltam {faltam}" if faltam else "")
+
 # ─── G14 · a demonstração é passo a passo PARA O ALUNO, não roteiro de palco
 titulo("G14 · DEMONSTRAÇÃO ESCRITA PARA O ALUNO, SEM DIREÇÃO DE CENA")
 print("        (o site é do aluno · direção de palco vive fora dele · CLAUDE.md §9)")

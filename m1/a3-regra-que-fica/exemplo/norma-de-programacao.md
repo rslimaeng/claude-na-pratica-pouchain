@@ -1,6 +1,6 @@
 # Norma interna de programação de produção · Gráfica Aurora
 
-> Este arquivo vai no campo **Conhecimento do projeto**, não nas Instruções.
+> Este arquivo vai no campo **Contexto**, não nas Instruções.
 > Repare na diferença: as regras do coordenador são lidas em toda conversa.
 > Esta norma só é consultada quando a pergunta tem a ver com ela.
 > Documento fictício, criado para o treinamento.

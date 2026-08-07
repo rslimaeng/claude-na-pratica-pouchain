@@ -589,8 +589,104 @@ dor da sala.
 
 **Gates:** 18 gates, 177 checagens, exit 0.
 
+## §7-undecies · Onda 3-decies · a tela real como fonte da verdade
+
+**Pedido do Rafael em 07/08/2026**, com quatro prints da conta dele e a pasta
+`insumos/exemplos/m1-aula-3/`. Duas frentes: consertar o enquadramento da seção
+04 e refazer a página de exemplo no padrão do caso-âncora do Maria Pitanga.
+
+### 🔴 O achado que mais importa: o campo mudou de nome
+
+O painel de um Project em pt-BR mostra **Instruções · Memória · Contexto**. O
+site escrevia **"Conhecimento do projeto"** em 6 lugares, que é a tradução do
+`project knowledge` do help center em inglês.
+
+**Por que isso não é implicância:** o material existe para 20 pessoas abrirem a
+própria tela e acharem o campo. Nome que não está na tela é aula que trava ao
+vivo, e trava no pior momento, que é o do exercício.
+
+Trocado nas 6 ocorrências. Virou o gate **G16**, que varre HTML e os `.md`
+publicados dentro de `m1/`, e confere também que a tela da 1.3 nomeia os três
+blocos. Os `goals/*.md` ficam de fora de propósito: são eles que enunciam a
+regra e precisam poder citar o nome velho.
+
+⚠️ **Fica aberto** se "Contexto" é o rótulo de todo mundo ou de um lote de
+rollout. Conferir na semana da turma **numa conta que não seja a do instrutor**.
+
+### O que os prints resolveram de graça
+
+| Print | O que ele provou |
+|---|---|
+| Diálogo *Criar instruções* | *"funcionará junto com suas instruções do perfil e o estilo selecionado"*. A pendência 🟡 do bloco `.pilha` virou ✅, **por texto do produto** e não do help center |
+| Diálogo *Gerenciar memória* | *"regenera a memória do projeto todas as noites"* e *"apenas você pode ver"*. Duas precisões que a aula não tinha |
+| Painel do projeto | **2.030 linhas ocupam 2%** da capacidade. Virou o fecho da página de exemplo |
+
+**A lição de método:** eu procurei a confirmação da pilha no help center por dois
+turnos e não achei. Ela estava escrita **dentro do produto**, num diálogo que o
+usuário lê toda vez que cria um projeto. Documentação de produto também é a tela
+do produto.
+
+### A seção 04 estava "desenquadrada", e era literal
+
+Três defeitos somados, nenhum deles overflow:
+
+1. A tabela era desenhada com barra vertical em **fonte proporcional**. Os pipes
+   não alinhavam, e é isso que o olho lê como quebrado
+2. `.uau-prompt` tinha `margin:0 22px 0`, ou seja **zero em cima e zero embaixo**,
+   espremida entre o cabeçalho e as colunas
+3. O bloco corria a `--col-wide` cheia, 1.140px contra 732px de prosa. Razão 1,56
+
+Corrigido com três variantes renderizadas e comparadas no navegador, e o Rafael
+escolheu a C: a saída virou **tabela HTML de verdade**, como o Claude renderiza,
+e o bloco caiu para **960px** (razão 1,31). O momento-chave é metade figura e
+metade prosa, e por isso ele não merece a largura das figuras puras.
+
+**Duas regras globais da própria página mordiam o bloco novo**, e só apareceram
+medindo: `table{min-width:580px}` empurrava a tabela para fora de meia coluna, e
+`.step-body ol{font-size:18px}` inflava as listas da resposta. As duas anuladas
+com `min-width:0` e prefixo `.step-body`.
+
+### A página de exemplo ganhou um Project de verdade
+
+A crítica do Rafael: *"o Claude project tem toda a parte de instruções, a parte
+de contexto e não tem nada disso"*. Estava certo. Os arquivos mapeavam nos campos
+certos, mas a página nunca **mostrava o Project**.
+
+Entrou uma seção com o painel do `brand-squad` reproduzido campo a campo, com o
+tamanho real de cada arquivo e a barra de capacidade. **Só prévia, sem download**,
+decisão dele: o arquivo é ativo de trabalho e o repositório é público.
+
+Três escolhas que valem registrar:
+
+- **O texto da Memória foi trocado por um genérico**, e o motivo virou conteúdo:
+  a tela diz *"apenas você pode ver esta memória"*, então publicar a original
+  seria mostrar justamente o que o produto separa
+- **A palavra "agente" não entrou**, mesmo o arquivo de origem sendo cheio dela.
+  Na página são "especialistas". O termo é do nível 3 e chega na 1.4
+- **Nenhum dos 15 nomes de autor real aparece.** A regra do §6.1 vale mesmo para
+  gente pública
+
+### O gate que eu achei que tinha e não tinha
+
+O **G13c** confere os números do Project real contra os dois arquivos de origem.
+A primeira versão conferia **presença**: *"a página precisa dizer 2.030 linhas"*.
+
+Injetei o defeito numa cópia e **ele passou**. Motivo: o número aparece em dois
+lugares da página, e trocar um deles deixava o outro satisfazendo o teste.
+
+Reescrito para conferir **cada citação dentro dos rótulos do painel**, e não a
+presença em qualquer lugar do arquivo. Reprovado contra **9 defeitos injetados**,
+9 pegos, incluindo o caso de o arquivo de origem crescer e a página ficar velha.
+
+> **Presença não é conferência.** Um gate que pergunta "existe?" passa enquanto
+> sobrar uma cópia certa em qualquer canto do arquivo. O que protege é conferir
+> **cada ocorrência no lugar onde ela é afirmada**.
+
+**Gates:** 20 gates, 184 checagens, exit 0.
+
 ## 8. Aberto
 
 - 🔴 **Teste de mesa das 4 aulas**, que nenhuma onda substitui
+- 🟡 **Confirmar "Contexto" numa conta que não seja a do instrutor**, antes da turma
 - **M2 e M3 ainda com nome antigo.** "Cowork na prática" carrega o recurso oficial mas não promete nada. Resolver quando o M2 for validado
 - A onda 4 (Módulo 2) continua bloqueada pelas duas descobertas da onda 2: skill do claude.ai é individual, e só o proprietário adiciona conector em Team/Enterprise

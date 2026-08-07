@@ -202,18 +202,45 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
   border-bottom:1px solid var(--accent-line);font-family:var(--font-mono);
   font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--accent-dark)}
 .uau-grid{display:grid;grid-template-columns:1fr 1fr}
-.uau-col{padding:22px}
+/* min-width:0 para a coluna poder encolher. Sem isso, uma linha longa da
+   resposta empurra a grade para fora da caixa. */
+.uau-col{padding:22px;min-width:0}
 .uau-col + .uau-col{border-left:1px solid var(--border)}
 .uau-col-label{font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;
   text-transform:uppercase;color:var(--text-dim);margin-bottom:12px}
-.uau-out{background:var(--bg-code);border:1px solid var(--border);
-  border-radius:var(--radius-sm);padding:14px 16px;font-size:13.5px;
-  color:var(--text-muted);line-height:1.5;margin-bottom:12px;white-space:pre-wrap}
 .uau-nota{font-size:13.5px;color:var(--text-muted);line-height:1.5}
 .uau-nota strong{color:var(--text)}
+.uau-plabel{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--text-dim);margin:18px 22px 7px}
 .uau-prompt{font-family:var(--font-mono);font-size:12.5px;background:var(--bg-warm);
-  padding:11px 14px;border-radius:var(--radius-sm);margin:0 22px 0;color:var(--text);
+  padding:11px 14px;border-radius:var(--radius-sm);margin:0 22px 4px;color:var(--text);
   line-height:1.5}
+/* A resposta aparece como o Claude renderiza de verdade: tabela é tabela.
+   Tabela desenhada com barra vertical em fonte proporcional não alinha. */
+/* min-width:0 anula o min-width:580px do seletor `table` global, que vale para
+   as tabelas largas da página. Esta cabe em meia coluna. */
+.uau-tab{width:100%;min-width:0;border-collapse:collapse;font-size:12.5px;
+  margin-bottom:11px;background:var(--bg-elev);border:1px solid var(--border);
+  border-radius:var(--radius-sm);overflow:hidden}
+.uau-tab th{text-align:left;font-size:10.5px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--text-dim);font-weight:600;
+  padding:7px 10px;border-bottom:1px solid var(--border)}
+.uau-tab td{padding:6px 10px;color:var(--text-muted);
+  border-bottom:1px solid var(--border)}
+.uau-tab tr:last-child td{border-bottom:none}
+.uau-txt{font-size:13.5px;color:var(--text-muted);line-height:1.6;margin-bottom:9px}
+.uau-txt b{color:var(--text);font-weight:600}
+.uau-ask{background:var(--bg-code);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:14px 16px;font-size:13.5px;
+  color:var(--text-muted);line-height:1.6;margin-bottom:12px}
+/* prefixadas com .step-body só para ganhar do `.step-body ol{font-size:18px}`,
+   que é a medida da prosa da página e não serve dentro de uma resposta */
+.step-body .uau-ol,.step-body .uau-ask ol{font-size:13.5px;color:var(--text-muted);
+  line-height:1.6;padding-left:19px;margin:7px 0 12px}
+.step-body .uau-ask ol{margin-bottom:0}
+.step-body .uau-ol li,.step-body .uau-ask li{margin-bottom:4px;line-height:1.55}
+.fig-leg{font-size:14px;color:var(--text-dim);line-height:1.55;margin:14px 0 0}
+.fig-leg strong{color:var(--text-muted)}
 
 /* VISUAL · DILUIÇÃO (quantas páginas você sobe) */
 .dilui{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:24px 0}
@@ -602,13 +629,20 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
   border-radius:var(--radius);padding:9px 14px;font-family:var(--font-mono);
   font-size:13.5px;color:var(--accent-dark);margin-bottom:20px;
   display:inline-block}
-.tela-dois{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
+.tela-tres{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
+  margin-bottom:18px;align-items:stretch}
 .tela-caixa{background:var(--bg-warm);border:1px solid var(--border);
-  border-radius:var(--radius);padding:16px 18px}
+  border-radius:var(--radius);padding:16px 18px;display:flex;flex-direction:column}
+/* o bloco que não é seu: fundo neutro e borda tracejada, para a diferença
+   aparecer antes de a pessoa ler o rótulo de baixo */
+.tela-caixa-dele{background:var(--bg-code);border-style:dashed}
 .tela-caixa-rot{font-family:var(--font-mono);font-size:10px;letter-spacing:.09em;
   text-transform:uppercase;color:var(--text-dim);margin-bottom:8px}
 .tela-caixa-t{font-size:15px;font-weight:600;color:var(--text);margin-bottom:5px}
 .tela-caixa-d{font-size:14px;color:var(--text-muted);line-height:1.55}
+.tela-caixa-quem{margin-top:auto;padding-top:12px;font-family:var(--font-mono);
+  font-size:10.5px;letter-spacing:.05em;color:var(--text-dim)}
+.tela-caixa-dele .tela-caixa-quem{color:var(--accent-dark)}
 .tela-chat{border-left:3px solid var(--accent);background:var(--bg-code);
   border-radius:0 var(--radius) var(--radius) 0;padding:14px 18px}
 .tela-chat-rot{font-family:var(--font-mono);font-size:11.5px;
@@ -617,10 +651,14 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
 
 @media (max-width:820px){
   .eh,.anat{grid-template-columns:1fr}
-  .tela-dois{grid-template-columns:1fr}
+  .tela-tres{grid-template-columns:1fr}
+  .uau-tab{font-size:12px}
 }
 
 /* BREAKOUT · figura e tabela saem da coluna de leitura, prosa fica */
+/* o momento-chave é metade figura, metade prosa. Na largura cheia ele fugia
+   da coluna de texto, então corre 180px mais estreito que as outras figuras */
+.uau{--col-wide:960px}
 .table-wrap,.fluxo,.dilui,.compare,.uau,.pilha,.ctx,.setores,.trilha,
 .eh,.anat,.tela,
 .facts,.pre-req,.modules,.aulas,.fio-passos,.leva,.entrega,
@@ -883,7 +921,7 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
           <div class="anat-t">O material de consulta</div>
           <div class="anat-d">Norma, manual, glossário, tabela de referência. Ele abre quando a pergunta tem a ver, e ignora quando não tem.</div>
           <div class="anat-ex"><b>No PCP:</b> a norma interna de programação, com a ordem de prioridade da fila e a capacidade de cada máquina por turno.</div>
-          <div class="anat-onde">Vai no campo · Conhecimento do projeto</div>
+          <div class="anat-onde">Vai no campo · Contexto</div>
         </div>
         <div class="anat-card">
           <div class="anat-n">03</div>
@@ -906,7 +944,7 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
 
       <h4>Onde isso aparece na tela</h4>
       <p>
-        No Claude, no navegador: <strong>Projects &rarr; criar projeto</strong>. São dois campos, mais o chat de uso. Nada para instalar.
+        No Claude, no navegador: <strong>Projects &rarr; criar projeto</strong>. Abre um painel do lado direito com três blocos. <strong>Você escreve em dois deles.</strong> O do meio é o Claude que preenche, e é o que a gente viu no conceito anterior.
       </p>
 
       <div class="tela">
@@ -916,16 +954,24 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
         </div>
         <div class="tela-rot">Nome do projeto</div>
         <div class="tela-campo">Coordenação de PCP</div>
-        <div class="tela-dois">
+        <div class="tela-tres">
           <div class="tela-caixa">
-            <div class="tela-caixa-rot">Campo · Instruções</div>
+            <div class="tela-caixa-rot">Instruções</div>
             <div class="tela-caixa-t">As regras da sua função</div>
             <div class="tela-caixa-d">O texto que você vai escrever na seção 05. Lido no começo de toda conversa deste projeto.</div>
+            <div class="tela-caixa-quem">quem escreve: você</div>
+          </div>
+          <div class="tela-caixa tela-caixa-dele">
+            <div class="tela-caixa-rot">Memória</div>
+            <div class="tela-caixa-t">O resumo do que já foi conversado</div>
+            <div class="tela-caixa-d">Refeito toda madrugada, a partir das conversas deste projeto. Só você enxerga a sua.</div>
+            <div class="tela-caixa-quem">quem escreve: ele</div>
           </div>
           <div class="tela-caixa">
-            <div class="tela-caixa-rot">Campo · Conhecimento do projeto</div>
+            <div class="tela-caixa-rot">Contexto</div>
             <div class="tela-caixa-t">O material de consulta</div>
             <div class="tela-caixa-d">Os arquivos que ele abre quando a pergunta pede. Poucos e curtos, pelo motivo que vem logo abaixo.</div>
+            <div class="tela-caixa-quem">quem escreve: você</div>
           </div>
         </div>
         <div class="tela-chat">
@@ -933,6 +979,9 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
           <div class="tela-chat-txt">Anexei o relatório de OS de hoje. Monta a pauta da reunião das 8h.</div>
         </div>
       </div>
+      <p class="fig-leg">
+        Repare que <strong>Memória fica no meio dos dois campos que são seus</strong>, e é fácil confundir com eles. A diferença aparece na coluna de baixo: nos outros dois quem escreve é você.
+      </p>
 
       <p>
         Agora que os três lugares têm nome, dá para comparar o que cada um faz de diferente:
@@ -975,7 +1024,7 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
       <div class="callout callout-ok">
         <div class="callout-title">A pergunta que resolve na hora: "onde eu ponho a planilha de hoje?"</div>
         <p>
-          <strong>No anexo da conversa.</strong> Arquivo anexado dentro de um chat fica só naquele chat: ele não entra no conhecimento do projeto e as outras conversas não enxergam. É exatamente o que você quer para o relatório desta semana, que na semana que vem já está velho.
+          <strong>No anexo da conversa.</strong> Arquivo anexado dentro de um chat fica só naquele chat: ele não entra no Contexto do projeto e as outras conversas não enxergam. É exatamente o que você quer para o relatório desta semana, que na semana que vem já está velho.
         </p>
         <p>
           O critério é o mesmo do curso inteiro: <strong>esta informação precisa estar no contexto sempre, às vezes, ou só hoje?</strong> Sempre é instrução. Às vezes é documento. Só hoje é anexo.
@@ -1232,39 +1281,42 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
 
       <div class="uau">
         <div class="uau-head">Momento-chave · o mesmo pedido, dois resultados</div>
+        <div class="uau-plabel">O que foi digitado, nas duas</div>
         <div class="uau-prompt">Me dá a situação das OS de hoje.</div>
         <div class="uau-grid">
           <div class="uau-col">
             <div class="uau-col-label">Sem regra · Chat comum</div>
-            <div class="uau-out">Claro! Para eu te ajudar com a situação
-das OS de hoje, preciso de algumas
-informações:
-
-1. Você poderia compartilhar os dados
-   das ordens de serviço?
-2. O que você considera "situação"?
-3. Que tipo de análise você espera?</div>
+            <div class="uau-ask">
+              Claro! Para eu te ajudar com a situação das OS de hoje, preciso de algumas informações:
+              <ol>
+                <li>Você poderia compartilhar os dados das ordens de serviço?</li>
+                <li>O que você considera "situação"?</li>
+                <li>Que tipo de análise você espera?</li>
+              </ol>
+            </div>
             <div class="uau-nota">
               Ele não sabe o que é OS na sua casa, não tem o dado, não sabe para quem é. <strong>Devolve a pergunta.</strong> E aí você digita tudo de novo, de um jeito um pouco diferente do de ontem.
             </div>
           </div>
           <div class="uau-col">
             <div class="uau-col-label">Com regra · Project configurado</div>
-            <div class="uau-out">| OS   | Cliente        | Prazo      | Atraso   |
-|------|----------------|------------|----------|
-| 2442 | Supermercados… | 03/07/2026 | 13 dias  |
-| 2490 | Cosméticos Fl… | 03/07/2026 | 13 dias  |
-| 2492 | Cosméticos Fl… | 04/07/2026 | 12 dias  |
-
-30 atrasadas no total. Carga em aberto:
-Digital 1 com 14 OS, Offset 3 com 14,
-Offset 2 com 13, Offset 1 com 12,
-Flexo 1 com 10, Flexo 2 com 7.
-2 OS estão sem máquina definida.
-
-Para decidir hoje:
-1. A Digital 1 tem 9 das 14 OS paradas
-   esperando papel ou aprovação.</div>
+            <table class="uau-tab">
+              <thead>
+                <tr><th>OS</th><th>Cliente</th><th>Prazo</th><th>Atraso</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>2442</td><td>Supermercados…</td><td>03/07/2026</td><td>13 dias</td></tr>
+                <tr><td>2490</td><td>Cosméticos Fl…</td><td>03/07/2026</td><td>13 dias</td></tr>
+                <tr><td>2492</td><td>Cosméticos Fl…</td><td>04/07/2026</td><td>12 dias</td></tr>
+              </tbody>
+            </table>
+            <div class="uau-txt">
+              <b>30 atrasadas no total.</b> Carga em aberto: Digital 1 com 14 OS, Offset 3 com 14, Offset 2 com 13, Offset 1 com 12, Flexo 1 com 10, Flexo 2 com 7. 2 OS estão sem máquina definida.
+            </div>
+            <div class="uau-txt"><b>Para decidir hoje:</b></div>
+            <ol class="uau-ol">
+              <li>A Digital 1 tem 9 das 14 OS paradas esperando papel ou aprovação.</li>
+            </ol>
             <div class="uau-nota">
               Tabela, data em DD/MM/AAAA, sem introdução, já apontando o que você precisa decidir. <strong>Você não pediu nada disso agora</strong>. Pediu uma vez, quando escreveu as regras.
             </div>
@@ -1457,7 +1509,7 @@ prazo × data de hoje.</div>
         <a class="saida principal" href="./exemplo/">
           <span class="s-rot">O projeto inteiro montado, com os arquivos prontos</span>
           <span class="s-titulo">As regras, a norma de consulta e o pedido da vez, cada um no seu campo</span>
-          <span class="s-desc">Os <strong>três arquivos para baixar</strong>, a tela do Claude mostrando onde cada um entra, e o mesmo pedido rodando dentro e fora do projeto. É a versão de referência do que você acabou de escrever.</span>
+          <span class="s-desc">Os <strong>três arquivos para baixar</strong> e a tela mostrando onde cada um entra. No fim tem <strong>um Project de verdade aberto por dentro</strong>, com 2.030 linhas de material no Contexto, para você ver que o esqueleto é o mesmo em qualquer tamanho.</span>
           <span class="s-cta">ver o projeto montado &rarr;</span>
         </a>
       </div>

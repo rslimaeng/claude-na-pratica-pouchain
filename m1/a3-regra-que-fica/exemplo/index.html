@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>O Project montado · Aula 1.3</title>
-<meta name="description" content="Os três arquivos de um Project de coordenação de PCP, prontos para baixar, com o lugar exato de cada um na tela do Claude.">
+<meta name="description" content="Os arquivos de um Project de coordenação de PCP, prontos para baixar, e um Project de verdade aberto por dentro para você ver os três campos funcionando.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -45,15 +45,18 @@ h1{font-size:clamp(28px,4vw,38px);font-weight:700;line-height:1.12;
   text-transform:uppercase;color:var(--text-dim);margin-bottom:8px}
 h2{font-size:23px;font-weight:700;line-height:1.25;letter-spacing:-.01em;
   margin-bottom:12px}
+h3{font-size:17px;font-weight:600;line-height:1.3;margin:30px 0 10px}
 .sec p{font-size:16.5px;color:var(--text-muted);line-height:1.62;margin-bottom:12px}
 .sec p strong{color:var(--text)}
+.fig-leg{font-size:14.5px;color:var(--text-dim);line-height:1.55;margin:14px 0 0}
+.fig-leg strong{color:var(--text-muted)}
 
 .aviso{background:var(--warning-soft);border:1px solid rgba(184,134,11,.28);
   border-radius:var(--radius);padding:18px 22px;margin:22px 0}
 .aviso-t{font-size:15px;font-weight:600;color:#7A5A08;margin-bottom:6px}
 .aviso p{font-size:15.5px;color:var(--text-muted);margin-bottom:0;line-height:1.58}
 
-/* os tres arquivos */
+/* os arquivos para baixar */
 .arqs{display:grid;gap:14px;margin:22px 0 6px}
 .arq{background:var(--bg-elev);border:1px solid var(--border);
   border-radius:var(--radius-lg);padding:20px 24px;
@@ -75,7 +78,7 @@ h2{font-size:23px;font-weight:700;line-height:1.25;letter-spacing:-.01em;
   border:1px solid var(--accent-line)}
 .baixar.ghost:hover{background:var(--accent-tinted);color:var(--accent-dark)}
 
-/* o mockup da tela */
+/* o mockup da tela de montagem */
 .tela{background:var(--bg-elev);border:1px solid var(--border);
   border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);
   padding:22px 24px 24px;margin:22px 0 6px}
@@ -90,15 +93,20 @@ h2{font-size:23px;font-weight:700;line-height:1.25;letter-spacing:-.01em;
 .tela-campo{background:var(--bg-code);border:1px solid var(--border);
   border-radius:var(--radius);padding:9px 14px;font-family:var(--font-mono);
   font-size:13.5px;color:var(--accent-dark);margin-bottom:20px;display:inline-block}
-.tela-dois{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
+.tela-tres{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
+  margin-bottom:18px;align-items:stretch}
 .tela-caixa{background:var(--bg-warm);border:1px solid var(--border);
-  border-radius:var(--radius);padding:16px 18px}
+  border-radius:var(--radius);padding:16px 18px;display:flex;flex-direction:column}
+.tela-caixa-dele{background:var(--bg-code);border-style:dashed}
 .tela-caixa-rot{font-family:var(--font-mono);font-size:10px;letter-spacing:.09em;
   text-transform:uppercase;color:var(--text-dim);margin-bottom:8px}
 .tela-caixa-t{font-size:15px;font-weight:600;color:var(--text);margin-bottom:5px}
 .tela-caixa-d{font-size:14px;color:var(--text-muted);line-height:1.55}
 .tela-caixa-d code{font-family:var(--font-mono);font-size:12.5px;
   background:var(--bg-elev);padding:2px 6px;border-radius:4px;color:var(--accent-dark)}
+.tela-caixa-quem{margin-top:auto;padding-top:12px;font-family:var(--font-mono);
+  font-size:10.5px;letter-spacing:.05em;color:var(--text-dim)}
+.tela-caixa-dele .tela-caixa-quem{color:var(--accent-dark)}
 .tela-chat{border-left:3px solid var(--accent);background:var(--bg-code);
   border-radius:0 var(--radius) var(--radius) 0;padding:14px 18px}
 .tela-chat-rot{font-family:var(--font-mono);font-size:11.5px;color:var(--text-dim);
@@ -106,6 +114,86 @@ h2{font-size:23px;font-weight:700;line-height:1.25;letter-spacing:-.01em;
 .tela-chat-txt{font-family:var(--font-mono);font-size:14px;color:var(--text)}
 .tela-nota{font-size:15px;color:var(--text-muted);line-height:1.6;margin-top:16px}
 .tela-nota strong{color:var(--text)}
+
+/* ===== O PAINEL DE UM PROJECT DE VERDADE ===== */
+/* reprodução do painel que abre do lado direito de um Project no navegador */
+.painel{background:var(--bg-elev);border:1px solid var(--border);
+  border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);
+  overflow:hidden;margin:22px 0 0}
+.painel-topo{display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:16px 22px;border-bottom:1px solid var(--border)}
+.painel-nome{font-size:19px;font-weight:600;letter-spacing:-.01em}
+.painel-icones{font-family:var(--font-mono);font-size:13px;color:var(--text-dim);
+  letter-spacing:.3em}
+.painel-bloco{padding:18px 22px;border-bottom:1px solid var(--border)}
+.painel-bloco:last-child{border-bottom:none}
+.painel-cab{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.painel-rot{font-size:15.5px;font-weight:600;color:var(--text)}
+.painel-badge{font-family:var(--font-mono);font-size:10px;letter-spacing:.06em;
+  text-transform:uppercase;background:var(--bg-warm);color:var(--text-dim);
+  padding:3px 8px;border-radius:20px;border:1px solid var(--border)}
+.painel-badge.quem-voce{background:var(--accent-soft);color:var(--accent-dark);
+  border-color:var(--accent-line)}
+.painel-badge.quem-ele{background:var(--success-soft);color:#1F5A22;
+  border-color:rgba(46,125,50,.24)}
+.painel-txt{font-size:13.5px;color:var(--text-dim);line-height:1.6;
+  font-family:var(--font-mono)}
+.painel-mem{font-size:13.5px;color:var(--text-muted);line-height:1.6}
+/* rótulo em bloco ganha classe, nunca seletor de tag: um `.painel-mem b`
+   pegaria também o negrito de dentro de um parágrafo e quebraria a frase */
+.mem-t{color:var(--text);font-weight:600;font-size:13px;margin-bottom:2px}
+.mem-v{margin-bottom:9px}
+.mem-v:last-child{margin-bottom:0}
+.painel-meta{font-size:12.5px;color:var(--text-dim);margin-top:9px}
+
+.barra-trilho{height:5px;border-radius:3px;background:var(--bg-warm);
+  overflow:hidden;margin:4px 0 7px}
+.barra-fill{height:100%;background:var(--accent);border-radius:3px}
+.barra-rot{font-size:13px;color:var(--text-dim)}
+
+.fcard{display:inline-block;background:var(--bg-elev);border:1px solid var(--border);
+  border-radius:var(--radius);padding:14px 18px;margin-top:14px;min-width:230px;
+  box-shadow:var(--shadow-sm)}
+.fcard-nome{font-family:var(--font-mono);font-size:14px;font-weight:500;
+  color:var(--text);margin-bottom:3px}
+.fcard-meta{font-size:13px;color:var(--text-dim);margin-bottom:14px}
+.fcard-tag{font-family:var(--font-mono);font-size:10px;letter-spacing:.06em;
+  text-transform:uppercase;background:var(--bg-code);color:var(--text-dim);
+  padding:3px 8px;border-radius:4px;border:1px solid var(--border)}
+
+/* a forma dos dois arquivos, sem o conteúdo */
+.forma{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:22px 0 0}
+.forma-card{background:var(--bg-elev);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:20px 22px}
+.forma-rot{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.forma-nome{font-family:var(--font-mono);font-size:14px;color:var(--text);
+  margin-bottom:12px}
+.forma-lista{list-style:none;display:grid;gap:7px;margin-bottom:14px}
+.forma-lista li{font-size:14.5px;color:var(--text-muted);line-height:1.5;
+  padding-left:16px;position:relative}
+.forma-lista li::before{content:"·";position:absolute;left:3px;font-weight:700;
+  color:var(--text-dim)}
+.forma-cite{background:var(--bg-code);border-left:3px solid var(--accent-line);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:11px 14px;
+  font-size:14px;color:var(--text-muted);line-height:1.55;font-style:italic}
+
+.priv{background:var(--accent-tinted);border:1px solid var(--accent-line);
+  border-radius:var(--radius);padding:16px 20px;margin:20px 0 0}
+.priv-t{font-size:14.5px;font-weight:600;color:var(--accent-dark);margin-bottom:5px}
+.priv p{font-size:14.5px;color:var(--text-muted);line-height:1.58;margin-bottom:0}
+
+table{width:100%;border-collapse:collapse;font-size:15px;margin:22px 0 0;
+  background:var(--bg-elev);border:1px solid var(--border);
+  border-radius:var(--radius-lg);overflow:hidden}
+th{text-align:left;padding:11px 16px;background:var(--bg-warm);font-weight:600;
+  font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-dim);
+  border-bottom:1px solid var(--border)}
+td{padding:11px 16px;border-bottom:1px solid var(--border);color:var(--text-muted);
+  vertical-align:top;line-height:1.5}
+tr:last-child td{border-bottom:none}
+td strong{color:var(--text)}
+.tab-wrap{overflow-x:auto}
 
 /* antes e depois */
 .dois{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:22px 0 6px}
@@ -135,7 +223,7 @@ h2{font-size:23px;font-weight:700;line-height:1.25;letter-spacing:-.01em;
   font-size:13.5px;color:var(--text-dim);line-height:1.6}
 
 @media (max-width:760px){
-  .tela-dois,.dois{grid-template-columns:1fr}
+  .tela-tres,.dois,.forma{grid-template-columns:1fr}
   .arq{grid-template-columns:1fr}
 }
 </style>
@@ -148,12 +236,12 @@ h2{font-size:23px;font-weight:700;line-height:1.25;letter-spacing:-.01em;
   <h1>O Project de um coordenador de PCP, com os arquivos prontos</h1>
   <p class="lead">
     Três arquivos, três lugares diferentes. Um vai no campo de <strong>Instruções</strong>,
-    outro vai no <strong>Conhecimento do projeto</strong>, e o terceiro não vai em campo
-    nenhum: é o que você digita no chat.
+    outro vai no <strong>Contexto</strong>, e o terceiro não vai em campo nenhum: é o que
+    você digita no chat.
   </p>
   <p class="lead">
-    Tudo aqui é da <strong>Gráfica Aurora</strong>, indústria gráfica fictícia criada
-    para este treinamento. Nomes, máquinas, clientes e números são inventados.
+    No fim da página tem <strong>um Project de verdade aberto por dentro</strong>, com os
+    três campos preenchidos, para você ver até onde isto vai depois que você pega o jeito.
   </p>
 
   <div class="aviso">
@@ -193,7 +281,7 @@ h2{font-size:23px;font-weight:700;line-height:1.25;letter-spacing:-.01em;
 
     <div class="arq">
       <div>
-        <div class="arq-onde">Vai no campo · Conhecimento do projeto</div>
+        <div class="arq-onde">Vai no campo · Contexto</div>
         <div class="arq-nome">
           <span class="arq-tipo">md</span>
           <span>norma-de-programacao.md</span>
@@ -245,8 +333,8 @@ h2{font-size:23px;font-weight:700;line-height:1.25;letter-spacing:-.01em;
   <div class="sec-rot">Onde cada arquivo entra</div>
   <h2>A tela do Claude, com os três no lugar</h2>
   <p>
-    No Claude, no navegador: <strong>Projects &rarr; criar projeto</strong>. São dois campos
-    de verdade, mais o chat de uso. Sem instalar nada, sem código.
+    No Claude, no navegador: <strong>Projects &rarr; criar projeto</strong>. Abre um painel
+    do lado direito com três blocos. Você escreve em dois, e o terceiro é ele que preenche.
   </p>
 
   <div class="tela">
@@ -258,22 +346,33 @@ h2{font-size:23px;font-weight:700;line-height:1.25;letter-spacing:-.01em;
     <div class="tela-rot">Nome do projeto</div>
     <div class="tela-campo">Coordenação de PCP</div>
 
-    <div class="tela-dois">
+    <div class="tela-tres">
       <div class="tela-caixa">
-        <div class="tela-caixa-rot">Campo · Instruções</div>
+        <div class="tela-caixa-rot">Instruções</div>
         <div class="tela-caixa-t">As regras da sua função</div>
         <div class="tela-caixa-d">
           Cole aqui o conteúdo de <code>regras-do-coordenador.md</code>. É lido no começo
           de toda conversa deste projeto, sem você pedir.
         </div>
+        <div class="tela-caixa-quem">quem escreve: você</div>
+      </div>
+      <div class="tela-caixa tela-caixa-dele">
+        <div class="tela-caixa-rot">Memória</div>
+        <div class="tela-caixa-t">O resumo do que já foi conversado</div>
+        <div class="tela-caixa-d">
+          Você não põe nada aqui. Ele refaz toda madrugada, a partir das conversas deste
+          projeto, e só você enxerga a sua.
+        </div>
+        <div class="tela-caixa-quem">quem escreve: ele</div>
       </div>
       <div class="tela-caixa">
-        <div class="tela-caixa-rot">Campo · Conhecimento do projeto</div>
+        <div class="tela-caixa-rot">Contexto</div>
         <div class="tela-caixa-t">O material de consulta</div>
         <div class="tela-caixa-d">
           Suba <code>norma-de-programacao.md</code>. Ele procura ali quando a pergunta
           tem a ver, e ignora quando não tem.
         </div>
+        <div class="tela-caixa-quem">quem escreve: você</div>
       </div>
     </div>
 
@@ -283,9 +382,178 @@ h2{font-size:23px;font-weight:700;line-height:1.25;letter-spacing:-.01em;
     </div>
 
     <div class="tela-nota">
-      É isso. Nome, dois campos e o chat de uso. <strong>Montar leva uns 15 minutos na
-      primeira vez.</strong> Depois, cada uso é uma frase.
+      É isso. Nome, dois campos que são seus e o chat de uso. <strong>Montar leva uns 15
+      minutos na primeira vez.</strong> Depois, cada uso é uma frase.
     </div>
+  </div>
+</div>
+
+<div class="wrap sec">
+  <div class="sec-rot">Um Project de verdade, por dentro</div>
+  <h2>O mesmo esqueleto, num projeto que roda de verdade</h2>
+  <p>
+    O de cima é o que você monta hoje, e ele é pequeno de propósito. Este aqui é um
+    Project que o instrutor deste curso usa no trabalho dele, para construção de marca.
+    <strong>É bem maior, e a graça é essa: o esqueleto não mudou.</strong> Continuam sendo
+    os mesmos três blocos, na mesma ordem.
+  </p>
+  <p>
+    O que segue é o painel do lado direito, reproduzido campo a campo.
+  </p>
+
+  <div class="painel">
+    <div class="painel-topo">
+      <div class="painel-nome">brand-squad</div>
+      <div class="painel-icones" aria-hidden="true">···</div>
+    </div>
+
+    <div class="painel-bloco">
+      <div class="painel-cab">
+        <span class="painel-rot">Instruções</span>
+        <span class="painel-badge quem-voce">quem escreve: você</span>
+      </div>
+      <div class="painel-txt">
+        # Prompt Orquestrador &gt; System Instruction para Claude Projects &gt;
+        ## IDENTIDADE E FUNÇÃO &gt; Você é um orquestrador. Seu papel não é responder
+        diretamente, é identificar qual especialista definido no arquivo base deve
+        responder e entregar a resposta na voz dele…
+      </div>
+      <div class="painel-meta">128 linhas · 4 passos de protocolo · 5 regras de operação</div>
+    </div>
+
+    <div class="painel-bloco">
+      <div class="painel-cab">
+        <span class="painel-rot">Memória</span>
+        <span class="painel-badge">Apenas você</span>
+        <span class="painel-badge quem-ele">quem escreve: ele</span>
+      </div>
+      <div class="painel-mem">
+        <div class="mem-t">Purpose &amp; context</div>
+        <div class="mem-v">Projeto de construção de marca do zero. A ordem combinada vai
+        do posicionamento até a identidade visual, e não o contrário.</div>
+        <div class="mem-t">Current state</div>
+        <div class="mem-v">A sequência acordada tem cinco etapas. A primeira ainda está
+        aberta, esperando resposta a quatro perguntas de descoberta.</div>
+      </div>
+      <div class="painel-meta">Última atualização há 6 dias</div>
+    </div>
+
+    <div class="painel-bloco">
+      <div class="painel-cab">
+        <span class="painel-rot">Contexto</span>
+        <span class="painel-badge quem-voce">quem escreve: você</span>
+      </div>
+      <div class="barra-trilho" aria-hidden="true"><div class="barra-fill" style="width:2%"></div></div>
+      <div class="barra-rot">2% da capacidade do projeto utilizada</div>
+      <div class="fcard">
+        <div class="fcard-nome">02-brand-squad.md</div>
+        <div class="fcard-meta">2.030 linhas</div>
+        <span class="fcard-tag">md</span>
+      </div>
+    </div>
+  </div>
+
+  <p class="fig-leg">
+    Compare com a tela da seção anterior: <strong>mesmos três blocos, mesma ordem</strong>.
+    O que cresceu foi o tamanho do que está dentro, não a estrutura. Quem aprende os três
+    lugares hoje monta qualquer projeto amanhã, inclusive um deste tamanho.
+  </p>
+
+  <div class="priv">
+    <div class="priv-t">O texto da Memória acima foi trocado por um genérico, e o motivo é a própria aula</div>
+    <p>
+      A memória de um projeto é escrita pelo Claude a partir das conversas de quem usa, e
+      a tela avisa: <strong>"apenas você pode ver esta memória"</strong>. Ou seja, ela
+      guarda assunto particular de trabalho. Publicar a original aqui seria mostrar
+      justamente o que o produto separa. <strong>Os títulos são os de verdade</strong>, e
+      eles aparecem em inglês na tela mesmo com o resto em português.
+    </p>
+  </div>
+
+  <h3>O que tem dentro de cada campo</h3>
+  <p>
+    Os dois arquivos deste projeto ficam no computador de quem o montou, e não estão para
+    baixar. O que interessa aqui não é o conteúdo, é <strong>a forma</strong>: repare em
+    quem faz o quê.
+  </p>
+
+  <div class="forma">
+    <div class="forma-card">
+      <div class="forma-rot">Campo · Instruções</div>
+      <div class="forma-nome">128 linhas</div>
+      <ul class="forma-lista">
+        <li>Diz quem ele é e o que ele nunca faz</li>
+        <li>Manda ler o arquivo do Contexto <strong>antes</strong> de responder</li>
+        <li>Define como escolher entre os especialistas de lá</li>
+        <li>Tem uma tabela de "se acontecer isto, faça aquilo"</li>
+      </ul>
+      <div class="forma-cite">"O arquivo base é lei."</div>
+    </div>
+    <div class="forma-card">
+      <div class="forma-rot">Campo · Contexto</div>
+      <div class="forma-nome">2.030 linhas</div>
+      <ul class="forma-lista">
+        <li>15 especialistas de marca, um por bloco</li>
+        <li>Cada um com escopo, tom e o que se recusa a responder</li>
+        <li>Uma matriz que diz qual deles atende cada tipo de pergunta</li>
+        <li>Nada disso é lido de uma vez, só o pedaço que a pergunta pede</li>
+      </ul>
+      <div class="forma-cite">É consulta, não é regra. Por isso pode ser grande.</div>
+    </div>
+  </div>
+
+  <p class="fig-leg">
+    <strong>A divisão é a mesma da sua norma de PCP.</strong> As Instruções são curtas e
+    dizem como trabalhar. O Contexto é grande e guarda o que consultar. Trocar os dois de
+    lugar é o erro que a seção de pegadinhas da aula descreve.
+  </p>
+
+  <div class="tab-wrap">
+    <table>
+      <thead>
+        <tr><th></th><th>Instruções</th><th>Memória</th><th>Contexto</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Quem escreve</strong></td>
+          <td>você</td>
+          <td>ele, sozinho</td>
+          <td>você</td>
+        </tr>
+        <tr>
+          <td><strong>Quando ele lê</strong></td>
+          <td>toda conversa, antes de você digitar</td>
+          <td>toda conversa</td>
+          <td>quando a pergunta pede</td>
+        </tr>
+        <tr>
+          <td><strong>Dá para confiar numa regra que não pode falhar?</strong></td>
+          <td><strong>Sim</strong>, é texto seu e literal</td>
+          <td>Não, é resumo e muda sozinho</td>
+          <td>Só se você citar no pedido</td>
+        </tr>
+        <tr>
+          <td><strong>Tamanho que faz sentido</strong></td>
+          <td>curto, de 20 a 40 linhas</td>
+          <td>você não escolhe</td>
+          <td>pode ser grande</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="fecho">
+    <div class="fecho-t">Repare nos 2%, porque eles derrubam a objeção mais comum desta aula</div>
+    <p>
+      Um arquivo de <strong>2.030 linhas ocupa 2%</strong> da capacidade daquele projeto.
+      Cabem mais uns cem do mesmo tamanho. Então, quando a aula diz para não encher o
+      Project, <strong>não é porque vai faltar espaço</strong>. Sobra espaço.
+    </p>
+    <p>
+      O motivo é outro: quanto mais material parecido você põe, mais chance de ele puxar o
+      trecho errado. <strong>O limite nunca foi o espaço, é a atenção.</strong> É a mesma
+      coisa que a figura de encher dilui mostra na aula, agora com um número de tela real.
+    </p>
   </div>
 </div>
 
@@ -324,9 +592,9 @@ h2{font-size:23px;font-weight:700;line-height:1.25;letter-spacing:-.01em;
     <div class="fecho-t">Repare no 30 contra 4, é o coração da aula</div>
     <p>
       A planilha marca <strong>4</strong> OS como atrasadas no campo Status. Comparando
-      prazo com a data de hoje, são <strong>30</strong>. A norma que está no conhecimento
-      do projeto explica por quê: o campo Status é preenchido à mão pelo líder de turno,
-      e quatro situações comuns não mexem nele.
+      prazo com a data de hoje, são <strong>30</strong>. A norma que está no Contexto
+      explica por quê: o campo Status é preenchido à mão pelo líder de turno, e quatro
+      situações comuns não mexem nele.
     </p>
     <p>
       <strong>Nenhuma inteligência nova apareceu ali.</strong> O que apareceu foi uma linha
@@ -339,6 +607,8 @@ h2{font-size:23px;font-weight:700;line-height:1.25;letter-spacing:-.01em;
   <div class="rodape">
     Gráfica Aurora é uma indústria gráfica fictícia criada para este treinamento.
     Nomes, máquinas, clientes e valores são inventados, e nenhum dado aqui é real.
+    O projeto brand-squad é real e pertence ao instrutor, e os arquivos dele não estão
+    aqui para baixar.
     · <a href="../">voltar para a aula 1.3</a>
   </div>
 </div>
