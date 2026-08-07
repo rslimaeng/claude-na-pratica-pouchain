@@ -425,16 +425,20 @@ papel. Ele ainda é o único suporte da parte 5.
 
 ### 📏 A medida de linha, medida e não estimada
 
-`max-width:58ch` num texto de **14px** entrega **66 caracteres por linha**, não os
-78 que a regra de bolso `1ch = 1,34 caractere` promete. Aquela conta foi feita no
-corpo de 16,5px e não transporta para tamanho menor. Ficou **62ch**, medido em
-~80, que é o alvo do `CLAUDE.md` §8-quater.
+Medido com sonda, no elemento e no tamanho reais: a **14px** o `1ch` vale
+8,83px e o caractere médio do português vale 6,87px, ou seja **1ch = 1,28
+caractere**. A regra de bolso do projeto (`1,34`) se sustenta. O que estourava
+era o texto: `58ch` entrega **74 caracteres** e as duas dicas que quebravam
+tinham **77 e 96**. Ficou **62ch**, que dá **79**, o alvo de ~80 do
+`CLAUDE.md` §8-quater, e as frases foram encurtadas junto.
 
 Quatro dicas sobravam uma palavra sozinha na segunda linha. Depois de encurtadas,
 o maior texto auxiliar do quadro tem 74 caracteres e **os seis cabem em uma linha**.
 
-> A lição repete a Regra 5 numa terceira roupa: **medida herdada de outro contexto
-> é estimativa.** O navegador responde em 10 segundos, e responde certo.
+> A lição, e ela quase me pegou de novo: a primeira medição desta onda deu
+> "66 caracteres" porque **o viewport estava em 375px** e eu li a largura de uma
+> linha real em vez de sondar o limite. Número medido no estado errado é chute
+> com casa decimal. **Sonde o limite, não a linha que calhou de estar ali.**
 
 ### O copiar tem dois caminhos
 
