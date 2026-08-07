@@ -551,6 +551,71 @@ faltam = [b for b in ["Instruções", "Memória", "Contexto"]
 diz(not faltam, "G16", "a tela da 1.3 mostra os três blocos com o nome da tela",
     f"faltam {faltam}" if faltam else "")
 
+# ─── G17 · faixa de tamanho é andaime do primeiro exercício, nunca regra do campo.
+#      Nasceu porque a tabela da 1.3 dizia "Curto. 20 a 40 linhas" enquanto a
+#      página de exemplo, a um clique dali, mostrava um campo de Instruções com
+#      128 linhas funcionando. Número como critério contradiz o exemplo real.
+titulo("G17 · FAIXA DE LINHAS SEMPRE QUALIFICADA COMO PONTO DE PARTIDA")
+print("        (o critério é 'toda linha vale sempre'. O tamanho é consequência)")
+QUALIF = ["primeira", "primeiras", "ponto de partida", "não é teto",
+          "a aula pede", "não é o tamanho máximo"]
+# A qualificação tem que estar NO MESMO BLOCO, não "por perto". Uma janela de
+# caracteres atravessa <p> e <li> vizinhos e deixa passar a faixa crua porque
+# o parágrafo de cima qualificava outra coisa. Aconteceu ao testar este gate.
+BLOCO = re.compile(r"</?(?:p|div|li|td|tr|h[1-6]|ul|ol|table)\b[^>]*>")
+crus = []
+for f in HTML:
+    s = open(f, encoding="utf-8").read()
+    cortes = [0] + [m.end() for m in BLOCO.finditer(s)] + [len(s)]
+    for m in re.finditer(r"\b\d{1,3}\s+[ae]\s+\d{1,3}\s+linhas\b", s):
+        ini = max(c for c in cortes if c <= m.start())
+        fim = min(c for c in cortes if c >= m.end())
+        if not any(q in s[ini:fim].lower() for q in QUALIF):
+            crus.append(f"{f}: '{m.group(0)}' cru, sem qualificação no mesmo bloco")
+diz(not crus, "G17", "toda faixa de linhas vem qualificada",
+    str(crus) if crus else f"{len(HTML)} páginas varridas")
+# e a tabela de gavetas não volta a ter linha de tamanho como critério
+AULA13 = "m1/a3-regra-que-fica/index.html"
+s13 = open(AULA13, encoding="utf-8").read() if os.path.exists(AULA13) else ""
+diz("<strong>Tamanho certo</strong>" not in s13, "G17",
+    "a tabela de gavetas não usa tamanho como critério",
+    "voltou a linha 'Tamanho certo'" if "<strong>Tamanho certo</strong>" in s13 else "")
+# o critério também não pode voltar em outra unidade. O item 1 do validador da
+# 1.3 media "cabe em uma página", que é a mesma régua com outro nome, e o
+# exemplo da própria aula tem 128 linhas de instrução funcionando.
+POR_TAMANHO = ["uma página", "duas páginas", "no máximo", "não passa de",
+               "curto o suficiente", "menos de"]
+medindo = []
+for f in AULAS:
+    s = open(f, encoding="utf-8").read()
+    for item in re.findall(r'<div class="checagem-o">(.*?)</div>', s, re.S):
+        alvo = re.sub(r"<[^>]+>", "", item).lower()
+        for p in POR_TAMANHO:
+            if p in alvo: medindo.append(f"{f}: '{alvo.strip()}' mede por {p}")
+diz(not medindo, "G17", "nenhum item do validador mede o texto por tamanho",
+    str(medindo) if medindo else f"{len(AULAS)} validadores varridos")
+
+# ─── G18 · o validador anuncia quantas conferências tem, e o número tem que
+#      bater com a lista. A 1.3 dizia "Quatro conferências" e tinha cinco desde
+#      que a onda 3-octies acrescentou uma. Ninguém conta ao acrescentar item.
+titulo("G18 · O NÚMERO ANUNCIADO NO VALIDADOR BATE COM A LISTA")
+NUM = {"uma": 1, "duas": 2, "três": 3, "quatro": 4, "cinco": 5,
+       "seis": 6, "sete": 7, "oito": 8, "nove": 9, "dez": 10}
+for f in AULAS:
+    s = open(f, encoding="utf-8").read()
+    m = re.search(r'class="checagem-lead">(.*?)</p>', s, re.S)
+    itens = len(re.findall(r'<div class="checagem-o">', s))
+    if not m:
+        diz(False, "G18", f, "não tem checagem-lead"); continue
+    lead = re.sub(r"<[^>]+>", "", m.group(1)).strip()
+    prim = re.match(r"(\w+)", lead)
+    dito = NUM.get(prim.group(1).lower()) if prim else None
+    # lead que não abre com número não promete nada, e isso é legítimo
+    if dito is None:   recado = f"{itens} itens, sem número anunciado"
+    elif dito == itens: recado = f"{itens} itens"
+    else:               recado = f"diz '{prim.group(1)}' e tem {itens}"
+    diz(dito is None or dito == itens, "G18", f, recado)
+
 # ─── G14 · a demonstração é passo a passo PARA O ALUNO, não roteiro de palco
 titulo("G14 · DEMONSTRAÇÃO ESCRITA PARA O ALUNO, SEM DIREÇÃO DE CENA")
 print("        (o site é do aluno · direção de palco vive fora dele · CLAUDE.md §9)")

@@ -682,7 +682,50 @@ presença em qualquer lugar do arquivo. Reprovado contra **9 defeitos injetados*
 > sobrar uma cópia certa em qualquer canto do arquivo. O que protege é conferir
 > **cada ocorrência no lugar onde ela é afirmada**.
 
-**Gates:** 20 gates, 184 checagens, exit 0.
+### 🔴 E o exemplo real derrubou o critério de tamanho da aula
+
+**Rafael achou na hora**, olhando a tabela de gavetas: ela dizia *"Tamanho certo ·
+Curto. 20 a 40 linhas"*, e a página de exemplo, a um clique dali, mostrava um
+campo de Instruções com **128 linhas funcionando bem**.
+
+**A tabela estava dando um número como critério, e o número estava errado.** O
+critério de verdade é outro, e a própria aula já o tinha em outro lugar:
+
+> **O tamanho é consequência do critério, não é o critério.** Se toda linha vale
+> em toda conversa, o texto pode crescer sem estragar nada. Se tem linha que só
+> vale às vezes, ele já está errado com 10 linhas.
+
+O que mudou:
+
+| Antes | Depois |
+|---|---|
+| Linha "Tamanho certo": *20 a 40 linhas* | Linha **"Como saber se cabe ali"**: *toda linha vale em toda conversa* |
+| "O que dá errado: virar manual de 200 linhas" | "O que dá errado: **pôr como regra o que era consulta**" |
+| "Documentos: pode ser longo, mas **poucos** arquivos" | "Muitos arquivos **parecidos entre si**: ele acha o trecho vizinho" |
+| Validador item 1: *"o seu texto cabe em uma página"* | *"toda linha vale em qualquer conversa deste projeto"* |
+| Passo do exercício: *"Fique entre 20 e 40 linhas"* | *"**Nesta primeira**, fique entre 20 e 40 linhas"* |
+
+**A faixa de 20 a 40 não sumiu, mudou de estatuto.** Ela é andaime do primeiro
+exercício, e agora diz isso: abaixo de 20 quase sempre é texto escrito de
+memória, acima de 40 na primeira tentativa quase sempre é consulta disfarçada de
+regra. **A licença para crescer é o teste da linha, não um número.**
+
+Nasce o **G17**, que exige que toda faixa de linhas venha qualificada e que a
+tabela e o validador não voltem a medir por tamanho.
+
+> ⚠️ **A primeira versão do G17 usava janela de 320 caracteres** para achar a
+> qualificação "por perto". Furou no teste: a janela atravessa `<p>` e `<li>`
+> vizinhos, e o parágrafo de cima qualificava outra coisa. Reescrito para exigir
+> a qualificação **no mesmo bloco**. Provado contra 8 defeitos injetados.
+
+### E o validador prometia quatro conferências e tinha cinco
+
+Achado ao mexer no item 1. A onda 3-octies acrescentou um item e ninguém
+reescreveu o `checagem-lead`. **Ninguém conta ao acrescentar item**, então virou
+o **G18**: o número por extenso no lead tem que bater com a contagem de
+`.checagem-o`. Lead que não abre com número não promete nada, e passa.
+
+**Gates:** 22 gates, 191 checagens, exit 0.
 
 ## 8. Aberto
 

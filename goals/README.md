@@ -14,7 +14,7 @@ O plano completo está em [`../../PLANO-DE-PRODUCAO.md`](../../PLANO-DE-PRODUCAO
 | **3-septies** | [`goal-03-roteiros-e-linguagem.md`](goal-03-roteiros-e-linguagem.md) §7-octies | **O exercício da 1.2 sai do `.docx` e entra na página**: quadro com as três perguntas, prévia ao vivo e botão de copiar · rascunho em `localStorage` · medida de linha aferida com sonda e ajustada para 62ch (~79 caracteres) | 🟡 aguardando validação |
 | **3-octies** | [`goal-03-roteiros-e-linguagem.md`](goal-03-roteiros-e-linguagem.md) §7-nonies | **A 1.3 contra a documentação oficial de Projects**: a memória por projeto derrubou a "decepção nº 1" · três gavetas em vez de duas · um projeto, um trabalho · o empilhamento que já existe no Chat | 🟡 aguardando validação |
 | **3-novies** | [`goal-03-roteiros-e-linguagem.md`](goal-03-roteiros-e-linguagem.md) §7-decies | **A didática do M3 do Maria Pitanga aplicada na 1.3**: cards É/Não é · anatomia em 3 cards · mockup da tela do Project · **página `exemplo/` com os 3 arquivos prontos** · nasce o **G13b** | 🟡 aguardando validação |
-| **3-decies** | [`goal-03-roteiros-e-linguagem.md`](goal-03-roteiros-e-linguagem.md) §7-undecies | **A tela real como fonte da verdade**: o campo virou **Contexto**, não "Conhecimento do projeto" · seção 04 reenquadrada com tabela de verdade · a página `exemplo/` ganhou **um Project real por dentro** com Instruções, Memória e Contexto · nascem **G13c** e **G16** | 🟡 aguardando validação |
+| **3-decies** | [`goal-03-roteiros-e-linguagem.md`](goal-03-roteiros-e-linguagem.md) §7-undecies | **A tela real como fonte da verdade**: o campo virou **Contexto**, não "Conhecimento do projeto" · seção 04 reenquadrada com tabela de verdade · a página `exemplo/` ganhou **um Project real por dentro** com Instruções, Memória e Contexto · **o exemplo real derrubou o critério de tamanho da aula** (o tamanho é consequência, não critério) · nascem **G13c**, **G16**, **G17** e **G18** | 🟡 aguardando validação |
 | 4 | a definir | Hub M2 + aulas 2.1 · 2.2 · 2.3 | ⏸️ |
 | 5 | a definir | M2: aulas 2.4 · 2.5 · 2.6 | ⏸️ |
 | 6 | a definir | M2: aulas 2.7 · 2.8 | ⏸️ |
@@ -28,7 +28,7 @@ O plano completo está em [`../../PLANO-DE-PRODUCAO.md`](../../PLANO-DE-PRODUCAO
 Toda aula passa pelos três antes de ser considerada pronta:
 
 1. **Produção**, o terminal produz segundo a anatomia e o goal da onda
-2. **Auditoria**, `python3 goals/gates.py` rodado da raiz. São 20 gates e 184 checagens, e o script sai com código 1 se alguma falhar
+2. **Auditoria**, `python3 goals/gates.py` rodado da raiz. São 22 gates e 191 checagens, e o script sai com código 1 se alguma falhar
 3. **Teste de mesa (Rafael)** 🔴, ele roda o exercício de verdade e confere se a saída bate com o gabarito
 
 O passo 3 é o único que pega *"o exercício não funciona"*. Nenhuma auditoria de código detecta isso.
