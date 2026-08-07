@@ -287,6 +287,20 @@ HERO  kicker + H1 + subtítulo + chips [Nível] [artefato] [pré-requisito] [eme
 
 **O bloco que não pode faltar é "pergunte à sala".** É o que separa demonstração de aula. Referência: `m1/a1-ecossistema-e-fisica/demonstracao/`.
 
+#### 🔴 Três regras que vieram da reprovação do primeiro roteiro
+
+O Rafael abriu o roteiro da 1.1 e reprovou de novo, em 07/08/2026. A primeira versão rodava no **Claude Code**, com `/context`, e três dos cinco momentos estavam marcados *"a sala assiste"*:
+
+> *"Já começa dizendo que vai rodar no Claude Code e roda o context. Isso aqui para mim não está nada didático. Eu queria um exemplo similar: o que eles vão fazer. Eu mostrar a diferença, rodando com sequência de prompts, que eu posso simular uma conversa normal e um ali que já vai estar pronto."*
+
+**R1 · A demonstração roda na mesma superfície do exercício.** Se o aluno vai fazer no Chat, a demonstração é no Chat. Ferramenta que ele não tem vira mágica, e o instrutor não consegue dizer *"agora façam igual"*, que é a mecânica inteira.
+
+> Isto **não** contradiz o §10. Lá diz que conceito que precisa de terminal vai para a demonstração, e continua valendo. O que muda é a ordem da escolha: **primeiro se procura como mostrar o conceito na superfície do aluno.** Terminal é último recurso, não atalho. Na 1.1, `/context` mostrava um número; a conversa degradando ao vivo mostra a mesma coisa e o aluno repete sozinho.
+
+**R2 · Insumo diferente, mecanismo igual.** A demonstração usa a planilha de **outro setor** (a 1.1 demonstra com Compras e exercita com PCP). O aluno vê o mecanismo acontecer num caso e refaz no dele, em vez de copiar o passo a passo do instrutor. Como efeito colateral, dois setores se reconhecem por aula em vez de um.
+
+**R3 · Uma cor só na página do roteiro.** A primeira versão tinha seis fundos coloridos por momento, um por tipo de bloco. Isso fura o §8-bis: **tipo de bloco não é semântica.** O azul fica só no bloco *"pergunte à sala"*, que é o único momento em que a sala fala. O resto se separa por rótulo em mono e espaço em branco. O vermelho do *"aponte na tela"* é **rótulo, não caixa**. E **prompt longo entra dentro de `<details>`, fechado**: um bloco de 40 linhas monoespaçadas no meio da página corta a leitura de quem está procurando o próximo passo com a sala esperando.
+
 > ⭐ **O padrão de ouro é o momento 3 da 1.1:** a sala dita as correções do pedido vago, o instrutor anota no quadro, e no momento 5 o pedido situado **é reconhecido como delas**. Sempre que der para a sala escrever a resposta sem saber que escreveu, faça isso.
 
 **E o resultado pronto?** Continua existindo, com **dois papéis, os dois depois**: comparar com o que o aluno fez, e ser o plano B se a geração travar ao vivo. Nunca "olhe antes de tentar". Exemplo: `m1/a1-ecossistema-e-fisica/exemplo/`.

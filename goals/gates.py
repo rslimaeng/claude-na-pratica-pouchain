@@ -243,6 +243,40 @@ try:
         (f"Offset 2 com {carga.get('Offset 2')}" in a3, "aula 1.3 · carga da Offset 2"),
     ]
     for ok, nome in checagens: diz(ok, "G13", nome)
+
+    # ── a planilha da DEMONSTRAÇÃO (Compras) tem as mesmas obrigações ──────
+    # o roteiro afirma "atrasa 6 dias" e "não cotou o offset 90g". As duas
+    # frases são o momento 5 inteiro: se saírem erradas, a demonstração cai
+    # na frente da sala e não tem plano B que salve.
+    wc = load_workbook("m1/a1-ecossistema-e-fisica/demonstracao/"
+                       "cotacoes-fornecedores.xlsx", data_only=True).active
+    ENTRA_MAQUINA = datetime(2026, 7, 22)
+    FOLGA = (ENTRA_MAQUINA - HOJE).days
+    cot = [r for r in wc.iter_rows(min_row=5, values_only=True) if r[0] and r[4]]
+    forn = {}
+    for r in cot:
+        f = forn.setdefault(r[4], {"prazo": r[6], "sem_cotar": []})
+        if r[5] in (None, ""): f["sem_cotar"].append(r[1])
+    atrasa = {f: d["prazo"] - FOLGA for f, d in forn.items() if d["prazo"] > FOLGA}
+    incompleto = {f: d["sem_cotar"] for f, d in forn.items() if d["sem_cotar"]}
+    print(f"        {'linhas de cotação':26} {len(cot)}")
+    print(f"        {'fornecedores':26} {len(forn)}")
+    for f, d in atrasa.items():      print(f"        {f} atrasa {d} dias")
+    for f, i in incompleto.items():  print(f"        {f} não cotou {i[0]}")
+
+    rot = open("m1/a1-ecossistema-e-fisica/demonstracao/index.html",
+               encoding="utf-8").read()
+    POR_EXTENSO = {1: "um", 2: "dois", 3: "três", 4: "quatro", 5: "cinco",
+                   6: "seis", 7: "sete", 8: "oito", 9: "nove", 10: "dez"}
+    dias = list(atrasa.values())[0] if atrasa else 0
+    falta = list(incompleto.values())[0][0].split()[:3] if incompleto else []
+    diz(f"{len(cot)} linhas de cotação" in rot, "G13", "roteiro · linhas de cotação")
+    diz(f"{len(forn)} fornecedores" in rot,     "G13", "roteiro · fornecedores")
+    diz(len(atrasa) == 1 and (f"{POR_EXTENSO[dias]} dias" in rot
+                              or f"{dias} dias" in rot),
+        "G13", "roteiro · de quantos dias é o atraso")
+    diz(len(incompleto) == 1 and " ".join(falta).lower() in rot.lower(),
+        "G13", "roteiro · qual item não foi cotado")
 except ImportError:
     print("        openpyxl ausente, gate pulado")
 

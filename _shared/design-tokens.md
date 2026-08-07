@@ -140,17 +140,28 @@ Gate **G15**: reprova tempo nos slots de interface da aula, e reprova roteiro **
 
 **A página que o instrutor executa ao vivo.** Uma por aula, em `m1/aN-slug/demonstracao/`. Referência: `m1/a1-ecossistema-e-fisica/demonstracao/`.
 
+> 🔴 **Uma cor só, e ela é do bloco em que a sala fala.** A primeira versão desta página tinha **seis fundos coloridos por momento**, um por tipo de bloco: azul na pergunta, vermelho no aponte, verde no porquê, bege no plano B, cinza no código, âmbar no preparo. O Rafael reprovou (*"tem um monte de cor, bota o código no meio, aí ficam as cores confusas"*), e ele estava certo pela regra que já existia: **tipo de bloco não é semântica**, e o §8-bis do `CLAUDE.md` proíbe cor decorativa.
+>
+> A página hoje tem **exatamente dois usos de cor**: `.pergunta` e `.fecho`, os dois em `--accent-soft`. Todo o resto se separa por rótulo em mono maiúsculo e espaço em branco.
+
 | Classe | O que é |
 |---|---|
-| `.papeis` + `.papel.sala` | Quem faz o quê. Separa o que só o instrutor roda do que a sala participa |
-| `.preparo` | Checklist do que ter aberto antes de a turma entrar. Âmbar, porque é aviso |
+| `.arq` | O insumo da demonstração, com botão de baixar. **Não é o mesmo do exercício** |
+| `.preparo` | Checklist do que ter aberto antes de a turma entrar. **Sem caixa e sem cor**, só um filete acima |
 | `.mom` + `.mom-tempo` | Um momento da demonstração. Coluna esquerda **sticky** com número e minutos, para não se perder no palco |
-| `.aponte` | 🔴 O dedo na tela. O que mostrar, senão passa batido |
-| **`.pergunta`** | **A pergunta que a sala responde antes de você explicar.** É o bloco que separa demonstração de aula. Nunca omitir |
+| `.aponte` | 🔴 O dedo na tela. **O vermelho está no rótulo, não numa caixa** |
+| **`.pergunta`** | **A pergunta que a sala responde antes de você explicar.** É o bloco que separa demonstração de aula, e é a **única caixa colorida** da página. Nunca omitir |
 | `.porque` | O conceito, e ele vem **depois** de a sala ter vivido o momento |
-| `.planoB` | O que fazer se travar. Escrito antes de precisar |
-| `.pbox` + `.pbtn` | Prompt literal e copiável. Nunca "escreva algo como" |
+| `.planoB` | O que fazer se travar. Escrito antes de precisar. Texto menor, sem moldura |
+| `.pbox` + `.pbtn` | Prompt literal e copiável. É um **`<details>` fechado**, e só abre o que tem uma linha só. Nunca "escreva algo como" |
 | `.fecho` | A frase que emenda na seção 05, e o aviso do que não pode ser pulado |
+
+**Duas regras de conteúdo, e as duas nasceram de reprovação:**
+
+1. **A demonstração roda na mesma superfície do exercício.** Chat com Chat. Ver `CLAUDE.md` §9 · R1
+2. **Com insumo de outro setor.** A 1.1 demonstra com uma planilha de Compras e exercita com uma de PCP. Ver `CLAUDE.md` §9 · R2
+
+> ⚠️ **Dívida aberta em 07/08/2026:** só a **1.1** está neste padrão. Os roteiros da 1.2, 1.3 e 1.4 ainda têm as seis cores, o `.papeis`, o `.preparo` em âmbar e o prompt aberto no meio da página. Eles esperam o Rafael validar a 1.1 antes de serem refeitos. **Copie da 1.1, nunca das outras três.**
 
 **Regra:** o roteiro fica no site público porque o aluno também o usa, para refazer sozinho depois. Não tem nada de instrutor que o aluno não possa ler.
 
@@ -158,7 +169,7 @@ Gate **G15**: reprova tempo nos slots de interface da aula, e reprova roteiro **
 
 | Aula | Momento de ouro | O que a sala faz sem perceber |
 |---|---|---|
-| 1.1 | 3 | Dita as correções do pedido vago. No momento 5 reconhece as próprias palavras no pedido situado |
+| 1.1 | 2 | Diz o que falta na resposta rasa. No momento 4 reconhece as próprias palavras no pedido pronto |
 | 1.2 | 2 | Preenche os três campos da OS em branco. O pedido que roda no momento 3 é o deles |
 | 1.3 | 2 | Dita as regras do Project, linha por linha, e você só digita |
 | 1.4 | 4 | Classifica três regras em voz alta e **discorda na terceira, de propósito** |
