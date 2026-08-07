@@ -7,6 +7,7 @@ O plano completo está em [`../../PLANO-DE-PRODUCAO.md`](../../PLANO-DE-PRODUCAO
 |---|---|---|---|
 | 1 | [`goal-01-infra-e-padrao.md`](goal-01-infra-e-padrao.md) | Infra · tokens · landing · hub M1 · **aulas 1.1 e 1.3** | ✅ validada, com 5 ajustes aplicados na onda 2 |
 | **2** | [`goal-02-fechar-o-m1.md`](goal-02-fechar-o-m1.md) | **Aulas 1.2 e 1.4** · validador nas 4 aulas · conserto de layout · gates executáveis | 🟡 aguardando teste de mesa |
+| **2-bis** | [`goal-02-bis-linguagem-de-rotina.md`](goal-02-bis-linguagem-de-rotina.md) | **Os 4 padrões de linguagem** aplicados em tudo que já existia. Nome de rotina + recurso oficial do Claude · dor-mãe ligada aos níveis · bloco "o que não fazemos" · gate G12 | ✅ no ar. Volta em `antes-da-linguagem-de-rotina` |
 | 3 | a definir | Hub M2 + aulas 2.1 · 2.2 · 2.3 | ⏸️ |
 | 4 | a definir | M2: aulas 2.4 · 2.5 · 2.6 | ⏸️ |
 | 5 | a definir | M2: aulas 2.7 · 2.8 | ⏸️ |
