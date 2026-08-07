@@ -245,9 +245,9 @@ try:
     for ok, nome in checagens: diz(ok, "G13", nome)
 
     # ── a planilha da DEMONSTRAÇÃO (Compras) tem as mesmas obrigações ──────
-    # o roteiro afirma "atrasa 6 dias" e "não cotou o offset 90g". As duas
-    # frases são o momento 5 inteiro: se saírem erradas, a demonstração cai
-    # na frente da sala e não tem plano B que salve.
+    # o momento 5 do roteiro faz TRÊS afirmações sobre esta planilha, e as três
+    # saem da boca do Rafael na frente de 20 pessoas. Se qualquer uma estiver
+    # errada, a demonstração cai e não tem plano B que salve.
     wc = load_workbook("m1/a1-ecossistema-e-fisica/demonstracao/"
                        "cotacoes-fornecedores.xlsx", data_only=True).active
     ENTRA_MAQUINA = datetime(2026, 7, 22)
@@ -255,28 +255,50 @@ try:
     cot = [r for r in wc.iter_rows(min_row=5, values_only=True) if r[0] and r[4]]
     forn = {}
     for r in cot:
-        f = forn.setdefault(r[4], {"prazo": r[6], "sem_cotar": []})
-        if r[5] in (None, ""): f["sem_cotar"].append(r[1])
-    atrasa = {f: d["prazo"] - FOLGA for f, d in forn.items() if d["prazo"] > FOLGA}
-    incompleto = {f: d["sem_cotar"] for f, d in forn.items() if d["sem_cotar"]}
+        f = forn.setdefault(r[4], {"prazo": r[6], "sem_cotar": [], "caixa": []})
+        if r[5] in (None, ""):              f["sem_cotar"].append(r[1])
+        if "cx" in str(r[2]).lower():       f["caixa"].append((r[1], r[2]))
+    itens     = {r[0] for r in cot}
+    atrasa    = {f: d["prazo"] - FOLGA for f, d in forn.items() if d["prazo"] > FOLGA}
+    incompleto= {f: d["sem_cotar"] for f, d in forn.items() if d["sem_cotar"]}
+    em_caixa  = {f: d["caixa"] for f, d in forn.items() if d["caixa"]}
+    # quem cotou os 14 E chega antes de a máquina rodar. É o desfecho da aula
+    viaveis = [f for f, d in forn.items()
+               if not d["sem_cotar"] and d["prazo"] <= FOLGA]
     print(f"        {'linhas de cotação':26} {len(cot)}")
-    print(f"        {'fornecedores':26} {len(forn)}")
-    for f, d in atrasa.items():      print(f"        {f} atrasa {d} dias")
-    for f, i in incompleto.items():  print(f"        {f} não cotou {i[0]}")
+    print(f"        {'itens × fornecedores':26} {len(itens)} × {len(forn)}")
+    for f, d in atrasa.items():     print(f"        {f} atrasa {d} dias")
+    for f, i in incompleto.items(): print(f"        {f} deixou {len(i)} itens sem cotar")
+    for f, c in em_caixa.items():   print(f"        {f} cotou {c[0][0]} em '{c[0][1]}'")
+    print(f"        {'cotou tudo E no prazo':26} {viaveis}")
 
-    rot = open("m1/a1-ecossistema-e-fisica/demonstracao/index.html",
-               encoding="utf-8").read()
-    POR_EXTENSO = {1: "um", 2: "dois", 3: "três", 4: "quatro", 5: "cinco",
-                   6: "seis", 7: "sete", 8: "oito", 9: "nove", 10: "dez"}
-    dias = list(atrasa.values())[0] if atrasa else 0
-    falta = list(incompleto.values())[0][0].split()[:3] if incompleto else []
-    diz(f"{len(cot)} linhas de cotação" in rot, "G13", "roteiro · linhas de cotação")
-    diz(f"{len(forn)} fornecedores" in rot,     "G13", "roteiro · fornecedores")
-    diz(len(atrasa) == 1 and (f"{POR_EXTENSO[dias]} dias" in rot
-                              or f"{dias} dias" in rot),
-        "G13", "roteiro · de quantos dias é o atraso")
-    diz(len(incompleto) == 1 and " ".join(falta).lower() in rot.lower(),
-        "G13", "roteiro · qual item não foi cotado")
+    rot = re.sub(r"<[^>]+>", "", open("m1/a1-ecossistema-e-fisica/demonstracao/"
+                 "index.html", encoding="utf-8").read()).lower()
+    aula = re.sub(r"<[^>]+>", "", open("m1/a1-ecossistema-e-fisica/index.html",
+                  encoding="utf-8").read()).lower()
+    N = {1: "um", 2: "dois", 3: "três", 4: "quatro", 5: "cinco", 6: "seis",
+         10: "dez", 14: "quatorze"}
+    pior = max((len(i) for i in incompleto.values()), default=0)
+    por_caixa = int(re.search(r"\d+", list(em_caixa.values())[0][0][1]).group()) \
+                if em_caixa else 0
+    checagens_cot = [
+        (f"{len(cot)} linhas de cotação" in rot and f"{len(cot)} linhas" in aula,
+         "cotações · o tamanho da planilha"),
+        (f"{len(forn)} fornecedores" in rot and f"{len(forn)} fornecedores" in aula,
+         "cotações · quantos fornecedores"),
+        (f"{len(itens)} insumos" in rot or f"{len(itens)} itens" in rot,
+         "cotações · quantos insumos"),
+        (len(atrasa) == 1 and f"{N[list(atrasa.values())[0]]} dias" in rot,
+         "cotações · de quantos dias é o atraso"),
+        (pior and f"cotar {N[pior]} itens" in rot and f"cotar {N[pior]} itens" in aula,
+         "momento 5 · quantos itens ficaram sem cotar"),
+        (por_caixa and f"caixa com {N[por_caixa]}" in rot
+                   and f"caixa com {N[por_caixa]}" in aula,
+         "momento 5 · a armadilha da caixa fechada"),
+        (len(viaveis) == 1 and "um único fornecedor" in rot and "um único" in aula,
+         "momento 5 · sobra um fornecedor só"),
+    ]
+    for ok, nome in checagens_cot: diz(bool(ok), "G13", nome)
 except ImportError:
     print("        openpyxl ausente, gate pulado")
 

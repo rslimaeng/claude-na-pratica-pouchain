@@ -144,13 +144,24 @@ Duas conversas no Claude Chat, 10 minutos de palco:
 
 **Insumo novo:** `demonstracao/cotacoes-fornecedores.xlsx`, de **Compras**. O exercício continua com a planilha de PCP. Ver R2.
 
-**A armadilha da planilha tem três camadas**, e as três são o momento 5:
+### 📏 O piso de 50 linhas
 
-1. **Insumos Delta** parece o mais barato, mas o frete é FOB (mais R$ 890) e o prazo é 12 dias, com a máquina rodando em 6
-2. **Gráfica Suprimentos** parece mais barato ainda, mas **não cotou o papel offset 90g**. Comparar total contra total é comparar coisas diferentes
-3. **Papelaria Norte** é a única que entrega tudo a tempo, e é a que o pedido vago descarta primeiro
+A planilha saiu com 15 linhas e o Rafael mandou refazer na hora: *"de cara, já crie uma planilha mais robusta. Algo pelo menos de 50 linhas ou mais."*
 
-**O G13 agora recalcula essa planilha** e confere as duas frases do momento 5, o atraso de 6 dias e o item não cotado. Testado contra cópia quebrada: as duas checagens falham quando o número muda.
+**Ele está certo e é conteúdo, não capricho.** Em 15 linhas alguém pensa *"isso eu fazia na mão"*, e a pergunta do momento 1 (*"quanto tempo vocês levariam na mão?"*) perde o efeito. Virou regra no `CLAUDE.md` §8-ter.
+
+**Ficou com 56 linhas:** 14 insumos × 4 fornecedores. E o tamanho comprou uma quarta armadilha, que é a melhor de todas.
+
+| | A armadilha | Quem cai |
+|---|---|---|
+| 1 | **Prazo.** Insumos Delta é o mais barato por unidade e chega **6 dias depois** de a máquina rodar | o pedido vago, sempre |
+| 2 | **Frete.** Delta e Cearapel cotam FOB: mais R$ 890 e R$ 1.240 fora do valor unitário | quase sempre |
+| 3 | **Incompleto.** Suprimentos deixou **3 itens** sem cotar e Cearapel deixou 2. O total do "mais barato" nunca existiu | quase sempre |
+| 4 | 🔴 **Unidade.** Cearapel cotou a chapa CTP em `cx c/ 10`, e não por unidade. Ler direto multiplica o item por dez | **ninguém acha na mão** |
+
+**O desfecho:** sobra **um único fornecedor** que cotou os 14 itens e entrega a tempo, a Papelaria Norte, e é justamente o mais caro na conta ingênua. É o melhor fecho possível para a aula: o pedido vago escolhe o mais barato **porque ele é incompleto**.
+
+**O G13 recalcula tudo isso** e confere as três frases do momento 5, nas duas páginas. Testado contra cópias quebradas: **5 das 7 checagens reprovam** quando o número muda.
 
 ### Efeito colateral bom: o relógio da 1.1 fechou
 

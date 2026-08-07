@@ -218,6 +218,16 @@ O conteúdo já existe: é a **Cerca 0** da abertura. Falta estar na tela.
 
 **A sujeira é de propósito e precisa estar lá:** cabeçalho mesclado antes da tabela, data em formatos diferentes, coluna com espaço no nome, status em duas caixas, valor ora número ora texto, linha em branco no meio.
 
+### 📏 Piso de tamanho: 50 linhas
+
+**Pedido do Rafael em 07/08/2026**, quando a planilha da demonstração da 1.1 saiu com 15 linhas: *"de cara, já crie uma planilha mais robusta. Algo pelo menos de 50 linhas ou mais."*
+
+**Por que é conteúdo e não capricho:** numa planilha de 15 linhas alguém da sala pensa *"isso eu fazia na mão em dez minutos"*, e a demonstração inteira perde o argumento. Em 56 linhas, com um fornecedor cotando em caixa fechada, **ninguém faz**. O tamanho é metade da tese da aula, e a pergunta *"quanto tempo você levaria na mão?"* só funciona quando a resposta honesta é "muito, ou nem acharia".
+
+**O piso vale para insumo de demonstração e de exercício.** Junto com o tamanho vem a obrigação de ter **mais de uma armadilha**: em 50 linhas cabem três ou quatro, e é a terceira que ninguém acha passando o olho. A da 1.1 é a unidade trocada (um fornecedor cota em `cx c/ 10` e os outros por unidade), que multiplicaria o item por dez.
+
+> ⚠️ **Toda armadilha vira checagem no G13.** Número que a página afirma sem o gate recalcular é número que vai errado para a frente de 20 pessoas.
+
 ## 8-quater. Coluna de leitura e breakout
 
 A página tem **duas larguras, e só duas**:
