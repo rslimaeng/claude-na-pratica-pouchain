@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O Project montado · Aula 1.3</title>
+<meta name="description" content="Os três arquivos de um Project de coordenação de PCP, prontos para baixar, com o lugar exato de cada um na tela do Claude.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F0EEE6; --bg-elev:#FFFFFF; --bg-warm:#E8E6DC; --bg-code:#F5F3EA;
+  --text:#141413; --text-muted:#3D3D3A; --text-dim:#87867F;
+  --border:rgba(20,20,19,.10); --border-strong:rgba(20,20,19,.18);
+  --accent:#1A5670; --accent-dark:#10394C; --accent-soft:#DDEAF0;
+  --accent-tinted:#F4F9FB; --accent-line:rgba(26,86,112,.22);
+  --success:#2E7D32; --success-soft:#F4F9F4;
+  --warning:#B8860B; --warning-soft:#FCF7E8;
+  --col:860px; --col-wide:1140px;
+  --radius-sm:6px; --radius:10px; --radius-lg:14px;
+  --shadow-sm:0 1px 2px rgba(20,20,19,.04),0 1px 3px rgba(20,20,19,.06);
+  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,'SF Mono','Menlo',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);
+  font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.wrap{max-width:var(--col);margin:0 auto;padding:0 24px}
+
+.topo{padding:26px 0 0}
+.volta{font-family:var(--font-mono);font-size:12px;color:var(--text-dim);margin-bottom:18px}
+.kicker{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+h1{font-size:clamp(28px,4vw,38px);font-weight:700;line-height:1.12;
+  letter-spacing:-.02em;margin-bottom:16px}
+.lead{font-size:18px;line-height:1.6;color:var(--text-muted)}
+.lead strong{color:var(--text)}
+.lead + .lead{margin-top:12px}
+
+.sec{padding:44px 0 0}
+.sec-rot{font-family:var(--font-mono);font-size:11px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--text-dim);margin-bottom:8px}
+h2{font-size:23px;font-weight:700;line-height:1.25;letter-spacing:-.01em;
+  margin-bottom:12px}
+.sec p{font-size:16.5px;color:var(--text-muted);line-height:1.62;margin-bottom:12px}
+.sec p strong{color:var(--text)}
+
+.aviso{background:var(--warning-soft);border:1px solid rgba(184,134,11,.28);
+  border-radius:var(--radius);padding:18px 22px;margin:22px 0}
+.aviso-t{font-size:15px;font-weight:600;color:#7A5A08;margin-bottom:6px}
+.aviso p{font-size:15.5px;color:var(--text-muted);margin-bottom:0;line-height:1.58}
+
+/* os tres arquivos */
+.arqs{display:grid;gap:14px;margin:22px 0 6px}
+.arq{background:var(--bg-elev);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:20px 24px;
+  display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center}
+.arq-onde{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:7px}
+.arq-nome{display:flex;align-items:center;gap:10px;font-family:var(--font-mono);
+  font-size:15px;font-weight:500;color:var(--text);margin-bottom:6px;flex-wrap:wrap}
+.arq-tipo{font-family:var(--font-mono);font-size:10px;letter-spacing:.06em;
+  background:var(--accent-soft);color:var(--accent-dark);
+  padding:3px 7px;border-radius:4px;text-transform:uppercase}
+.arq-desc{font-size:14.5px;color:var(--text-muted);line-height:1.55}
+.arq-desc strong{color:var(--text)}
+.baixar{padding:10px 18px;background:var(--accent);color:#fff;
+  border-radius:var(--radius);font-weight:600;font-size:14px;
+  text-decoration:none;white-space:nowrap}
+.baixar:hover{background:var(--accent-dark);color:#fff}
+.baixar.ghost{background:transparent;color:var(--accent);
+  border:1px solid var(--accent-line)}
+.baixar.ghost:hover{background:var(--accent-tinted);color:var(--accent-dark)}
+
+/* o mockup da tela */
+.tela{background:var(--bg-elev);border:1px solid var(--border);
+  border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);
+  padding:22px 24px 24px;margin:22px 0 6px}
+.tela-topo{display:flex;align-items:center;justify-content:space-between;gap:14px;
+  border-bottom:1px solid var(--border);padding-bottom:14px;margin-bottom:20px}
+.tela-pontos{display:flex;gap:6px}
+.tela-pontos i{width:9px;height:9px;border-radius:50%;background:var(--border-strong);
+  display:inline-block}
+.tela-marca{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--text-dim)}
+.tela-rot{font-size:14px;font-weight:600;color:var(--text);margin-bottom:7px}
+.tela-campo{background:var(--bg-code);border:1px solid var(--border);
+  border-radius:var(--radius);padding:9px 14px;font-family:var(--font-mono);
+  font-size:13.5px;color:var(--accent-dark);margin-bottom:20px;display:inline-block}
+.tela-dois{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
+.tela-caixa{background:var(--bg-warm);border:1px solid var(--border);
+  border-radius:var(--radius);padding:16px 18px}
+.tela-caixa-rot{font-family:var(--font-mono);font-size:10px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--text-dim);margin-bottom:8px}
+.tela-caixa-t{font-size:15px;font-weight:600;color:var(--text);margin-bottom:5px}
+.tela-caixa-d{font-size:14px;color:var(--text-muted);line-height:1.55}
+.tela-caixa-d code{font-family:var(--font-mono);font-size:12.5px;
+  background:var(--bg-elev);padding:2px 6px;border-radius:4px;color:var(--accent-dark)}
+.tela-chat{border-left:3px solid var(--accent);background:var(--bg-code);
+  border-radius:0 var(--radius) var(--radius) 0;padding:14px 18px}
+.tela-chat-rot{font-family:var(--font-mono);font-size:11.5px;color:var(--text-dim);
+  margin-bottom:7px}
+.tela-chat-txt{font-family:var(--font-mono);font-size:14px;color:var(--text)}
+.tela-nota{font-size:15px;color:var(--text-muted);line-height:1.6;margin-top:16px}
+.tela-nota strong{color:var(--text)}
+
+/* antes e depois */
+.dois{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:22px 0 6px}
+.col{border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:20px 22px;background:var(--bg-elev)}
+.col.sem{background:#FBF7F5;border-color:rgba(184,92,92,.22)}
+.col.com{background:var(--success-soft);border-color:rgba(46,125,50,.22)}
+.col-rot{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.08em;
+  text-transform:uppercase;margin-bottom:11px}
+.col.sem .col-rot{color:#8E4646}
+.col.com .col-rot{color:#1F5A22}
+.col ul{list-style:none;display:grid;gap:9px}
+.col li{font-size:15px;color:var(--text-muted);line-height:1.5;
+  padding-left:18px;position:relative}
+.col li::before{content:"·";position:absolute;left:4px;font-weight:700;
+  color:var(--text-dim)}
+.col li strong{color:var(--text)}
+
+.fecho{background:var(--accent-tinted);border:1px solid var(--accent-line);
+  border-radius:var(--radius-lg);padding:22px 26px;margin:26px 0 0}
+.fecho-t{font-size:16px;font-weight:600;color:var(--accent-dark);margin-bottom:8px}
+.fecho p{font-size:15.5px;color:var(--text-muted);line-height:1.6;margin-bottom:0}
+.fecho p strong{color:var(--text)}
+.fecho p + p{margin-top:10px}
+
+.rodape{margin:52px 0 60px;padding-top:22px;border-top:1px solid var(--border);
+  font-size:13.5px;color:var(--text-dim);line-height:1.6}
+
+@media (max-width:760px){
+  .tela-dois,.dois{grid-template-columns:1fr}
+  .arq{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap topo">
+  <div class="volta"><a href="../">&larr; voltar para a aula 1.3</a></div>
+  <div class="kicker">Exemplo montado · Aula 1.3</div>
+  <h1>O Project de um coordenador de PCP, com os arquivos prontos</h1>
+  <p class="lead">
+    Três arquivos, três lugares diferentes. Um vai no campo de <strong>Instruções</strong>,
+    outro vai no <strong>Conhecimento do projeto</strong>, e o terceiro não vai em campo
+    nenhum: é o que você digita no chat.
+  </p>
+  <p class="lead">
+    Tudo aqui é da <strong>Gráfica Aurora</strong>, indústria gráfica fictícia criada
+    para este treinamento. Nomes, máquinas, clientes e números são inventados.
+  </p>
+
+  <div class="aviso">
+    <div class="aviso-t">Escreva o seu antes de abrir estes</div>
+    <p>
+      O valor do exercício está em transcrever <strong>as suas próprias correções</strong>,
+      não em copiar as de outra pessoa. Use estes arquivos para comparar a estrutura
+      depois, e para não ter que adivinhar o formato de nada.
+    </p>
+  </div>
+</div>
+
+<div class="wrap sec">
+  <div class="sec-rot">Os três arquivos</div>
+  <h2>Cada um mora num lugar, e o lugar muda o que ele faz</h2>
+  <p>
+    É a diferença que a aula chama de <strong>sempre, às vezes e só hoje</strong>. Aqui
+    ela aparece em arquivo, com o nome do campo onde cada um entra.
+  </p>
+
+  <div class="arqs">
+    <div class="arq">
+      <div>
+        <div class="arq-onde">Vai no campo · Instruções</div>
+        <div class="arq-nome">
+          <span class="arq-tipo">md</span>
+          <span>regras-do-coordenador.md</span>
+        </div>
+        <div class="arq-desc">
+          As cinco seções: quem eu sou, como a casa funciona, como quero a resposta, o que
+          nunca fazer, na dúvida. <strong>Lido em toda conversa</strong>, sem você pedir.
+          27 linhas de regra, dentro da faixa de 20 a 40 que a aula pede.
+        </div>
+      </div>
+      <a class="baixar" href="regras-do-coordenador.md" download>Baixar</a>
+    </div>
+
+    <div class="arq">
+      <div>
+        <div class="arq-onde">Vai no campo · Conhecimento do projeto</div>
+        <div class="arq-nome">
+          <span class="arq-tipo">md</span>
+          <span>norma-de-programacao.md</span>
+        </div>
+        <div class="arq-desc">
+          A norma interna de PCP: ordem de prioridade na fila, tempo de preparação por
+          família de máquina, capacidade por turno. <strong>Só é consultado quando a
+          pergunta tem a ver</strong>, e é por isso que ele pode ser longo.
+        </div>
+      </div>
+      <a class="baixar" href="norma-de-programacao.md" download>Baixar</a>
+    </div>
+
+    <div class="arq">
+      <div>
+        <div class="arq-onde">Não vai em campo nenhum · você digita no chat</div>
+        <div class="arq-nome">
+          <span class="arq-tipo">md</span>
+          <span>pedido-da-vez.md</span>
+        </div>
+        <div class="arq-desc">
+          O pedido de todo dia, e ele tem <strong>uma frase</strong>. Junto vão quatro
+          variações que mudam o recorte sem mexer no formato, porque o formato já está
+          combinado.
+        </div>
+      </div>
+      <a class="baixar" href="pedido-da-vez.md" download>Baixar</a>
+    </div>
+
+    <div class="arq">
+      <div>
+        <div class="arq-onde">O dado do dia · você anexa na conversa</div>
+        <div class="arq-nome">
+          <span class="arq-tipo">xlsx</span>
+          <span>pedidos-em-producao.xlsx</span>
+        </div>
+        <div class="arq-desc">
+          A mesma planilha da aula 1.1: 120 linhas de OS, com as sujeiras que um relatório
+          de sistema tem de verdade. <strong>Ela some junto com a conversa</strong>, e é
+          isso que você quer.
+        </div>
+      </div>
+      <a class="baixar ghost" href="../../a1-ecossistema-e-fisica/exercicio/pedidos-em-producao.xlsx" download>Baixar</a>
+    </div>
+  </div>
+</div>
+
+<div class="wrap sec">
+  <div class="sec-rot">Onde cada arquivo entra</div>
+  <h2>A tela do Claude, com os três no lugar</h2>
+  <p>
+    No Claude, no navegador: <strong>Projects &rarr; criar projeto</strong>. São dois campos
+    de verdade, mais o chat de uso. Sem instalar nada, sem código.
+  </p>
+
+  <div class="tela">
+    <div class="tela-topo">
+      <div class="tela-pontos" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="tela-marca">Claude · Projects</div>
+    </div>
+
+    <div class="tela-rot">Nome do projeto</div>
+    <div class="tela-campo">Coordenação de PCP</div>
+
+    <div class="tela-dois">
+      <div class="tela-caixa">
+        <div class="tela-caixa-rot">Campo · Instruções</div>
+        <div class="tela-caixa-t">As regras da sua função</div>
+        <div class="tela-caixa-d">
+          Cole aqui o conteúdo de <code>regras-do-coordenador.md</code>. É lido no começo
+          de toda conversa deste projeto, sem você pedir.
+        </div>
+      </div>
+      <div class="tela-caixa">
+        <div class="tela-caixa-rot">Campo · Conhecimento do projeto</div>
+        <div class="tela-caixa-t">O material de consulta</div>
+        <div class="tela-caixa-d">
+          Suba <code>norma-de-programacao.md</code>. Ele procura ali quando a pergunta
+          tem a ver, e ignora quando não tem.
+        </div>
+      </div>
+    </div>
+
+    <div class="tela-chat">
+      <div class="tela-chat-rot">No chat, todo dia · anexa o relatório e digita:</div>
+      <div class="tela-chat-txt">Anexei o relatório de OS de hoje. Monta a pauta da reunião das 8h.</div>
+    </div>
+
+    <div class="tela-nota">
+      É isso. Nome, dois campos e o chat de uso. <strong>Montar leva uns 15 minutos na
+      primeira vez.</strong> Depois, cada uso é uma frase.
+    </div>
+  </div>
+</div>
+
+<div class="wrap sec">
+  <div class="sec-rot">O que muda</div>
+  <h2>O mesmo pedido, dentro e fora do projeto</h2>
+  <p>
+    Uma frase só, <em>"monta a pauta da reunião das 8h"</em>, anexando a mesma planilha
+    de 120 linhas. O que muda é só o lugar de onde ela é enviada.
+  </p>
+
+  <div class="dois">
+    <div class="col sem">
+      <div class="col-rot">Conversa comum, sem as regras</div>
+      <ul>
+        <li>Pergunta o que é OS e o que você chama de pauta</li>
+        <li>Devolve texto corrido, com introdução e conclusão</li>
+        <li>Usa o campo Status e diz que <strong>4</strong> estão atrasadas</li>
+        <li>Mistura três formatos de data</li>
+        <li>Você corrige, e amanhã corrige de novo</li>
+      </ul>
+    </div>
+    <div class="col com">
+      <div class="col-rot">Dentro do projeto, com as regras</div>
+      <ul>
+        <li>Já sabe o que é OS, tiragem e "fechar a OS"</li>
+        <li>Tabela, data em DD/MM/AAAA, sem introdução</li>
+        <li>Confere pela data e encontra <strong>30</strong> atrasadas</li>
+        <li>Mostra a conta de cada atraso, porque a regra manda</li>
+        <li>Você escreveu uma vez, em julho</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="fecho">
+    <div class="fecho-t">Repare no 30 contra 4, é o coração da aula</div>
+    <p>
+      A planilha marca <strong>4</strong> OS como atrasadas no campo Status. Comparando
+      prazo com a data de hoje, são <strong>30</strong>. A norma que está no conhecimento
+      do projeto explica por quê: o campo Status é preenchido à mão pelo líder de turno,
+      e quatro situações comuns não mexem nele.
+    </p>
+    <p>
+      <strong>Nenhuma inteligência nova apareceu ali.</strong> O que apareceu foi uma linha
+      escrita uma vez: <em>"nunca conclua que uma OS está atrasada sem me mostrar a conta"</em>.
+    </p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="rodape">
+    Gráfica Aurora é uma indústria gráfica fictícia criada para este treinamento.
+    Nomes, máquinas, clientes e valores são inventados, e nenhum dado aqui é real.
+    · <a href="../">voltar para a aula 1.3</a>
+  </div>
+</div>
+
+</body>
+</html>

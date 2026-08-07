@@ -458,6 +458,31 @@ try:
 except ImportError:
     print("        openpyxl ausente, gate pulado")
 
+# ─── G13b · o .md de regras é insumo também, e a página afirma o tamanho dele
+titulo("G13b · O ARQUIVO DE REGRAS DO EXEMPLO BATE COM O QUE A PÁGINA DIZ")
+print("        (a 1.3 promete 'entre 20 e 40 linhas'. O exemplo tem que caber nela)")
+REG = "m1/a3-regra-que-fica/exemplo/regras-do-coordenador.md"
+if os.path.exists(REG):
+    linhas_md = [l.rstrip() for l in open(REG, encoding="utf-8")]
+    # o que de fato seria colado nas Instruções: sem título, sem o aviso em
+    # citação e sem linha vazia. É esse número que a aula promete.
+    n_reg = len([l for l in linhas_md
+                 if l.strip() and not l.startswith(">") and not l.startswith("#")])
+    n_sec = len([l for l in linhas_md if l.startswith("## ")])
+    diz(20 <= n_reg <= 40, "G13b", "o exemplo cabe na faixa que a aula pede",
+        f"{n_reg} linhas de regra")
+    diz(n_sec == 5, "G13b", "as cinco seções do gabarito estão lá",
+        f"{n_sec} seções")
+    # e nenhuma página pode afirmar um número de linhas diferente do real
+    erradas = []
+    for f in HTML:
+        for n in re.findall(r"(\d{1,3}) linhas de regra", open(f, encoding="utf-8").read()):
+            if int(n) != n_reg: erradas.append(f"{f} diz {n}, e são {n_reg}")
+    diz(not erradas, "G13b", f"nenhuma página afirma outro número que {n_reg}",
+        str(erradas) if erradas else "")
+else:
+    diz(False, "G13b", REG, "arquivo não existe")
+
 # ─── G14 · a demonstração é passo a passo PARA O ALUNO, não roteiro de palco
 titulo("G14 · DEMONSTRAÇÃO ESCRITA PARA O ALUNO, SEM DIREÇÃO DE CENA")
 print("        (o site é do aluno · direção de palco vive fora dele · CLAUDE.md §9)")

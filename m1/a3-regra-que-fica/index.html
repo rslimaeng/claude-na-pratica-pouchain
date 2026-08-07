@@ -553,8 +553,76 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
 .rodadas-chave i.perdida{background:#F2DEDE;border-color:rgba(184,92,92,.42)}
 .rodadas-chave i.util{background:#DCEEDD;border-color:rgba(46,125,50,.45)}
 
+/* VISUAL · O QUE É E O QUE NÃO É
+   Definição por contraste. Vem antes da tabela memória x instrução porque
+   tira as confusões primeiro, e só depois compara o que sobrou.        */
+.eh{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0 8px}
+.eh-card{background:var(--bg-elev);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:20px 22px}
+.eh-tag{display:inline-block;font-family:var(--font-mono);font-size:10.5px;
+  letter-spacing:.07em;text-transform:uppercase;padding:3px 9px;
+  border-radius:5px;margin-bottom:12px}
+.eh-card.e .eh-tag{background:var(--accent-soft);color:var(--accent-dark)}
+.eh-card.nao .eh-tag{background:var(--danger-soft);color:#8E4646}
+.eh-t{font-size:16.5px;font-weight:600;color:var(--text);line-height:1.32;
+  margin-bottom:7px}
+.eh-d{font-size:14.5px;color:var(--text-muted);line-height:1.55}
+.eh-d strong{color:var(--text)}
+
+/* VISUAL · AS TRÊS PARTES E ONDE CADA UMA MORA */
+.anat{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0 8px}
+.anat-card{background:var(--bg-elev);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:22px 24px;display:flex;
+  flex-direction:column}
+.anat-n{font-family:var(--font-mono);font-size:22px;font-weight:600;
+  color:var(--accent);line-height:1;margin-bottom:14px}
+.anat-t{font-size:16.5px;font-weight:600;color:var(--text);margin-bottom:7px}
+.anat-d{font-size:14.5px;color:var(--text-muted);line-height:1.55;
+  margin-bottom:12px}
+.anat-ex{font-size:14px;color:var(--text-muted);line-height:1.5;
+  font-style:italic;margin-bottom:14px}
+.anat-ex b{font-style:normal;color:var(--text)}
+.anat-onde{margin-top:auto;padding-top:12px;border-top:1px solid var(--border);
+  font-family:var(--font-mono);font-size:10.5px;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--text-dim)}
+
+/* VISUAL · A TELA DO PROJECT */
+.tela{background:var(--bg-elev);border:1px solid var(--border);
+  border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);
+  padding:22px 24px 24px;margin:22px 0 8px}
+.tela-topo{display:flex;align-items:center;justify-content:space-between;gap:14px;
+  border-bottom:1px solid var(--border);padding-bottom:14px;margin-bottom:20px}
+.tela-pontos{display:flex;gap:6px}
+.tela-pontos i{width:9px;height:9px;border-radius:50%;
+  background:var(--border-strong);display:inline-block}
+.tela-marca{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--text-dim)}
+.tela-rot{font-size:14px;font-weight:600;color:var(--text);margin-bottom:7px}
+.tela-campo{background:var(--bg-code);border:1px solid var(--border);
+  border-radius:var(--radius);padding:9px 14px;font-family:var(--font-mono);
+  font-size:13.5px;color:var(--accent-dark);margin-bottom:20px;
+  display:inline-block}
+.tela-dois{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
+.tela-caixa{background:var(--bg-warm);border:1px solid var(--border);
+  border-radius:var(--radius);padding:16px 18px}
+.tela-caixa-rot{font-family:var(--font-mono);font-size:10px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--text-dim);margin-bottom:8px}
+.tela-caixa-t{font-size:15px;font-weight:600;color:var(--text);margin-bottom:5px}
+.tela-caixa-d{font-size:14px;color:var(--text-muted);line-height:1.55}
+.tela-chat{border-left:3px solid var(--accent);background:var(--bg-code);
+  border-radius:0 var(--radius) var(--radius) 0;padding:14px 18px}
+.tela-chat-rot{font-family:var(--font-mono);font-size:11.5px;
+  color:var(--text-dim);margin-bottom:7px}
+.tela-chat-txt{font-family:var(--font-mono);font-size:14px;color:var(--text)}
+
+@media (max-width:820px){
+  .eh,.anat{grid-template-columns:1fr}
+  .tela-dois{grid-template-columns:1fr}
+}
+
 /* BREAKOUT · figura e tabela saem da coluna de leitura, prosa fica */
 .table-wrap,.fluxo,.dilui,.compare,.uau,.pilha,.ctx,.setores,.trilha,
+.eh,.anat,.tela,
 .facts,.pre-req,.modules,.aulas,.fio-passos,.leva,.entrega,
 .mapa,.os,.rodadas,.caminhos,.saidas,.caminhos-nota,.bif,.bif-fora,.nao-faz{
   width:min(var(--col-wide),calc(100vw - 40px));min-width:100%;
@@ -705,6 +773,39 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
         </p>
       </div>
 
+      <div class="eh">
+        <div class="eh-card e">
+          <span class="eh-tag">É</span>
+          <div class="eh-t">Um texto lido antes de você digitar</div>
+          <div class="eh-d">Ele chega na conversa já sabendo. Você não cola nada, não lembra de nada, não repete nada.</div>
+        </div>
+        <div class="eh-card e">
+          <span class="eh-tag">É</span>
+          <div class="eh-t">Escrito uma vez, valendo em toda conversa nova</div>
+          <div class="eh-d">Amanhã, depois de amanhã, e daqui a três meses. Enquanto o texto estiver lá, vale.</div>
+        </div>
+        <div class="eh-card e">
+          <span class="eh-tag">É</span>
+          <div class="eh-t">Seu, e editável a qualquer hora</div>
+          <div class="eh-d">Apareceu uma correção nova? Você abre, acrescenta uma linha, salva. Cresce junto com o uso.</div>
+        </div>
+        <div class="eh-card nao">
+          <span class="eh-tag">Não é</span>
+          <div class="eh-t">Memória</div>
+          <div class="eh-d">Ele não lembra do texto, ele <strong>lê</strong> o texto. É a diferença do quadro logo abaixo.</div>
+        </div>
+        <div class="eh-card nao">
+          <span class="eh-tag">Não é</span>
+          <div class="eh-t">Lugar de guardar o dado do dia</div>
+          <div class="eh-d">A planilha desta semana não entra aqui. Regra é o que <strong>não muda</strong>. Dado muda toda semana.</div>
+        </div>
+        <div class="eh-card nao">
+          <span class="eh-tag">Não é</span>
+          <div class="eh-t">Coisa de técnico</div>
+          <div class="eh-d">É um campo de texto no navegador. Sem instalar, sem código, sem pedir nada para o TI.</div>
+        </div>
+      </div>
+
       <h4>"Mas o Claude já tem memória. Isso não resolve sozinho?"</h4>
       <p>
         Resolve outra coisa. O Claude guarda uma <strong>memória separada para cada projeto</strong>: ele resume sozinho o que vocês conversaram e traz de volta em conversa nova. É útil de verdade, e mesmo assim <strong>não substitui</strong> o texto que você vai escrever hoje. São duas coisas diferentes, e vale ver lado a lado:
@@ -763,7 +864,78 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
 
       <h4>Conceito 2 · Encher dilui</h4>
       <p>
-        Todo Project tem também um lugar para <strong>documentos</strong>: manuais, normas, planilhas de referência. E existe um terceiro lugar, que quase ninguém percebe que é diferente: <strong>o arquivo que você anexa dentro de uma conversa</strong>. São três gavetas, e confundir duas delas é o erro mais comum desta aula:
+        Todo Project tem também um lugar para <strong>documentos</strong>: manuais, normas, planilhas de referência. E existe um terceiro lugar, que quase ninguém percebe que é diferente: <strong>o arquivo que você anexa dentro de uma conversa</strong>. São três gavetas, e confundir duas delas é o erro mais comum desta aula.
+      </p>
+      <p>
+        Antes da comparação, veja as três com nome e endereço. É a anatomia de qualquer Project, e ela não muda de setor para setor:
+      </p>
+
+      <div class="anat">
+        <div class="anat-card">
+          <div class="anat-n">01</div>
+          <div class="anat-t">As regras da sua função</div>
+          <div class="anat-d">Quem você é, como a sua casa funciona, como você quer a resposta, o que nunca fazer. Não muda de uma conversa para a outra.</div>
+          <div class="anat-ex"><b>No PCP:</b> "OS = ordem de serviço" · "sem introdução e sem conclusão" · "nunca conclua que uma OS está atrasada sem me mostrar a conta".</div>
+          <div class="anat-onde">Vai no campo · Instruções</div>
+        </div>
+        <div class="anat-card">
+          <div class="anat-n">02</div>
+          <div class="anat-t">O material de consulta</div>
+          <div class="anat-d">Norma, manual, glossário, tabela de referência. Ele abre quando a pergunta tem a ver, e ignora quando não tem.</div>
+          <div class="anat-ex"><b>No PCP:</b> a norma interna de programação, com a ordem de prioridade da fila e a capacidade de cada máquina por turno.</div>
+          <div class="anat-onde">Vai no campo · Conhecimento do projeto</div>
+        </div>
+        <div class="anat-card">
+          <div class="anat-n">03</div>
+          <div class="anat-t">O pedido da vez</div>
+          <div class="anat-d">A frase que você digita, com o dado de hoje anexado. Curta, porque tudo que seria repetição já está guardado.</div>
+          <div class="anat-ex"><b>No PCP:</b> "Anexei o relatório de OS de hoje. Monta a pauta da reunião das 8h."</div>
+          <div class="anat-onde">Vai no chat · toda vez</div>
+        </div>
+      </div>
+
+      <div class="callout callout-ok">
+        <div class="callout-title">A regra que decide sozinha onde cada coisa vai</div>
+        <p>
+          <strong>Se não muda a cada uso, vai guardado</strong> (nas instruções, se vale sempre; no conhecimento, se é consulta). <strong>Se muda a cada uso, vai no pedido.</strong>
+        </p>
+        <p>
+          E o sinal de que você errou o lugar é este: se você se pegar <strong>repetindo a mesma explicação</strong> toda vez que abre o chat, aquilo não era pedido, era regra. É a regra do 2× outra vez, agora vista do outro lado.
+        </p>
+      </div>
+
+      <h4>Onde isso aparece na tela</h4>
+      <p>
+        No Claude, no navegador: <strong>Projects &rarr; criar projeto</strong>. São dois campos, mais o chat de uso. Nada para instalar.
+      </p>
+
+      <div class="tela">
+        <div class="tela-topo">
+          <div class="tela-pontos" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="tela-marca">Claude · Projects</div>
+        </div>
+        <div class="tela-rot">Nome do projeto</div>
+        <div class="tela-campo">Coordenação de PCP</div>
+        <div class="tela-dois">
+          <div class="tela-caixa">
+            <div class="tela-caixa-rot">Campo · Instruções</div>
+            <div class="tela-caixa-t">As regras da sua função</div>
+            <div class="tela-caixa-d">O texto que você vai escrever na seção 05. Lido no começo de toda conversa deste projeto.</div>
+          </div>
+          <div class="tela-caixa">
+            <div class="tela-caixa-rot">Campo · Conhecimento do projeto</div>
+            <div class="tela-caixa-t">O material de consulta</div>
+            <div class="tela-caixa-d">Os arquivos que ele abre quando a pergunta pede. Poucos e curtos, pelo motivo que vem logo abaixo.</div>
+          </div>
+        </div>
+        <div class="tela-chat">
+          <div class="tela-chat-rot">No chat, todo dia · anexa o relatório e digita:</div>
+          <div class="tela-chat-txt">Anexei o relatório de OS de hoje. Monta a pauta da reunião das 8h.</div>
+        </div>
+      </div>
+
+      <p>
+        Agora que os três lugares têm nome, dá para comparar o que cada um faz de diferente:
       </p>
 
       <div class="table-wrap">
@@ -1280,6 +1452,15 @@ prazo × data de hoje.</div>
           </p>
         </div>
       </details>
+
+      <div class="saidas">
+        <a class="saida principal" href="./exemplo/">
+          <span class="s-rot">O projeto inteiro montado, com os arquivos prontos</span>
+          <span class="s-titulo">As regras, a norma de consulta e o pedido da vez, cada um no seu campo</span>
+          <span class="s-desc">Os <strong>três arquivos para baixar</strong>, a tela do Claude mostrando onde cada um entra, e o mesmo pedido rodando dentro e fora do projeto. É a versão de referência do que você acabou de escrever.</span>
+          <span class="s-cta">ver o projeto montado &rarr;</span>
+        </a>
+      </div>
     </div>
   </section>
 

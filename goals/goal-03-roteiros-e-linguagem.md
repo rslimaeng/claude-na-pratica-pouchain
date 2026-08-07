@@ -521,6 +521,74 @@ piso de 3 figuras.
 
 **Gates:** 17 gates, 163 checagens, exit 0.
 
+## 7-decies. Onda 3-novies · a didática do M3 do Maria Pitanga na 1.3
+
+**Pedido do Rafael em 07/08/2026**, com quatro prints do
+`workshop-ia-maria-pitanga/m3/` e da página de caso dele. O pedido foi preciso:
+
+> *"Os blocos e o visual de como ele se apresenta, eu acho que isso é uma didática
+> que a gente pode aproveitar."* E depois, delimitando: *"não o termo de agente,
+> mas aí tem toda a parte de como funciona o Project que pode somar."*
+
+**A restrição que ele mesmo colocou é a mais importante.** O M3 do MP fala em
+**agente**; o nosso nível 2 fala em **instrução persistente**. Trazer a palavra
+puxaria vocabulário do nível 3 (skill) para cá e quebraria a progressão do
+`CLAUDE.md` §5. A didática veio, a palavra não. Conferido: `agente` não aparece
+em nenhuma das duas páginas.
+
+### O que foi replicado
+
+| Do M3 do MP | Virou na 1.3 | Componente |
+|---|---|---|
+| §01 Conceito, cards É/Não é | **O que a instrução persistente é, e o que não é.** 6 cards. O primeiro "não é" aponta para a tabela da memória logo abaixo | `.eh` |
+| §03 Anatomia, 3 partes fixas | **As três partes e onde cada uma mora**, com exemplo de PCP em cada card e o nome do campo no rodapé | `.anat` |
+| §04 Ferramenta, mockup da tela | **A tela do Project** com os dois campos lado a lado e o chat de uso | `.tela` |
+| §05 Caso-âncora com arquivos | **Página `exemplo/`** com 3 `.md` para baixar mais a planilha da 1.1 | página nova |
+
+### Por que o mockup era o maior buraco
+
+A aula falava de "Instruções do projeto" e de "documentos" o tempo todo e **nunca
+mostrava a tela**. Para quem nunca criou um Project, a diferença entre os dois
+campos só fica óbvia vendo os dois lado a lado. Foi o acréscimo de maior retorno.
+
+### Os três arquivos do `exemplo/`
+
+| Arquivo | Onde entra | Por que existe |
+|---|---|---|
+| `regras-do-coordenador.md` | Campo Instruções | O gabarito em formato de **colar**, não de escrever. O `.docx` continua para quem prefere papel |
+| `norma-de-programacao.md` | Campo Conhecimento | **Conteúdo novo**, e o ponto é esse: é material de consulta, não regra. Ordem de prioridade da fila, tempo de preparação, capacidade por turno |
+| `pedido-da-vez.md` | Nenhum campo, é o chat | Uma frase, mais 4 variações que mudam o recorte sem mexer no formato |
+
+A `norma-de-programacao.md` foi escrita de propósito como material que **não pode**
+estar nas instruções: ninguém precisa da capacidade da Offset 3 em toda conversa.
+É a distinção da aula demonstrada em arquivo, não em texto.
+
+### 🔴 O número que eu quase publiquei errado
+
+Escrevi na página que o arquivo de regras tem "32 linhas". Contei: são **27**.
+A aula promete *"entre 20 e 40 linhas"*, e um exemplo que não cabe na própria
+faixa destrói o critério.
+
+Virou o gate **G13b**, que recalcula três coisas: o arquivo cabe na faixa, tem as
+cinco seções, e **nenhuma página afirma um número diferente do real**. Testado
+contra dois defeitos injetados numa cópia com caminho absoluto:
+
+1. página dizendo 32 quando são 27 → acusou
+2. arquivo estourando a faixa (47 linhas) → acusou as duas checagens
+
+É a Regra 6 outra vez: **insumo é a fonte da verdade, e número que a página afirma
+sobre ele precisa ser recalculado, nunca digitado.**
+
+### O custo, declarado
+
+A 1.3 foi de 4.917 para **5.512 palavras**, e continua sendo a maior do módulo.
+A justificativa é que ela é a aula do **nível 2**, o que fecha a frase de abertura
+do curso. Se na revisão pré-turma ela pesar, o candidato natural a sair é o
+comparativo do "encher de escopo", que é o mais recente e o menos ancorado numa
+dor da sala.
+
+**Gates:** 18 gates, 177 checagens, exit 0.
+
 ## 8. Aberto
 
 - 🔴 **Teste de mesa das 4 aulas**, que nenhuma onda substitui
