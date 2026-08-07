@@ -107,7 +107,15 @@ python3 goals/gates.py
 | 1.3 | O texto de regras muda mesmo a resposta em conversa nova | O item 3 do validador |
 | **1.4** | Não tem passo executável: é classificação no papel. Confira se as 8 regras dão discussão boa em 12 minutos | O tempo do exercício |
 
-## 8. Aberto
+## 8. Insumos: nenhum `.md` sobrou
 
-- `m1/a3-regra-que-fica/exercicio/minhas-regras-PARTIDA.md` continua em `.md`. É texto para copiar e colar nas Instruções do Project, então cabe na regra. Vale perguntar ao Rafael se prefere `.docx` mesmo assim, porque quem abre é gente que não abre `.md`
+Decisão do Rafael no fim da onda. A partida e o gabarito da 1.3 eram `.md` porque são texto para copiar e colar, o que cabia na regra. Passaram para `.docx` assim mesmo: **quem abre é gente que não abre `.md`**.
+
+A partida virou folha de Word com as cinco seções e linhas para preencher. O gabarito virou documento com os comentários do professor visualmente separados das regras.
+
+`.md` continua valendo **só** para prompt copiável, que hoje mora dentro da própria página, no `.prompt-box` com botão de copiar. Nenhum insumo baixável está em `.md`.
+
+## 9. Aberto
+
 - Onda 3 é o Módulo 2. Antes dela, o pré-check de TI ganhou **dois itens bloqueantes** vindos do §5
+- O build do GitHub Pages de `20dd7dc` falhou por **timeout de 30 minutos**, não por erro de conteúdo. `.nojekyll` está versionado e os gates passavam. Foi degradação da infra do GitHub naquele momento: o build anterior levou 5min contra 30s dos demais. O commit seguinte disparou build novo. **Se acontecer de novo, é `gh run rerun`, não conserto de código**
