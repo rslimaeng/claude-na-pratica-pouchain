@@ -246,6 +246,31 @@ try:
 except ImportError:
     print("        openpyxl ausente, gate pulado")
 
+# ──────────── G14 · toda aula tem roteiro, e todo roteiro pergunta à sala
+titulo("G14 · ROTEIRO DE DEMONSTRAÇÃO EXECUTÁVEL EM TODA AULA")
+print("        (o bloco .pergunta é o que separa demonstração de aula · CLAUDE.md §9)")
+for f in AULAS:
+    dir_aula = os.path.dirname(f)
+    rot = os.path.join(dir_aula, "demonstracao", "index.html")
+    if not os.path.exists(rot):
+        diz(False, "G14", f, "sem pasta demonstracao/"); continue
+    r = open(rot, encoding="utf-8").read()
+    momentos = len(re.findall(r'class="mom"', r))
+    perg     = len(re.findall(r'class="pergunta"', r))
+    aponte   = len(re.findall(r'class="aponte"', r))
+    planoB   = len(re.findall(r'class="planoB"', r))
+    prompt   = len(re.findall(r'class="pbox"', r))
+    ligado   = 'href="./demonstracao/"' in open(f, encoding="utf-8").read()
+    faltas = []
+    if momentos < 3:          faltas.append(f"só {momentos} momentos")
+    if perg < momentos:       faltas.append(f"perguntas={perg} < momentos={momentos}")
+    if aponte < momentos:     faltas.append(f"apontes={aponte} < momentos={momentos}")
+    if planoB < momentos:     faltas.append(f"planoB={planoB} < momentos={momentos}")
+    if prompt == 0:           faltas.append("nenhum prompt literal")
+    if not ligado:            faltas.append("a aula não linka o roteiro")
+    diz(not faltas, "G14", dir_aula,
+        f"{momentos} momentos · {perg} perguntas · {prompt} prompts" if not faltas else str(faltas))
+
 # ─────────────────────────────────────────────────── veredicto
 print("\n" + "=" * 72)
 if falhas:

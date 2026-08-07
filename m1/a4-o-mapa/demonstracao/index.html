@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roteiro da demonstração · Aula 1.4</title>
+<meta name="description" content="O roteiro que o Rafael executa ao vivo na aula 1.4: a skill que não entra, a skill que entra, o conector abrindo e fechando, e a sala classificando ao vivo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F0EEE6; --bg-elev:#FFFFFF; --bg-warm:#E8E6DC; --bg-code:#F5F3EA;
+  --text:#141413; --text-muted:#3D3D3A; --text-dim:#87867F;
+  --border:rgba(20,20,19,.10); --border-strong:rgba(20,20,19,.18);
+  --accent:#1A5670; --accent-dark:#10394C; --accent-soft:#DDEAF0;
+  --accent-tinted:#F4F9FB; --accent-line:rgba(26,86,112,.22);
+  --success:#2E7D32; --success-soft:#EFF6EF;
+  --warning:#B8860B; --warning-soft:#FCF7E8;
+  --danger:#B85C5C; --danger-soft:#F7EAEA;
+  --col:820px; --col-wide:1120px;
+  --radius-sm:6px; --radius:10px; --radius-lg:14px;
+  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,'SF Mono','Menlo',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);
+  font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.wrap{max-width:var(--col-wide);margin:0 auto;padding:0 24px}
+
+/* topo */
+.topo{padding:26px 0 0}
+.volta{font-family:var(--font-mono);font-size:12px;color:var(--text-dim);margin-bottom:18px}
+.kicker{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+h1{font-size:clamp(28px,4vw,40px);font-weight:700;line-height:1.1;
+  letter-spacing:-.02em;margin-bottom:16px;max-width:820px}
+.lead{font-size:18px;line-height:1.6;color:var(--text-muted);max-width:760px}
+.lead strong{color:var(--text)}
+
+/* quem faz o quê */
+.papeis{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:26px 0 0}
+.papel{border:1px solid var(--border);border-radius:var(--radius-lg);
+  background:var(--bg-elev);padding:17px 19px}
+.papel.sala{background:var(--accent-tinted);border-color:var(--accent-line)}
+.papel-rot{display:block;font-family:var(--font-mono);font-size:10.5px;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--text-dim);margin-bottom:7px}
+.papel.sala .papel-rot{color:var(--accent)}
+.papel-tx{display:block;font-size:15px;line-height:1.5;color:var(--text-muted)}
+.papel-tx b{color:var(--text);font-weight:600}
+
+/* preparo */
+.preparo{margin:22px 0 0;border:1px solid var(--warning);background:var(--warning-soft);
+  border-radius:var(--radius-lg);padding:19px 21px}
+.preparo-rot{display:block;font-family:var(--font-mono);font-size:10.5px;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--warning);margin-bottom:11px}
+.preparo ul{list-style:none}
+.preparo li{font-size:15px;line-height:1.5;color:var(--text-muted);
+  padding-left:24px;position:relative;margin-bottom:8px}
+.preparo li:last-child{margin-bottom:0}
+.preparo li::before{content:"\2610";position:absolute;left:0;top:-1px;
+  color:var(--warning);font-size:15px}
+.preparo li b{color:var(--text);font-weight:600}
+
+/* linha do tempo */
+.mom{display:grid;grid-template-columns:96px 1fr;gap:22px;margin-top:34px;
+  align-items:start}
+.mom-tempo{position:sticky;top:20px}
+.mom-n{font-family:var(--font-mono);font-size:28px;font-weight:600;color:var(--accent);
+  line-height:1;letter-spacing:-.02em}
+.mom-min{display:block;font-family:var(--font-mono);font-size:11px;color:var(--text-dim);
+  letter-spacing:.06em;margin-top:6px}
+.mom-corpo{min-width:0;border-left:2px solid var(--accent-line);padding-left:24px;
+  padding-bottom:8px}
+.mom-titulo{font-size:23px;font-weight:600;letter-spacing:-.015em;line-height:1.24;
+  margin-bottom:16px}
+
+.bloco{margin-bottom:15px}
+.bloco:last-child{margin-bottom:0}
+.b-rot{display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--text-dim);margin-bottom:6px}
+.b-tx{display:block;font-size:16.5px;line-height:1.55;color:var(--text-muted)}
+.b-tx b{color:var(--text);font-weight:600}
+.b-tx code{font-family:var(--font-mono);font-size:14.5px;background:var(--bg-code);
+  padding:2px 6px;border-radius:4px;color:var(--accent-dark)}
+
+/* o dedo na tela */
+.aponte{background:var(--bg-elev);border:1px solid var(--border-strong);
+  border-radius:var(--radius);padding:15px 17px;margin-bottom:15px}
+.aponte .b-rot{color:var(--danger)}
+.aponte .b-tx{font-size:17px;color:var(--text)}
+
+/* a pergunta que a sala responde antes de você explicar */
+.pergunta{background:var(--accent-soft);border-radius:var(--radius);
+  padding:16px 18px;margin-bottom:15px}
+.pergunta .b-rot{color:var(--accent-dark)}
+.pergunta-fala{display:block;font-size:19px;line-height:1.42;color:var(--accent-dark);
+  font-weight:600;letter-spacing:-.01em}
+.pergunta-espera{display:block;font-size:14.5px;line-height:1.5;color:var(--accent-dark);
+  opacity:.85;margin-top:9px}
+
+/* por que */
+.porque{border-left:2px solid var(--success);background:var(--success-soft);
+  padding:14px 17px;border-radius:0 var(--radius-sm) var(--radius-sm) 0;margin-bottom:15px}
+.porque .b-rot{color:var(--success)}
+.porque .b-tx{font-size:15.5px}
+
+/* plano B */
+.planoB{border:1px dashed var(--border-strong);border-radius:var(--radius);
+  padding:13px 16px;background:var(--bg-warm)}
+.planoB .b-rot{color:var(--text-dim)}
+.planoB .b-tx{font-size:14.5px;color:var(--text-dim)}
+.planoB .b-tx b{color:var(--text-muted)}
+
+/* prompt copiável */
+.pbox{border:1px solid var(--border-strong);border-radius:var(--radius);
+  overflow:hidden;margin-bottom:15px;background:var(--bg-code)}
+.pbar{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:9px 14px;background:var(--bg-warm);border-bottom:1px solid var(--border)}
+.pbar-nome{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;
+  color:var(--text-dim)}
+.pbtn{font-family:var(--font-mono);font-size:11px;font-weight:500;cursor:pointer;
+  background:var(--accent);color:#fff;border:none;padding:6px 13px;
+  border-radius:var(--radius-sm)}
+.pbtn:hover{background:var(--accent-dark)}
+.pconteudo{font-family:var(--font-mono);font-size:13px;line-height:1.6;
+  white-space:pre-wrap;padding:15px 17px;color:var(--text-muted);
+  max-height:300px;overflow-y:auto}
+.pconteudo.curto{max-height:none;font-size:15px;color:var(--text)}
+
+/* fecho */
+.fecho{margin:44px 0 0;border:1px solid var(--accent);background:var(--accent-tinted);
+  border-radius:var(--radius-lg);padding:24px 26px}
+.fecho-rot{display:block;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:11px}
+.fecho-frase{display:block;font-size:22px;font-weight:600;line-height:1.32;
+  letter-spacing:-.015em;margin-bottom:12px}
+.fecho p{font-size:16px;line-height:1.6;color:var(--text-muted)}
+.fecho p + p{margin-top:10px}
+.fecho strong{color:var(--text)}
+
+.rodape{margin:48px 0 60px;padding-top:20px;border-top:1px solid var(--border);
+  font-size:14.5px;color:var(--text-dim);line-height:1.6}
+
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);
+  background:var(--text);color:#fff;padding:11px 20px;border-radius:999px;
+  font-size:14px;transition:transform .22s;z-index:99}
+.toast.on{transform:translateX(-50%) translateY(0)}
+
+@media (max-width:820px){
+  .papeis{grid-template-columns:1fr}
+  .mom{grid-template-columns:1fr;gap:10px}
+  .mom-tempo{position:static;display:flex;align-items:baseline;gap:12px}
+  .mom-min{margin-top:0}
+  .mom-corpo{border-left:none;padding-left:0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topo">
+    <div class="volta"><a href="../">&larr; voltar para a aula 1.4</a></div>
+    <div class="kicker">Roteiro de demonstração · aula 1.4 · 6 minutos de palco</div>
+    <h1>A descrição decidindo sozinha, e a sala classificando em voz alta</h1>
+    <p class="lead">Este é o roteiro para <strong>executar ao vivo</strong>. Os três primeiros momentos são de assistir, porque rodam em superfícies do M2 e do M3. <strong>O momento 4 é da sala</strong>, e é onde a aula acontece: eles classificam em voz alta e descobrem o desconforto que o exercício resolve.</p>
+
+    <div class="papeis">
+      <div class="papel">
+        <span class="papel-rot">Só você faz</span>
+        <span class="papel-tx">Os momentos <b>1, 2 e 3</b> rodam no <b>Cowork ou no Code</b>, que só entram nos módulos 2 e 3. A sala assiste, e você diz isso com todas as letras.</span>
+      </div>
+      <div class="papel sala">
+        <span class="papel-rot">A sala participa</span>
+        <span class="papel-tx">O <b>momento 4</b> é gritar em voz alta. Você lê uma regra, eles respondem <b>sempre, às vezes ou nunca</b>. <b>A terceira regra é ambígua de propósito.</b></span>
+      </div>
+    </div>
+
+    <div class="preparo">
+      <span class="preparo-rot">Antes de a turma entrar</span>
+      <ul>
+        <li><b>Cowork ou Code aberto</b>, com a skill de cotação já instalada e funcionando. <b>Teste antes</b>, porque skill que não dispara ao vivo mata o momento 2</li>
+        <li><b>O arquivo da skill aberto num editor</b>, com fonte grande, para mostrar que não tem código nenhum</li>
+        <li><b>Um conector qualquer já conectado</b>, e a tela de desligar ele à mão. Se a conta for Team ou Enterprise, confirme antes com o TI que o conector já foi adicionado pelo proprietário</li>
+        <li><b>As três regras do momento 4 escritas num papel</b>, para você ler sem procurar</li>
+        <li><b>Nada disso é para eles repetirem hoje.</b> Avise no começo, senão alguém tenta instalar e perde a aula</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mom">
+    <div class="mom-tempo"><div class="mom-n">01</div><span class="mom-min">1 min</span></div>
+    <div class="mom-corpo">
+      <div class="mom-titulo">A skill por dentro, e a surpresa de não ter código</div>
+
+      <div class="bloco">
+        <span class="b-rot">O que você faz</span>
+        <span class="b-tx">Abre o arquivo da skill num editor, com fonte grande. Rola devagar, de cima a baixo, <b>sem explicar ainda</b>.</span>
+      </div>
+      <div class="pbox">
+        <div class="pbar">
+          <span class="pbar-nome">a skill inteira · é isto, e só isto</span>
+          <button class="pbtn" data-alvo="p1">Copiar</button>
+        </div>
+        <div class="pconteudo" id="p1">---
+name: fechar-cotacao
+description: Use quando o usuário anexar propostas de fornecedores e pedir
+  comparação, análise de cotação ou recomendação de compra. Também quando
+  ele disser &quot;fecha essa cotação&quot; ou &quot;qual fornecedor eu escolho&quot;.
+---
+
+# Como a Gráfica Aurora fecha uma cotação
+
+1. Monte a tabela com as três propostas em preço por milheiro, nunca em
+   preço total, porque as tiragens vêm diferentes.
+2. Some frete e prazo de pagamento ao custo. Proposta mais barata com
+   prazo pior costuma sair mais cara.
+3. Confira se o fornecedor está homologado. Se não estiver, diga isso
+   antes da recomendação.
+4. Feche com uma recomendação em uma frase e o motivo dela.
+5. Se faltar algum dado numa proposta, pare e pergunte. Não estime.</div>
+      </div>
+      <div class="pergunta">
+        <span class="b-rot">Pergunte enquanto rola a tela</span>
+        <span class="pergunta-fala">"Alguém aqui viu alguma linha de programação nesse arquivo?"</span>
+        <span class="pergunta-espera">Não tem nenhuma. <b>Deixe o silêncio.</b> A sala espera código porque a palavra "skill" soa técnica, e a surpresa é o que abre a aula.</span>
+      </div>
+      <div class="aponte">
+        <span class="b-rot">Aponte as duas partes</span>
+        <span class="b-tx">Em cima, a <b>descrição</b>, que diz <em>quando</em> usar. Embaixo, os <b>passos</b>, que dizem <em>como</em> fazer. <b>São coisas diferentes, e a de cima é a que decide.</b></span>
+      </div>
+      <div class="porque">
+        <span class="b-rot">Por que este momento existe</span>
+        <span class="b-tx">Skill é <b>um procedimento escrito em português</b>, não um programa. Enquanto a sala achar que é código, ninguém escreve a sua.</span>
+      </div>
+      <div class="planoB">
+        <span class="b-rot">Se acharem que é código mesmo assim</span>
+        <span class="b-tx">Compare com a OS de impressão da aula 1.2: <b>"isso é uma ficha de acerto, e o topo diz quando puxar a ficha"</b>.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mom">
+    <div class="mom-tempo"><div class="mom-n">02</div><span class="mom-min">2 min</span></div>
+    <div class="mom-corpo">
+      <div class="mom-titulo">A skill que não entra, e a que entra sozinha</div>
+
+      <div class="bloco">
+        <span class="b-rot">O que você faz</span>
+        <span class="b-tx">Faz um pedido que <b>não</b> combina com a descrição. A skill não é carregada.</span>
+      </div>
+      <div class="pbox">
+        <div class="pbar">
+          <span class="pbar-nome">pedido que NÃO dispara a skill</span>
+          <button class="pbtn" data-alvo="p2">Copiar</button>
+        </div>
+        <div class="pconteudo curto" id="p2">Me ajuda a escrever um e-mail para o cliente avisando do atraso.</div>
+      </div>
+      <div class="aponte">
+        <span class="b-rot">Aponte isto na tela</span>
+        <span class="b-tx">A skill <b>não apareceu</b>. Ela não está lá o tempo todo, ocupando mesa. Só entra quando a tarefa bate.</span>
+      </div>
+      <div class="pergunta">
+        <span class="b-rot">Pergunte antes do próximo pedido</span>
+        <span class="pergunta-fala">"O que vocês acham que faz ele decidir usar ou não usar? Chutem."</span>
+        <span class="pergunta-espera">Metade vai dizer que é o nome do arquivo. <b>Deixe o chute errado acontecer</b>, ele torna o próximo passo mais forte.</span>
+      </div>
+      <div class="bloco">
+        <span class="b-rot">O que você faz</span>
+        <span class="b-tx">Agora faz um pedido que combina. <b>Ela entra sozinha</b>, sem você chamar pelo nome.</span>
+      </div>
+      <div class="pbox">
+        <div class="pbar">
+          <span class="pbar-nome">pedido que dispara a skill</span>
+          <button class="pbtn" data-alvo="p3">Copiar</button>
+        </div>
+        <div class="pconteudo curto" id="p3">Anexei as três propostas do papel couché. Qual fornecedor eu fecho?</div>
+      </div>
+      <div class="aponte">
+        <span class="b-rot">Aponte a descrição, palavra por palavra</span>
+        <span class="b-tx">Volte ao arquivo e mostre: <b>"cotação", "comparação", "qual fornecedor eu escolho"</b>. Foram essas palavras que decidiram. <b>É a descrição, e não o nome.</b></span>
+      </div>
+      <div class="porque">
+        <span class="b-rot">Por que este momento existe</span>
+        <span class="b-tx">Aqui nasce a regra prática que vale o módulo 2 inteiro: <b>descrição vaga é skill que nunca roda</b>. A pessoa escreve um procedimento perfeito e ele fica parado.</span>
+      </div>
+      <div class="planoB">
+        <span class="b-rot">Se a skill não disparar quando devia</span>
+        <span class="b-tx">Perfeito, e <b>é a melhor aula possível</b>: "olhem, escrevi a descrição mal e ela não entrou". Conserte a descrição na tela e rode de novo. <b>Nada ensina isso melhor do que consertar ao vivo.</b></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mom">
+    <div class="mom-tempo"><div class="mom-n">03</div><span class="mom-min">1 min</span></div>
+    <div class="mom-corpo">
+      <div class="mom-titulo">O comando e o conector: outros dois gatilhos</div>
+
+      <div class="bloco">
+        <span class="b-rot">O que você faz</span>
+        <span class="b-tx">Mostra a mesma coisa como <b>comando</b>, chamando pelo nome. Depois abre um conector e pede algo que só o sistema do outro lado sabe responder.</span>
+      </div>
+      <div class="aponte">
+        <span class="b-rot">Aponte a diferença de gatilho</span>
+        <span class="b-tx">Skill: <b>ele decide</b>, pela descrição. Comando: <b>você decide</b>, chamando. Conector: <b>a porta fica aberta</b> e ele busca quando precisa.</span>
+      </div>
+      <div class="bloco">
+        <span class="b-rot">O que você faz</span>
+        <span class="b-tx">Agora <b>desliga o conector</b> e faz exatamente o mesmo pedido. A porta fechou.</span>
+      </div>
+      <div class="pergunta">
+        <span class="b-rot">Pergunte à sala</span>
+        <span class="pergunta-fala">"Se a porta fica aberta o tempo todo, o que isso custa?"</span>
+        <span class="pergunta-espera">Vai vir "nada". <b>Custa mesa</b>: um conector ligado ocupa contexto mesmo parado. Volte à figura da aula 1.1.</span>
+      </div>
+      <div class="porque">
+        <span class="b-rot">Por que este momento existe</span>
+        <span class="b-tx">Fecha a tabela de decisão com o custo de cada linha. <b>Não existe o lugar de graça</b>, existe o lugar certo para aquela informação.</span>
+      </div>
+      <div class="planoB">
+        <span class="b-rot">Se o conector não estiver disponível</span>
+        <span class="b-tx">Descreva em voz alta e <b>siga</b>. O momento 4 é o que importa, e ele não depende de nada estar conectado.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mom">
+    <div class="mom-tempo"><div class="mom-n">04</div><span class="mom-min">2 min</span></div>
+    <div class="mom-corpo">
+      <div class="mom-titulo">A sala classificando em voz alta, e discordando</div>
+
+      <div class="bloco">
+        <span class="b-rot">O que você faz</span>
+        <span class="b-tx">Guarda a tela. Diz: <b>"agora sem computador. Eu leio, vocês gritam: sempre, às vezes ou nunca."</b> Leia as três, uma de cada vez.</span>
+      </div>
+      <div class="bloco">
+        <span class="b-rot">Regra 1 · fácil de propósito</span>
+        <span class="b-tx"><em>"Nunca escreva o nome do cliente por extenso em relatório que sai da empresa."</em> A sala responde <b>sempre</b>, quase em uníssono. Bom: eles acabaram de usar a pergunta sem perceber.</span>
+      </div>
+      <div class="bloco">
+        <span class="b-rot">Regra 2 · fácil do outro lado</span>
+        <span class="b-tx"><em>"Ao comparar cotação, converta tudo para preço por milheiro."</em> A sala responde <b>às vezes</b>. Confirme: só quando a tarefa cotação aparece.</span>
+      </div>
+      <div class="pergunta">
+        <span class="b-rot">🔴 Regra 3 · a que divide a sala</span>
+        <span class="pergunta-fala"><em>"Toda proposta acima de cinquenta mil reais precisa de segunda aprovação antes de sair."</em></span>
+        <span class="pergunta-espera">Aqui eles se dividem, e <b>é de propósito</b>. Uns dizem sempre, outros dizem que não é bem uma regra de texto. <b>Deixe a discussão acontecer por trinta segundos antes de intervir.</b></span>
+      </div>
+      <div class="aponte">
+        <span class="b-rot">Depois da discussão, faça a pergunta que resolve</span>
+        <span class="b-tx"><b>"Se ele esquecer isso uma vez em cem, qual o tamanho do estrago?"</b> Aí a sala mesma diz: essa não pode ser texto. <b>É cerca.</b></span>
+      </div>
+      <div class="porque">
+        <span class="b-rot">Por que este momento existe</span>
+        <span class="b-tx">Este momento faz três coisas ao mesmo tempo: eles <b>usam</b> a pergunta em vez de decorá-la, sentem que <b>a tabela tem casos difíceis</b>, e chegam ao conceito 2 pela discordância, que é o único jeito de ele grudar.</span>
+      </div>
+      <div class="planoB">
+        <span class="b-rot">Se ninguém discordar na regra 3</span>
+        <span class="b-tx">Provoque com o contrário: <b>"quem aqui assinaria embaixo se ele esquecer uma vez?"</b>. Ninguém assina, e o desconforto aparece do mesmo jeito.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="fecho">
+    <span class="fecho-rot">A frase que emenda na seção 05</span>
+    <span class="fecho-frase">"Vocês acabaram de classificar três. No exercício são oito, e três delas têm mais de uma resposta defensável. A pergunta certa não é qual está certa: é se você consegue defender a sua."</span>
+    <p>Eles abrem a seção <strong>05 · Sua vez</strong> e classificam as oito regras da Gráfica Aurora, mais cinco da própria rotina. <strong>Sai daí a tabela de decisão impressa</strong>, que é o segundo artefato do módulo.</p>
+    <p><strong>Não pule o momento 4.</strong> É o único momento da aula em que eles usam a pergunta em vez de ouvir sobre ela. Sem ele, a tabela do exercício vira preenchimento de formulário.</p>
+  </div>
+
+  <p class="rodape">
+    Roteiro da <a href="../">aula 1.4</a> · Gráfica Aurora é uma indústria gráfica fictícia criada para o treinamento · <a href="../../">voltar ao módulo 1</a>
+  </p>
+
+</div>
+
+<div class="toast" id="toast">copiado</div>
+<script>
+document.querySelectorAll(".pbtn").forEach(function(b){
+  b.addEventListener("click", function(){
+    var el = document.getElementById(b.dataset.alvo);
+    navigator.clipboard.writeText(el.innerText).then(function(){
+      var t = document.getElementById("toast");
+      t.classList.add("on");
+      setTimeout(function(){ t.classList.remove("on"); }, 1500);
+    });
+  });
+});
+</script>
+</body>
+</html>

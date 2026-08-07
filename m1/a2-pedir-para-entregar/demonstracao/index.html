@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roteiro da demonstração · Aula 1.2</title>
+<meta name="description" content="O roteiro que o Rafael executa ao vivo na aula 1.2: o pedido vago sendo corrigido pela sala, a OS do pedido preenchida por eles, e a rodada única.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F0EEE6; --bg-elev:#FFFFFF; --bg-warm:#E8E6DC; --bg-code:#F5F3EA;
+  --text:#141413; --text-muted:#3D3D3A; --text-dim:#87867F;
+  --border:rgba(20,20,19,.10); --border-strong:rgba(20,20,19,.18);
+  --accent:#1A5670; --accent-dark:#10394C; --accent-soft:#DDEAF0;
+  --accent-tinted:#F4F9FB; --accent-line:rgba(26,86,112,.22);
+  --success:#2E7D32; --success-soft:#EFF6EF;
+  --warning:#B8860B; --warning-soft:#FCF7E8;
+  --danger:#B85C5C; --danger-soft:#F7EAEA;
+  --col:820px; --col-wide:1120px;
+  --radius-sm:6px; --radius:10px; --radius-lg:14px;
+  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,'SF Mono','Menlo',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);
+  font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.wrap{max-width:var(--col-wide);margin:0 auto;padding:0 24px}
+
+/* topo */
+.topo{padding:26px 0 0}
+.volta{font-family:var(--font-mono);font-size:12px;color:var(--text-dim);margin-bottom:18px}
+.kicker{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+h1{font-size:clamp(28px,4vw,40px);font-weight:700;line-height:1.1;
+  letter-spacing:-.02em;margin-bottom:16px;max-width:820px}
+.lead{font-size:18px;line-height:1.6;color:var(--text-muted);max-width:760px}
+.lead strong{color:var(--text)}
+
+/* quem faz o quê */
+.papeis{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:26px 0 0}
+.papel{border:1px solid var(--border);border-radius:var(--radius-lg);
+  background:var(--bg-elev);padding:17px 19px}
+.papel.sala{background:var(--accent-tinted);border-color:var(--accent-line)}
+.papel-rot{display:block;font-family:var(--font-mono);font-size:10.5px;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--text-dim);margin-bottom:7px}
+.papel.sala .papel-rot{color:var(--accent)}
+.papel-tx{display:block;font-size:15px;line-height:1.5;color:var(--text-muted)}
+.papel-tx b{color:var(--text);font-weight:600}
+
+/* preparo */
+.preparo{margin:22px 0 0;border:1px solid var(--warning);background:var(--warning-soft);
+  border-radius:var(--radius-lg);padding:19px 21px}
+.preparo-rot{display:block;font-family:var(--font-mono);font-size:10.5px;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--warning);margin-bottom:11px}
+.preparo ul{list-style:none}
+.preparo li{font-size:15px;line-height:1.5;color:var(--text-muted);
+  padding-left:24px;position:relative;margin-bottom:8px}
+.preparo li:last-child{margin-bottom:0}
+.preparo li::before{content:"\2610";position:absolute;left:0;top:-1px;
+  color:var(--warning);font-size:15px}
+.preparo li b{color:var(--text);font-weight:600}
+
+/* linha do tempo */
+.mom{display:grid;grid-template-columns:96px 1fr;gap:22px;margin-top:34px;
+  align-items:start}
+.mom-tempo{position:sticky;top:20px}
+.mom-n{font-family:var(--font-mono);font-size:28px;font-weight:600;color:var(--accent);
+  line-height:1;letter-spacing:-.02em}
+.mom-min{display:block;font-family:var(--font-mono);font-size:11px;color:var(--text-dim);
+  letter-spacing:.06em;margin-top:6px}
+.mom-corpo{min-width:0;border-left:2px solid var(--accent-line);padding-left:24px;
+  padding-bottom:8px}
+.mom-titulo{font-size:23px;font-weight:600;letter-spacing:-.015em;line-height:1.24;
+  margin-bottom:16px}
+
+.bloco{margin-bottom:15px}
+.bloco:last-child{margin-bottom:0}
+.b-rot{display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--text-dim);margin-bottom:6px}
+.b-tx{display:block;font-size:16.5px;line-height:1.55;color:var(--text-muted)}
+.b-tx b{color:var(--text);font-weight:600}
+.b-tx code{font-family:var(--font-mono);font-size:14.5px;background:var(--bg-code);
+  padding:2px 6px;border-radius:4px;color:var(--accent-dark)}
+
+/* o dedo na tela */
+.aponte{background:var(--bg-elev);border:1px solid var(--border-strong);
+  border-radius:var(--radius);padding:15px 17px;margin-bottom:15px}
+.aponte .b-rot{color:var(--danger)}
+.aponte .b-tx{font-size:17px;color:var(--text)}
+
+/* a pergunta que a sala responde antes de você explicar */
+.pergunta{background:var(--accent-soft);border-radius:var(--radius);
+  padding:16px 18px;margin-bottom:15px}
+.pergunta .b-rot{color:var(--accent-dark)}
+.pergunta-fala{display:block;font-size:19px;line-height:1.42;color:var(--accent-dark);
+  font-weight:600;letter-spacing:-.01em}
+.pergunta-espera{display:block;font-size:14.5px;line-height:1.5;color:var(--accent-dark);
+  opacity:.85;margin-top:9px}
+
+/* por que */
+.porque{border-left:2px solid var(--success);background:var(--success-soft);
+  padding:14px 17px;border-radius:0 var(--radius-sm) var(--radius-sm) 0;margin-bottom:15px}
+.porque .b-rot{color:var(--success)}
+.porque .b-tx{font-size:15.5px}
+
+/* plano B */
+.planoB{border:1px dashed var(--border-strong);border-radius:var(--radius);
+  padding:13px 16px;background:var(--bg-warm)}
+.planoB .b-rot{color:var(--text-dim)}
+.planoB .b-tx{font-size:14.5px;color:var(--text-dim)}
+.planoB .b-tx b{color:var(--text-muted)}
+
+/* prompt copiável */
+.pbox{border:1px solid var(--border-strong);border-radius:var(--radius);
+  overflow:hidden;margin-bottom:15px;background:var(--bg-code)}
+.pbar{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:9px 14px;background:var(--bg-warm);border-bottom:1px solid var(--border)}
+.pbar-nome{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;
+  color:var(--text-dim)}
+.pbtn{font-family:var(--font-mono);font-size:11px;font-weight:500;cursor:pointer;
+  background:var(--accent);color:#fff;border:none;padding:6px 13px;
+  border-radius:var(--radius-sm)}
+.pbtn:hover{background:var(--accent-dark)}
+.pconteudo{font-family:var(--font-mono);font-size:13px;line-height:1.6;
+  white-space:pre-wrap;padding:15px 17px;color:var(--text-muted);
+  max-height:300px;overflow-y:auto}
+.pconteudo.curto{max-height:none;font-size:15px;color:var(--text)}
+
+/* fecho */
+.fecho{margin:44px 0 0;border:1px solid var(--accent);background:var(--accent-tinted);
+  border-radius:var(--radius-lg);padding:24px 26px}
+.fecho-rot{display:block;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:11px}
+.fecho-frase{display:block;font-size:22px;font-weight:600;line-height:1.32;
+  letter-spacing:-.015em;margin-bottom:12px}
+.fecho p{font-size:16px;line-height:1.6;color:var(--text-muted)}
+.fecho p + p{margin-top:10px}
+.fecho strong{color:var(--text)}
+
+.rodape{margin:48px 0 60px;padding-top:20px;border-top:1px solid var(--border);
+  font-size:14.5px;color:var(--text-dim);line-height:1.6}
+
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);
+  background:var(--text);color:#fff;padding:11px 20px;border-radius:999px;
+  font-size:14px;transition:transform .22s;z-index:99}
+.toast.on{transform:translateX(-50%) translateY(0)}
+
+@media (max-width:820px){
+  .papeis{grid-template-columns:1fr}
+  .mom{grid-template-columns:1fr;gap:10px}
+  .mom-tempo{position:static;display:flex;align-items:baseline;gap:12px}
+  .mom-min{margin-top:0}
+  .mom-corpo{border-left:none;padding-left:0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topo">
+    <div class="volta"><a href="../">&larr; voltar para a aula 1.2</a></div>
+    <div class="kicker">Roteiro de demonstração · aula 1.2 · 6 minutos de palco</div>
+    <h1>O mesmo arquivo, dois pedidos, e a sala escrevendo o segundo</h1>
+    <p class="lead">Este é o roteiro para <strong>executar ao vivo</strong>. A aula inteira depende de uma coisa: <strong>a sala escreve o pedido bom no momento 2</strong>, e só descobre isso no momento 3. Se você entregar o pedido pronto, vira demonstração de mágica.</p>
+
+    <div class="papeis">
+      <div class="papel">
+        <span class="papel-rot">Só você faz</span>
+        <span class="papel-tx">Você roda tudo no <b>Claude Chat</b>, no navegador. Nada para instalar, e é a mesma tela que eles vão usar daqui a sete minutos.</span>
+      </div>
+      <div class="papel sala">
+        <span class="papel-rot">A sala participa</span>
+        <span class="papel-tx">No <b>momento 1</b> eles contam as rodadas em voz alta. No <b>momento 2</b> eles preenchem os três campos da OS. <b>É o pedido deles que roda no momento 3.</b></span>
+      </div>
+    </div>
+
+    <div class="preparo">
+      <span class="preparo-rot">Antes de a turma entrar</span>
+      <ul>
+        <li><b>Claude Chat aberto</b>, sem conversa começada, e <code>pedidos-em-producao.xlsx</code> à mão</li>
+        <li><b>O quadro ou um bloco de notas na tela</b>, porque no momento 2 você escreve o que a sala ditar</li>
+        <li><b>Um contador visível</b>: escreva os números 1, 2, 3, 4 no canto do quadro e vá riscando junto com eles</li>
+        <li><b>Um arquivo com uma célula de data em branco</b>, para o momento 4. Pode ser a mesma planilha com uma data apagada</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mom">
+    <div class="mom-tempo"><div class="mom-n">01</div><span class="mom-min">2 min</span></div>
+    <div class="mom-corpo">
+      <div class="mom-titulo">O pedido vago, e a sala contando junto</div>
+
+      <div class="bloco">
+        <span class="b-rot">O que você faz</span>
+        <span class="b-tx">Abre conversa nova, anexa a planilha da aula 1.1 e manda o pedido mais curto possível. Antes de apertar enter, avise: <b>"contem comigo quantas mensagens até isso ficar utilizável"</b>.</span>
+      </div>
+      <div class="pbox">
+        <div class="pbar">
+          <span class="pbar-nome">pedido vago · cole exatamente assim</span>
+          <button class="pbtn" data-alvo="p1">Copiar</button>
+        </div>
+        <div class="pconteudo curto" id="p1">Resuma esses pedidos.</div>
+      </div>
+      <div class="aponte">
+        <span class="b-rot">Aponte isto na tela</span>
+        <span class="b-tx">A resposta é um <b>resumo educado</b>: quantos pedidos existem, alguns atrasados, distribuídos entre as máquinas. <b>Não decide nada.</b> Leia a primeira frase em voz alta, devagar.</span>
+      </div>
+      <div class="pergunta">
+        <span class="b-rot">Pergunte antes de corrigir</span>
+        <span class="pergunta-fala">"Levantem a mão: quem levaria essa resposta para a reunião de amanhã?"</span>
+        <span class="pergunta-espera">Ninguém levanta. <b>Aí sim pergunte o que falta</b>, e corrija ao vivo com o que eles disserem. Risque um número do quadro a cada rodada.</span>
+      </div>
+      <div class="porque">
+        <span class="b-rot">Por que este momento existe</span>
+        <span class="b-tx">A conta que importa não é a qualidade da resposta, é <b>quantas mensagens até ela servir</b>. Eles precisam contar, não ouvir você dizer o número.</span>
+      </div>
+      <div class="planoB">
+        <span class="b-rot">Se a primeira resposta já vier boa</span>
+        <span class="b-tx">Acontece, e é ótimo material: <b>diga isso</b> e pergunte "e se eu pedir de novo amanhã, sai igual?". A aula 1.3 agradece.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mom">
+    <div class="mom-tempo"><div class="mom-n">02</div><span class="mom-min">2 min</span></div>
+    <div class="mom-corpo">
+      <div class="mom-titulo">A OS do pedido, em branco, preenchida por eles</div>
+
+      <div class="bloco">
+        <span class="b-rot">O que você faz</span>
+        <span class="b-tx">Apaga o quadro e escreve <b>três campos vazios</b>, do jeito de uma OS de impressão: <b>O que é "pronto"</b> · <b>Quais são as restrições</b> · <b>O que fazer na dúvida</b>. Nada mais.</span>
+      </div>
+      <div class="pergunta">
+        <span class="b-rot">🔴 O momento que sustenta a aula inteira</span>
+        <span class="pergunta-fala">"Numa OS de impressão vocês nunca deixam campo em branco. Preencham estes três para o mesmo pedido que acabamos de fazer."</span>
+        <span class="pergunta-espera"><b>Não escreva você.</b> Vá anotando literalmente o que eles ditarem, com as palavras deles. O campo "na dúvida" quase sempre fica em branco, e <b>esse silêncio é a aula</b>.</span>
+      </div>
+      <div class="aponte">
+        <span class="b-rot">Aponte o campo que ficou vazio</span>
+        <span class="b-tx">Quase ninguém preenche <b>"o que fazer na dúvida"</b>. Pergunte: "e quando falta um dado, o que ele faz hoje?". A resposta é: inventa. <b>E ninguém autorizou.</b></span>
+      </div>
+      <div class="porque">
+        <span class="b-rot">Por que este momento existe</span>
+        <span class="b-tx">As três perguntas deixam de ser um método que você ensinou e viram <b>um formulário que a casa já usa há vinte anos</b>. Eles reconhecem a OS antes de reconhecerem o conceito.</span>
+      </div>
+      <div class="planoB">
+        <span class="b-rot">Se travarem no primeiro campo</span>
+        <span class="b-tx">Traduza para a OS de máquina: <b>"o que é pronto" é o mesmo que "quando eu considero essa tiragem entregue"</b>. Aí destrava.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mom">
+    <div class="mom-tempo"><div class="mom-n">03</div><span class="mom-min">1 min</span></div>
+    <div class="mom-corpo">
+      <div class="mom-titulo">O pedido deles rodando, em uma rodada</div>
+
+      <div class="bloco">
+        <span class="b-rot">O que você faz</span>
+        <span class="b-tx">Abre <b>outra conversa nova</b>, anexa a mesma planilha e cola o pedido montado com o que está no quadro. Este é o texto de referência, e ele bate com o que a sala costuma ditar.</span>
+      </div>
+      <div class="pbox">
+        <div class="pbar">
+          <span class="pbar-nome">pedido situado · monte com o que estiver no quadro</span>
+          <button class="pbtn" data-alvo="p2">Copiar</button>
+        </div>
+        <div class="pconteudo" id="p2">Anexei o relatório de OS em produção da Gráfica Aurora, exportado do sistema hoje, 16/07/2026.
+
+O que eu preciso: uma pauta para a reunião de produção de amanhã às 8h, em uma página, que eu possa imprimir e levar.
+
+O que é &quot;pronto&quot;: tem as OS atrasadas em ordem de atraso, a carga de cada máquina, e no máximo três decisões que dependem de mim, coordenador de PCP.
+
+Restrições: o arquivo vem sujo do ERP, com cabeçalho mesclado, data em três formatos e status em duas caixas. Normalize antes de analisar. Considere atrasada pela data de prazo, não pelo campo de status.
+
+Na dúvida: se algum dado estiver em branco ou contraditório, pare e me pergunte. Não invente e não chute.</div>
+      </div>
+      <div class="pergunta">
+        <span class="b-rot">Pergunte depois que a resposta vier</span>
+        <span class="pergunta-fala">"A resposta ficou muito melhor, ou o caminho até ela ficou muito menor?"</span>
+        <span class="pergunta-espera">As duas respostas finais costumam ser parecidas. <b>O que mudou foi o relógio.</b> Deixe eles chegarem nisso.</span>
+      </div>
+      <div class="aponte">
+        <span class="b-rot">Aponte isto na tela</span>
+        <span class="b-tx">Uma rodada. E <b>o texto que rodou é o do quadro</b>, escrito por eles há noventa segundos.</span>
+      </div>
+      <div class="porque">
+        <span class="b-rot">Por que este momento existe</span>
+        <span class="b-tx">É o fecho do laço. Pedido bom não é talento de quem escreve prompt: <b>é os três campos preenchidos antes de mandar</b>.</span>
+      </div>
+      <div class="planoB">
+        <span class="b-rot">Se precisar de duas rodadas</span>
+        <span class="b-tx">Ótimo, e <b>diga o número real</b>: "hoje precisei de duas, e no vago foram quatro". <b>Nunca arredonde para um.</b> O gabarito promete uma rodada, e promessa que não se cumpre ao vivo custa mais do que a diferença.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mom">
+    <div class="mom-tempo"><div class="mom-n">04</div><span class="mom-min">1 min</span></div>
+    <div class="mom-corpo">
+      <div class="mom-titulo">A terceira pergunta valendo: ele para em vez de inventar</div>
+
+      <div class="bloco">
+        <span class="b-rot">O que você faz</span>
+        <span class="b-tx">Anexa a planilha com <b>uma data apagada</b> e roda o mesmo pedido. O campo "na dúvida" está preenchido, então ele para.</span>
+      </div>
+      <div class="aponte">
+        <span class="b-rot">Aponte isto na tela</span>
+        <span class="b-tx">Ele <b>não inventou a data</b>. Perguntou. Mostre a frase exata em que ele pergunta.</span>
+      </div>
+      <div class="pergunta">
+        <span class="b-rot">Pergunte para fechar</span>
+        <span class="pergunta-fala">"Quantas vezes por semana alguém aqui recebe um número que foi suposto, e descobre depois?"</span>
+        <span class="pergunta-espera">Deixe a sala rir. <b>É o riso do reconhecimento</b>, e é o que faz o terceiro campo deixar de ser burocracia.</span>
+      </div>
+      <div class="porque">
+        <span class="b-rot">Por que este momento existe</span>
+        <span class="b-tx">É a única das três perguntas que <b>muda o comportamento dele</b>, não a formatação da saída. As outras duas melhoram a resposta; esta evita um erro que ninguém ia perceber.</span>
+      </div>
+      <div class="planoB">
+        <span class="b-rot">Se ele inventar mesmo assim</span>
+        <span class="b-tx">Acontece, e é <b>conteúdo melhor ainda</b>: "olhem, ele inventou. Por isso a aula 1.4 fala de regra que não pode morar em texto". Você acabou de plantar a 1.4.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="fecho">
+    <span class="fecho-rot">A frase que emenda na seção 05</span>
+    <span class="fecho-frase">"Agora é com vocês, com um pedido de verdade que vocês fizeram esta semana. Os três campos estão no quadro."</span>
+    <p>Eles abrem a seção <strong>05 · Sua vez</strong> e reescrevem um pedido real. <strong>O quadro fica visível o exercício inteiro</strong>, porque é o gabarito deles enquanto escrevem.</p>
+    <p><strong>Não pule o momento 2.</strong> Se você preencher a OS sozinho para ganhar tempo, o momento 3 vira um prompt bonito que veio do professor, e ninguém escreve o próprio depois.</p>
+  </div>
+
+  <p class="rodape">
+    Roteiro da <a href="../">aula 1.2</a> · Gráfica Aurora é uma indústria gráfica fictícia criada para o treinamento · <a href="../../">voltar ao módulo 1</a>
+  </p>
+
+</div>
+
+<div class="toast" id="toast">copiado</div>
+<script>
+document.querySelectorAll(".pbtn").forEach(function(b){
+  b.addEventListener("click", function(){
+    var el = document.getElementById(b.dataset.alvo);
+    navigator.clipboard.writeText(el.innerText).then(function(){
+      var t = document.getElementById("toast");
+      t.classList.add("on");
+      setTimeout(function(){ t.classList.remove("on"); }, 1500);
+    });
+  });
+});
+</script>
+</body>
+</html>

@@ -54,6 +54,22 @@ a:hover{color:var(--accent-dark)}
   letter-spacing:.09em;text-transform:uppercase;color:var(--success);margin-bottom:6px}
 .checkpoint-primeiro .tx{display:block;font-size:16px;line-height:1.55;color:var(--text)}
 .checkpoint-primeiro .tx strong{font-weight:600}
+/* CARTÃO · o roteiro que roda ao vivo */
+.saidas{display:grid;grid-template-columns:1fr;gap:14px;margin:26px 0 0;align-items:stretch}
+.saida{display:flex;flex-direction:column;padding:20px 22px;
+  border:1px solid var(--border);border-radius:var(--radius-lg);
+  background:var(--bg-elev);color:var(--text)}
+.saida:hover{border-color:var(--accent)}
+.saida.principal{background:var(--accent-tinted);border-color:var(--accent-line)}
+.saida.principal:hover{background:var(--accent-soft)}
+.s-rot{display:block;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--text-dim);margin-bottom:8px}
+.saida.principal .s-rot{color:var(--accent)}
+.s-titulo{display:block;font-size:18px;font-weight:600;letter-spacing:-.01em;
+  line-height:1.3;margin-bottom:7px}
+.s-desc{display:block;font-size:14.5px;line-height:1.55;color:var(--text-muted)}
+.s-cta{display:block;font-size:14px;font-weight:600;color:var(--accent);margin-top:auto;
+  padding-top:12px}
 .rec{display:inline-flex;align-items:center;font-family:var(--font-mono);
   font-size:11px;font-weight:500;background:var(--accent-soft);color:var(--accent-dark);
   padding:4px 9px;border-radius:var(--radius-sm)}
@@ -539,7 +555,7 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
 /* BREAKOUT · figura e tabela saem da coluna de leitura, prosa fica */
 .table-wrap,.fluxo,.dilui,.compare,.uau,.pilha,.ctx,.setores,.trilha,
 .facts,.pre-req,.modules,.aulas,.fio-passos,.leva,.entrega,
-.mapa,.os,.rodadas,.caminhos,.caminhos-nota,.bif,.bif-fora,.nao-faz{
+.mapa,.os,.rodadas,.caminhos,.saidas,.caminhos-nota,.bif,.bif-fora,.nao-faz{
   width:min(var(--col-wide),calc(100vw - 40px));min-width:100%;
   margin-left:50%;transform:translateX(-50%)}
 </style>
@@ -968,7 +984,16 @@ Para decidir amanhã:
           </ol>
         </div>
       </div>
-    </div>
+    
+      <div class="saidas">
+        <a class="saida principal" href="./demonstracao/">
+          <span class="s-rot">O roteiro que roda ao vivo</span>
+          <span class="s-titulo">Os quatro momentos, com o que apontar em cada um</span>
+          <span class="s-desc">O mesmo pedido antes e depois das regras, com <strong>a sala ditando o que entra no arquivo</strong>. Traz também o momento em que o número de atrasadas muda de 2 para 7, e por quê.</span>
+          <span class="s-cta">abrir o roteiro &rarr;</span>
+        </a>
+      </div>
+</div>
   </section>
 
   <!-- 05 SUA VEZ -->

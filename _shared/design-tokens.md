@@ -142,6 +142,17 @@ Nasceram ao aplicar os 4 padrões de `CLAUDE.md` §7-bis.
 
 **Regra:** o roteiro fica no site público porque o aluno também o usa, para refazer sozinho depois. Não tem nada de instrutor que o aluno não possa ler.
 
+**As quatro do M1, e o momento de ouro de cada uma:**
+
+| Aula | Momento de ouro | O que a sala faz sem perceber |
+|---|---|---|
+| 1.1 | 3 | Dita as correções do pedido vago. No momento 5 reconhece as próprias palavras no pedido situado |
+| 1.2 | 2 | Preenche os três campos da OS em branco. O pedido que roda no momento 3 é o deles |
+| 1.3 | 2 | Dita as regras do Project, linha por linha, e você só digita |
+| 1.4 | 4 | Classifica três regras em voz alta e **discorda na terceira, de propósito** |
+
+**O padrão é sempre o mesmo:** a sala produz a resposta antes de saber que produziu. Conferido pelo gate **G14**, que exige `.pergunta`, `.aponte` e `.planoB` em todo momento, e pelo menos um prompt literal por roteiro.
+
 ## Componentes da Onda 3-bis · o aluno não começa em branco
 
 | Classe | 📊 | O que mostra | Nasceu em |
