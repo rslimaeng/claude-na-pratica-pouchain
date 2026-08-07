@@ -595,6 +595,47 @@ for f in AULAS:
 diz(not medindo, "G17", "nenhum item do validador mede o texto por tamanho",
     str(medindo) if medindo else f"{len(AULAS)} validadores varridos")
 
+# ─── G19 · bloco que sangra para a largura larga tem que USAR a largura, e
+#      componente de prosa não sangra. O card `.saidas` estourava para 1140px
+#      com o texto travado em 58ch: 563px de vazio à direita, nas quatro aulas.
+#      E o sangramento não pode acontecer dentro de um card, que é o que jogava
+#      a tabela do gabarito para fora da própria caixa.
+titulo("G19 · SANGRAMENTO SÓ ONDE ELE É USADO")
+print("        (card de navegação é prosa e vive na coluna de leitura · §8-quater)")
+# acha a regra pelo que ela FAZ, não por onde ela está. Procurar a partir do
+# comentário "/* BREAKOUT" parava no primeiro `{` depois dele, e na 1.3 esse
+# primeiro `{` era o do `.uau{--col-wide:960px}` que eu tinha posto logo abaixo.
+# Fatiar por `}` em vez de casar com regex: `([^{}]+)\{...` fazia backtracking
+# quadrático e travava em arquivo de 90 KB.
+def regras_que_sangram(css):
+    saida = []
+    for pedaco in css.split("}"):
+        if "margin-left:50%" not in pedaco:
+            continue
+        seletor = pedaco.rsplit("{", 1)[0] if "{" in pedaco else ""
+        saida.append(seletor)
+    return saida
+
+for f in AULAS + [x for x in HTML if x.endswith("m1/index.html")]:
+    s = open(f, encoding="utf-8").read()
+    listas = regras_que_sangram(s)
+    if not listas:
+        continue
+    sangrando = [l for l in listas if re.search(r"\.saidas\b", l)]
+    diz(not sangrando, "G19", f,
+        "card de navegação está sangrando" if sangrando
+        else f"{len(listas)} regra(s) de sangramento, sem .saidas")
+# tabela dentro do gabarito não pode sair da caixa
+for f in AULAS:
+    s = open(f, encoding="utf-8").read()
+    corpos = re.findall(r'<details class="gabarito".*?</details>', s, re.S)
+    tem_tabela = any("table-wrap" in c for c in corpos)
+    if not tem_tabela:
+        continue
+    diz(".gabarito-body .table-wrap{" in s, "G19", f,
+        "tem tabela no gabarito e não anula o sangramento dentro dele"
+        if ".gabarito-body .table-wrap{" not in s else "sangramento anulado no gabarito")
+
 # ─── G18 · o validador anuncia quantas conferências tem, e o número tem que
 #      bater com a lista. A 1.3 dizia "Quatro conferências" e tinha cinco desde
 #      que a onda 3-octies acrescentou uma. Ninguém conta ao acrescentar item.

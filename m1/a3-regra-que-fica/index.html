@@ -67,8 +67,8 @@ a:hover{color:var(--accent-dark)}
 .saida.principal .s-rot{color:var(--accent)}
 .s-titulo{display:block;font-size:18px;font-weight:600;letter-spacing:-.01em;
   line-height:1.3;margin-bottom:7px}
-.s-desc{display:block;font-size:14.5px;line-height:1.55;color:var(--text-muted);
-        max-width:58ch}  /* ~78 caracteres · 1ch no Inter vale 1,34 caractere */
+.s-desc{display:block;font-size:15.5px;line-height:1.58;color:var(--text-muted);
+  max-width:62ch}  /* enche o card, que agora vive na coluna de leitura */  /* ~78 caracteres · 1ch no Inter vale 1,34 caractere */
 .s-cta{display:block;font-size:14px;font-weight:600;color:var(--accent);margin-top:auto;
   padding-top:12px}
 .rec{display:inline-flex;align-items:center;font-family:var(--font-mono);
@@ -239,6 +239,66 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
   line-height:1.6;padding-left:19px;margin:7px 0 12px}
 .step-body .uau-ask ol{margin-bottom:0}
 .step-body .uau-ol li,.step-body .uau-ask li{margin-bottom:4px;line-height:1.55}
+/* a leitura que vale para as duas colunas mora embaixo das duas, e não dentro
+   de uma delas. Dentro, ela desequilibrava as alturas e deixava a coluna da
+   esquerda com 268px de caixa vazia */
+/* QUADRO DAS REGRAS · o exercício acontece na página, não num .docx que a
+   pessoa baixa, preenche fora e depois não sabe como levar para o Claude.
+   Mesmo componente da aula 1.2, com os cinco campos desta aula.            */
+.quadro{background:var(--bg-elev);border:1px solid var(--border);
+  border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);
+  margin:24px 0 10px;overflow:hidden}
+.quadro-topo{display:flex;align-items:center;justify-content:space-between;
+  gap:14px;flex-wrap:wrap;padding:15px 24px;background:var(--bg-warm);
+  border-bottom:1px solid var(--border)}
+.quadro-titulo{font-size:15.5px;font-weight:600;color:var(--text)}
+.quadro-salvo{font-family:var(--font-mono);font-size:11px;
+  letter-spacing:.05em;color:var(--text-dim)}
+.quadro-corpo{padding:24px}
+.campo{margin-bottom:22px}
+.campo:last-child{margin-bottom:0}
+.campo-topo{display:flex;align-items:flex-start;gap:9px;margin-bottom:5px}
+.campo-num{width:21px;height:21px;border-radius:6px;background:var(--accent);
+  color:#fff;font-family:var(--font-mono);font-size:11.5px;font-weight:600;
+  display:grid;place-items:center;flex-shrink:0;margin-top:2px}
+.campo-label{font-size:16px;font-weight:600;color:var(--text);line-height:1.45}
+.campo-dica{font-size:14px;color:var(--text-dim);line-height:1.55;
+  margin-bottom:9px;max-width:62ch}
+.campo-in{width:100%;box-sizing:border-box;display:block;resize:vertical;
+  min-height:78px;font-family:var(--font-body);font-size:15.5px;
+  color:var(--text);background:var(--bg-code);border:1px solid var(--border-strong);
+  border-radius:var(--radius);padding:11px 14px;line-height:1.55;
+  transition:border-color .15s,background .15s}
+.campo-in:focus{outline:none;border-color:var(--accent);background:var(--bg-elev)}
+.previa{border-top:1px solid var(--border);background:var(--bg-code);
+  padding:19px 24px 22px}
+.previa-topo{display:flex;align-items:baseline;justify-content:space-between;
+  gap:12px;flex-wrap:wrap;margin-bottom:9px}
+.previa-h{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--text-dim)}
+.conta{font-family:var(--font-mono);font-size:11.5px;color:var(--text-dim)}
+.conta b{color:var(--text)}
+.conta.dentro b{color:var(--success)}
+.previa-corpo{font-family:var(--font-mono);font-size:12.5px;line-height:1.65;
+  color:var(--text);white-space:pre-wrap;word-wrap:break-word;
+  background:var(--bg-elev);border:1px solid var(--border);
+  border-radius:var(--radius);padding:16px;max-height:340px;overflow-y:auto}
+.previa-corpo.vazio{color:var(--text-dim)}
+.quadro-acoes{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.quadro-btn{padding:11px 20px;background:var(--accent);color:#fff;
+  border:1px solid var(--accent);border-radius:var(--radius);
+  font-family:var(--font-body);font-weight:600;font-size:14.5px;
+  cursor:pointer;transition:background .15s}
+.quadro-btn:hover{background:var(--accent-dark)}
+.quadro-btn.ghost{background:transparent;color:var(--accent);
+  border-color:var(--accent-line)}
+.quadro-btn.ghost:hover{background:var(--accent-tinted);color:var(--accent-dark)}
+.papel{font-size:14px;color:var(--text-dim);line-height:1.55;margin:14px 0 0}
+.papel a{color:var(--accent);font-weight:500}
+
+.uau-fecho{border-top:1px solid var(--border);background:var(--bg-code);
+  padding:16px 22px;font-size:13.5px;color:var(--text-muted);line-height:1.55}
+.uau-fecho strong{color:var(--text)}
 .fig-leg{font-size:14px;color:var(--text-dim);line-height:1.55;margin:14px 0 0}
 .fig-leg strong{color:var(--text-muted)}
 
@@ -356,6 +416,11 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
 .gabarito-sub{font-weight:400;font-size:13.5px;color:var(--text-dim);margin-left:auto;
   font-family:var(--font-mono)}
 .gabarito-body{padding:24px;border-top:1px solid var(--border)}
+/* o sangramento é para figura na coluna de leitura, não para dentro de um
+   card. Aqui ele jogava a tabela para 1140px numa caixa de 730 e ela saía
+   pelos dois lados do gabarito */
+.gabarito-body .table-wrap{width:auto;min-width:0;margin-left:0;transform:none}
+.gabarito-body table{min-width:0}
 .gabarito-body p{font-size:16.5px;color:var(--text-muted);line-height:1.6;margin-bottom:12px}
 .gabarito-body strong{color:var(--text)}
 .gabarito-body h4{font-size:16px;font-weight:600;margin:22px 0 10px}
@@ -662,7 +727,7 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
 .table-wrap,.fluxo,.dilui,.compare,.uau,.pilha,.ctx,.setores,.trilha,
 .eh,.anat,.tela,
 .facts,.pre-req,.modules,.aulas,.fio-passos,.leva,.entrega,
-.mapa,.os,.rodadas,.caminhos,.saidas,.caminhos-nota,.bif,.bif-fora,.nao-faz{
+.mapa,.os,.rodadas,.caminhos,.caminhos-nota,.bif,.bif-fora,.nao-faz{
   width:min(var(--col-wide),calc(100vw - 40px));min-width:100%;
   margin-left:50%;transform:translateX(-50%)}
 </style>
@@ -1334,17 +1399,14 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
             <div class="uau-txt">
               <b>30 atrasadas no total.</b> Carga em aberto: Digital 1 com 14 OS, Offset 3 com 14, Offset 2 com 13, Offset 1 com 12, Flexo 1 com 10, Flexo 2 com 7. 2 OS estão sem máquina definida.
             </div>
-            <div class="uau-txt"><b>Para decidir hoje:</b></div>
-            <ol class="uau-ol">
-              <li>A Digital 1 tem 9 das 14 OS paradas esperando papel ou aprovação.</li>
-            </ol>
+            <div class="uau-txt"><b>Para decidir hoje:</b> a Digital 1 tem 9 das 14 OS paradas esperando papel ou aprovação.</div>
             <div class="uau-nota">
               Tabela, data em DD/MM/AAAA, sem introdução, já apontando o que você precisa decidir. <strong>Você não pediu nada disso agora</strong>. Pediu uma vez, quando escreveu as regras.
             </div>
-            <div class="uau-nota" style="margin-top:9px">
-              Repare no <strong>30 atrasadas</strong>. O campo de status da planilha só marca <strong>4</strong>. A regra que você escreveu mandou conferir pela data, e é por isso que o número mudou. <a href="../a1-ecossistema-e-fisica/exemplo/">O artefato pronto da aula 1.1</a> mostra a conta inteira.
-            </div>
           </div>
+        </div>
+        <div class="uau-fecho">
+          Repare no <strong>30 atrasadas</strong>. O campo de status da planilha só marca <strong>4</strong>. A regra que você escreveu mandou conferir pela data, e é por isso que o número mudou. <a href="../a1-ecossistema-e-fisica/exemplo/">O artefato pronto da aula 1.1</a> mostra a conta inteira.
         </div>
       </div>
 
@@ -1385,29 +1447,87 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
         Você não vai preencher um modelo genérico. Você vai <strong>transcrever as suas próprias correções</strong>, as que você anotou nas aulas 1.1 e 1.2. Se você anotou pouco, olhe a conversa do exercício anterior: as correções estão lá.
       </p>
 
-      <div class="download-card">
-        <div class="download-info">
-          <div class="download-filename">
-            <div class="download-icon">doc</div>
-            minhas-regras-PARTIDA.docx
-          </div>
-          <div class="download-meta">Esqueleto com as 5 seções para preencher. Word, abre em qualquer máquina</div>
+      <div class="quadro">
+        <div class="quadro-topo">
+          <div class="quadro-titulo">As regras da minha função</div>
+          <div class="quadro-salvo" id="q-salvo">o que você escrever fica salvo neste navegador</div>
         </div>
-        <a class="download-btn" href="exercicio/minhas-regras-PARTIDA.docx" download>Baixar a partida ↓</a>
+
+        <div class="quadro-corpo">
+          <div class="campo">
+            <div class="campo-topo">
+              <div class="campo-num">1</div>
+              <div class="campo-label">Quem eu sou e o que eu faço</div>
+            </div>
+            <div class="campo-dica">Sua função, o porte da operação e, principalmente, <strong>quem usa o que você produz</strong>. É a linha que quase ninguém escreve.</div>
+            <textarea class="campo-in" id="q1" rows="3" placeholder="Sou coordenador de… Programo… Quem lê o que eu produzo é…"></textarea>
+          </div>
+
+          <div class="campo">
+            <div class="campo-topo">
+              <div class="campo-num">2</div>
+              <div class="campo-label">Como a casa funciona</div>
+            </div>
+            <div class="campo-dica">As palavras que só quem trabalha aí entende, e como o seu relatório vem sujo do sistema.</div>
+            <textarea class="campo-in" id="q2" rows="4" placeholder="OS = … Fechar a OS = … O relatório sai com data em formatos diferentes e…"></textarea>
+          </div>
+
+          <div class="campo">
+            <div class="campo-topo">
+              <div class="campo-num">3</div>
+              <div class="campo-label">Como eu quero a resposta</div>
+            </div>
+            <div class="campo-dica">Formato, idioma, casas decimais, com ou sem introdução. Tudo que você já reescreveu mais de uma vez.</div>
+            <textarea class="campo-in" id="q3" rows="4" placeholder="Tabela sempre que houver mais de 3 itens. Data em DD/MM/AAAA. Sem introdução…"></textarea>
+          </div>
+
+          <div class="campo">
+            <div class="campo-topo">
+              <div class="campo-num">4</div>
+              <div class="campo-label">O que nunca fazer</div>
+            </div>
+            <div class="campo-dica">Os erros que já custaram tempo. Escreva como proibição, não como preferência.</div>
+            <textarea class="campo-in" id="q4" rows="3" placeholder="Nunca invente número que não esteja no dado que eu mandei. Nunca…"></textarea>
+          </div>
+
+          <div class="campo">
+            <div class="campo-topo">
+              <div class="campo-num">5</div>
+              <div class="campo-label">Na dúvida</div>
+            </div>
+            <div class="campo-dica">O que ele deve fazer quando o dado está ambíguo ou faltando. Sem isto, ele adivinha.</div>
+            <textarea class="campo-in" id="q5" rows="3" placeholder="Se o dado estiver ambíguo, me pergunte em vez de adivinhar…"></textarea>
+          </div>
+        </div>
+
+        <div class="previa">
+          <div class="previa-topo">
+            <div class="previa-h">O que vai para as Instruções</div>
+            <div class="conta" id="q-conta">0 linhas</div>
+          </div>
+          <div class="previa-corpo vazio" id="q-previa">Preencha os campos acima e o texto aparece aqui, pronto para colar.</div>
+          <div class="quadro-acoes">
+            <button class="quadro-btn" id="q-copiar" type="button">Copiar para colar nas Instruções</button>
+            <button class="quadro-btn ghost" id="q-limpar" type="button">Limpar</button>
+          </div>
+        </div>
       </div>
+
+      <p class="papel">
+        Prefere escrever no papel ou levar impresso? O esqueleto das cinco seções também está em <a href="exercicio/minhas-regras-PARTIDA.docx" download>minhas-regras-PARTIDA.docx</a>.
+      </p>
 
       <ol class="passos">
         <li>
-          <div class="passo-title">Abra o arquivo de partida e preencha as cinco seções</div>
+          <div class="passo-title">Preencha as cinco seções no quadro aí em cima</div>
           <p>
-            Quem eu sou · Como a casa funciona · Como eu quero a resposta · O que nunca fazer · Na dúvida.
-            <strong>Escreva só o que você já precisou corrigir.</strong> Regra que você inventou agora não tem dor de origem e só ocupa espaço.
+            <strong>Escreva só o que você já precisou corrigir.</strong> Regra que você inventou agora não tem dor de origem e só ocupa espaço. O texto vai se montando na prévia enquanto você digita.
           </p>
         </li>
         <li>
           <div class="passo-title">Nesta primeira, fique entre 20 e 40 linhas</div>
           <p>
-            Não é o tamanho máximo de uma instrução, é o tamanho da <strong>sua primeira</strong>. Menos que isso costuma ser texto escrito de memória, sem olhar as anotações. Muito mais que isso, na primeira tentativa, costuma ser consulta entrando disfarçada de regra, e você vai sentir na próxima aula.
+            O contador ao lado da prévia conta para você. Não é o tamanho máximo de uma instrução, é o tamanho da <strong>sua primeira</strong>. Menos que isso costuma ser texto escrito de memória, sem olhar as anotações. Muito mais que isso, na primeira tentativa, costuma ser consulta entrando disfarçada de regra, e você vai sentir na próxima aula.
           </p>
         </li>
         <li>
@@ -1761,11 +1881,98 @@ prazo × data de hoje.</div>
   function fallback(text){
     var ta = document.createElement('textarea');
     ta.value = text;
+    ta.style.position = 'fixed'; ta.style.opacity = '0';
     document.body.appendChild(ta);
     ta.select();
-    try{ document.execCommand('copy'); show('Copiado ✓'); }
-    catch(e){ show('Não foi possível copiar'); }
+    var deu = false;
+    try{ deu = document.execCommand('copy'); }catch(e){}
     document.body.removeChild(ta);
+    show(deu ? 'Copiado ✓' : 'Não deu para copiar. Selecione o texto e use Ctrl+C');
+  }
+
+  /* ── o quadro das cinco seções ─────────────────────────────────────────── */
+  var CHAVE = 'pouchain_a13_regras_v1';
+  var SECOES = [
+    ['q1', 'Quem eu sou e o que eu faço'],
+    ['q2', 'Como a casa funciona'],
+    ['q3', 'Como eu quero a resposta'],
+    ['q4', 'O que nunca fazer'],
+    ['q5', 'Na dúvida']
+  ];
+  var previa = document.getElementById('q-previa');
+  if(previa){
+    var conta = document.getElementById('q-conta');
+    var salvo = document.getElementById('q-salvo');
+    var campos = SECOES.map(function(s){ return document.getElementById(s[0]); });
+    var VAZIO = 'Preencha os campos acima e o texto aparece aqui, pronto para colar.';
+
+    // sai no formato do gabarito: título, cinco seções numeradas, uma por bloco.
+    // É o mesmo texto que a pessoa vai colar, não um formulário preenchido.
+    function montar(){
+      var partes = ['# Regras da minha função'];
+      SECOES.forEach(function(s, i){
+        var v = campos[i].value.trim();
+        if(v) partes.push('## ' + (i + 1) + '. ' + s[1] + '\n\n' + v);
+      });
+      return partes.length > 1 ? partes.join('\n\n') : '';
+    }
+
+    // conta o que de fato é regra: sem título, sem cabeçalho de seção,
+    // sem linha vazia. É esse número que a aula comenta.
+    function linhasDeRegra(txt){
+      return txt.split('\n').filter(function(l){
+        l = l.trim();
+        return l && l.charAt(0) !== '#';
+      }).length;
+    }
+
+    function pintar(){
+      var txt = montar();
+      previa.textContent = txt || VAZIO;
+      previa.classList.toggle('vazio', !txt);
+      var n = linhasDeRegra(txt);
+      conta.innerHTML = '<b>' + n + '</b> linha' + (n === 1 ? '' : 's') + ' de regra';
+      conta.classList.toggle('dentro', n >= 20 && n <= 40);
+    }
+
+    function guardar(){
+      try{
+        var d = {};
+        SECOES.forEach(function(s, i){ d[s[0]] = campos[i].value; });
+        localStorage.setItem(CHAVE, JSON.stringify(d));
+        salvo.textContent = 'rascunho salvo neste navegador';
+      }catch(e){}
+    }
+
+    try{
+      var guardado = JSON.parse(localStorage.getItem(CHAVE) || '{}');
+      SECOES.forEach(function(s, i){ if(guardado[s[0]]) campos[i].value = guardado[s[0]]; });
+    }catch(e){}
+
+    campos.forEach(function(c){
+      c.addEventListener('input', function(){ pintar(); guardar(); });
+    });
+    pintar();
+
+    document.getElementById('q-copiar').addEventListener('click', function(){
+      var txt = montar();
+      if(!campos[0].value.trim() || !campos[2].value.trim()){
+        show('Preencha pelo menos "quem eu sou" e "como eu quero a resposta"');
+        return;
+      }
+      if(navigator.clipboard && window.isSecureContext){
+        navigator.clipboard.writeText(txt).then(function(){ show('Copiado ✓'); },
+          function(){ fallback(txt); });
+      } else { fallback(txt); }
+    });
+
+    document.getElementById('q-limpar').addEventListener('click', function(){
+      if(!confirm('Apagar tudo que você escreveu no quadro?')) return;
+      campos.forEach(function(c){ c.value = ''; });
+      try{ localStorage.removeItem(CHAVE); }catch(e){}
+      salvo.textContent = 'o que você escrever fica salvo neste navegador';
+      pintar();
+    });
   }
 })();
 </script>

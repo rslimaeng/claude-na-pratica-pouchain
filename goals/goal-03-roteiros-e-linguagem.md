@@ -725,7 +725,55 @@ reescreveu o `checagem-lead`. **Ninguém conta ao acrescentar item**, então vir
 o **G18**: o número por extenso no lead tem que bater com a contagem de
 `.checagem-o`. Lead que não abre com número não promete nada, e passa.
 
-**Gates:** 22 gates, 191 checagens, exit 0.
+### Onda 3-undecies · o exercício da 1.3 sai do `.docx` e três blocos reenquadrados
+
+**Quatro pedidos do Rafael no mesmo turno**, testando no navegador dele.
+
+#### O exercício acontece na página, como na 1.2
+
+O `.docx` de partida virou um **quadro com as cinco seções**, prévia ao vivo,
+contador de linhas e botão de copiar. O `.docx` continua ali, como linha
+secundária, para quem prefere papel ou impresso.
+
+Duas escolhas que valem registrar:
+
+- **A saída sai no formato do gabarito** (`# título` mais cinco `## N. seção`),
+  não como formulário preenchido. É o texto que vai ser colado do outro lado
+- **O contador conta o que é regra**, ignorando título e cabeçalho de seção, e
+  fica verde na faixa que a aula pede para a primeira. É o mesmo número que o
+  **G13b** confere no gabarito, agora visível para quem está escrevendo
+
+#### Três blocos desenquadrados, e o padrão é o mesmo nos três
+
+| Onde | O que estava errado | Medida |
+|---|---|---|
+| Coluna esquerda do momento-chave | caixa vazia embaixo do conteúdo | **268px** de sobra |
+| Card azul de navegação | sangrava para 1140px com o texto travado em 58ch | **563px** de vazio à direita |
+| Tabela do gabarito | sangrava **dentro** de um card de 730px e saía pelos dois lados | escapava **408px** |
+
+**O padrão:** os três são a regra de sangramento aplicada onde ela não serve.
+Ela existe para **figura na coluna de leitura**. Card de navegação é prosa, e
+prosa vive na coluna. Dentro de um card não existe coluna de leitura para
+sangrar, então o `margin-left:50%` mede contra a caixa errada.
+
+Correções: a leitura que vale para as duas colunas virou uma faixa `.uau-fecho`
+embaixo das duas (268px caíram para 78px) · `.saidas` saiu da regra de
+sangramento **nas quatro aulas** e o `.s-desc` passou a encher o card (sobra de
+563px para 80px, 70 caracteres por linha) · `.gabarito-body .table-wrap` anula o
+sangramento dentro do card.
+
+Nasce o **G19**. A primeira versão dele procurava a lista de seletores a partir
+do comentário `/* BREAKOUT`, e **parou no primeiro `{` depois dele**, que na 1.3
+era o `.uau{--col-wide:960px}` da onda anterior. A segunda versão usava
+`([^{}]+)\{...` e **travou o gate**, backtracking quadrático em arquivo de
+90 KB. A terceira fatia o CSS por `}` e procura a regra **pelo que ela faz**,
+`margin-left:50%`, não por onde ela está. Provado contra 5 defeitos injetados.
+
+> **Ache a regra pelo efeito, não pela vizinhança.** Comentário se move, ordem
+> muda, e um seletor novo entra no meio. `margin-left:50%` é o que define a
+> regra, e é por ele que o gate tem que procurar.
+
+**Gates:** 23 gates, 198 checagens, exit 0.
 
 ## 8. Aberto
 
