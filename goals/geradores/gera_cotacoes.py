@@ -154,13 +154,20 @@ for nota in ["Frete FOB por conta da Aurora: Insumos Delta R$ 890,00 · "
 for i, w in enumerate([6, 34, 10, 6, 24, 12, 15, 8, 20, 14], start=1):
     ws.column_dimensions[get_column_letter(i)].width = w
 
-destino = ("/Users/rafaellima/developer/4-cursos-treinamentos/treinamentos-in-company/"
-           "pouchain-claude-na-pratica/site/m1/a1-ecossistema-e-fisica/demonstracao/"
-           "cotacoes-fornecedores.xlsx")
-wb.save(destino)
+RAIZ = ("/Users/rafaellima/developer/4-cursos-treinamentos/treinamentos-in-company/"
+        "pouchain-claude-na-pratica/site/m1/")
+# o mesmo arquivo serve a demonstração da 1.1 e o caso de Compras do exercício
+# da 1.2. Duas cópias saem do MESMO gerador, de propósito: assim não divergem.
+DESTINOS = [RAIZ + "a1-ecossistema-e-fisica/demonstracao/cotacoes-fornecedores.xlsx",
+            RAIZ + "a2-pedir-para-entregar/exercicio/cotacoes-fornecedores.xlsx"]
+for destino in DESTINOS:
+    wb.save(destino)
 
 # ── os fatos que as páginas vão afirmar ─────────────────────────────────────
-print(f"gravado em {destino}\n")
+print("gravado em:")
+for d in DESTINOS:
+    print("  " + d)
+print()
 print(f"{'linhas de cotação':30} {len(ITENS) * len(FORN)}")
 print(f"{'insumos × fornecedores':30} {len(ITENS)} × {len(FORN)}")
 print(f"{'valores gravados como texto':30} {n_texto}")

@@ -314,8 +314,42 @@ try:
          "cotações · sobra um fornecedor só"),
     ]: diz(bool(ok), "G13", nome)
 
+    # ── PLANILHAS DO EXERCÍCIO DA 1.2 ──────────────────────────────────────
+    # elas nasceram porque o exercício mandava rodar no Claude e contar
+    # mensagens, e não existia arquivo nenhum para anexar.
+    EX2 = "m1/a2-pedir-para-entregar/exercicio/"
+    fec = load_workbook(EX2 + "fechamento-dois-meses.xlsx", data_only=True)
+    n_fec = sum(len([r for r in fec[a].iter_rows(min_row=5, values_only=True)
+                     if r[0]]) for a in fec.sheetnames)
+    ins = load_workbook(EX2 + "inscricoes-vaga-auxiliar-offset.xlsx",
+                        data_only=True)["Inscrições"]
+    n_ins = len([r for r in ins.iter_rows(min_row=5, values_only=True) if r[0]])
+    print(f"        {'fechamento · linhas de conta':28} {n_fec}")
+    print(f"        {'fechamento · abas':28} {fec.sheetnames}")
+    print(f"        {'inscrições · linhas':28} {n_ins}")
+
+    a2 = texto("m1/a2-pedir-para-entregar/index.html")
+    for ok, nome in [
+        (f"{n_fec} linhas" in a2, "1.2 · tamanho do fechamento"),
+        (f"{n_ins} inscrições" in a2, "1.2 · quantas inscrições"),
+        (f"{len(cot)} linhas" in a2, "1.2 · tamanho do mapa de cotação"),
+        (f"{len(itens)} insumos" in a2, "1.2 · quantos insumos"),
+        (all(os.path.exists(EX2 + x) for x in
+             ["cotacoes-fornecedores.xlsx", "fechamento-dois-meses.xlsx",
+              "inscricoes-vaga-auxiliar-offset.xlsx"]),
+         "1.2 · os três casos têm arquivo"),
+        # sem nome de pessoa: a triagem é por código, e material de curso
+        # não carrega nome de gente em lugar nenhum
+        (all(str(r[0]).startswith("INSC-")
+             for r in ins.iter_rows(min_row=5, values_only=True) if r[0]),
+         "1.2 · inscrições anonimizadas por código"),
+    ]: diz(bool(ok), "G13", nome)
+
     # ── piso de tamanho · CLAUDE.md §8-ter ─────────────────────────────────
-    for nome, n in [("pedidos-em-producao", len(linhas)), ("cotacoes-fornecedores", len(cot))]:
+    for nome, n in [("pedidos-em-producao", len(linhas)),
+                    ("cotacoes-fornecedores", len(cot)),
+                    ("fechamento-dois-meses", n_fec),
+                    ("inscricoes-vaga-auxiliar-offset", n_ins)]:
         diz(n >= 100, "G13", f"piso de 100 linhas · {nome}", f"{n} linhas")
 except ImportError:
     print("        openpyxl ausente, gate pulado")

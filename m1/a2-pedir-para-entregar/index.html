@@ -303,6 +303,9 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
   color:var(--accent-dark);display:grid;place-items:center;font-size:11px;
   font-weight:600;flex-shrink:0;font-family:var(--font-mono)}
 .download-meta{font-size:13px;color:var(--text-dim)}
+.download-card + .download-card{margin-top:-8px}
+.arquivos-nota{margin:22px 0 6px;font-size:14.5px;color:var(--text-muted);
+  max-width:58ch}
 .download-btn{padding:11px 20px;background:var(--accent);color:#fff;
   border-radius:var(--radius);font-weight:600;font-size:14px;flex-shrink:0}
 .download-btn:hover{background:var(--accent-dark);color:#fff}
@@ -824,27 +827,27 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
         <details class="exemplo">
           <summary>
             <span class="exemplo-setor">Compras</span>
-            <span class="exemplo-titulo">Comparar três propostas de fornecedor</span>
+            <span class="exemplo-titulo">Montar o pedido de compra a partir do mapa de cotação</span>
           </summary>
           <div class="exemplo-body">
-            <p><strong>O pedido pela tarefa:</strong> "Compare essas três propostas."</p>
-            <p><strong>O que falta:</strong> comparar por qual critério? Preço, prazo, condição de pagamento? E se uma proposta não trouxer o prazo, o que fazer?</p>
+            <p><strong>O pedido pela tarefa:</strong> "Dá uma olhada nessas cotações e monta o pedido de compra."</p>
+            <p><strong>O que falta:</strong> comprar de um fornecedor só ou item a item pelo melhor preço? Entra frete na conta? E o item que um fornecedor não cotou, o que fazer?</p>
             <div class="prompt-box">
               <div class="prompt-toolbar">
                 <span>Pedido pelo resultado</span>
                 <button class="prompt-btn" type="button">Copiar</button>
               </div>
-              <div class="prompt-content">Anexei três propostas para o mesmo insumo.
+              <div class="prompt-content">Anexei o mapa de cotação de 26 insumos com 4 fornecedores.
 
-O que eu preciso: uma tabela comparando as três em preço unitário, prazo de entrega em dias e condição de pagamento. Abaixo da tabela, uma recomendação de uma frase dizendo qual fechar e por quê.
+O que eu preciso: um pedido de compra em tabela, uma linha por insumo, com fornecedor escolhido, quantidade, valor unitário e valor total da linha. No fim, o total geral e o prazo de entrega mais longo da lista.
 
-Restrições: considere preço já com frete. Se a proposta não trouxer frete separado, não estime, marque a célula como "não informado".
+Restrições: escolha item a item pelo menor custo total, já com frete rateado. Não considere fornecedor que não cotou aquele item. Confira a unidade antes de multiplicar, porque nem todo mundo cotou por unidade.
 
-Na dúvida: se algum dado estiver faltando ou ambíguo, me pergunte antes de montar a tabela. Não preencha por estimativa.</div>
+Na dúvida: se um item estiver cotado numa unidade diferente dos outros, ou se faltar dado, me pergunte antes de montar a tabela. Não preencha por estimativa.</div>
             </div>
             <div class="exemplo-volta">
               <b class="rot">O que muda na resposta</b>
-              Sem a última linha, uma proposta sem frete vira um número estimado que parece real e entra na sua recomendação. Com ela, ele para e pergunta.
+              Sem a linha da unidade, o item cotado em caixa com dez entra multiplicado por dez e o pedido sai com <strong>R$ 21.184,20 a mais</strong> numa linha só. Com ela, ele para e pergunta.
             </div>
           </div>
         </details>
@@ -965,15 +968,52 @@ Na dúvida: se um requisito da vaga estiver escrito de um jeito que dá para ent
             <span class="download-icon">DOC</span>
             <span>pedidos-para-reescrever.docx</span>
           </div>
-          <div class="download-meta">Três pedidos mal escritos da Gráfica Aurora, um por setor. Word, abre em qualquer máquina.</div>
+          <div class="download-meta">A folha onde você marca o que falta e escreve a sua versão. Três casos, um por setor. Word, abre em qualquer máquina.</div>
         </div>
         <a class="download-btn" href="exercicio/pedidos-para-reescrever.docx" download>Baixar</a>
       </div>
 
+      <p class="arquivos-nota">
+        <strong>Baixe também o arquivo do seu caso.</strong> Sem ele o pedido não roda, e é rodando que você conta as idas e vindas.
+      </p>
+
+      <div class="download-card">
+        <div class="download-info">
+          <div class="download-filename">
+            <span class="download-icon">XLS</span>
+            <span>cotacoes-fornecedores.xlsx</span>
+          </div>
+          <div class="download-meta"><b>Compras</b> · 104 linhas · 26 insumos cotados por 4 fornecedores. É o mesmo arquivo da demonstração da aula 1.1, agora com outra pergunta.</div>
+        </div>
+        <a class="download-btn" href="exercicio/cotacoes-fornecedores.xlsx" download>Baixar</a>
+      </div>
+
+      <div class="download-card">
+        <div class="download-info">
+          <div class="download-filename">
+            <span class="download-icon">XLS</span>
+            <span>fechamento-dois-meses.xlsx</span>
+          </div>
+          <div class="download-meta"><b>Financeiro</b> · 118 linhas · o fechamento de junho e o de julho, uma aba por mês.</div>
+        </div>
+        <a class="download-btn" href="exercicio/fechamento-dois-meses.xlsx" download>Baixar</a>
+      </div>
+
+      <div class="download-card">
+        <div class="download-info">
+          <div class="download-filename">
+            <span class="download-icon">XLS</span>
+            <span>inscricoes-vaga-auxiliar-offset.xlsx</span>
+          </div>
+          <div class="download-meta"><b>RH e DP</b> · 124 inscrições, identificadas por código. A descrição da vaga está na segunda aba.</div>
+        </div>
+        <a class="download-btn" href="exercicio/inscricoes-vaga-auxiliar-offset.xlsx" download>Baixar</a>
+      </div>
+
       <ol class="passos">
         <li>
-          <div class="passo-title">Escolha o pedido do setor mais parecido com o seu</div>
-          <p>Se nenhum for parecido, pegue o de Compras. A estrutura é a mesma para todos.</p>
+          <div class="passo-title">Escolha o caso do setor mais parecido com o seu</div>
+          <p>Se nenhum for parecido, pegue o de Compras. A estrutura é a mesma para os três, e o que você treina é o pedido, não o assunto.</p>
         </li>
         <li>
           <div class="passo-title">Antes de reescrever, marque o que falta</div>
@@ -981,7 +1021,7 @@ Na dúvida: se um requisito da vaga estiver escrito de um jeito que dá para ent
         </li>
         <li>
           <div class="passo-title">Reescreva e rode no Claude Chat</div>
-          <p>Conversa nova. Cole o pedido reescrito. <strong>Conte quantas mensagens</strong> até a resposta servir. Anote esse número, ele é a sua nota nesta aula.</p>
+          <p>Conversa nova. <strong>Anexe o arquivo do seu caso</strong> e cole o pedido reescrito. <strong>Conte quantas mensagens</strong> até a resposta servir. Anote esse número, ele é a sua nota nesta aula.</p>
         </li>
         <li>
           <div class="passo-title">Agora o de verdade</div>

@@ -237,6 +237,54 @@ Testado contra uma cópia com os cinco textos reprovados de volta: **acusa os ci
 
 > A lição, que vale para toda onda futura: **gate que cobre parte da superfície não protege a regra, só o pedaço que ele olha.** Ao corrigir uma página, pergunte o que aponta para ela.
 
+## 7-quinquies. Onda 3-quater · a seção 04, e o exercício da 1.2 que não rodava
+
+Auditoria da aula 1.2 antes de o Rafael abrir. Dois achados, e o segundo é mais grave que todos os anteriores.
+
+### A seção 04 das quatro aulas falava na primeira pessoa do instrutor
+
+O mesmo defeito das três reprovações, no **corpo da aula** em vez da demonstração:
+
+| Aula | O que estava publicado |
+|---|---|
+| 1.1 | *"**Eu uso** uma planilha de Compras"* · *"**Paro e pergunto para vocês**... o que **vocês responderem vai para o quadro**"* |
+| 1.2 | *"**Abro** uma conversa... **leio em voz alta**"* · *"**Vamos contando juntos**"* · *"**Comparo** o relógio"* |
+| 1.3 | *"**Mostro** onde ficam as Instruções"* · *"**Jogo** um manual longo... acontecendo **na frente de vocês**"* |
+| 1.4 | *"**Faço** um pedido... **Vocês veem**"* · *"**O que eu quero** que fique do passo 3"* |
+
+O eyebrow `Demonstração · na tela do Rafael` virou `Demonstração`, porque o site é o material que fica **depois** do curso e a referência à tela da frente não se sustenta três meses depois. Cada lista virou *"O que acontece na tela"*, e agora dá ao aluno **o que fazer enquanto assiste** (*"conte as mensagens"*, *"pare aqui e responda para você mesmo"*) em vez de descrever quem opera o teclado.
+
+**Dois números velhos vieram junto**, os dois na 1.1: *"nas 56 linhas"* e *"deixou de cotar três itens"*. Conferido na planilha: são **104 linhas** e o mais barato não cotou **5**.
+
+**O G14b ganhou checagem de pessoa gramatical.** Lista de palavra não pegava isto: `leia em voz alta` reprovava e `leio em voz alta` passava. Dentro do bloco `.demo`, verbo em primeira pessoa do singular reprova.
+
+E o próprio gate foi corrigido: **`vocês` sozinho não é defeito.** *"O dia a dia de vocês"* e *"Vocês já resolveram isso, em outro lugar"* tratam a turma como profissionais da gráfica, e são dos melhores trechos do material. O defeito é a turma como **plateia**: `pergunto para vocês`, `na frente de vocês`, `vocês veem`.
+
+### 🔴 O exercício da 1.2 não tinha arquivo para rodar
+
+O passo 3 mandava *"cole o pedido reescrito, conte quantas mensagens até a resposta servir, esse número é a sua nota"*. Os três pedidos-modelo começam com **"Anexei..."**. E não existia arquivo nenhum. O aluno colaria numa conversa vazia e o Claude responderia que não recebeu anexo: **a nota da aula era impossível de medir**.
+
+Pior: a 1.1 entrega PCP, e a 1.2 é a aula que deveria alcançar Compras, Financeiro, DP e RH. Do jeito que estava, **quatro dos seis setores não encostavam em dado real no módulo inteiro**.
+
+Rafael escolheu criar as duas planilhas que faltavam. Cada caso agora tem arquivo:
+
+| Setor | Arquivo | Tamanho | As armadilhas, todas dependentes do volume |
+|---|---|---|---|
+| Compras | `cotacoes-fornecedores.xlsx` | 104 linhas | as quatro que já existiam. **A pergunta mudou** para *"monta o pedido de compra"*, porque *"qual é a melhor"* era literalmente a demonstração da 1.1 e quem é de Compras já tinha visto a resposta |
+| Financeiro | `fechamento-dois-meses.xlsx` | 118 linhas, 2 abas | **3 contas renomeadas** entre os meses · **rateios que variam mais que qualquer causa real** · 28 linhas sem centro de custo |
+| RH e DP | `inscricoes-vaga-auxiliar-offset.xlsx` | 124 inscrições, 2 abas | **1 requisito ambíguo** · desejáveis que viram obrigatórios · tempo de casa que induz senioridade falsa |
+
+**Os números que provam que as armadilhas mordem:**
+
+- Financeiro: junho fecha em **+200.500** e julho em **−151.300**. Incluindo os rateios, as três maiores causas são *receita diversos, rateio administrativo, rateio de estrutura*. Excluindo, como o pedido manda, são *receita diversos, papel couché, horas extras*. **Duas das três mudam.**
+- RH: a frase *"disponibilidade para trabalhar em turnos"* aprova **53 ou 19** pessoas, conforme a leitura. Diferença de **34 pessoas**, e nenhuma das duas leituras é errada. Exigindo também os três desejáveis, sobra **1 de 53**.
+
+**Zero nome de pessoa**, em lugar nenhum: a triagem é por código `INSC-NNN`, do jeito que triagem cega é feita de verdade. O G13 confere isso.
+
+Tudo saiu de gerador versionado, com `random.seed(2481)`. O `gera_cotacoes.py` passou a gravar em **dois caminhos**, para as duas cópias não divergirem. O docx virou `gera_docx_pedidos.py`, em vez de arquivo escrito à mão.
+
+**16 gates, 144 checagens.**
+
 ## 8. Aberto
 
 - 🔴 **Teste de mesa das 4 aulas**, que nenhuma onda substitui
