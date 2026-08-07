@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Roteiro da demonstração · Aula 1.1</title>
-<meta name="description" content="O passo a passo que o Rafael executa ao vivo no Claude Chat na aula 1.1: o pedido vago, a sala consertando ele, e o mesmo pedido escrito antes.">
+<title>Demonstração · Aula 1.1</title>
+<meta name="description" content="O mesmo pedido feito de dois jeitos, passo a passo, no Claude Chat: o pedido curto que não fecha e o pedido que já vem pronto.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -15,9 +15,6 @@
   --border:rgba(20,20,19,.10); --border-strong:rgba(20,20,19,.18);
   --accent:#1A5670; --accent-dark:#10394C; --accent-soft:#DDEAF0;
   --accent-line:rgba(26,86,112,.22);
-  --danger:#B85C5C;
-  /* 860 e não 780: a faixa do relógio come 96px da esquerda, e sem essa
-     compensação a linha de texto cai para 67 caracteres. Medido, não estimado. */
   --col:860px;
   --radius-sm:6px; --radius:10px; --radius-lg:14px;
   --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
@@ -30,7 +27,6 @@ a{color:var(--accent)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 .wrap{max-width:var(--col);margin:0 auto;padding:0 24px}
 
-/* ── topo ───────────────────────────────────────────────────────── */
 .topo{padding:26px 0 0}
 .volta{font-family:var(--font-mono);font-size:12px;color:var(--text-dim);margin-bottom:18px}
 .kicker{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.12em;
@@ -41,21 +37,9 @@ h1{font-size:clamp(28px,4vw,38px);font-weight:700;line-height:1.12;
 .lead strong{color:var(--text)}
 .lead + .lead{margin-top:12px}
 
-/* ── preparo: lista, não caixa colorida ─────────────────────────── */
-.preparo{margin:30px 0 0;padding-top:20px;border-top:1px solid var(--border)}
-.preparo-rot{display:block;font-family:var(--font-mono);font-size:10.5px;
-  letter-spacing:.09em;text-transform:uppercase;color:var(--text-dim);margin-bottom:13px}
-.preparo ul{list-style:none}
-.preparo li{font-size:15.5px;line-height:1.55;color:var(--text-muted);
-  padding-left:26px;position:relative;margin-bottom:10px}
-.preparo li:last-child{margin-bottom:0}
-.preparo li::before{content:"\2610";position:absolute;left:0;top:-1px;
-  color:var(--text-dim);font-size:15px}
-.preparo li b{color:var(--text);font-weight:600}
-
-/* ── o arquivo da demonstração ──────────────────────────────────── */
+/* o arquivo usado na demonstracao */
 .arq{display:flex;align-items:center;justify-content:space-between;gap:16px;
-  flex-wrap:wrap;margin-top:22px;background:var(--bg-elev);
+  flex-wrap:wrap;margin-top:24px;background:var(--bg-elev);
   border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px}
 .arq-info{min-width:0}
 .arq-nome{display:block;font-family:var(--font-mono);font-size:14px;
@@ -65,20 +49,16 @@ h1{font-size:clamp(28px,4vw,38px);font-weight:700;line-height:1.12;
   border-radius:var(--radius-sm);padding:9px 16px;text-decoration:none;white-space:nowrap}
 .arq-btn:hover{background:var(--accent-dark)}
 
-/* ── linha do tempo dos momentos ────────────────────────────────── */
-.mom{display:grid;grid-template-columns:74px 1fr;gap:20px;margin-top:40px;
+/* os passos */
+.passo{display:grid;grid-template-columns:74px 1fr;gap:20px;margin-top:44px;
   align-items:start}
-.mom-tempo{position:sticky;top:20px}
-.mom-n{font-family:var(--font-mono);font-size:26px;font-weight:600;color:var(--accent);
-  line-height:1;letter-spacing:-.02em}
-.mom-min{display:block;font-family:var(--font-mono);font-size:11px;color:var(--text-dim);
-  letter-spacing:.06em;margin-top:6px}
-.mom-corpo{min-width:0;border-left:1px solid var(--border);padding-left:22px;
+.passo-n{font-family:var(--font-mono);font-size:26px;font-weight:600;
+  color:var(--accent);line-height:1;letter-spacing:-.02em;position:sticky;top:20px}
+.passo-corpo{min-width:0;border-left:1px solid var(--border);padding-left:22px;
   padding-bottom:4px}
-.mom-titulo{font-size:22px;font-weight:600;letter-spacing:-.015em;line-height:1.26;
-  margin-bottom:18px}
+.passo-titulo{font-size:22px;font-weight:600;letter-spacing:-.015em;
+  line-height:1.26;margin-bottom:18px}
 
-/* rótulo + texto. sem caixa, sem cor de fundo */
 .bloco{margin-bottom:18px}
 .bloco:last-child{margin-bottom:0}
 .b-rot{display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:.09em;
@@ -88,29 +68,27 @@ h1{font-size:clamp(28px,4vw,38px);font-weight:700;line-height:1.12;
 .b-tx code{font-family:var(--font-mono);font-size:14px;background:var(--bg-code);
   padding:2px 6px;border-radius:4px;color:var(--accent-dark)}
 
-/* o dedo na tela: o vermelho está no rótulo, não numa caixa */
-.aponte{margin-bottom:18px}
-.aponte .b-rot{color:var(--danger)}
-.aponte .b-tx{font-size:17px;color:var(--text)}
-
-/* a ÚNICA caixa colorida da página: o momento em que a sala fala */
-.pergunta{background:var(--accent-soft);border-radius:var(--radius);
+/* a unica caixa colorida: o que o aluno precisa notar na tela */
+.repare{background:var(--accent-soft);border-radius:var(--radius);
   padding:17px 19px;margin-bottom:18px}
-.pergunta .b-rot{color:var(--accent-dark)}
-.pergunta-fala{display:block;font-size:19px;line-height:1.42;color:var(--accent-dark);
-  font-weight:600;letter-spacing:-.01em}
-.pergunta-espera{display:block;font-size:14.5px;line-height:1.55;color:var(--accent-dark);
-  opacity:.88;margin-top:10px}
-.pergunta-espera b{font-weight:600}
+.repare .b-rot{color:var(--accent-dark)}
+.repare .b-tx{color:var(--accent-dark);font-size:17px}
+.repare .b-tx b{color:var(--accent-dark);font-weight:700}
 
-/* por que e plano B: texto menor, sem moldura */
-.porque{margin-bottom:18px}
-.porque .b-tx{font-size:15.5px}
-.planoB{margin-bottom:0;padding-top:14px;border-top:1px dashed var(--border-strong)}
-.planoB .b-tx{font-size:14.5px;color:var(--text-dim)}
-.planoB .b-tx b{color:var(--text-muted)}
+/* lista de itens dentro de um passo */
+.lista{margin-bottom:18px}
+.lista ul{list-style:none;margin-top:2px}
+.lista li{font-size:16.5px;line-height:1.5;color:var(--text-muted);
+  padding-left:22px;position:relative;margin-bottom:10px}
+.lista li:last-child{margin-bottom:0}
+.lista li::before{content:"";position:absolute;left:2px;top:11px;width:6px;
+  height:6px;border-radius:50%;background:var(--accent-line)}
+.lista li b{color:var(--text);font-weight:600}
 
-/* ── prompt: fechado, para não cortar a leitura ─────────────────── */
+.ensina{margin-bottom:18px;padding-top:15px;border-top:1px solid var(--border)}
+.ensina .b-tx{font-size:16px}
+
+/* prompt: fechado, para nao cortar a leitura */
 .pbox{border:1px solid var(--border);border-radius:var(--radius);margin-bottom:18px;
   background:var(--bg-elev);overflow:hidden}
 .pbox > summary{list-style:none;cursor:pointer;display:flex;align-items:center;
@@ -123,18 +101,15 @@ h1{font-size:clamp(28px,4vw,38px);font-weight:700;line-height:1.12;
 .pbox[open] .p-abre::after{content:" \25B4"}
 .pbox:not([open]) .p-abre::after{content:" \25BE"}
 .pconteudo{font-family:var(--font-mono);font-size:13.5px;line-height:1.62;
-  white-space:pre-wrap;padding:4px 15px 15px;color:var(--text-muted);
-  border-top:1px solid var(--border);margin-top:0;padding-top:14px}
+  white-space:pre-wrap;padding:14px 15px 15px;color:var(--text-muted);
+  border-top:1px solid var(--border)}
 .p-rodape{display:flex;justify-content:flex-end;padding:0 15px 13px}
 .pbtn{font-family:var(--font-mono);font-size:11px;font-weight:500;cursor:pointer;
   background:var(--accent);color:#fff;border:none;padding:7px 15px;
   border-radius:var(--radius-sm)}
 .pbtn:hover{background:var(--accent-dark)}
+.pbox.curto .pconteudo{font-size:16px;color:var(--text)}
 
-/* prompt curto aparece aberto, é uma linha só */
-.pbox.curto .pconteudo{font-size:16px;color:var(--text);border-top:none;padding-top:0}
-
-/* ── fecho ──────────────────────────────────────────────────────── */
 .fecho{margin:48px 0 0;background:var(--accent-soft);border-radius:var(--radius-lg);
   padding:24px 26px}
 .fecho-rot{display:block;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;
@@ -142,7 +117,6 @@ h1{font-size:clamp(28px,4vw,38px);font-weight:700;line-height:1.12;
 .fecho-frase{display:block;font-size:21px;font-weight:600;line-height:1.34;
   letter-spacing:-.015em;color:var(--accent-dark);margin-bottom:13px}
 .fecho p{font-size:16px;line-height:1.6;color:var(--accent-dark);opacity:.92}
-.fecho p + p{margin-top:10px}
 .fecho strong{opacity:1;font-weight:600}
 
 .rodape{margin:44px 0 60px;padding-top:20px;border-top:1px solid var(--border);
@@ -154,10 +128,9 @@ h1{font-size:clamp(28px,4vw,38px);font-weight:700;line-height:1.12;
 .toast.on{transform:translateX(-50%) translateY(0)}
 
 @media (max-width:720px){
-  .mom{grid-template-columns:1fr;gap:10px}
-  .mom-tempo{position:static;display:flex;align-items:baseline;gap:12px}
-  .mom-min{margin-top:0}
-  .mom-corpo{border-left:none;padding-left:0}
+  .passo{grid-template-columns:1fr;gap:8px}
+  .passo-n{position:static}
+  .passo-corpo{border-left:none;padding-left:0}
   .arq{flex-direction:column;align-items:stretch}
   .arq-btn{text-align:center}
 }
@@ -168,125 +141,83 @@ h1{font-size:clamp(28px,4vw,38px);font-weight:700;line-height:1.12;
 
   <div class="topo">
     <div class="volta"><a href="../">&larr; voltar para a aula 1.1</a></div>
-    <div class="kicker">Roteiro de demonstração · aula 1.1 · 10 minutos de palco</div>
-    <h1>Duas conversas, na frente deles</h1>
-    <p class="lead">
-      Roda <strong>tudo no Claude Chat</strong>, no navegador, que é exatamente onde a sala vai trabalhar em seguida. Nada de terminal, nada que eles não consigam repetir na segunda-feira.
-    </p>
-    <p class="lead">
-      A planilha aqui é <strong>de Compras</strong>, e a que eles usam no exercício é de PCP. É de propósito: eles veem acontecendo com um caso, e refazem com outro, em vez de copiar o seu passo a passo.
-    </p>
-    <p class="lead">
-      E ela é <strong>grande de propósito</strong>: 56 linhas de cotação. Numa planilha de 15 linhas alguém da sala pensa "isso eu fazia na mão". <strong>Em 56, com um fornecedor cotando em caixa fechada, ninguém faz.</strong> O tamanho é metade do argumento da aula.
-    </p>
+    <div class="kicker">Demonstração · aula 1.1</div>
+    <h1>O mesmo pedido, de dois jeitos</h1>
+    <p class="lead">Tudo aqui roda no <strong>Claude Chat, no navegador</strong>. Você pode refazer sozinho depois, sem instalar nada.</p>
+    <p class="lead">A planilha usada é de <strong>Compras</strong>, um mapa de cotação com 104 linhas. A do seu exercício é de PCP. É de propósito: você vê o mecanismo acontecer num caso e refaz no seu.</p>
 
     <div class="arq">
       <div class="arq-info">
         <span class="arq-nome">cotacoes-fornecedores.xlsx</span>
-        <span class="arq-meta">56 linhas de cotação · 4 fornecedores · 14 insumos · exportado sujo, de propósito</span>
+        <span class="arq-meta">104 linhas de cotação · 4 fornecedores · 26 insumos · exportado sujo, de propósito</span>
       </div>
-      <a class="arq-btn" href="cotacoes-fornecedores.xlsx" download>Baixar ↓</a>
-    </div>
-
-    <div class="preparo">
-      <span class="preparo-rot">Antes de a turma entrar</span>
-      <ul>
-        <li><b>Claude Chat aberto</b> no navegador, sem conversa começada, e a planilha já baixada na máquina</li>
-        <li><b>Zoom do navegador em 150%.</b> Quem está no fundo da sala precisa ler a resposta, não adivinhar</li>
-        <li>Os prompts <b>já copiados num bloco de notas</b>, para não colar errado ao vivo</li>
-        <li><b>Rode a demonstração inteira uma vez em casa</b> e deixe o resultado salvo numa aba aberta. É o seu plano B do momento 5, e sem ele você fica sem saída se a rede cair</li>
-      </ul>
+      <a class="arq-btn" href="cotacoes-fornecedores.xlsx" download>Baixar &darr;</a>
     </div>
   </div>
 
-  <!-- ═══════════ MOMENTO 1 ═══════════ -->
-  <div class="mom">
-    <div class="mom-tempo"><div class="mom-n">01</div><span class="mom-min">1 min</span></div>
-    <div class="mom-corpo">
-      <div class="mom-titulo">O pedido que todo mundo faz</div>
+  <div class="passo">
+    <div class="passo-n">01</div>
+    <div class="passo-corpo">
+      <div class="passo-titulo">O pedido que todo mundo faz</div>
 
       <div class="bloco">
-        <span class="b-rot">O que você faz</span>
-        <span class="b-tx">Conversa nova no Claude Chat, anexa <code>cotacoes-fornecedores.xlsx</code> e cola o pedido abaixo. <b>Não explique nada antes.</b> Só faça.</span>
+        <span class="b-rot">O que fazer</span>
+        <span class="b-tx">Conversa nova, anexa a planilha de cotação e faz o pedido mais curto possível. É assim que a pergunta chega no dia a dia.</span>
       </div>
-
       <details class="pbox curto" open>
         <summary>
-          <span class="p-nome">pedido vago · cole exatamente assim</span>
+          <span class="p-nome">pedido curto · uma linha</span>
           <span class="p-abre">fechar</span>
         </summary>
         <div class="pconteudo" id="p1">Analisa essas cotações e me diz qual fornecedor a gente deve escolher.</div>
         <div class="p-rodape"><button class="pbtn" data-alvo="p1">Copiar</button></div>
       </details>
-
-      <div class="pergunta">
-        <span class="b-rot">Pergunte enquanto ele responde</span>
-        <span class="pergunta-fala">"São 56 linhas de cotação. Quanto tempo vocês levariam para responder isso na mão?"</span>
-        <span class="pergunta-espera">Role a planilha na tela enquanto pergunta, para eles verem o tamanho. Vai vir <b>meia hora, uma hora, uma tarde</b>. <b>Guarde o número em voz alta</b>, porque ele volta no momento 5 e é lá que ele fecha a aula.</span>
+      <div class="bloco">
+        <span class="b-rot">O que aparece na tela</span>
+        <span class="b-tx">Sai uma resposta organizada, que escolhe um fornecedor e defende a escolha com segurança.</span>
       </div>
-
-      <div class="aponte">
-        <span class="b-rot">Aponte isto na tela</span>
-        <span class="b-tx">Ele escolhe um fornecedor <b>com toda a segurança do mundo</b>. Leia a frase da recomendação em voz alta, devagar.</span>
-      </div>
-
-      <div class="porque">
-        <span class="b-rot">Por que este momento existe</span>
-        <span class="b-tx">A sala precisa ver a resposta <b>confiante</b> antes de ver que ela é rasa. Se você avisar antes, o momento 2 morre.</span>
-      </div>
-
-      <div class="planoB">
-        <span class="b-rot">Se der errado</span>
-        <span class="b-tx">Se o anexo falhar, <b>abra a planilha no Excel e tire um print da tela inteira</b>, e cole o print na conversa. Ele lê. Não tente colar 56 linhas como texto ao vivo: você perde dois minutos e a sala perde o fio.</span>
+      <div class="repare">
+        <span class="b-rot">Repare nisto</span>
+        <span class="b-tx">Ela escolheu <b>pelo preço</b>. Não olhou prazo de entrega, não olhou frete, e não conferiu se os quatro fornecedores cotaram os 26 itens.</span>
       </div>
     </div>
   </div>
 
-  <!-- ═══════════ MOMENTO 2 ═══════════ -->
-  <div class="mom">
-    <div class="mom-tempo"><div class="mom-n">02</div><span class="mom-min">3 min</span></div>
-    <div class="mom-corpo">
-      <div class="mom-titulo">A sala conserta a resposta, e não sabe disso</div>
+  <div class="passo">
+    <div class="passo-n">02</div>
+    <div class="passo-corpo">
+      <div class="passo-titulo">O que essa resposta não respondeu</div>
 
       <div class="bloco">
-        <span class="b-rot">O que você faz</span>
-        <span class="b-tx">Nada. <b>Vire para a sala e pergunte.</b> Este é o momento mais importante da aula inteira, e ele não tem prompt nenhum.</span>
+        <span class="b-rot">O que fazer</span>
+        <span class="b-tx">São 104 linhas de cotação. Antes de corrigir, vale saber exatamente o que ficou de fora, porque cada item da lista abaixo muda a decisão de compra.</span>
       </div>
-
-      <div class="pergunta">
-        <span class="b-rot">🔴 A pergunta que carrega a aula</span>
-        <span class="pergunta-fala">"O que falta nesta resposta para você fechar essa compra hoje?"</span>
-        <span class="pergunta-espera"><b>Não responda você. Espere o silêncio passar.</b> Vai vir: falta o prazo de entrega, falta saber se o frete está incluso, falta a condição de pagamento, falta ver se todo mundo cotou tudo, falta saber se dá para dividir o pedido. <b>Anote cada uma no quadro, com as palavras deles.</b> Isso vira o pedido do momento 4.</span>
+      <div class="lista">
+        <span class="b-rot">O que falta</span>
+        <ul>
+          <li>O <b>prazo de entrega</b> de cada fornecedor</li>
+          <li>Se o <b>frete está incluso</b> no valor unitário ou não</li>
+          <li>A <b>condição de pagamento</b>, que muda o total</li>
+          <li>Se <b>todo mundo cotou os 26 itens</b></li>
+          <li>Se <b>dividir o pedido</b> entre dois fornecedores sai melhor</li>
+        </ul>
       </div>
-
-      <div class="aponte">
-        <span class="b-rot">Aponte isto na tela</span>
-        <span class="b-tx">Volte na resposta e mostre <b>onde ela não fala</b> de cada coisa que eles acabaram de dizer. O buraco fica visível quando tem nome.</span>
-      </div>
-
-      <div class="porque">
-        <span class="b-rot">Por que este momento existe</span>
-        <span class="b-tx">Porque o pedido bom do momento 4 precisa ser <b>reconhecido como deles</b>, não como seu. Se você listar o que falta, vira aula expositiva e eles esquecem na quinta-feira.</span>
-      </div>
-
-      <div class="planoB">
-        <span class="b-rot">Se a sala ficar calada</span>
-        <span class="b-tx">Pergunte para <b>um setor com nome</b>: "Compras, o que você olha antes de fechar um pedido desses?". Pergunta para o ar não destrava; pergunta com destinatário destrava.</span>
+      <div class="ensina">
+        <span class="b-rot">O que isso ensina</span>
+        <span class="b-tx">Essa lista é o pedido bom. É ela, escrita antes, que faz o passo 4 funcionar de primeira.</span>
       </div>
     </div>
   </div>
 
-  <!-- ═══════════ MOMENTO 3 ═══════════ -->
-  <div class="mom">
-    <div class="mom-tempo"><div class="mom-n">03</div><span class="mom-min">2 min</span></div>
-    <div class="mom-corpo">
-      <div class="mom-titulo">Corrigindo na conversa, e ela não fecha</div>
+  <div class="passo">
+    <div class="passo-n">03</div>
+    <div class="passo-corpo">
+      <div class="passo-titulo">Corrigindo dentro da mesma conversa</div>
 
       <div class="bloco">
-        <span class="b-rot">O que você faz</span>
-        <span class="b-tx">Corrija <b>ao vivo, uma correção por mensagem</b>, usando as palavras que estão no quadro. Não use as suas. Mande as três seguidas.</span>
+        <span class="b-rot">O que fazer</span>
+        <span class="b-tx">Três correções, uma por mensagem, sem sair da conversa. É o que a maioria faz quando a primeira resposta não serve.</span>
       </div>
-
       <details class="pbox">
         <summary>
           <span class="p-nome">as três correções · uma por mensagem</span>
@@ -298,63 +229,41 @@ entra em máquina em 22/07.
 O frete do Delta e da Cearapel é FOB, não está no valor unitário.
 Refaz a conta.
 
-Repara que nem todo mundo cotou os 14 itens. Isso muda a comparação.</div>
+Repara que nem todo mundo cotou os 26 itens. Isso muda a comparação.</div>
         <div class="p-rodape"><button class="pbtn" data-alvo="p2">Copiar</button></div>
       </details>
-
-      <div class="aponte">
-        <span class="b-rot">Aponte isto na tela</span>
-        <span class="b-tx">Na primeira correção já sai o número que interessa: o fornecedor mais barato por unidade <b>chega seis dias depois de a máquina rodar</b>. Diga em voz alta e escreva no quadro.</span>
+      <div class="bloco">
+        <span class="b-rot">O que aparece na tela</span>
+        <span class="b-tx">Já na primeira correção sai o número que interessa: o fornecedor mais barato por unidade <b>chega seis dias depois de a máquina rodar</b>.</span>
       </div>
-
-      <div class="aponte">
-        <span class="b-rot">E aponte isto na terceira resposta</span>
-        <span class="b-tx">Cada resposta melhora um pouco e <b>nenhuma fecha</b>. Na terceira, olhe com atenção: ele costuma <b>voltar a falar do mais barato</b> e largar o prazo que você acabou de pedir.</span>
+      <div class="repare">
+        <span class="b-rot">Repare nisto</span>
+        <span class="b-tx">Cada resposta melhora um pouco e <b>nenhuma fecha</b>. Na terceira ele costuma voltar a falar do mais barato e largar o prazo que foi pedido na primeira.</span>
       </div>
-
-      <div class="pergunta">
-        <span class="b-rot">Pergunte apontando para a tela</span>
-        <span class="pergunta-fala">"Repararam? Ele voltou a falar do mais barato. Eu não tinha acabado de pedir o prazo?"</span>
-        <span class="pergunta-espera">Alguém vai dizer <b>"ele esqueceu"</b>. É a deixa da aula inteira: <b>ele não esqueceu, ele diluiu.</b> Quanto mais conversa em cima da mesa, menos peso cada coisa tem.</span>
-      </div>
-
-      <div class="porque">
-        <span class="b-rot">Por que este momento existe</span>
-        <span class="b-tx">Aqui o conceito da aula <b>acontece na frente deles</b>, em vez de ser desenhado num slide. É a diferença entre entender e ter visto.</span>
-      </div>
-
-      <div class="planoB">
-        <span class="b-rot">Se ele não esquecer nada</span>
-        <span class="b-tx">Acontece, e é ótimo. Mande mais duas correções: quase sempre solta na quinta. <b>Se mesmo assim segurar, diga a verdade:</b> "hoje ele aguentou, e o ponto continua de pé, foram cinco mensagens para chegar onde uma chega".</span>
+      <div class="ensina">
+        <span class="b-rot">O que isso ensina</span>
+        <span class="b-tx">Ele não esqueceu: <b>ele diluiu</b>. Quanto mais conversa em cima da mesa, menos peso cada instrução tem. É exatamente por isso que a conversa longa piora.</span>
       </div>
     </div>
   </div>
 
-  <!-- ═══════════ MOMENTO 4 ═══════════ -->
-  <div class="mom">
-    <div class="mom-tempo"><div class="mom-n">04</div><span class="mom-min">2 min</span></div>
-    <div class="mom-corpo">
-      <div class="mom-titulo">O mesmo pedido, só que escrito antes</div>
+  <div class="passo">
+    <div class="passo-n">04</div>
+    <div class="passo-corpo">
+      <div class="passo-titulo">O mesmo pedido, só que escrito antes</div>
 
       <div class="bloco">
-        <span class="b-rot">O que você faz</span>
-        <span class="b-tx">Abre uma <b>conversa nova</b>, anexa a mesma planilha e cola o pedido pronto. <b>Antes de apertar enter</b>, role a tela devagar para eles verem o tamanho.</span>
+        <span class="b-rot">O que fazer</span>
+        <span class="b-tx">Conversa nova, a mesma planilha, e um pedido que já vem com tudo o que estava faltando no passo 2. Ele é longo de propósito: <b>é o tamanho de um pedido que não precisa de correção.</b></span>
       </div>
-
-      <div class="pergunta">
-        <span class="b-rot">Diga isto enquanto rola a tela</span>
-        <span class="pergunta-fala">"Olhem o que está escrito aqui. É o que vocês me disseram há três minutos, só que escrito antes."</span>
-        <span class="pergunta-espera">Aponte, uma por uma, <b>as frases que vieram do quadro</b>: o prazo, o frete, o item que não foi cotado. É o fecho do laço, e é o motivo de o momento 2 existir.</span>
-      </div>
-
       <details class="pbox">
         <summary>
           <span class="p-nome">pedido pronto · abra para conferir, ou só copie</span>
           <span class="p-abre">abrir</span>
         </summary>
         <div class="pconteudo" id="p3">Sou coordenador de Compras na Gráfica Aurora, indústria gráfica de médio
-porte. Anexei o mapa de cotação da OS 2481, exportado do sistema: são 14
-insumos cotados com 4 fornecedores, 56 linhas.
+porte. Anexei o mapa de cotação da OS 2481, exportado do sistema: são 26
+insumos cotados com 4 fornecedores, 104 linhas.
 Hoje é 16/07/2026 e essa OS entra em máquina em 22/07/2026.
 
 O arquivo vem sujo, como todo export: duas linhas de cabeçalho mescladas
@@ -394,76 +303,44 @@ Confirme comigo em 3 bullets: quantas linhas úteis você achou, como
 normalizou, e que critério usou para recomendar. Espere meu OK.</div>
         <div class="p-rodape"><button class="pbtn" data-alvo="p3">Copiar</button></div>
       </details>
-
-      <div class="aponte">
-        <span class="b-rot">Aponte isto, e é fácil deixar passar</span>
-        <span class="b-tx">Ele <b>para antes de gerar</b> e confirma o plano em três bullets, esperando o seu OK. Isso está pedido de propósito lá no fim. Mostre onde.</span>
-      </div>
-
-      <div class="porque">
-        <span class="b-rot">Por que este momento existe</span>
-        <span class="b-tx">São 30 segundos de conferência contra <b>um documento inteiro construído em cima de um entendimento errado</b>. Pergunte por que você pediu isso, e deixe eles responderem.</span>
-      </div>
-
-      <div class="planoB">
-        <span class="b-rot">Se travar ou demorar demais</span>
-        <span class="b-tx">Abra <b>a aba com o resultado que você rodou em casa</b> e diga a verdade: "hoje travou, e este é o documento que sai daqui". <b>Nunca finja que rodou.</b> A sala perdoa falha de rede, não perdoa você fingir.</span>
+      <div class="repare">
+        <span class="b-rot">Repare nisto</span>
+        <span class="b-tx">Ele <b>para antes de gerar</b> e confirma o plano em três bullets, esperando o OK. São trinta segundos de conferência contra um documento inteiro construído em cima de um entendimento errado.</span>
       </div>
     </div>
   </div>
 
-  <!-- ═══════════ MOMENTO 5 ═══════════ -->
-  <div class="mom">
-    <div class="mom-tempo"><div class="mom-n">05</div><span class="mom-min">2 min</span></div>
-    <div class="mom-corpo">
-      <div class="mom-titulo">O que ninguém tinha visto na planilha</div>
+  <div class="passo">
+    <div class="passo-n">05</div>
+    <div class="passo-corpo">
+      <div class="passo-titulo">O que apareceu que ninguém tinha visto</div>
 
       <div class="bloco">
-        <span class="b-rot">O que você faz</span>
-        <span class="b-tx">Dá o OK, <b>espera gerar na frente deles</b> e abre o documento. Não fale por cima enquanto carrega: deixe a sala olhar.</span>
+        <span class="b-rot">O que fazer</span>
+        <span class="b-tx">Depois do OK, sai o documento de uma página. Com ele vêm três achados que estavam escondidos nas 104 linhas.</span>
       </div>
-
-      <div class="aponte">
-        <span class="b-rot">Aponte estes três, nesta ordem, e a ordem importa</span>
-        <span class="b-tx">
-          <b>1.</b> O mais barato da lista <b>deixou de cotar três itens</b>, então aquele total nunca existiu.<br>
-          <b>2.</b> Um deles cotou a chapa CTP <b>em caixa com dez</b>, e não por unidade. Quem soma direto multiplica esse item por dez.<br>
-          <b>3.</b> Sobra <b>um único fornecedor</b> que cotou os 14 itens e entrega a tempo. E é justamente o mais caro na conta ingênua.
-        </span>
+      <div class="lista">
+        <span class="b-rot">Os três achados</span>
+        <ul>
+          <li>O fornecedor <b>mais barato da lista deixou de cotar cinco itens</b>. Aquele total nunca foi comparável com o dos outros</li>
+          <li>Um deles cotou a chapa CTP <b>em caixa com dez</b>, e não por unidade. Somar direto multiplicaria esse item por dez</li>
+          <li>Sobra <b>um único fornecedor</b> que cotou os 26 itens e entrega a tempo. E é o mais caro na conta ingênua</li>
+        </ul>
       </div>
-
-      <div class="pergunta">
-        <span class="b-rot">Pergunte de volta o número do momento 1</span>
-        <span class="pergunta-fala">"Vocês falaram meia hora lá no começo. Quanto tempo até você reparar que um deles cotou em caixa e não em unidade?"</span>
-        <span class="pergunta-espera">A resposta honesta costuma ser <b>"eu não ia reparar"</b>. É o melhor fecho possível da aula, e ele veio da sala, não de você. <b>Não emende explicação em cima.</b> Deixe a frase no ar.</span>
-      </div>
-
-      <div class="porque">
-        <span class="b-rot">Por que este momento fecha a aula</span>
-        <span class="b-tx">Duas coisas de uma vez: <b>uma rodada em vez de cinco</b>, e três achados que ninguém tinha visto em 56 linhas. O primeiro convence; <b>o terceiro é o que faz eles quererem a aula 1.2.</b></span>
-      </div>
-
-      <div class="planoB">
-        <span class="b-rot">Se algum número não bater</span>
-        <span class="b-tx">Diga em voz alta e <b>corrija ao vivo</b>: "aqui ele errou, e olha só como eu descubro isso". Errar e conferir na frente deles ensina mais que acertar. <b>E se ele não achar a caixa fechada sozinho</b>, pergunte: "confere a unidade da chapa CTP em todos os fornecedores". Ele acha, e a lição fica ainda melhor: <b>o que você não pede, ele não confere.</b></span>
+      <div class="ensina">
+        <span class="b-rot">O que isso ensina</span>
+        <span class="b-tx">O mais barato era mais barato <b>porque estava incompleto</b>. Uma rodada em vez de cinco, e três coisas que ninguém acharia passando o olho numa planilha desse tamanho.</span>
       </div>
     </div>
   </div>
 
   <div class="fecho">
-    <span class="fecho-rot">A frase que emenda na seção 05 da aula</span>
-    <span class="fecho-frase">"Agora é com vocês, com a planilha de vocês. Só que desta vez o pedido bom já está pronto para colar, porque quem escreveu foram vocês."</span>
-    <p>
-      Aí eles abrem a seção <strong>05 · Sua vez</strong>, baixam a planilha de PCP e fazem as duas conversas. <strong>A diferença é que agora eles sabem por que a segunda funciona</strong>, em vez de copiarem um prompt bonito.
-    </p>
-    <p>
-      <strong>Não pule o momento 2.</strong> Se você listar sozinho o que falta, para ganhar tempo, o momento 4 vira mágica. E mágica não se aprende, se assiste.
-    </p>
+    <span class="fecho-rot">O que muda daqui para a frente</span>
+    <span class="fecho-frase">O pedido curto parece mais rápido: são 11 palavras contra 300. Só que ele compra cinco rodadas de correção, e ainda deixa passar o que importa.</span>
+    <p>Na <strong>seção 05 · Sua vez</strong> você faz as duas conversas com a planilha de PCP. <strong>A diferença é que agora você sabe por que a segunda funciona</strong>, em vez de copiar um prompt pronto.</p>
   </div>
 
-  <p class="rodape">
-    Roteiro da <a href="../">aula 1.1</a> · Gráfica Aurora é uma indústria gráfica fictícia criada para o treinamento, e nenhum dado aqui é real
-  </p>
+  <p class="rodape">Demonstração da <a href="../">aula 1.1</a> · Gráfica Aurora é uma indústria gráfica fictícia criada para o treinamento, e nenhum dado aqui é real</p>
 
 </div>
 

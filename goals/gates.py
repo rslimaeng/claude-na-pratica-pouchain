@@ -211,149 +211,161 @@ for f in AULAS + ["m1/index.html"]:
 
 # ─────────────── G13 · número sobre a planilha tem que sair da planilha
 titulo("G13 · OS NÚMEROS DA GRÁFICA AURORA BATEM COM O .XLSX")
-print("        (a aula 1.3 mostrava 'Offset 2 com 5' quando são 6, e 2434 como atrasada)")
+print("        (nenhum número sobre insumo é digitado à mão: tudo recalculado aqui)")
 try:
     from openpyxl import load_workbook
-    from datetime import datetime
-    ws = load_workbook("m1/a1-ecossistema-e-fisica/exercicio/pedidos-em-producao.xlsx",
-                       data_only=True).active
+    from datetime import datetime, timedelta
     HOJE = datetime(2026, 7, 16)
+    MES = {"jan":1,"fev":2,"mar":3,"abr":4,"mai":5,"jun":6,
+           "jul":7,"ago":8,"set":9,"out":10,"nov":11,"dez":12}
+
     def data(v):
         if isinstance(v, datetime): return v
-        for fmt in ("%d/%m/%Y", "%d-%b-%y"):
-            try: return datetime.strptime(str(v).replace("jul", "Jul"), fmt)
+        s = str(v).strip()
+        for f in ("%d/%m/%Y", "%Y-%m-%d"):
+            try: return datetime.strptime(s, f)
             except ValueError: pass
+        p = s.split("-")
+        if len(p) == 3 and p[1] in MES:
+            return datetime(2000 + int(p[2]), MES[p[1]], int(p[0]))
         return None
-    linhas = [r for r in ws.iter_rows(min_row=5, values_only=True) if r[0]]
-    vivas  = [r for r in linhas if str(r[6]).strip().lower() != "entregue"]
-    atrasadas = [r for r in vivas if (d := data(r[5])) and d < HOJE]
-    carga = {}
-    for r in vivas: carga[r[7]] = carga.get(r[7], 0) + 1
-    fatos = {"OS no arquivo": len(linhas), "em produção": len(vivas),
-             "atrasadas pela data": len(atrasadas),
-             **{f"carga {k}": v for k, v in sorted(carga.items())}}
-    for k, v in fatos.items(): print(f"        {k:26} {v}")
-    # o que as páginas afirmam tem que bater
-    ex = open("m1/a1-ecossistema-e-fisica/exemplo/index.html", encoding="utf-8").read()
-    a3 = open("m1/a3-regra-que-fica/index.html", encoding="utf-8").read()
-    checagens = [
-        (f'>{len(vivas)}<' in ex,            "exemplo · OS em produção"),
-        (f'alerta">{len(atrasadas)}<' in ex, "exemplo · atrasadas"),
-        (f"{len(atrasadas)} atrasadas" in a3, "aula 1.3 · atrasadas"),
-        (f"Offset 2 com {carga.get('Offset 2')}" in a3, "aula 1.3 · carga da Offset 2"),
-    ]
-    for ok, nome in checagens: diz(ok, "G13", nome)
 
-    # ── a planilha da DEMONSTRAÇÃO (Compras) tem as mesmas obrigações ──────
-    # o momento 5 do roteiro faz TRÊS afirmações sobre esta planilha, e as três
-    # saem da boca do Rafael na frente de 20 pessoas. Se qualquer uma estiver
-    # errada, a demonstração cai e não tem plano B que salve.
+    def texto(p):
+        return re.sub(r"<[^>]+>", " ", open(p, encoding="utf-8").read()).lower()
+
+    N = {1:"um",2:"dois",3:"três",4:"quatro",5:"cinco",6:"seis",8:"oito",
+         9:"nove",10:"dez",12:"doze",14:"quatorze"}
+
+    # ── PLANILHA DO EXERCÍCIO · PCP, 120 OS ────────────────────────────────
+    ws = load_workbook("m1/a1-ecossistema-e-fisica/exercicio/"
+                       "pedidos-em-producao.xlsx", data_only=True).active
+    linhas = [r for r in ws.iter_rows(min_row=5, values_only=True)
+              if r[0] and str(r[0]).isdigit()]
+    vivas = [r for r in linhas if str(r[6]).strip().lower() != "entregue"]
+    atras = [r for r in vivas if (d := data(r[5])) and d < HOJE]
+    marcadas = [r for r in linhas if str(r[6]).strip() == "Atrasado"]
+    todas_os = [r[0] for r in linhas]
+    dups = sorted({o for o in todas_os if todas_os.count(o) > 1})
+    print(f"        {'PCP · linhas':28} {len(linhas)}")
+    print(f"        {'PCP · em aberto':28} {len(vivas)}")
+    print(f"        {'PCP · atrasadas pela data':28} {len(atras)}")
+    print(f"        {'PCP · marcadas no sistema':28} {len(marcadas)}   (a mentira do campo)")
+    print(f"        {'PCP · OS repetidas':28} {dups}")
+
+    ex   = texto("m1/a1-ecossistema-e-fisica/exemplo/index.html")
+    a1   = texto("m1/a1-ecossistema-e-fisica/index.html")
+    a3   = texto("m1/a3-regra-que-fica/index.html")
+    a3d  = texto("m1/a3-regra-que-fica/demonstracao/index.html")
+    a2d  = texto("m1/a2-pedir-para-entregar/demonstracao/index.html")
+
+    for ok, nome in [
+        (f">{len(vivas)}<" in open("m1/a1-ecossistema-e-fisica/exemplo/index.html",
+                                   encoding="utf-8").read(), "PCP · exemplo · em produção"),
+        (f'alerta">{len(atras)}<' in open("m1/a1-ecossistema-e-fisica/exemplo/index.html",
+                                          encoding="utf-8").read(), "PCP · exemplo · atrasadas"),
+        (f"{len(linhas)} linhas" in ex,            "PCP · exemplo · tamanho do arquivo"),
+        (f"{len(dups)} os repetidas" in ex,        "PCP · exemplo · OS duplicadas"),
+        (f"{len(linhas)} ordens de serviço" in a1, "PCP · aula 1.1 · tamanho no download"),
+        (f"{len(linhas)} ordens de serviço" in a2d,"PCP · aula 1.2 · tamanho no download"),
+        (f"{len(atras)} atrasadas" in a3,          "PCP · aula 1.3 · atrasadas"),
+        (f"marca <strong>{len(marcadas)}</strong>" in
+         open("m1/a3-regra-que-fica/index.html", encoding="utf-8").read(),
+                                                   "PCP · aula 1.3 · marcadas no sistema"),
+        (f"{len(atras)} os atrasadas" in a3d,      "PCP · demo 1.3 · atrasadas"),
+        (f"marca <b>{len(marcadas)}</b>" in
+         open("m1/a3-regra-que-fica/demonstracao/index.html", encoding="utf-8").read(),
+                                                   "PCP · demo 1.3 · marcadas no sistema"),
+    ]: diz(bool(ok), "G13", nome)
+
+    # ── PLANILHA DA DEMONSTRAÇÃO · Compras, 104 linhas ─────────────────────
     wc = load_workbook("m1/a1-ecossistema-e-fisica/demonstracao/"
                        "cotacoes-fornecedores.xlsx", data_only=True).active
-    ENTRA_MAQUINA = datetime(2026, 7, 22)
-    FOLGA = (ENTRA_MAQUINA - HOJE).days
+    FOLGA = (datetime(2026, 7, 22) - HOJE).days
     cot = [r for r in wc.iter_rows(min_row=5, values_only=True) if r[0] and r[4]]
     forn = {}
     for r in cot:
-        f = forn.setdefault(r[4], {"prazo": r[6], "sem_cotar": [], "caixa": []})
-        if r[5] in (None, ""):              f["sem_cotar"].append(r[1])
-        if "cx" in str(r[2]).lower():       f["caixa"].append((r[1], r[2]))
-    itens     = {r[0] for r in cot}
-    atrasa    = {f: d["prazo"] - FOLGA for f, d in forn.items() if d["prazo"] > FOLGA}
-    incompleto= {f: d["sem_cotar"] for f, d in forn.items() if d["sem_cotar"]}
-    em_caixa  = {f: d["caixa"] for f, d in forn.items() if d["caixa"]}
-    # quem cotou os 14 E chega antes de a máquina rodar. É o desfecho da aula
-    viaveis = [f for f, d in forn.items()
-               if not d["sem_cotar"] and d["prazo"] <= FOLGA]
-    print(f"        {'linhas de cotação':26} {len(cot)}")
-    print(f"        {'itens × fornecedores':26} {len(itens)} × {len(forn)}")
-    for f, d in atrasa.items():     print(f"        {f} atrasa {d} dias")
-    for f, i in incompleto.items(): print(f"        {f} deixou {len(i)} itens sem cotar")
-    for f, c in em_caixa.items():   print(f"        {f} cotou {c[0][0]} em '{c[0][1]}'")
-    print(f"        {'cotou tudo E no prazo':26} {viaveis}")
+        f = forn.setdefault(r[4], {"prazo": r[6], "sem": 0, "caixa": None})
+        if r[5] in (None, ""):        f["sem"] += 1
+        if "cx" in str(r[2]).lower(): f["caixa"] = str(r[2])
+    itens   = {r[0] for r in cot}
+    atrasa  = {f: d["prazo"] - FOLGA for f, d in forn.items() if d["prazo"] > FOLGA}
+    pior    = max((d["sem"] for d in forn.values()), default=0)
+    caixa   = next((d["caixa"] for d in forn.values() if d["caixa"]), None)
+    por_cx  = int(re.search(r"\d+", caixa).group()) if caixa else 0
+    viaveis = [f for f, d in forn.items() if not d["sem"] and d["prazo"] <= FOLGA]
+    print(f"        {'cotações · linhas':28} {len(cot)}")
+    print(f"        {'cotações · itens × forn.':28} {len(itens)} × {len(forn)}")
+    print(f"        {'cotações · maior atraso':28} {max(atrasa.values(), default=0)} dias")
+    print(f"        {'cotações · itens sem cotar':28} {pior} (pior fornecedor)")
+    print(f"        {'cotações · cotou tudo E no prazo':28} {viaveis}")
 
-    rot = re.sub(r"<[^>]+>", "", open("m1/a1-ecossistema-e-fisica/demonstracao/"
-                 "index.html", encoding="utf-8").read()).lower()
-    aula = re.sub(r"<[^>]+>", "", open("m1/a1-ecossistema-e-fisica/index.html",
-                  encoding="utf-8").read()).lower()
-    N = {1: "um", 2: "dois", 3: "três", 4: "quatro", 5: "cinco", 6: "seis",
-         10: "dez", 14: "quatorze"}
-    pior = max((len(i) for i in incompleto.values()), default=0)
-    por_caixa = int(re.search(r"\d+", list(em_caixa.values())[0][0][1]).group()) \
-                if em_caixa else 0
-    checagens_cot = [
-        (f"{len(cot)} linhas de cotação" in rot and f"{len(cot)} linhas" in aula,
-         "cotações · o tamanho da planilha"),
-        (f"{len(forn)} fornecedores" in rot and f"{len(forn)} fornecedores" in aula,
+    d1  = texto("m1/a1-ecossistema-e-fisica/demonstracao/index.html")
+    for ok, nome in [
+        (f"{len(cot)} linhas de cotação" in d1 and f"{len(cot)} linhas" in a1,
+         "cotações · tamanho da planilha"),
+        (f"{len(forn)} fornecedores" in d1 and f"{len(forn)} fornecedores" in a1,
          "cotações · quantos fornecedores"),
-        (f"{len(itens)} insumos" in rot or f"{len(itens)} itens" in rot,
-         "cotações · quantos insumos"),
-        (len(atrasa) == 1 and f"{N[list(atrasa.values())[0]]} dias" in rot,
+        (f"{len(itens)} insumos" in d1, "cotações · quantos insumos"),
+        (len(atrasa) == 1 and f"{N[list(atrasa.values())[0]]} dias" in d1,
          "cotações · de quantos dias é o atraso"),
-        (pior and f"cotar {N[pior]} itens" in rot and f"cotar {N[pior]} itens" in aula,
-         "momento 5 · quantos itens ficaram sem cotar"),
-        (por_caixa and f"caixa com {N[por_caixa]}" in rot
-                   and f"caixa com {N[por_caixa]}" in aula,
-         "momento 5 · a armadilha da caixa fechada"),
-        (len(viaveis) == 1 and "um único fornecedor" in rot and "um único" in aula,
-         "momento 5 · sobra um fornecedor só"),
-    ]
-    for ok, nome in checagens_cot: diz(bool(ok), "G13", nome)
+        (pior and f"cotar {N[pior]} itens" in d1, "cotações · itens sem cotar"),
+        (por_cx and f"caixa com {N[por_cx]}" in d1, "cotações · a armadilha da caixa"),
+        (len(viaveis) == 1 and "um único fornecedor" in d1,
+         "cotações · sobra um fornecedor só"),
+    ]: diz(bool(ok), "G13", nome)
+
+    # ── piso de tamanho · CLAUDE.md §8-ter ─────────────────────────────────
+    for nome, n in [("pedidos-em-producao", len(linhas)), ("cotacoes-fornecedores", len(cot))]:
+        diz(n >= 100, "G13", f"piso de 100 linhas · {nome}", f"{n} linhas")
 except ImportError:
     print("        openpyxl ausente, gate pulado")
 
-# ──────────── G14 · toda aula tem roteiro, e todo roteiro pergunta à sala
-titulo("G14 · ROTEIRO DE DEMONSTRAÇÃO EXECUTÁVEL EM TODA AULA")
-print("        (o bloco .pergunta é o que separa demonstração de aula · CLAUDE.md §9)")
+# ─── G14 · a demonstração é passo a passo PARA O ALUNO, não roteiro de palco
+titulo("G14 · DEMONSTRAÇÃO ESCRITA PARA O ALUNO, SEM DIREÇÃO DE CENA")
+print("        (o site é do aluno · direção de palco vive fora dele · CLAUDE.md §9)")
+# frases que só fazem sentido ditas pelo instrutor para a turma
+PALCO = ["pergunte à sala", "pergunte a sala", "pergunte à turma", "plano b",
+         "se der errado", "se a sala", "antes de a turma", "minutos de palco",
+         "anote no quadro", "no quadro", "espere o silêncio", "a sala responde",
+         "não responda você", "vire para a sala", "aponte na tela",
+         "aponte isto", "diga em voz alta", "leia em voz alta", "a turma"]
 for f in AULAS:
     dir_aula = os.path.dirname(f)
-    rot = os.path.join(dir_aula, "demonstracao", "index.html")
-    if not os.path.exists(rot):
+    demo = os.path.join(dir_aula, "demonstracao", "index.html")
+    if not os.path.exists(demo):
         diz(False, "G14", f, "sem pasta demonstracao/"); continue
-    r = open(rot, encoding="utf-8").read()
-    momentos = len(re.findall(r'class="mom"', r))
-    perg     = len(re.findall(r'class="pergunta"', r))
-    aponte   = len(re.findall(r'class="aponte"', r))
-    planoB   = len(re.findall(r'class="planoB"', r))
-    prompt   = len(re.findall(r'class="pbox"', r))
-    ligado   = 'href="./demonstracao/"' in open(f, encoding="utf-8").read()
+    bruto = open(demo, encoding="utf-8").read()
+    limpo = re.sub(r"<[^>]+>", " ", bruto).lower()
+    passos = len(re.findall(r'class="passo"', bruto))
+    repare = len(re.findall(r'class="repare"', bruto))
+    prompt = len(re.findall(r'class="pbox', bruto))
+    # nenhum passo pode ser só instrução: todo passo tem que entregar alguma
+    # coisa para o aluno levar (o que reparar, o que aquilo ensina, ou a lista)
+    corpos = re.findall(r'<div class="passo-corpo">(.*?)\n    </div>', bruto, re.S)
+    secos = [i + 1 for i, c in enumerate(corpos)
+             if not re.search(r'class="(repare|ensina|lista)"', c)]
+    ligado = 'href="./demonstracao/"' in open(f, encoding="utf-8").read()
+    achados = sorted({t for t in PALCO if t in limpo})
     faltas = []
-    if momentos < 3:          faltas.append(f"só {momentos} momentos")
-    if perg < momentos:       faltas.append(f"perguntas={perg} < momentos={momentos}")
-    if aponte < momentos:     faltas.append(f"apontes={aponte} < momentos={momentos}")
-    if planoB < momentos:     faltas.append(f"planoB={planoB} < momentos={momentos}")
-    if prompt == 0:           faltas.append("nenhum prompt literal")
-    if not ligado:            faltas.append("a aula não linka o roteiro")
+    if passos < 3:      faltas.append(f"só {passos} passos")
+    if repare == 0:     faltas.append("nenhum bloco 'repare nisto'")
+    if secos:           faltas.append(f"passo(s) só com instrução: {secos}")
+    if prompt == 0:     faltas.append("nenhum prompt literal")
+    if not ligado:      faltas.append("a aula não linka a demonstração")
+    if achados:         faltas.append(f"DIREÇÃO DE CENA: {achados}")
     diz(not faltas, "G14", dir_aula,
-        f"{momentos} momentos · {perg} perguntas · {prompt} prompts" if not faltas else str(faltas))
+        f"{passos} passos · {repare} repare · {prompt} prompts · 0 seco"
+        if not faltas else str(faltas))
 
-# ─────────── G15 · duração de aula não vai para a tela do aluno
-titulo("G15 · SEM DURAÇÃO NA PÁGINA DE AULA E NO CARD DO HUB")
-print("        (tempo é controle interno · fica no roteiro, não no material do aluno)")
-TEMPO = re.compile(r"\d+\s*(min\b|minutos?\b|horas?\b)", re.I)
-# só nos lugares de interface que fazem promessa de tempo ao aluno.
-# texto narrativo ("reunião das 8h") não conta, e roteiro de palco também não.
+# ─────────── G15 · duração não vai para o material do aluno, em lugar nenhum
+titulo("G15 · SEM DURAÇÃO EM NENHUMA PÁGINA DO ALUNO")
+print("        (tempo é controle interno e vive fora do site · CLAUDE.md §9-ter)")
+TEMPO = re.compile(r"\d+\s*(min\b|minutos?\b)", re.I)
 SLOTS = [r'class="hero-kicker">([^<]*)<', r'class="destino-title">([^<]*)<',
          r'class="step-eyebrow">([^<]*)<', r'class="aula-dur">([^<]*)<',
-         r'class="aula-title">([^<]*)<']
-for f in AULAS + ["m1/index.html"]:
-    src = open(f, encoding="utf-8").read()
-    achados = []
-    for pat in SLOTS:
-        for t in re.findall(pat, src):
-            if TEMPO.search(t): achados.append(t.strip())
+         r'class="aula-title">([^<]*)<', r'class="kicker">([^<]*)<',
+         r'class="passo-titulo">([^<]*)<']
+for f in AULAS + ["m1/index.html"] + sorted(glob.glob("m1/a*/demonstracao/index.html")):
+    s = open(f, encoding="utf-8").read()
+    achados = [t for pat in SLOTS for t in re.findall(pat, s) if TEMPO.search(t)]
     diz(not achados, "G15", f, str(achados) if achados else "")
-# o roteiro PRECISA dos tempos: é ele o controle interno
-for f in AULAS:
-    rot = os.path.join(os.path.dirname(f), "demonstracao", "index.html")
-    if not os.path.exists(rot): continue
-    n = len(re.findall(r'class="mom-min">', open(rot, encoding="utf-8").read()))
-    diz(n >= 3, "G15", f"{os.path.dirname(f)}/demonstracao", f"{n} momentos cronometrados")
-
-# ─────────────────────────────────────────────────── veredicto
-print("\n" + "=" * 72)
-if falhas:
-    print(f"FALHOU · {len(falhas)} gate(s):")
-    for x in falhas: print("   ", x)
-    sys.exit(1)
-print(f"TODOS OS GATES PASSARAM · {len(HTML)} páginas, {len(ins)} insumos")

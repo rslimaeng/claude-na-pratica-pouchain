@@ -218,13 +218,13 @@ O conteúdo já existe: é a **Cerca 0** da abertura. Falta estar na tela.
 
 **A sujeira é de propósito e precisa estar lá:** cabeçalho mesclado antes da tabela, data em formatos diferentes, coluna com espaço no nome, status em duas caixas, valor ora número ora texto, linha em branco no meio.
 
-### 📏 Piso de tamanho: 50 linhas
+### 📏 Piso de tamanho: 100 linhas
 
-**Pedido do Rafael em 07/08/2026**, quando a planilha da demonstração da 1.1 saiu com 15 linhas: *"de cara, já crie uma planilha mais robusta. Algo pelo menos de 50 linhas ou mais."*
+**Pedido do Rafael em 07/08/2026**, quando a planilha da demonstração da 1.1 saiu com 15 linhas: *"algo sempre mais robusto, de 100 ou mais linhas, pois lembre-se da sensação do ganho de produtividade."*
 
-**Por que é conteúdo e não capricho:** numa planilha de 15 linhas alguém da sala pensa *"isso eu fazia na mão em dez minutos"*, e a demonstração inteira perde o argumento. Em 56 linhas, com um fornecedor cotando em caixa fechada, **ninguém faz**. O tamanho é metade da tese da aula, e a pergunta *"quanto tempo você levaria na mão?"* só funciona quando a resposta honesta é "muito, ou nem acharia".
+**Por que é conteúdo e não capricho:** numa planilha de 15 linhas alguém da sala pensa *"isso eu fazia na mão em dez minutos"*, e a demonstração inteira perde o argumento. Em 120 linhas, com OS duplicada e cliente escrito de dois jeitos, **ninguém faz**. O tamanho é metade da tese da aula, e a pergunta *"quanto tempo você levaria na mão?"* só funciona quando a resposta honesta é "muito, ou nem acharia".
 
-**O piso vale para insumo de demonstração e de exercício.** Junto com o tamanho vem a obrigação de ter **mais de uma armadilha**: em 50 linhas cabem três ou quatro, e é a terceira que ninguém acha passando o olho. A da 1.1 é a unidade trocada (um fornecedor cota em `cx c/ 10` e os outros por unidade), que multiplicaria o item por dez.
+**O piso é 100 linhas e vale para insumo de demonstração e de exercício**, conferido pelo gate **G13**. Junto com o tamanho vem a obrigação de ter **mais de uma armadilha**: em 50 linhas cabem três ou quatro, e é a terceira que ninguém acha passando o olho. Na 1.1 são quatro por planilha: nas cotações, prazo, frete FOB, fornecedor incompleto e **unidade trocada** (`cx c/ 10`); no PCP, status que mente, tiragem como texto, **OS duplicada** e **cliente com dois nomes**.
 
 > ⚠️ **Toda armadilha vira checagem no G13.** Número que a página afirma sem o gate recalcular é número que vai errado para a frente de 20 pessoas.
 
@@ -284,38 +284,41 @@ HERO  kicker + H1 + subtítulo + chips [Nível] [artefato] [pré-requisito] [eme
 
 **O que estava errado:** mostrar o resultado pronto entrega o conceito já resolvido. O aluno vê mágica, e mágica não se aprende, se assiste. **A ordem andragógica é experiência → pergunta → conceito**, nunca conceito → ilustração.
 
-**Toda aula tem um roteiro de demonstração**, em página própria, ligado da seção 04. Cada momento traz, nesta ordem:
+### 🔴 A seção 04 leva a uma demonstração, escrita PARA O ALUNO
+
+**Segunda correção do Rafael em 07/08/2026**, e ela derruba o formato que eu tinha criado de manhã. Eu escrevi um **roteiro de palco** e publiquei na página do aluno: tinha *"pergunte à sala"*, *"espere o silêncio passar"*, *"zoom do navegador em 150%"*, *"antes de a turma entrar"* e plano B por momento.
+
+> *"É como se você tivesse ensinando pra mim o que eu tenho que fazer. Eu não vou ficar lendo isso para eles. Esse material é o material que eu vou dar aula no curso: o que aparecer de texto e o que eu for ler tem que ser para o usuário final. Eu quero um passo a passo."*
+
+**Por que ele está certo:** o site é o material que fica com o aluno. Direção de cena ali não ensina ninguém, e faz o instrutor parecer que está lendo instrução de como dar a própria aula.
+
+**A regra, em uma linha:** na página pública só entra o que é **para o aluno**. Direção de cena vive em `../ROTEIRO-DE-PALCO-M1.md`, fora do repositório do site.
+
+| O que é | Onde vive |
+|---|---|
+| Passo a passo, prompts literais, o que aparece na tela, o que reparar, o que aquilo ensina | `site/m1/aN/demonstracao/` · **público** |
+| O que perguntar à sala, quando esperar, o que anotar no quadro, plano B, preparo, minutagem | `../ROTEIRO-DE-PALCO-M1.md` · **interno** |
+
+**Os blocos permitidos na página do aluno**, e são só estes seis:
 
 | Bloco | O que é |
 |---|---|
-| **O que você faz** | A ação concreta: abrir, anexar, colar |
-| **O prompt** | Literal e copiável. Nunca "escreva algo como" |
-| **🔴 Aponte isto na tela** | O dedo no que importa, senão passa batido |
-| **Pergunte à sala** | A pergunta que eles respondem **antes** de você explicar |
-| **Por que este momento existe** | O conceito, só depois de a sala ter vivido ele |
-| **Se der errado** | O plano B, escrito antes de precisar |
+| **O que fazer** | A ação concreta, na segunda pessoa: abrir, anexar, colar |
+| **O prompt** | Literal e copiável, dentro de `<details>` fechado. Nunca "escreva algo como" |
+| **O que aparece na tela** | O que sai, descrito sem adjetivo de palco |
+| 🔵 **Repare nisto** | O que o aluno deixaria passar. **É a única caixa colorida da página** |
+| **O que isso ensina** | O conceito, depois do que aconteceu |
+| **Lista** | Quando o conteúdo é um conjunto: o que falta, os achados, os campos |
 
-**O bloco que não pode faltar é "pergunte à sala".** É o que separa demonstração de aula. Referência: `m1/a1-ecossistema-e-fisica/demonstracao/`.
+**Regra de conteúdo de cada passo:** nenhum passo pode ser só instrução. Todo passo entrega alguma coisa para o aluno levar (`repare`, `ensina` ou `lista`). Conferido pelo gate **G14**, que também reprova **19 frases de direção de cena** por busca literal.
 
-#### 🔴 Três regras que vieram da reprovação do primeiro roteiro
+#### As duas regras que sobreviveram da primeira correção
 
-O Rafael abriu o roteiro da 1.1 e reprovou de novo, em 07/08/2026. A primeira versão rodava no **Claude Code**, com `/context`, e três dos cinco momentos estavam marcados *"a sala assiste"*:
+**R1 · A demonstração roda na mesma superfície do exercício.** Se o aluno vai fazer no Chat, a demonstração é no Chat. Ferramenta que ele não tem vira mágica.
 
-> *"Já começa dizendo que vai rodar no Claude Code e roda o context. Isso aqui para mim não está nada didático. Eu queria um exemplo similar: o que eles vão fazer. Eu mostrar a diferença, rodando com sequência de prompts, que eu posso simular uma conversa normal e um ali que já vai estar pronto."*
+> Isto **não** contradiz o §10. Lá diz que conceito que precisa de terminal vai para a demonstração, e continua valendo. O que muda é a ordem da escolha: **primeiro se procura como mostrar o conceito na superfície do aluno.** Terminal é último recurso, não atalho.
 
-**R1 · A demonstração roda na mesma superfície do exercício.** Se o aluno vai fazer no Chat, a demonstração é no Chat. Ferramenta que ele não tem vira mágica, e o instrutor não consegue dizer *"agora façam igual"*, que é a mecânica inteira.
-
-> Isto **não** contradiz o §10. Lá diz que conceito que precisa de terminal vai para a demonstração, e continua valendo. O que muda é a ordem da escolha: **primeiro se procura como mostrar o conceito na superfície do aluno.** Terminal é último recurso, não atalho. Na 1.1, `/context` mostrava um número; a conversa degradando ao vivo mostra a mesma coisa e o aluno repete sozinho.
-
-**R2 · Insumo diferente, mecanismo igual.** A demonstração usa a planilha de **outro setor** (a 1.1 demonstra com Compras e exercita com PCP). O aluno vê o mecanismo acontecer num caso e refaz no dele, em vez de copiar o passo a passo do instrutor. Como efeito colateral, dois setores se reconhecem por aula em vez de um.
-
-**R3 · Uma cor só na página do roteiro.** A primeira versão tinha seis fundos coloridos por momento, um por tipo de bloco. Isso fura o §8-bis: **tipo de bloco não é semântica.** O azul fica só no bloco *"pergunte à sala"*, que é o único momento em que a sala fala. O resto se separa por rótulo em mono e espaço em branco. O vermelho do *"aponte na tela"* é **rótulo, não caixa**. E **prompt longo entra dentro de `<details>`, fechado**: um bloco de 40 linhas monoespaçadas no meio da página corta a leitura de quem está procurando o próximo passo com a sala esperando.
-
-> ⭐ **O padrão de ouro é o momento 3 da 1.1:** a sala dita as correções do pedido vago, o instrutor anota no quadro, e no momento 5 o pedido situado **é reconhecido como delas**. Sempre que der para a sala escrever a resposta sem saber que escreveu, faça isso.
-
-**E o resultado pronto?** Continua existindo, com **dois papéis, os dois depois**: comparar com o que o aluno fez, e ser o plano B se a geração travar ao vivo. Nunca "olhe antes de tentar". Exemplo: `m1/a1-ecossistema-e-fisica/exemplo/`.
-
-**Regra de ouro que sobreviveu:** todo resultado mostrado é gerado **dos dados reais do insumo daquela aula**, nunca inventado. Um exemplo que não bate com a planilha ensina o aluno a perseguir o que ele não vai conseguir. Conferido pelo gate **G13**.
+**R2 · Insumo diferente, mecanismo igual.** A demonstração usa a planilha de **outro setor** (a 1.1 demonstra com Compras e exercita com PCP). O aluno vê o mecanismo num caso e refaz no dele, em vez de copiar o passo a passo.
 
 ## 9-ter. ⏱️ Duração de aula é controle interno, não vai para a tela
 
@@ -329,11 +332,12 @@ O Rafael abriu o roteiro da 1.1 e reprovou de novo, em 07/08/2026. A primeira ve
 | Título do destino ("o que você vai saber fazer") | ❌ Nunca |
 | Eyebrow das seções (Sua vez, A cerca) | ❌ Nunca |
 | Card do hub | ❌ Nunca |
-| **Roteiro de demonstração** | ✅ **Sim, é aqui que ele vive.** Minutos por momento e total de palco |
+| Página de demonstração | ❌ **Nunca.** Ela é do aluno também |
+| **`../ROTEIRO-DE-PALCO-M1.md`** | ✅ **Sim, é aqui que ele vive.** Minutos por passo e total de palco |
 | Landing, no que foi vendido (12h, 2h por módulo) | ✅ Sim, é contrato comercial |
 | Grade de planejamento em `../TAXONOMIA-CURSO.md` §8 | ✅ Sim, é documento nosso |
 
-**A regra em uma linha:** tempo existe para **você** caber na grade, não para o aluno se sentir atrasado. Conferido pelo gate **G15**, que também exige que o roteiro **tenha** os tempos: se sumirem de lá, o controle interno se perdeu.
+**A regra em uma linha:** tempo existe para **você** caber na grade, não para o aluno se sentir atrasado. Conferido pelo gate **G15**, que agora varre **todas** as páginas do aluno, inclusive as de demonstração. O controle interno vive fora do site.
 
 ## 9-bis. 📊 Texto corrido longo é defeito, não estilo
 

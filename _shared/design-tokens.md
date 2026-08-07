@@ -131,50 +131,41 @@ Nasceram ao aplicar os 4 padrões de `CLAUDE.md` §7-bis.
 | Onde | Tempo |
 |---|---|
 | Hero, destino e eyebrow da aula · card do hub | ❌ nunca |
-| **Roteiro de demonstração** (`.mom-min`) | ✅ é aqui que ele vive |
+| Página de demonstração | ❌ nunca, ela é do aluno também |
+| **`../ROTEIRO-DE-PALCO-M1.md`** | ✅ é aqui que ele vive |
 | Landing, no que foi vendido | ✅ contrato comercial |
 
-Gate **G15**: reprova tempo nos slots de interface da aula, e reprova roteiro **sem** tempo.
+Gate **G15**: varre **todas** as páginas do aluno, inclusive as de demonstração. O controle interno vive fora do site.
 
-## Página de roteiro de demonstração
+## Página de demonstração
 
-**A página que o instrutor executa ao vivo.** Uma por aula, em `m1/aN-slug/demonstracao/`. Referência: `m1/a1-ecossistema-e-fisica/demonstracao/`.
+**A página que mostra o passo a passo ao aluno.** Uma por aula, em `m1/aN-slug/demonstracao/`. Referência: `m1/a1-ecossistema-e-fisica/demonstracao/`.
 
-> 🔴 **Uma cor só, e ela é do bloco em que a sala fala.** A primeira versão desta página tinha **seis fundos coloridos por momento**, um por tipo de bloco: azul na pergunta, vermelho no aponte, verde no porquê, bege no plano B, cinza no código, âmbar no preparo. O Rafael reprovou (*"tem um monte de cor, bota o código no meio, aí ficam as cores confusas"*), e ele estava certo pela regra que já existia: **tipo de bloco não é semântica**, e o §8-bis do `CLAUDE.md` proíbe cor decorativa.
+> 🔴 **É página do aluno, não roteiro do instrutor.** A primeira versão era roteiro de palco publicado no site: tinha *"pergunte à sala"*, *"espere o silêncio"*, *"zoom em 150%"* e plano B. O Rafael reprovou em 07/08/2026 (*"é como se você tivesse ensinando pra mim o que eu tenho que fazer"*), e a direção de cena foi para `../ROTEIRO-DE-PALCO-M1.md`, fora do repositório.
 >
-> A página hoje tem **exatamente dois usos de cor**: `.pergunta` e `.fecho`, os dois em `--accent-soft`. Todo o resto se separa por rótulo em mono maiúsculo e espaço em branco.
+> 🔵 **Uma cor só.** Antes eram seis fundos coloridos por momento, um por tipo de bloco. Isso fura o §8-bis do `CLAUDE.md`: **tipo de bloco não é semântica**. Hoje a página tem **dois usos de cor**, `.repare` e `.fecho`, os dois em `--accent-soft`. O resto se separa por rótulo em mono maiúsculo e espaço em branco.
 
 | Classe | O que é |
 |---|---|
-| `.arq` | O insumo da demonstração, com botão de baixar. **Não é o mesmo do exercício** |
-| `.preparo` | Checklist do que ter aberto antes de a turma entrar. **Sem caixa e sem cor**, só um filete acima |
-| `.mom` + `.mom-tempo` | Um momento da demonstração. Coluna esquerda **sticky** com número e minutos, para não se perder no palco |
-| `.aponte` | 🔴 O dedo na tela. **O vermelho está no rótulo, não numa caixa** |
-| **`.pergunta`** | **A pergunta que a sala responde antes de você explicar.** É o bloco que separa demonstração de aula, e é a **única caixa colorida** da página. Nunca omitir |
-| `.porque` | O conceito, e ele vem **depois** de a sala ter vivido o momento |
-| `.planoB` | O que fazer se travar. Escrito antes de precisar. Texto menor, sem moldura |
-| `.pbox` + `.pbtn` | Prompt literal e copiável. É um **`<details>` fechado**, e só abre o que tem uma linha só. Nunca "escreva algo como" |
-| `.fecho` | A frase que emenda na seção 05, e o aviso do que não pode ser pulado |
+| `.arq` | O insumo usado, com botão de baixar. Na 1.1 **não é o mesmo do exercício** |
+| `.passo` + `.passo-n` | Um passo. Número sticky à esquerda, sem minutagem |
+| `.bloco` | O texto comum, com rótulo em mono: *o que fazer*, *o que aparece na tela* |
+| 🔵 **`.repare`** | **O que o aluno deixaria passar.** É a **única caixa colorida** da página |
+| `.ensina` | O conceito, depois do que aconteceu. Separado por um filete acima |
+| `.lista` | Quando o conteúdo é um conjunto: o que falta, os achados, os campos |
+| `.pbox` + `.pbtn` | Prompt literal. É um **`<details>` fechado**, e só abre o que tem uma linha só |
+| `.fecho` | O que muda daqui para a frente, e a emenda com a seção 05 |
 
-**Duas regras de conteúdo, e as duas nasceram de reprovação:**
+**Regra de cada passo:** nenhum passo pode ser só instrução. Todo passo entrega alguma coisa para o aluno levar: `.repare`, `.ensina` ou `.lista`. Conferido pelo gate **G14**.
 
-1. **A demonstração roda na mesma superfície do exercício.** Chat com Chat. Ver `CLAUDE.md` §9 · R1
-2. **Com insumo de outro setor.** A 1.1 demonstra com uma planilha de Compras e exercita com uma de PCP. Ver `CLAUDE.md` §9 · R2
+**Gerador:** as quatro páginas saem de um script único, com o conteúdo separado da renderização. Editar conteúdo é editar o dicionário, não o HTML. O gerador também varre **19 frases de direção de cena** e acusa antes de gravar.
 
-> ⚠️ **Dívida aberta em 07/08/2026:** só a **1.1** está neste padrão. Os roteiros da 1.2, 1.3 e 1.4 ainda têm as seis cores, o `.papeis`, o `.preparo` em âmbar e o prompt aberto no meio da página. Eles esperam o Rafael validar a 1.1 antes de serem refeitos. **Copie da 1.1, nunca das outras três.**
+### Onde cada coisa vive
 
-**Regra:** o roteiro fica no site público porque o aluno também o usa, para refazer sozinho depois. Não tem nada de instrutor que o aluno não possa ler.
-
-**As quatro do M1, e o momento de ouro de cada uma:**
-
-| Aula | Momento de ouro | O que a sala faz sem perceber |
-|---|---|---|
-| 1.1 | 2 | Diz o que falta na resposta rasa. No momento 4 reconhece as próprias palavras no pedido pronto |
-| 1.2 | 2 | Preenche os três campos da OS em branco. O pedido que roda no momento 3 é o deles |
-| 1.3 | 2 | Dita as regras do Project, linha por linha, e você só digita |
-| 1.4 | 4 | Classifica três regras em voz alta e **discorda na terceira, de propósito** |
-
-**O padrão é sempre o mesmo:** a sala produz a resposta antes de saber que produziu. Conferido pelo gate **G14**, que exige `.pergunta`, `.aponte` e `.planoB` em todo momento, e pelo menos um prompt literal por roteiro.
+| O que é | Onde |
+|---|---|
+| Passo a passo, prompts, o que aparece, o que reparar, o que ensina | `site/m1/aN/demonstracao/` · **público** |
+| Pergunta para a sala, quando esperar, quadro, plano B, preparo, minutagem | `../ROTEIRO-DE-PALCO-M1.md` · **interno** |
 
 ## Componentes da Onda 3-bis · o aluno não começa em branco
 
