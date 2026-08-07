@@ -105,6 +105,71 @@ Use pontuação portuguesa normal:
 
 **Por quê:** pedido direto do Rafael. O travessão dá um tom de texto traduzido e aparecia em excesso. Verificado pelo gate **G9**.
 
+## 7-bis. Como a promessa é escrita
+
+**Pedido do Rafael em 07/08/2026**, depois de analisarmos como um curso concorrente comunica as mesmas funcionalidades.
+
+O objetivo: um coordenador da Pouchain abre a página e reconhece **a própria rotina**, não uma lista de recursos.
+
+> ⚠️ **A andragogia não muda.** O esqueleto continua sendo destino → origem → conceito → aplica → hook, a regra de 2 a 3 conceitos e o validador. O que estes 4 padrões mudam é a **superfície**: o nome das coisas e o jeito de prometer.
+
+### P1 · Todo nome carrega duas coisas: a rotina e o recurso oficial
+
+**Formato:** `[o que muda na sua rotina]` com o **nome oficial do Claude visível ao lado**.
+
+| Escreva | Não escreva |
+|---|---|
+| Ele faz do mesmo jeito toda vez · **Skill** | Nível 3 · Procedimentar |
+| Ele abre os seus arquivos · **Cowork** | Módulo Cowork |
+| Ele já começa sabendo o seu contexto · **Project** | Nível 2 · Contextualizar |
+
+**Por que os dois juntos:**
+
+- Só a rotina, e a pessoa não sabe o que aprendeu nem consegue pesquisar depois
+- Só o nome oficial, e ela não sabe para que serve
+- O nome oficial é também o que faz a empresa sentir que comprou **Claude**, e não "um curso de IA"
+
+🔴 **O vocabulário dos níveis é andaime nosso.** *Física, pedir, contextualizar, procedimentar, alcançar, conferir, delegar* serve para **nós** decidirmos a ordem das aulas. **Não vai sozinho para a tela do aluno.** Se aparecer, aparece com a tradução e o recurso ao lado.
+
+**Onde o nome oficial é obrigatório:** trilha da landing · card do hub · chip do hero da aula. Dentro da aula, com o aluno já em contexto, a metáfora pode liderar.
+
+### P2 · Toda promessa tem hora marcada
+
+Capacidade abstrata não gruda. Batida de calendário gruda.
+
+| Escreva | Não escreva |
+|---|---|
+| Toda segunda o painel reabre atualizado | Você aprende a criar painéis |
+| Antes da reunião de PCP o relatório já está pronto | Automatize seus relatórios |
+| No fechamento do mês, a conferência já vem feita | Ganhe produtividade no fechamento |
+
+Use a rotina real dos 6 setores: fechamento do mês · reunião de segunda · apontamento de turno · triagem de currículo · cotação de fornecedor · acompanhamento de OS.
+
+### P3 · 🔴 Nomeie a espera, nunca a pessoa
+
+**Isto é regra de segurança de posicionamento, não de estilo.**
+
+O que dói no gestor não é falta de habilidade, é **depender de alguém que tem fila**. Nomear a fila é o que faz a sala se reconhecer. Só que este curso é in-company, e **as pessoas dessa fila estão na sala**.
+
+| Escreva | ❌ Nunca escreva |
+|---|---|
+| Você deixa de esperar o relatório de terça | Você não precisa mais do analista |
+| A montagem manual sai do seu caminho | Substitui o trabalho do assistente |
+| O dado chega pronto para a sua decisão | Corta a etapa do time de apoio |
+
+**Mesmo mecanismo, sujeito diferente: a espera é o vilão, a pessoa nunca é.** Curso vendido para indivíduo pode ser cru aqui. O nosso não pode. Ver `../TAXONOMIA-CURSO.md` §11.
+
+### P4 · Diga o que estas 12 horas não fazem
+
+Bloco **visível**, na landing e na abertura, não rodapé.
+
+Faz dois trabalhos de uma vez:
+
+1. Evita que 20 pessoas cheguem ao M3 achando que vão aprender a programar
+2. Diz ao gestor que ele é o protagonista do material, não o convidado que veio assistir a um curso de TI
+
+O conteúdo já existe: é a **Cerca 0** da abertura. Falta estar na tela.
+
 ## 8. Base visual
 
 - **Paleta:** creme Claude `#F0EEE6` (fundo) + **azul tinta `#1A5670`** (accent, referência à tinta de impressão) + Inter + JetBrains Mono
