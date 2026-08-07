@@ -321,6 +321,55 @@ O conserto do gabarito virou `corrige_maquinas_gabarito.py`, que **lê a lista d
 
 > **A lição, terceira variação do mesmo tema:** o insumo é a fonte da verdade e o texto obedece. Toda vez que uma planilha muda de tamanho, **tudo que a descreve mente até prova em contrário**, inclusive gabarito, exemplo de resposta genérica e prompt de outra aula.
 
+## 7-septies. Onda 3-sexies · enquadramento e a pincelada de loop e grafo
+
+Dois pedidos do Rafael sobre a aula 1.2.
+
+### 1. O bloco largo saía do eixo, e a culpa era da ordem da regra
+
+Print de tela larga: a tabela da OS e o diagrama das rodadas apareciam deslocados para a esquerda. **Medido em 2000px: a prosa centra em 993 e a tabela centrava em 627, desvio de 373px.**
+
+A regra de sangramento alarga o bloco e o recentra com `margin-left:50%` + `transform:translateX(-50%)`. **Qualquer regra posterior com o atalho `margin:` zera o `margin-left`**, e sobra só o transform, que empurra o bloco meia largura para a esquerda. Era o caso de `.rodadas`, `.os` e `.mapa`, nas aulas 1.2 e 1.4. O `.compare` escapava **por sorte**: a regra dele vem antes do sangramento no arquivo.
+
+Conserto: `margin-top` e `margin-bottom`, que não tocam no `margin-left`. Nasce o **G11c**, que reprova classe da lista de sangramento com atalho `margin:` declarado depois dela.
+
+> **Detalhe que quase me enganou:** a primeira versão do detector não achava nada, porque **comentário de bloco `/* */` antes da regra entra no seletor capturado**. Sem remover comentário, o parser lê `.rodadas` como `/* RODADAS */ .rodadas` e não casa. Remover comentário antes de parsear CSS é obrigatório.
+
+### 2. A pincelada de loop e grafo, para quem já foi aluno dele
+
+Parte da turma já fez curso de prompt com o Rafael. Sem diferenciação, a 1.2 soa como **mais do mesmo** para essas pessoas.
+
+Fonte: `insumos/graph-and-loops.md`, 242 linhas, três origens (Greg Eisenberg sobre engenharia de grafos · um vídeo em português sobre loops e grafos · **a conversa do Boris Cherny, criador do Claude Code, no dia seguinte ao lançamento do Opus 5**).
+
+**O achado não é um tópico novo, é uma confirmação.** As três perguntas da aula **são** a formulação nova, dita por quem construiu a ferramenta:
+
+| A pergunta da aula | O nome dele |
+|---|---|
+| O que é "pronto"? | critério de pronto (*exit criteria*) |
+| Quais são as restrições? | limites (*guardrails*) |
+| O que fazer na dúvida? | como ele **confere o próprio trabalho** |
+
+E o que **envelheceu** é exatamente o que o veterano aprendeu: **especificar os passos**. Boris chama isso de erro comum, e conta que apagaram **80% das instruções internas do Claude Code** quando o Opus 5 saiu, porque existiam para corrigir coisa que o modelo já faz sozinho.
+
+O bloco entra depois do Conceito 2, com quatro peças: o que mudou · a fala citada e atribuída · a tabela De/Para · onde isso vai dar (loop no M2, grafo no M3). Fecha dizendo explicitamente que **nada disso é necessário para o exercício da seção 05**.
+
+**As duas analogias são da casa, não de software:**
+
+- **Loop:** a tiragem é conferida **contra a prova aprovada**, não contra a lembrança de quem acertou a máquina. Quem fez carrega o motivo de cada decisão, e o motivo atrapalha na hora de julgar.
+- **Grafo:** a diferença entre **uma máquina imprimindo dez OS em fila e as seis rodando em paralelo**. O trabalho é o mesmo, o relógio não.
+
+O bloco `.fala` é **sem cor de propósito**: a única caixa colorida da página continua sendo a que o aluno precisa notar (§8-bis).
+
+### 🟡 A tensão que isso criou, e que ainda está aberta
+
+O **"pedido situado"** da aula 1.1 tem **60 linhas**, com `## PAPEL`, `## CONTEXTO`, `## ESTILO DE SAÍDA (CRÍTICO)`, `## TAREFA`, `## ANTES DE GERAR` e `## LINGUAGEM`. O aluno veterano que ler a pincelada da 1.2 e lembrar daquele prompt tem uma pergunta legítima: *"mas vocês acabaram de me mostrar um prompt de sessenta linhas".*
+
+**A resposta existe e é boa, só não está escrita em lugar nenhum:** aquele prompt é comprido **no lugar certo**, que é dizer o que "pronto" significa (formato, seções, o que confirmar antes). Ele **não** diz o passo a passo de como chegar lá. Boris reclama de especificar o *como*, não o *quê*. E o bloco `## ANTES DE GERAR` daquele prompt é literalmente a verificação que ele chama de mais importante.
+
+Aguarda decisão do Rafael sobre onde escrever isso: na 1.1, na 1.2, ou nas duas.
+
+**17 gates, 162 checagens.**
+
 ## 8. Aberto
 
 - 🔴 **Teste de mesa das 4 aulas**, que nenhuma onda substitui
