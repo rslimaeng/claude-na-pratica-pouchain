@@ -293,6 +293,24 @@ HERO  kicker + H1 + subtítulo + chips [Nível] [artefato] [pré-requisito] [eme
 
 **Regra de ouro que sobreviveu:** todo resultado mostrado é gerado **dos dados reais do insumo daquela aula**, nunca inventado. Um exemplo que não bate com a planilha ensina o aluno a perseguir o que ele não vai conseguir. Conferido pelo gate **G13**.
 
+## 9-ter. ⏱️ Duração de aula é controle interno, não vai para a tela
+
+**Pedido do Rafael em 07/08/2026:** *"tire o tempo das aulas. Até pra não gerar uma pressão, vamos manter controle interno só."*
+
+**Mesma convenção que ele já tinha fixado no Mallory.** Duração no material do aluno não informa, cobra: quem leva 40 minutos numa aula de 25 conclui que é lento, quando o número era só o nosso orçamento de planejamento.
+
+| Onde | Tempo aparece? |
+|---|---|
+| Hero e kicker da aula | ❌ Nunca |
+| Título do destino ("o que você vai saber fazer") | ❌ Nunca |
+| Eyebrow das seções (Sua vez, A cerca) | ❌ Nunca |
+| Card do hub | ❌ Nunca |
+| **Roteiro de demonstração** | ✅ **Sim, é aqui que ele vive.** Minutos por momento e total de palco |
+| Landing, no que foi vendido (12h, 2h por módulo) | ✅ Sim, é contrato comercial |
+| Grade de planejamento em `../TAXONOMIA-CURSO.md` §8 | ✅ Sim, é documento nosso |
+
+**A regra em uma linha:** tempo existe para **você** caber na grade, não para o aluno se sentir atrasado. Conferido pelo gate **G15**, que também exige que o roteiro **tenha** os tempos: se sumirem de lá, o controle interno se perdeu.
+
 ## 9-bis. 📊 Texto corrido longo é defeito, não estilo
 
 **Complemento do §8-bis, com o critério que faltava.** O Rafael mandou dois desenhos de referência e a regra que sai deles:

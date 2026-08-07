@@ -271,6 +271,29 @@ for f in AULAS:
     diz(not faltas, "G14", dir_aula,
         f"{momentos} momentos · {perg} perguntas · {prompt} prompts" if not faltas else str(faltas))
 
+# ─────────── G15 · duração de aula não vai para a tela do aluno
+titulo("G15 · SEM DURAÇÃO NA PÁGINA DE AULA E NO CARD DO HUB")
+print("        (tempo é controle interno · fica no roteiro, não no material do aluno)")
+TEMPO = re.compile(r"\d+\s*(min\b|minutos?\b|horas?\b)", re.I)
+# só nos lugares de interface que fazem promessa de tempo ao aluno.
+# texto narrativo ("reunião das 8h") não conta, e roteiro de palco também não.
+SLOTS = [r'class="hero-kicker">([^<]*)<', r'class="destino-title">([^<]*)<',
+         r'class="step-eyebrow">([^<]*)<', r'class="aula-dur">([^<]*)<',
+         r'class="aula-title">([^<]*)<']
+for f in AULAS + ["m1/index.html"]:
+    src = open(f, encoding="utf-8").read()
+    achados = []
+    for pat in SLOTS:
+        for t in re.findall(pat, src):
+            if TEMPO.search(t): achados.append(t.strip())
+    diz(not achados, "G15", f, str(achados) if achados else "")
+# o roteiro PRECISA dos tempos: é ele o controle interno
+for f in AULAS:
+    rot = os.path.join(os.path.dirname(f), "demonstracao", "index.html")
+    if not os.path.exists(rot): continue
+    n = len(re.findall(r'class="mom-min">', open(rot, encoding="utf-8").read()))
+    diz(n >= 3, "G15", f"{os.path.dirname(f)}/demonstracao", f"{n} momentos cronometrados")
+
 # ─────────────────────────────────────────────────── veredicto
 print("\n" + "=" * 72)
 if falhas:

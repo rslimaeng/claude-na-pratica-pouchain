@@ -124,6 +124,18 @@ Nasceram ao aplicar os 4 padrões de `CLAUDE.md` §7-bis.
 | `.nao-faz` + `.nao-item` + `.nao-mas` | | O bloco "o que estas 12 horas não fazem". Rótulo com `.rot`, nunca `strong` puro | landing |
 | `.destino-quando` | | A promessa com hora marcada, embaixo da lista do destino. Rótulo com `.rot` | 4 aulas |
 
+## ⏱️ Duração não vai para a tela do aluno
+
+**Decisão do Rafael em 07/08/2026**, a mesma que já valia no Mallory. A classe `.aula-dur` foi **removida**, e não deve voltar.
+
+| Onde | Tempo |
+|---|---|
+| Hero, destino e eyebrow da aula · card do hub | ❌ nunca |
+| **Roteiro de demonstração** (`.mom-min`) | ✅ é aqui que ele vive |
+| Landing, no que foi vendido | ✅ contrato comercial |
+
+Gate **G15**: reprova tempo nos slots de interface da aula, e reprova roteiro **sem** tempo.
+
 ## Página de roteiro de demonstração
 
 **A página que o instrutor executa ao vivo.** Uma por aula, em `m1/aN-slug/demonstracao/`. Referência: `m1/a1-ecossistema-e-fisica/demonstracao/`.
