@@ -39,6 +39,8 @@ A ementa vendida define os **módulos e os subtemas**. O número de aulas dentro
 
 Sem esse De/Para visível, o cliente lê a reordenação como item faltando.
 
+**Vale também para o nome do módulo.** O hub do M1 se chama *Escolher a ferramenta certa e onde guardar cada coisa*, e a ementa vendida chama *Módulo 1 · Fundamentos do Ecossistema Claude*. O chip `Ementa · Módulo 1` no hero e a nota de cobertura no rodapé fazem a ponte. **Trocar nome sem mostrar o De/Para é o que faz o cliente achar que sumiu conteúdo.**
+
 ## 3. A tese que unifica as 12 horas
 
 > **Toda camada do Claude existe para resolver o mesmo problema: gestão de contexto.**

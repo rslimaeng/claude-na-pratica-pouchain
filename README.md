@@ -18,7 +18,7 @@ site/
 ├── _shared/             ← tokens de design
 ├── goals/               ← 1 arquivo por onda de produção
 ├── index.html           ← landing com a trilha dos 6 degraus
-├── m1/                  ← Módulo 1 · Fundamentos
+├── m1/                  ← Módulo 1
 │   ├── index.html       ← hub do módulo
 │   └── <aula>/          ← index.html + exercicio/ + gabarito/
 └── kit/                 ← Kit do participante (montado na Onda 9)
