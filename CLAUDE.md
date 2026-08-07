@@ -191,6 +191,19 @@ HERO  kicker + H1 + subtítulo + chips [Nível] [artefato] [pré-requisito] [eme
 2. **O hook fecha toda página.** Não é retórica, é o que faz 19 aulas serem uma corrente, não uma lista. Na última aula do módulo ele fecha o **módulo**, e não a aula.
 3. **O validador não pergunta "ficou bom?".** Ele é a camada 1 do harness traduzida: cada item é contável ou é sim/não, e diz para onde voltar se falhar. Critério que depende do instrutor não entra, porque numa sala de 20 o instrutor não escala.
 
+### O padrão "clica e abre o exemplo"
+
+Herdado do Workshop Maria Pitanga (`m2/exemplos/radar-reviews/`) e da própria documentação da Anthropic. **Pedido explícito do Rafael:** vários módulos pequenos, a pessoa clica, abre uma página e executa.
+
+Dois formatos, e a escolha é por tamanho:
+
+| Tamanho do exemplo | Formato | Onde já existe |
+|---|---|---|
+| Cabe em um parágrafo e um prompt | Accordion `.exemplos` dentro da aula, um item por setor | aulas 1.2 e 1.4 |
+| Tem artefato pronto para mostrar | **Página própria**, autocontida, linkada da aula | ainda não usado |
+
+> Ver o resultado antes de tentar reduz o medo de começar. É o mesmo princípio do gabarito, aplicado na entrada em vez da saída.
+
 ## 10. Regra dura de exercício
 
 **O exercício só pode exigir o que o aluno tem naquele ponto do curso.**

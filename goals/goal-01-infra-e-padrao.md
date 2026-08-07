@@ -77,157 +77,22 @@ site/
 
 ---
 
-## 5. 🚦 Os 10 gates de qualidade
+## 5. 🚦 Os gates de qualidade
 
-**Nenhuma onda fecha com gate reprovado.** Cada gate tem verificação mecânica. Auditoria de conteúdo não substitui `grep` de componente. Esta lição é do Mallory, onde o `.md` estava limpo e o HTML estava pela metade.
+> ⚠️ **Esta seção foi substituída.** Ela trazia 10 gates como comandos `bash` para rodar na mão. Eles viraram **[`gates.py`](gates.py)**: 12 gates, uma execução só, saída com código 1 se algum falhar.
+>
+> ```bash
+> python3 goals/gates.py
+> ```
+>
+> A versão antiga continua no histórico do git. **Não copie de lá:** o G1 daquela lista não inclui o validador de fim de aula, e o número de gates mudou.
 
-### G1 · Estrutura, a anatomia está inteira?
+**O que sobreviveu desta seção e virou regra permanente do projeto:**
 
-Toda página de aula tem os 8 blocos + destino + checkpoint + hook + nav.
-
-```bash
-for f in m1/*/index.html; do
-  echo "== $f"
-  for m in "O que você vai saber fazer" "A situação" "O conceito" "Como funciona" \
-           "Demonstração" "Sua vez" "Confira" "Pegadinhas" "A cerca" \
-           "checkpoint" "hook-frase" "nav-bottom" "chip-ementa"; do
-    printf "  %-32s %s\n" "$m" "$(grep -ci "$m" "$f")"
-  done
-done
-```
-**Reprova se:** qualquer contagem = 0.
-
-> ⚠️ **Usar `grep -ci`, com o `-i`.** O caixa-alta dos títulos vem do CSS (`text-transform:uppercase`), não da fonte. Um gate case-sensitive reprova página correta, foi o que aconteceu na primeira rodada da Onda 1.
-
-### G2 · Gabarito escondido · dá para tentar antes de ver?
-
-```bash
-grep -c "<details" m1/a3-regra-que-fica/index.html      # ≥ 1
-grep -c "open>" m1/a3-regra-que-fica/index.html         # deve ser 0
-```
-**Reprova se:** não há `<details>`, ou há `<details open>`. Gabarito aberto não é exercício, é demonstração.
-
-### G3 · Higiene de dados · nada real vaza
-
-```bash
-grep -rniE "pouchain" --include="*.html" --include="*.xlsx" --include="*.md" m1/ kit/ index.html
-grep -rniE "(zenith|GE )" --include="*.html" --include="*.xlsx" m1/
-```
-**Reprova se:** o nome do cliente aparece **dentro de insumo, exemplo ou dado**. Aparecer no `CLAUDE.md` e no rodapé como "quem contratou" é esperado e correto.
-**Reprova também se:** houver qualquer nome de pessoa real, número vindo do material interno de consultoria, ou nome de sistema real da casa.
-
-> 🔒 **Este repositório é público.** Nada de material interno de consultoria entra aqui, nem em `.md` de governança. A regra vale para o repo inteiro, não só para as páginas.
-
-### G4 · Fatos técnicos, tudo rastreável
-
-Toda afirmação técnica cruza com `../FATOS-VERIFICADOS.md`. Todo número de produto carrega data.
-
-```bash
-grep -oE "(200 mil|1M|[0-9]+ (mil )?tokens|[0-9]+%|R\$ ?[0-9]|US\$ ?[0-9])" m1/*/index.html index.html
-```
-**Reprova se:** algum número de produto aparece sem "verificado em DD/MM/AAAA" por perto.
-
-### G5 · Didática · cabe na cabeça de quem está na sala?
-
-Verificação humana, com critério fechado:
-
-| Critério | Reprova se |
-|---|---|
-| **Máx. 2-3 conceitos por aula** | A seção `02 · O CONCEITO` introduz 4 ou mais ideias novas |
-| **Analogia passa no teste AP11** | Precisa de Google para entender. Testar: gestor de indústria em Fortaleza pega de primeira? |
-| **Hook aponta para a aula seguinte** | O hook é retórica genérica ("e tem muito mais!") em vez da trava concreta que a próxima aula resolve |
-| **A dor é situação, não citação atribuída** | Alguém identificável aparece |
-| **Jargão traduzido** | "token", "contexto", "retrieval" aparecem sem uma frase de tradução ao lado |
-
-### G6 · Navegação · nenhum link morto
-
-```bash
-grep -ohE 'href="[^"#h][^"]*"' index.html m1/index.html m1/*/index.html \
-  | sed 's/href="//;s/"//' | sort -u
-```
-Conferir um a um se o caminho existe.
-**Reprova se:** qualquer link relativo aponta para arquivo inexistente. **Aula com botão de download quebrado quebra na sala.**
-
-### G7 · Render, a página abre e se comporta
-
-```bash
-python3 -c "import html.parser,sys
-class P(html.parser.HTMLParser):
-  def __init__(s):super().__init__();s.st=[]
-  def handle_starttag(s,t,a):
-    if t not in ('meta','link','br','img','hr','input'):s.st.append(t)
-  def handle_endtag(s,t):
-    if s.st and s.st[-1]==t:s.st.pop()
-    else:print('DESALINHADO',t)
-p=P();p.feed(open(sys.argv[1]).read());print('abertas ao fim:',p.st)" ARQUIVO.html
-```
-Mais, em cada página: `viewport` presente · `lang="pt-BR"` · `<title>` único · media query de `720px` presente · `prefers-reduced-motion` presente.
-**Reprova se:** tag desalinhada, ou falta responsividade. Metade da sala abre no celular no intervalo.
-
-### G7-ter · 🔴 Classe usada sem CSS, a lição do Mallory, generalizada
-
-**O gate que pegou o defeito real desta onda.** Como cada página é single-file, uma classe pode ser usada no HTML e não existir no `<style>` daquela página, o componente aparece **cru**, sem borda, sem fundo, sem nada. Conteúdo perfeito, componente pela metade. Nenhuma leitura de texto pega isso.
-
-```bash
-for f in index.html m1/index.html m1/*/index.html; do
-python3 - "$f" <<'PY'
-import re,sys
-src=open(sys.argv[1],encoding='utf-8').read()
-style="\n".join(re.findall(r"<style>(.*?)</style>", src, re.S))
-body=re.sub(r"<style>.*?</style>","",src,flags=re.S)
-used=set()
-for m in re.findall(r'class="([^"]+)"', body): used.update(m.split())
-missing=sorted(used-set(re.findall(r"\.([A-Za-z][\w-]*)", style)))
-print(f"{'FALHA' if missing else 'OK   '}  {sys.argv[1]}", missing or "")
-PY
-done
-```
-**Reprova se:** qualquer classe aparece na lista. **Sem exceção conhecida**, se uma classe é só marcador semântico, dê a ela uma regra CSS de uma linha. Gate com exceção permanente para de ser gate.
-
-### G8 · 🔴 Exercício executável, o aluno consegue fazer AGORA?
-
-O gate mais importante, e o que nenhuma ferramenta pega sozinha.
-
-| Pergunta | Reprova se |
-|---|---|
-| O exercício exige só o que o aluno tem **naquele ponto do curso**? | Aula de M1 pede terminal, instalação, Cowork ou Code |
-| O arquivo de partida **existe** e baixa? | O `href` aponta para arquivo que não está no repo |
-| O insumo funciona **sem upload de arquivo**? | Em M1 o dado não pode depender de anexo, tem que dar para colar no chat |
-| O gabarito é alcançável a partir da partida? | O gabarito tem seções que a partida não pede |
-| Cabe no tempo declarado? | Exercício de 12 min que leva 30 |
-| Tem callout "o seu vai ser diferente"? | Falta, e aí gestor não-técnico trava achando que errou |
-
-### G9 · Travessão: zero, em qualquer arquivo
-
-```bash
-grep -rc "$(printf '\u2014')" --include="*.html" --include="*.md" . | grep -v ":0$"
-```
-**Reprova se:** qualquer arquivo retornar contagem maior que zero. Inclui `<title>`, heading e comentário de CSS.
-**Como corrigir:** pontuação portuguesa normal, nunca substituição mecânica por vírgula. Ver `CLAUDE.md` §7.
-
-### G10 · Formato dos insumos
-
-```bash
-find . -name "*.csv" -o -name "*.txt" | grep -v node_modules
-```
-**Reprova se:** houver `.csv` ou `.txt` como arquivo de exercício. Planilha é `.xlsx`, documento é `.docx`, prompt é `.md`.
-
-**E a sujeira proposital precisa estar no arquivo**, não só prometida na página:
-
-```bash
-python3 - <<'PY'
-from openpyxl import load_workbook
-import glob
-for f in glob.glob("**/*.xlsx", recursive=True):
-    s = load_workbook(f).active
-    linhas = list(s.iter_rows(values_only=True))
-    print(f, "| mescladas:", len(s.merged_cells.ranges),
-          "| em branco no meio:", sum(1 for r in linhas[4:] if not any(v is not None for v in r)))
-PY
-```
-**Reprova se:** a planilha estiver limpa. Uma planilha limpa demais ensina o caso que não existe no trabalho deles.
-
----
+- **Nenhuma onda fecha com gate reprovado.** Auditoria de leitura não substitui verificação mecânica. A lição vem do Mallory, onde o `.md` estava limpo e o HTML estava pela metade
+- **Gate com exceção permanente deixa de ser gate.** Se o script acusa, o conserto é no código, não no gate
+- **Gate que procura uma palavra não pode rodar contra o arquivo que enuncia a regra sobre ela**, senão se auto-reprova
+- **Gate case-sensitive reprova página correta.** O caixa-alta dos títulos vem do CSS (`text-transform`), não da fonte
 
 ## 6. Matriz de auditoria desta onda
 
