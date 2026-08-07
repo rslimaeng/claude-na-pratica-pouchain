@@ -345,6 +345,65 @@ try:
          "1.2 · inscrições anonimizadas por código"),
     ]: diz(bool(ok), "G13", nome)
 
+    # ── AS MÁQUINAS DA AURORA · o gabarito dizia 4, a planilha tem 6 ───────
+    # Não era erro cosmético: o exercício da 1.3 manda colar essas regras num
+    # Project e rodar na MESMA planilha. Gabarito com 4 máquinas ensina que
+    # Digital 1 e Offset 3 não existem, e a aula que promete melhorar a
+    # resposta entrega uma pior. Insumo é a fonte da verdade, texto obedece.
+    import zipfile
+    pcp = load_workbook("m1/a1-ecossistema-e-fisica/exercicio/"
+                        "pedidos-em-producao.xlsx", data_only=True).active
+    cab = list(next(pcp.iter_rows(min_row=4, max_row=4, values_only=True)))
+    i_maq = [i for i, c in enumerate(cab) if c and "quina" in str(c)][0]
+    maqs = sorted({r[i_maq] for r in linhas if r[i_maq]})
+    print(f"        {'PCP · máquinas na planilha':28} {len(maqs)}  {maqs}")
+
+    def docx_txt(p):
+        x = zipfile.ZipFile(p).read("word/document.xml").decode("utf-8")
+        return re.sub(r"<[^>]+>", "", x.replace("</w:p>", "\n"))
+
+    gab = docx_txt("m1/a3-regra-que-fica/gabarito/minhas-regras-GABARITO.docx")
+    a1d = texto("m1/a1-ecossistema-e-fisica/demonstracao/index.html")
+    for alvo, nome in [(a1, "aula 1.1"), (a3, "aula 1.3"), (a3d, "demo 1.3"),
+                       (gab.lower(), "gabarito 1.3")]:
+        falta = [m for m in maqs if m.lower() not in alvo]
+        cita = "máquina" in alvo or "offset" in alvo
+        diz(not (cita and falta), "G13", f"máquinas · {nome}",
+            f"não cita {falta}" if falta else f"as {len(maqs)}")
+    # a varredura roda em TODA página do aluno, não nas duas que eu lembrei:
+    # o "quatro máquinas" da 1.4 e o "18 pedidos" da 1.1 escaparam justamente
+    # de uma lista curta escrita à mão.
+    TODAS = [(f, texto(f)) for f in HTML] + [("gabarito 1.3", gab.lower())]
+    erradas = [n for n, t in TODAS
+               if re.search(r"\b(quatro|4|cinco|5|sete|7|oito|8) máquinas", t)]
+    diz(not erradas, "G13", "máquinas · nenhum texto afirma outro total",
+        str(erradas) if erradas else f"{len(TODAS)} arquivos varridos")
+
+    # nem uma contagem por família diferente da real. "duas máquinas offset"
+    # passava no teste do total e mentia do mesmo jeito.
+    NUM = {"uma": 1, "duas": 2, "dois": 2, "três": 3, "quatro": 4,
+           "cinco": 5, "seis": 6}
+    FAM = {"offset": "Offset", "flexográficas": "Flexo", "flexográfica": "Flexo",
+           "flexo": "Flexo", "digitais": "Digital", "digital": "Digital"}
+    real = {f: len([m for m in maqs if m.startswith(f)])
+            for f in ("Offset", "Flexo", "Digital")}
+    print(f"        {'PCP · por família':28} {real}")
+    padrao = re.compile(r"\b(" + "|".join(NUM) + r") (?:máquinas? )?(" +
+                        "|".join(FAM) + r")\b")
+    ruins = {n: [f"{q} {f}" for q, f in padrao.findall(t)
+                 if NUM[q] != real[FAM[f]]] for n, t in TODAS}
+    ruins = {n: v for n, v in ruins.items() if v}
+    diz(not ruins, "G13", "máquinas por família",
+        f"{ruins}, e o real é {real}" if ruins else f"real {real}")
+
+    # o total de OS também não pode ser inventado em lugar nenhum
+    n_os = len(linhas)
+    inventados = [n for n, t in TODAS
+                  if re.search(r"\b(\d{1,3}) pedidos\b", t) and
+                  any(int(x) != n_os for x in re.findall(r"\b(\d{1,3}) pedidos\b", t))]
+    diz(not inventados, "G13", f"total de OS · nenhum texto diz outro que {n_os}",
+        str(inventados) if inventados else "")
+
     # ── piso de tamanho · CLAUDE.md §8-ter ─────────────────────────────────
     for nome, n in [("pedidos-em-producao", len(linhas)),
                     ("cotacoes-fornecedores", len(cot)),
