@@ -285,6 +285,42 @@ Tudo saiu de gerador versionado, com `random.seed(2481)`. O `gera_cotacoes.py` p
 
 **16 gates, 144 checagens.**
 
+## 7-sexies. Onda 3-quinquies · o gabarito da 1.3 dizia 4 máquinas
+
+Auditoria da aula 1.3 antes de o Rafael abrir. **Quatro números da planilha antiga sobreviveram**, e o pior estava no gabarito.
+
+O exercício da 1.3 manda escrever as regras da própria função, colar nas Instruções de um Project e rodar **o mesmo pedido vago da 1.1 na mesma planilha**. O gabarito de referência dizia:
+
+> *"Temos 4 máquinas: Offset 1, Offset 2, Flexo 1 e Flexo 2."*
+
+A planilha tem **seis**, e as mesmas seis aparecem no prompt situado da 1.1 e na saída da demonstração da 1.3, **na mesma página**. Quem usasse o gabarito de referência ensinaria ao Claude que Digital 1 e Offset 3 não existem, e **a aula que promete melhorar a resposta entregaria uma pior.**
+
+| Onde | Dizia | Diz |
+|---|---|---|
+| gabarito 1.3 | "Temos **4** máquinas: Offset 1, Offset 2, Flexo 1 e Flexo 2" | "Temos **seis** máquinas: Offset 1, Offset 2, Offset 3, Flexo 1, Flexo 2 e Digital 1" |
+| gabarito 1.1 | "há **18 pedidos**... distribuídos entre **duas** máquinas" | "há **120 pedidos**... distribuídos entre **seis** máquinas" |
+| corpo 1.3 | "duas máquinas offset e duas flexográficas" | "três offset, duas flexográficas e uma digital" |
+| corpo 1.4 | "uma gráfica com **quatro** máquinas" | "uma gráfica com **seis** máquinas" |
+
+**Ajuste de coerência junto:** o trecho 2 do gabarito citado na página dizia que o relatório sai *"em CSV com ponto e vírgula"*, e o insumo que o aluno baixa é `.xlsx`. Agora descreve a sujeira que o arquivo tem de verdade, **conferida uma a uma**: 2 cabeçalhos mesclados (`A1:I1`, `A2:I2`), coluna `" Tiragem "` com espaço, linha em branco na 63, 3 formatos de data com 80 ocorrências cada, status em três caixas, valor 80 número e 40 texto.
+
+### O G13 cresceu, e a varredura passou a ser do site inteiro
+
+Quatro checagens novas, e **a varredura roda em todo `.html`** em vez de numa lista escrita à mão. Foi exatamente assim que o *"quatro máquinas"* da 1.4 escapou da primeira versão do gate, que só olhava 1.1 e 1.3:
+
+- as seis máquinas citadas em cada página que fala delas
+- nenhum texto afirma outro **total**
+- **contagem por família**: *"duas offset"* reprova, porque são três. O teste do total sozinho deixava passar
+- nenhum texto afirma um total de OS diferente de 120
+
+Testado contra os quatro trechos publicados: **acusa os quatro**, e nomeia o arquivo e a afirmação errada.
+
+O conserto do gabarito virou `corrige_maquinas_gabarito.py`, que **lê a lista de máquinas da planilha**. Rodar de novo não estraga: se o texto já estiver certo, avisa e não grava.
+
+**16 gates, 151 checagens.**
+
+> **A lição, terceira variação do mesmo tema:** o insumo é a fonte da verdade e o texto obedece. Toda vez que uma planilha muda de tamanho, **tudo que a descreve mente até prova em contrário** — inclusive gabarito, exemplo de resposta genérica e prompt de outra aula.
+
 ## 8. Aberto
 
 - 🔴 **Teste de mesa das 4 aulas**, que nenhuma onda substitui

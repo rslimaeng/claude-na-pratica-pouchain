@@ -10,6 +10,7 @@ As páginas de demonstração e as duas planilhas **não são escritas à mão**
 | `gera_fechamento.py` | `a2/exercicio/fechamento-dois-meses.xlsx` · 118 linhas · duas abas |
 | `gera_inscricoes.py` | `a2/exercicio/inscricoes-vaga-auxiliar-offset.xlsx` · 124 inscrições · duas abas |
 | `gera_docx_pedidos.py` | `a2/exercicio/pedidos-para-reescrever.docx` · a folha do exercício |
+| `corrige_maquinas_gabarito.py` | Escreve no gabarito da 1.3 a lista de máquinas **lida da planilha**. Idempotente: se já estiver certo, avisa e não grava |
 | `regera_exemplo.py` | ⚠️ **Migração de uma vez só, já executada.** Ele casava com o texto antigo da página, então rodar de novo não faz nada e não avisa |
 
 **Rode da raiz do repo**, nesta ordem se mexer nas planilhas:
