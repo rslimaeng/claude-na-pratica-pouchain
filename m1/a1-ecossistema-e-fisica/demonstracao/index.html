@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roteiro da demonstração · Aula 1.1</title>
+<meta name="description" content="O passo a passo que o Rafael executa ao vivo na aula 1.1: o que fazer, o que apontar na tela, o que perguntar para a sala e o plano B de cada momento.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F0EEE6; --bg-elev:#FFFFFF; --bg-warm:#E8E6DC; --bg-code:#F5F3EA;
+  --text:#141413; --text-muted:#3D3D3A; --text-dim:#87867F;
+  --border:rgba(20,20,19,.10); --border-strong:rgba(20,20,19,.18);
+  --accent:#1A5670; --accent-dark:#10394C; --accent-soft:#DDEAF0;
+  --accent-tinted:#F4F9FB; --accent-line:rgba(26,86,112,.22);
+  --success:#2E7D32; --success-soft:#EFF6EF;
+  --warning:#B8860B; --warning-soft:#FCF7E8;
+  --danger:#B85C5C; --danger-soft:#F7EAEA;
+  --col:820px; --col-wide:1120px;
+  --radius-sm:6px; --radius:10px; --radius-lg:14px;
+  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,'SF Mono','Menlo',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);
+  font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.wrap{max-width:var(--col-wide);margin:0 auto;padding:0 24px}
+
+/* topo */
+.topo{padding:26px 0 0}
+.volta{font-family:var(--font-mono);font-size:12px;color:var(--text-dim);margin-bottom:18px}
+.kicker{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+h1{font-size:clamp(28px,4vw,40px);font-weight:700;line-height:1.1;
+  letter-spacing:-.02em;margin-bottom:16px;max-width:820px}
+.lead{font-size:18px;line-height:1.6;color:var(--text-muted);max-width:760px}
+.lead strong{color:var(--text)}
+
+/* quem faz o quê */
+.papeis{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:26px 0 0}
+.papel{border:1px solid var(--border);border-radius:var(--radius-lg);
+  background:var(--bg-elev);padding:17px 19px}
+.papel.sala{background:var(--accent-tinted);border-color:var(--accent-line)}
+.papel-rot{display:block;font-family:var(--font-mono);font-size:10.5px;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--text-dim);margin-bottom:7px}
+.papel.sala .papel-rot{color:var(--accent)}
+.papel-tx{display:block;font-size:15px;line-height:1.5;color:var(--text-muted)}
+.papel-tx b{color:var(--text);font-weight:600}
+
+/* preparo */
+.preparo{margin:22px 0 0;border:1px solid var(--warning);background:var(--warning-soft);
+  border-radius:var(--radius-lg);padding:19px 21px}
+.preparo-rot{display:block;font-family:var(--font-mono);font-size:10.5px;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--warning);margin-bottom:11px}
+.preparo ul{list-style:none}
+.preparo li{font-size:15px;line-height:1.5;color:var(--text-muted);
+  padding-left:24px;position:relative;margin-bottom:8px}
+.preparo li:last-child{margin-bottom:0}
+.preparo li::before{content:"\2610";position:absolute;left:0;top:-1px;
+  color:var(--warning);font-size:15px}
+.preparo li b{color:var(--text);font-weight:600}
+
+/* linha do tempo */
+.mom{display:grid;grid-template-columns:96px 1fr;gap:22px;margin-top:34px;
+  align-items:start}
+.mom-tempo{position:sticky;top:20px}
+.mom-n{font-family:var(--font-mono);font-size:28px;font-weight:600;color:var(--accent);
+  line-height:1;letter-spacing:-.02em}
+.mom-min{display:block;font-family:var(--font-mono);font-size:11px;color:var(--text-dim);
+  letter-spacing:.06em;margin-top:6px}
+.mom-corpo{min-width:0;border-left:2px solid var(--accent-line);padding-left:24px;
+  padding-bottom:8px}
+.mom-titulo{font-size:23px;font-weight:600;letter-spacing:-.015em;line-height:1.24;
+  margin-bottom:16px}
+
+.bloco{margin-bottom:15px}
+.bloco:last-child{margin-bottom:0}
+.b-rot{display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--text-dim);margin-bottom:6px}
+.b-tx{display:block;font-size:16.5px;line-height:1.55;color:var(--text-muted)}
+.b-tx b{color:var(--text);font-weight:600}
+.b-tx code{font-family:var(--font-mono);font-size:14.5px;background:var(--bg-code);
+  padding:2px 6px;border-radius:4px;color:var(--accent-dark)}
+
+/* o dedo na tela */
+.aponte{background:var(--bg-elev);border:1px solid var(--border-strong);
+  border-radius:var(--radius);padding:15px 17px;margin-bottom:15px}
+.aponte .b-rot{color:var(--danger)}
+.aponte .b-tx{font-size:17px;color:var(--text)}
+
+/* a pergunta que a sala responde antes de você explicar */
+.pergunta{background:var(--accent-soft);border-radius:var(--radius);
+  padding:16px 18px;margin-bottom:15px}
+.pergunta .b-rot{color:var(--accent-dark)}
+.pergunta-fala{display:block;font-size:19px;line-height:1.42;color:var(--accent-dark);
+  font-weight:600;letter-spacing:-.01em}
+.pergunta-espera{display:block;font-size:14.5px;line-height:1.5;color:var(--accent-dark);
+  opacity:.85;margin-top:9px}
+
+/* por que */
+.porque{border-left:2px solid var(--success);background:var(--success-soft);
+  padding:14px 17px;border-radius:0 var(--radius-sm) var(--radius-sm) 0;margin-bottom:15px}
+.porque .b-rot{color:var(--success)}
+.porque .b-tx{font-size:15.5px}
+
+/* plano B */
+.planoB{border:1px dashed var(--border-strong);border-radius:var(--radius);
+  padding:13px 16px;background:var(--bg-warm)}
+.planoB .b-rot{color:var(--text-dim)}
+.planoB .b-tx{font-size:14.5px;color:var(--text-dim)}
+.planoB .b-tx b{color:var(--text-muted)}
+
+/* prompt copiável */
+.pbox{border:1px solid var(--border-strong);border-radius:var(--radius);
+  overflow:hidden;margin-bottom:15px;background:var(--bg-code)}
+.pbar{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:9px 14px;background:var(--bg-warm);border-bottom:1px solid var(--border)}
+.pbar-nome{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;
+  color:var(--text-dim)}
+.pbtn{font-family:var(--font-mono);font-size:11px;font-weight:500;cursor:pointer;
+  background:var(--accent);color:#fff;border:none;padding:6px 13px;
+  border-radius:var(--radius-sm)}
+.pbtn:hover{background:var(--accent-dark)}
+.pconteudo{font-family:var(--font-mono);font-size:13px;line-height:1.6;
+  white-space:pre-wrap;padding:15px 17px;color:var(--text-muted);
+  max-height:300px;overflow-y:auto}
+.pconteudo.curto{max-height:none;font-size:15px;color:var(--text)}
+
+/* fecho */
+.fecho{margin:44px 0 0;border:1px solid var(--accent);background:var(--accent-tinted);
+  border-radius:var(--radius-lg);padding:24px 26px}
+.fecho-rot{display:block;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:11px}
+.fecho-frase{display:block;font-size:22px;font-weight:600;line-height:1.32;
+  letter-spacing:-.015em;margin-bottom:12px}
+.fecho p{font-size:16px;line-height:1.6;color:var(--text-muted)}
+.fecho p + p{margin-top:10px}
+.fecho strong{color:var(--text)}
+
+.rodape{margin:48px 0 60px;padding-top:20px;border-top:1px solid var(--border);
+  font-size:14.5px;color:var(--text-dim);line-height:1.6}
+
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);
+  background:var(--text);color:#fff;padding:11px 20px;border-radius:999px;
+  font-size:14px;transition:transform .22s;z-index:99}
+.toast.on{transform:translateX(-50%) translateY(0)}
+
+@media (max-width:820px){
+  .papeis{grid-template-columns:1fr}
+  .mom{grid-template-columns:1fr;gap:10px}
+  .mom-tempo{position:static;display:flex;align-items:baseline;gap:12px}
+  .mom-min{margin-top:0}
+  .mom-corpo{border-left:none;padding-left:0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topo">
+    <div class="volta"><a href="../">&larr; voltar para a aula 1.1</a></div>
+    <div class="kicker">Roteiro de demonstração · aula 1.1 · 12 minutos de palco</div>
+    <h1>O que acontece na tela, momento a momento</h1>
+    <p class="lead">
+      Este é o roteiro para <strong>executar ao vivo</strong>, não uma página para olhar. Cada momento traz o que fazer, <strong>o que apontar na tela</strong>, a pergunta que a sala responde antes de você explicar, e o plano B se travar.
+    </p>
+
+    <div class="papeis">
+      <div class="papel">
+        <span class="papel-rot">Só você faz</span>
+        <span class="papel-tx">Os momentos <b>1, 2 e 4</b> rodam no <b>Claude Code</b>, que só entra no Módulo 3. A sala assiste. É a única parte do M1 que não é para eles repetirem agora.</span>
+      </div>
+      <div class="papel sala">
+        <span class="papel-rot">A sala participa</span>
+        <span class="papel-tx">Nos momentos <b>3 e 5</b> quem dita as correções é a sala. <b>Isso não é enfeite:</b> é o que faz o pedido bom do momento 5 ser reconhecido como delas, e não como seu.</span>
+      </div>
+    </div>
+
+    <div class="preparo">
+      <span class="preparo-rot">Antes de a turma entrar</span>
+      <ul>
+        <li><b>Claude Code aberto</b> numa pasta vazia, com <code>pedidos-em-producao.xlsx</code> dentro</li>
+        <li><b>Claude Chat aberto</b> em outra aba, sem conversa começada</li>
+        <li>Os dois prompts <b>já copiados</b> num bloco de notas, para não colar errado ao vivo</li>
+        <li><b>Fonte do terminal no mínimo 18px.</b> O <code>/context</code> é a figura da aula inteira, e ninguém no fundo da sala enxerga fonte 12</li>
+        <li><a href="../exemplo/">O resultado pronto aberto numa terceira aba</a>, que é o seu plano B do momento 5</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══════════ MOMENTO 1 ══════════ -->
+  <div class="mom">
+    <div class="mom-tempo"><div class="mom-n">01</div><span class="mom-min">1 min</span></div>
+    <div class="mom-corpo">
+      <div class="mom-titulo">A mesa antes de você digitar qualquer coisa</div>
+
+      <div class="bloco">
+        <span class="b-rot">O que você faz</span>
+        <span class="b-tx">Abre uma conversa nova no Claude Code e roda <code>/context</code>. Nada mais.</span>
+      </div>
+
+      <div class="pergunta">
+        <span class="b-rot">Pergunte antes de rodar</span>
+        <span class="pergunta-fala">"Eu ainda não digitei nada. Chutem: quanto vocês acham que já está ocupado?"</span>
+        <span class="pergunta-espera">A sala quase sempre chuta <b>zero</b>. Deixe eles responderem em voz alta antes de apertar enter.</span>
+      </div>
+
+      <div class="aponte">
+        <span class="b-rot">Aponte isto na tela</span>
+        <span class="b-tx">O desenho da mesa <b>já tem faixas ocupadas</b> antes de qualquer pedido seu. Sistema e ferramentas já estão lá.</span>
+      </div>
+
+      <div class="porque">
+        <span class="b-rot">Por que este momento existe</span>
+        <span class="b-tx">Aqui a mesa deixa de ser metáfora e vira <b>número na tela</b>. O resto da aula depende de eles acreditarem que ela é real.</span>
+      </div>
+
+      <div class="planoB">
+        <span class="b-rot">Se der errado</span>
+        <span class="b-tx">Se o <code>/context</code> não desenhar, <b>peça em texto</b>: "me diga quanto do seu contexto está ocupado agora e com o quê". A resposta serve igual.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ MOMENTO 2 ══════════ -->
+  <div class="mom">
+    <div class="mom-tempo"><div class="mom-n">02</div><span class="mom-min">1 min</span></div>
+    <div class="mom-corpo">
+      <div class="mom-titulo">O dado entra, e ocupa menos do que parece</div>
+
+      <div class="bloco">
+        <span class="b-rot">O que você faz</span>
+        <span class="b-tx">Anexa <code>pedidos-em-producao.xlsx</code>, a mesma planilha que eles vão baixar daqui a pouco, e roda <code>/context</code> de novo.</span>
+      </div>
+
+      <div class="pergunta">
+        <span class="b-rot">Pergunte à sala</span>
+        <span class="pergunta-fala">"São 18 ordens de serviço e 9 colunas. Isso encheu quanto da mesa?"</span>
+        <span class="pergunta-espera">Eles superestimam. Quase todo mundo acha que planilha é o que mais pesa.</span>
+      </div>
+
+      <div class="aponte">
+        <span class="b-rot">Aponte isto na tela</span>
+        <span class="b-tx">A faixa nova do dado é <b>pequena</b>. A planilha inteira do setor coube num pedaço estreito da mesa.</span>
+      </div>
+
+      <div class="porque">
+        <span class="b-rot">Por que este momento existe</span>
+        <span class="b-tx">É a montagem da surpresa do momento 4. Se eles não virem agora que <b>dado ocupa pouco</b>, a virada lá na frente não tem graça nenhuma.</span>
+      </div>
+
+      <div class="planoB">
+        <span class="b-rot">Se der errado</span>
+        <span class="b-tx">Se o anexo falhar, <b>siga assim mesmo</b> e faça a comparação só com o texto da conversa. A lição do momento 4 continua de pé.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ MOMENTO 3 ══════════ -->
+  <div class="mom">
+    <div class="mom-tempo"><div class="mom-n">03</div><span class="mom-min">5 min</span></div>
+    <div class="mom-corpo">
+      <div class="mom-titulo">O pedido vago, e a sala consertando ele</div>
+
+      <div class="bloco">
+        <span class="b-rot">O que você faz</span>
+        <span class="b-tx">Cola o pedido vago. São oito palavras, e é exatamente o que eles escrevem no dia a dia.</span>
+      </div>
+
+      <div class="pbox">
+        <div class="pbar">
+          <span class="pbar-nome">pedido vago · cole exatamente assim</span>
+          <button class="pbtn" data-alvo="p1">Copiar</button>
+        </div>
+        <div class="pconteudo curto" id="p1">Analisa esses pedidos e me diz o que está acontecendo.</div>
+      </div>
+
+      <div class="aponte">
+        <span class="b-rot">Aponte isto na tela</span>
+        <span class="b-tx">A resposta é <b>bonita e inútil</b>: um resumo genérico que não decide nada. Leia em voz alta a primeira frase dela.</span>
+      </div>
+
+      <div class="pergunta">
+        <span class="b-rot">🔴 A pergunta mais importante da aula</span>
+        <span class="pergunta-fala">"O que falta nesta resposta para vocês levarem na reunião de amanhã?"</span>
+        <span class="pergunta-espera"><b>Não responda você.</b> Espere. Vai vir: falta saber o que está atrasado, falta a máquina, falta o valor, falta dizer o que eu faço com isso. <b>Anote cada uma no quadro.</b> Elas são o pedido do momento 5.</span>
+      </div>
+
+      <div class="bloco">
+        <span class="b-rot">Depois de anotar</span>
+        <span class="b-tx">Corrija <b>ao vivo, três vezes, usando o que a sala falou</b>. Não corrija com as suas palavras: use as delas. Cada rodada melhora um pouco e nenhuma resolve.</span>
+      </div>
+
+      <div class="porque">
+        <span class="b-rot">Por que este momento existe</span>
+        <span class="b-tx">A sala acabou de <b>escrever o pedido bom sem perceber</b>. Isso muda tudo no momento 5: eles vão reconhecer as próprias palavras, e a aula deixa de ser você ensinando e vira eles descobrindo.</span>
+      </div>
+
+      <div class="planoB">
+        <span class="b-rot">Se a sala ficar calada</span>
+        <span class="b-tx">Pergunte para <b>um setor específico</b>: "no PCP, o que você precisaria ver aqui para decidir a sequência de amanhã?". Nome de setor destrava; pergunta para o ar, não.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ MOMENTO 4 ══════════ -->
+  <div class="mom">
+    <div class="mom-tempo"><div class="mom-n">04</div><span class="mom-min">2 min</span></div>
+    <div class="mom-corpo">
+      <div class="mom-titulo">A virada: a conversa ficou maior que o dado</div>
+
+      <div class="bloco">
+        <span class="b-rot">O que você faz</span>
+        <span class="b-tx">Roda <code>/context</code> pela terceira vez, na mesma conversa das correções.</span>
+      </div>
+
+      <div class="pergunta">
+        <span class="b-rot">Pergunte antes de mostrar</span>
+        <span class="pergunta-fala">"O que vocês acham que ocupou mais: a planilha com as 18 OS, ou a nossa conversa de agora?"</span>
+        <span class="pergunta-espera">Deixe a sala se dividir. Metade vai chutar a planilha. <b>É a hora de mostrar.</b></span>
+      </div>
+
+      <div class="aponte">
+        <span class="b-rot">Aponte isto na tela</span>
+        <span class="b-tx">A faixa da conversa <b>ficou maior que a faixa do dado</b>. Quatro idas e vindas custaram mais mesa do que a planilha inteira do setor.</span>
+      </div>
+
+      <div class="porque">
+        <span class="b-rot">Por que este momento existe</span>
+        <span class="b-tx">É o conceito da aula 1.1 inteira em uma imagem: <b>o barato de escrever é o caro de rodar</b>. E o custo não é dinheiro, é a mesa que acabou e o tempo que foi embora.</span>
+      </div>
+
+      <div class="planoB">
+        <span class="b-rot">Se os números não baterem</span>
+        <span class="b-tx">Se a conversa ficar menor que o dado, <b>diga isso com todas as letras</b> e corrija ao vivo: "hoje deu diferente, e o número que importa é outro: foram quatro rodadas para chegar num lugar que uma rodada resolve". <b>Nunca finja que bateu.</b></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ MOMENTO 5 ══════════ -->
+  <div class="mom">
+    <div class="mom-tempo"><div class="mom-n">05</div><span class="mom-min">3 min</span></div>
+    <div class="mom-corpo">
+      <div class="mom-titulo">O pedido situado, que a sala escreveu sem saber</div>
+
+      <div class="bloco">
+        <span class="b-rot">O que você faz</span>
+        <span class="b-tx">Abre uma <b>conversa nova</b>, anexa a mesma planilha e cola o pedido situado. Antes de apertar enter, role a tela devagar para eles verem o tamanho.</span>
+      </div>
+
+      <div class="pergunta">
+        <span class="b-rot">Diga isto enquanto rola a tela</span>
+        <span class="pergunta-fala">"Olhem o que está escrito aqui. É o que vocês me disseram há cinco minutos, só que escrito antes."</span>
+        <span class="pergunta-espera">Aponte no prompt <b>as frases que vieram do quadro</b>. É o fecho do laço, e é o motivo de o momento 3 existir.</span>
+      </div>
+
+      <div class="pbox">
+        <div class="pbar">
+          <span class="pbar-nome">pedido situado · o mesmo que eles vão colar no exercício</span>
+          <button class="pbtn" data-alvo="p2">Copiar</button>
+        </div>
+        <div class="pconteudo" id="p2">## PAPEL
+Você é uma consultora sênior em operações industriais, especialista em
+transformar dado bruto de produção em pauta de reunião que gera decisão.
+Passou 15 anos em PCP de indústria gráfica. Sabe que o que separa
+&quot;relatório bonito&quot; de &quot;relatório que resolve&quot; é dizer o que precisa ser
+decidido, por quem, hoje.
+
+## CONTEXTO
+Sou coordenador de PCP na Gráfica Aurora, indústria gráfica de médio porte.
+Temos 4 máquinas: Offset 1, Offset 2, Flexo 1 e Flexo 2.
+Offset é para tiragem alta e prazo mais longo. Flexo é para rótulo e
+prazo curto.
+
+Amanhã às 8h tenho a reunião diária de produção com os líderes de máquina.
+Anexei o relatório de ordens de serviço em produção, exportado do sistema.
+Considere que hoje é 16/07/2026.
+
+O arquivo vem sujo, como todo export de ERP:
+- duas linhas de cabeçalho mescladas antes da tabela de verdade
+- a data aparece em três formatos diferentes
+- o status às vezes está em maiúscula, às vezes não
+- uma coluna tem espaço no nome
+- há uma linha em branco no meio
+- o valor às vezes é número, às vezes é texto com vírgula
+Normalize tudo isso antes de analisar.
+
+## ESTILO DE SAÍDA (CRÍTICO)
+NÃO gere dashboard dark mode. NÃO gere lista de bullets solta.
+
+Gere uma PAUTA EXECUTIVA no formato de documento A4 imprimível, com
+estética editorial moderna. Pense em revista de negócios, não em
+relatório de sistema.
+
+- Fundo off-white quente (#FBF9F4). Sem dark mode, sem branco puro
+- Tipografia: Fraunces serif nos títulos (peso 500 a 700), Inter no corpo,
+  JetBrains Mono nos kickers e labels técnicos
+- Paleta: azul-noite (#1F2A44) como accent principal e terracota (#A05A3F)
+  como secundário. Vermelho terroso para atraso, âmbar para atenção,
+  verde-oliva para em dia
+- Layout A4, margens de 22mm, respiro editorial entre as seções,
+  sombra bem suave
+- Numeração lateral gigante em serif (&quot;01&quot;, &quot;02&quot;) ao lado do título de
+  cada seção, estilo editorial
+- Big numbers: número enorme em serif, label pequeno abaixo, separados por
+  um filete fino. SEM card com borda em volta
+- Callouts: fundo quente sutil, filete de 2px à esquerda, sem gradiente
+- Deixe o CSS de impressão embutido, para eu imprimir em A4
+
+## TAREFA
+Gere um Artifact HTML self-contained com estas 6 seções, nesta ordem:
+
+1. CABEÇALHO
+   Kicker &quot;Pauta de produção · reunião diária&quot;
+   Título em serif, com uma palavra em itálico
+   Linha de meta: data · turno · responsável · número de OS analisadas
+
+2. O DIA EM NÚMEROS (4 big numbers)
+   OS em produção · OS atrasadas · OS que vencem em até 3 dias ·
+   valor total em produção
+
+3. O QUE ESTÁ ATRASADO
+   Tabela: OS · cliente · produto · prazo · dias de atraso · máquina.
+   Da mais atrasada para a menos. Se não houver atraso, diga em uma linha.
+
+4. CARGA POR MÁQUINA
+   Uma barra horizontal por máquina, segmentada por status, com legenda
+   no rodapé. Precisa dar para ver o gargalo de relance.
+
+5. VENCE EM ATÉ 3 DIAS E AINDA NÃO ENTROU EM PRODUÇÃO
+   Tabela curta. É a seção que evita o atraso da semana que vem.
+
+6. AS 3 DECISÕES DE AMANHÃ
+   Três blocos, cada um com: a decisão em uma frase · por que ela é minha
+   e não do líder de máquina · o que acontece se eu não decidir hoje
+
+## ANTES DE GERAR
+Confirme comigo em 3 bullets:
+(a) quantas linhas úteis você encontrou e quantas descartou
+(b) como normalizou as datas e os status
+(c) que critério usou para escolher as 3 decisões
+
+Espere meu OK e só depois gere o Artifact.
+
+## LINGUAGEM
+Português do Brasil, direto. Sem &quot;vale destacar&quot;, sem &quot;é importante notar&quot;.
+Se tem o que falar, fala.</div>
+      </div>
+
+      <div class="aponte">
+        <span class="b-rot">Aponte isto, e é fácil deixar passar</span>
+        <span class="b-tx">Ele <b>para antes de gerar</b> e confirma o plano em três bullets, esperando o seu OK. Isso está pedido de propósito no prompt. Mostre onde.</span>
+      </div>
+
+      <div class="pergunta">
+        <span class="b-rot">Pergunte antes de dar o OK</span>
+        <span class="pergunta-fala">"Por que vocês acham que eu pedi para ele parar aqui, em vez de já fazer?"</span>
+        <span class="pergunta-espera">Vai vir: para conferir se ele entendeu. <b>Confirme e some 30 segundos contra um documento inteiro errado.</b></span>
+      </div>
+
+      <div class="bloco">
+        <span class="b-rot">Depois do OK</span>
+        <span class="b-tx">Sai o documento. Abra e mostre a seção do <b>status que não bate</b>: o sistema marca 2 OS atrasadas, a data diz 7, e uma das marcadas vence daqui a cinco dias.</span>
+      </div>
+
+      <div class="porque">
+        <span class="b-rot">Por que este momento fecha a aula</span>
+        <span class="b-tx">Duas coisas de uma vez: <b>uma rodada em vez de quatro</b>, e um achado que ninguém tinha visto na planilha. O segundo é o que faz a sala querer a aula 1.2.</span>
+      </div>
+
+      <div class="planoB">
+        <span class="b-rot">Se a geração falhar ou demorar</span>
+        <span class="b-tx"><a href="../exemplo/">Abra a terceira aba com o resultado pronto</a> e diga a verdade: "hoje travou, e este é o documento que sai daqui". <b>Continue a aula pelo documento.</b> A sala perdoa falha de rede, não perdoa você fingir.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="fecho">
+    <span class="fecho-rot">A frase que emenda na seção 05</span>
+    <span class="fecho-frase">"Agora é com vocês, com a mesma planilha. Só que desta vez o pedido bom já está pronto para colar, porque quem escreveu foram vocês."</span>
+    <p>
+      Aí eles abrem a seção <strong>05 · Sua vez</strong>, baixam a mesma planilha e fazem as duas conversas. <strong>A diferença é que agora eles sabem por que a segunda funciona</strong>, em vez de só copiar um prompt bonito.
+    </p>
+    <p>
+      <strong>Não pule o momento 3.</strong> Se você corrigir sozinho para ganhar tempo, o momento 5 vira demonstração de mágica, e mágica não se aprende: se assiste.
+    </p>
+  </div>
+
+  <p class="rodape">
+    Roteiro da <a href="../">aula 1.1</a> · Gráfica Aurora é uma indústria gráfica fictícia criada para o treinamento · <a href="../exemplo/">o resultado que sai do momento 5</a>
+  </p>
+
+</div>
+
+<div class="toast" id="toast">copiado</div>
+<script>
+document.querySelectorAll(".pbtn").forEach(function(b){
+  b.addEventListener("click", function(){
+    var el = document.getElementById(b.dataset.alvo);
+    navigator.clipboard.writeText(el.innerText).then(function(){
+      var t = document.getElementById("toast");
+      t.classList.add("on");
+      setTimeout(function(){ t.classList.remove("on"); }, 1500);
+    });
+  });
+});
+</script>
+</body>
+</html>

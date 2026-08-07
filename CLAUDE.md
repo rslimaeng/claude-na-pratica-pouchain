@@ -266,21 +266,32 @@ HERO  kicker + H1 + subtítulo + chips [Nível] [artefato] [pré-requisito] [eme
 2. **O hook fecha toda página.** Não é retórica, é o que faz 19 aulas serem uma corrente, não uma lista. Na última aula do módulo ele fecha o **módulo**, e não a aula.
 3. **O validador não pergunta "ficou bom?".** Ele é a camada 1 do harness traduzida: cada item é contável ou é sim/não, e diz para onde voltar se falhar. Critério que depende do instrutor não entra, porque numa sala de 20 o instrutor não escala.
 
-### 🔴 O aluno nunca começa em branco
+### 🔴 A seção 04 é roteiro para executar, nunca resultado para olhar
 
-**Pedido do Rafael em 07/08/2026**, validando a aula 1.1: *"senti falta dos arquivos de exemplos para executar. A ideia é deixar algo mais prático e direcionado ao invés de eu começar em branco."*
+**Correção do Rafael em 07/08/2026**, e ela derruba a versão anterior desta seção. Eu tinha escrito "toda aula mostra a saída pronta antes do exercício", e ele reprovou:
 
-**Toda aula que promete uma saída tem de mostrar essa saída pronta, antes do exercício.** Não é o gabarito: gabarito é para conferir depois. Isto é para saber o que se está perseguindo antes de tentar.
+> *"Eu quero o exemplo pronto para executar na frente deles, e não algo que eu vou clicar e aparece já feito. A ideia é eles verem acontecendo e fazer similar. Entender o motivo de isso ter acontecido."*
 
-| Se a saída da aula é | O exemplo pronto vai | Exemplo vivo |
-|---|---|---|
-| **Um documento visual** (parecer, painel, apresentação) | **Página própria**, autocontida, linkada da seção 04 | `m1/a1-ecossistema-e-fisica/exemplo/` |
-| **Texto** (um pedido, um texto de regras, uma classificação) | Dentro da aula, num bloco lado a lado | `.uau` da 1.3 · `.os` da 1.2 |
-| **Um conceito por setor** | Accordion `.exemplos`, um item por setor | aulas 1.2 e 1.4 |
+**O que estava errado:** mostrar o resultado pronto entrega o conceito já resolvido. O aluno vê mágica, e mágica não se aprende, se assiste. **A ordem andragógica é experiência → pergunta → conceito**, nunca conceito → ilustração.
 
-**Regra de ouro do exemplo pronto:** ele é gerado **dos dados reais do insumo daquela aula**, nunca inventado. Um exemplo que não bate com a planilha ensina o aluno a perseguir um resultado que ele não vai conseguir.
+**Toda aula tem um roteiro de demonstração**, em página própria, ligado da seção 04. Cada momento traz, nesta ordem:
 
-> Ver o resultado antes de tentar reduz o medo de começar. É o mesmo princípio do gabarito, aplicado na entrada em vez da saída.
+| Bloco | O que é |
+|---|---|
+| **O que você faz** | A ação concreta: abrir, anexar, colar |
+| **O prompt** | Literal e copiável. Nunca "escreva algo como" |
+| **🔴 Aponte isto na tela** | O dedo no que importa, senão passa batido |
+| **Pergunte à sala** | A pergunta que eles respondem **antes** de você explicar |
+| **Por que este momento existe** | O conceito, só depois de a sala ter vivido ele |
+| **Se der errado** | O plano B, escrito antes de precisar |
+
+**O bloco que não pode faltar é "pergunte à sala".** É o que separa demonstração de aula. Referência: `m1/a1-ecossistema-e-fisica/demonstracao/`.
+
+> ⭐ **O padrão de ouro é o momento 3 da 1.1:** a sala dita as correções do pedido vago, o instrutor anota no quadro, e no momento 5 o pedido situado **é reconhecido como delas**. Sempre que der para a sala escrever a resposta sem saber que escreveu, faça isso.
+
+**E o resultado pronto?** Continua existindo, com **dois papéis, os dois depois**: comparar com o que o aluno fez, e ser o plano B se a geração travar ao vivo. Nunca "olhe antes de tentar". Exemplo: `m1/a1-ecossistema-e-fisica/exemplo/`.
+
+**Regra de ouro que sobreviveu:** todo resultado mostrado é gerado **dos dados reais do insumo daquela aula**, nunca inventado. Um exemplo que não bate com a planilha ensina o aluno a perseguir o que ele não vai conseguir. Conferido pelo gate **G13**.
 
 ## 9-bis. 📊 Texto corrido longo é defeito, não estilo
 

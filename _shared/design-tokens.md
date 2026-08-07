@@ -124,6 +124,24 @@ Nasceram ao aplicar os 4 padrões de `CLAUDE.md` §7-bis.
 | `.nao-faz` + `.nao-item` + `.nao-mas` | | O bloco "o que estas 12 horas não fazem". Rótulo com `.rot`, nunca `strong` puro | landing |
 | `.destino-quando` | | A promessa com hora marcada, embaixo da lista do destino. Rótulo com `.rot` | 4 aulas |
 
+## Página de roteiro de demonstração
+
+**A página que o instrutor executa ao vivo.** Uma por aula, em `m1/aN-slug/demonstracao/`. Referência: `m1/a1-ecossistema-e-fisica/demonstracao/`.
+
+| Classe | O que é |
+|---|---|
+| `.papeis` + `.papel.sala` | Quem faz o quê. Separa o que só o instrutor roda do que a sala participa |
+| `.preparo` | Checklist do que ter aberto antes de a turma entrar. Âmbar, porque é aviso |
+| `.mom` + `.mom-tempo` | Um momento da demonstração. Coluna esquerda **sticky** com número e minutos, para não se perder no palco |
+| `.aponte` | 🔴 O dedo na tela. O que mostrar, senão passa batido |
+| **`.pergunta`** | **A pergunta que a sala responde antes de você explicar.** É o bloco que separa demonstração de aula. Nunca omitir |
+| `.porque` | O conceito, e ele vem **depois** de a sala ter vivido o momento |
+| `.planoB` | O que fazer se travar. Escrito antes de precisar |
+| `.pbox` + `.pbtn` | Prompt literal e copiável. Nunca "escreva algo como" |
+| `.fecho` | A frase que emenda na seção 05, e o aviso do que não pode ser pulado |
+
+**Regra:** o roteiro fica no site público porque o aluno também o usa, para refazer sozinho depois. Não tem nada de instrutor que o aluno não possa ler.
+
 ## Componentes da Onda 3-bis · o aluno não começa em branco
 
 | Classe | 📊 | O que mostra | Nasceu em |
