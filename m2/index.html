@@ -113,6 +113,54 @@ a:hover{color:var(--accent-dark)}
 .callout-info li::before{color:var(--accent)}
 .callout ul + p{margin-top:11px}
 
+/* OS TRÊS CLAUDES · o corte aqui é "para quem é", e não "o que alcança", que é
+   o corte que a 1.1 já fez. Cor semântica e não identidade: os três cards são
+   neutros e só o Cowork acende, porque é dele que este módulo trata. Pintar os
+   três de cores diferentes seria decoração, e o §8 não permite. */
+.claudes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0 0;
+  align-items:stretch}
+.cl{border:1px solid var(--border);border-radius:var(--radius-lg);
+  background:var(--bg-elev);display:flex;flex-direction:column;overflow:hidden}
+.cl.foco{border-color:var(--accent-line);box-shadow:var(--shadow-md)}
+.cl-topo{padding:16px 18px 14px;border-bottom:1px solid var(--border)}
+.cl.foco .cl-topo{background:var(--accent-tinted)}
+.cl-selo{display:inline-block;font-family:var(--font-mono);font-size:9.5px;
+  letter-spacing:.09em;text-transform:uppercase;padding:3px 8px;
+  border-radius:999px;background:var(--bg-warm);color:var(--text-dim);
+  margin-bottom:11px}
+.cl.foco .cl-selo{background:var(--accent);color:#fff}
+.cl-nome{font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.2}
+.cl.foco .cl-nome{color:var(--accent-dark)}
+/* duas linhas travadas: "Conversar, pensar, escrever" cabe em uma e os outros
+   dois verbos ocupam duas, o que empurrava o divisor de cada card para uma
+   altura diferente e desalinhava os três lado a lado */
+.cl-verbo{font-size:14px;color:var(--text-dim);margin-top:5px;line-height:1.4;
+  min-height:2.8em}
+.cl-corpo{padding:15px 18px;flex:1}
+.cl-rot{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--text-dim);margin-bottom:9px}
+.cl-corpo ul{list-style:none;font-size:14px;color:var(--text-muted);line-height:1.45}
+.cl-corpo li{padding-left:14px;position:relative}
+.cl-corpo li + li{margin-top:7px}
+.cl-corpo li::before{content:"·";position:absolute;left:3px;color:var(--text-dim);
+  font-weight:700}
+.cl.foco .cl-corpo li::before{color:var(--accent)}
+.cl-pe{padding:13px 18px;border-top:1px solid var(--border);background:var(--bg-code);
+  font-size:13.5px;line-height:1.45;color:var(--text-muted)}
+.cl.foco .cl-pe{background:var(--accent-soft);color:var(--accent-dark)}
+.cl-pe b{color:var(--text);font-weight:600}
+.cl.foco .cl-pe b{color:var(--accent-dark)}
+/* a frase da Anthropic que resume os três, em faixa própria */
+.tres-frase{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+.tres-item{border:1px solid var(--border);border-radius:var(--radius);
+  background:var(--bg-warm);padding:13px 16px;font-size:14.5px;line-height:1.45;
+  color:var(--text-muted)}
+.tres-item b{color:var(--text);font-weight:600;display:block;margin-bottom:2px;
+  font-family:var(--font-mono);font-size:12px;letter-spacing:.04em}
+@media (max-width:820px){
+  .claudes,.tres-frase{grid-template-columns:1fr}
+}
+
 /* AULAS */
 .aulas{display:grid;gap:16px;margin-bottom:56px}
 .aula-card{background:var(--bg-elev);border:1px solid var(--border);
@@ -245,6 +293,88 @@ a:hover{color:var(--accent-dark)}
       <span class="chip chip-accent">3 · 4 · 6</span>
       <span class="chip chip-ementa">Ementa · Módulo 2</span>
     </div>
+  </section>
+
+  <section>
+    <div class="section-title">Por que sair do navegador</div>
+    <p class="section-lead">
+      Quando você instalar o aplicativo, vai encontrar <strong>três abas</strong>, e é o próprio produto que se divide assim. Na aula 1.1 você viu <a href="../m1/a1-ecossistema-e-fisica/#s03">o que cada uma alcança</a>. Aqui a pergunta é outra e mais direta: <strong>para quem cada uma foi feita</strong>.
+    </p>
+
+    <div class="claudes">
+
+      <div class="cl">
+        <div class="cl-topo">
+          <span class="cl-selo">para todos</span>
+          <div class="cl-nome">Claude Chat</div>
+          <div class="cl-verbo">Conversar, pensar, escrever</div>
+        </div>
+        <div class="cl-corpo">
+          <div class="cl-rot">Você usa para</div>
+          <ul>
+            <li>Pensar em voz alta e destravar uma decisão</li>
+            <li>Escrever e revisar texto, e-mail, comunicado</li>
+            <li>Entender um documento que chegou</li>
+            <li>Tirar dúvida e aprender uma coisa nova</li>
+          </ul>
+        </div>
+        <div class="cl-pe">
+          É o que você já usa. <b>Nada para instalar</b>, e foi o Módulo 1 inteiro.
+        </div>
+      </div>
+
+      <div class="cl foco">
+        <div class="cl-topo">
+          <span class="cl-selo">para quem não é técnico</span>
+          <div class="cl-nome">Claude Cowork</div>
+          <div class="cl-verbo">Agir nos seus arquivos e tarefas</div>
+        </div>
+        <div class="cl-corpo">
+          <div class="cl-rot">Você usa para</div>
+          <ul>
+            <li>Trabalhar na pasta onde o relatório já cai, sem anexar nada</li>
+            <li>Fazer a planilha virar decisão sem a montagem no meio</li>
+            <li>Tratar dezenas de arquivos de uma vez, não um por um</li>
+            <li>Alcançar as ferramentas onde o trabalho já acontece</li>
+            <li>Deixar a rotina rodando numa cadência</li>
+          </ul>
+        </div>
+        <div class="cl-pe">
+          <b>É este módulo.</b> É onde comercial, compras, PCP, financeiro, DP e RH passam o dia.
+        </div>
+      </div>
+
+      <div class="cl">
+        <div class="cl-topo">
+          <span class="cl-selo">para quem programa</span>
+          <div class="cl-nome">Claude Code</div>
+          <div class="cl-verbo">Construir o que continua funcionando</div>
+        </div>
+        <div class="cl-corpo">
+          <div class="cl-rot">Você usa para</div>
+          <ul>
+            <li>Montar um painel que se atualiza sozinho</li>
+            <li>Escrever a conferência que roda antes de você assinar</li>
+            <li>Guardar versões e voltar atrás quando erra</li>
+            <li>Ligar sistemas que não têm conector pronto</li>
+          </ul>
+        </div>
+        <div class="cl-pe">
+          É o Módulo 3, e <b>você não vai programar lá também</b>. Vai pedir, e conferir.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="tres-frase">
+      <div class="tres-item"><b>Chat</b>é para <strong>pensar</strong> com ele.</div>
+      <div class="tres-item"><b>Cowork</b>é para <strong>delegar</strong> para ele.</div>
+      <div class="tres-item"><b>Code</b>é para <strong>construir</strong> com ele.</div>
+    </div>
+
+    <p class="fig-leg">
+      Essas três frases são da própria Anthropic, e são o resumo mais curto que existe. A diferença que mais pesa no seu dia é a do meio: <strong>no Chat você anexa um arquivo e recebe um texto de volta. No Cowork ele mexe no arquivo que já está lá e devolve outro arquivo, salvo na sua pasta.</strong> <em>Verificado na documentação oficial em 08/08/2026.</em>
+    </p>
   </section>
 
   <div class="callout callout-warn">
