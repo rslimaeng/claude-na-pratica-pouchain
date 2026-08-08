@@ -924,6 +924,50 @@ if os.path.exists(A14):
             else f"{len(n_txt)} menções, todas '{certo}'"
             if len(n_txt) >= 2 else "menos de 2 menções, a checagem passaria no vazio")
 
+# ─── G25 · a 1.4 ganhou a primeira imagem que é PROVA e não ilustração: o
+#      print do /context mostrando 43 skills em 0,4% da janela. Duas coisas
+#      podem apodrecer aqui. A primeira é o número da legenda andar sozinho,
+#      e a imagem é binária, então não dá para ler o número de dentro dela:
+#      o `alt` vira a cópia declarada e a legenda tem que bater com ele. A
+#      segunda é mais grave: a tela é do TERMINAL, e o M1 inteiro promete que
+#      ninguém precisa de terminal. Sem a ressalva escrita, a sala conclui
+#      que falta instalar alguma coisa.
+titulo("G25 · A PROVA DO /CONTEXT É IMAGEM COM ALT, E A LEGENDA BATE COM ELE")
+if os.path.exists(A14):
+    aula = open(A14, encoding="utf-8").read()
+    bloco = re.search(r'<div class="prova">.*?<p class="fig-leg">(.*?)</p>', aula, re.S)
+    diz(bool(bloco), "G25", "o bloco da prova existe na 1.4",
+        "" if bloco else 'sem <div class="prova">')
+    if bloco:
+        img = re.search(r'<img class="prova-img"[^>]*>', bloco.group(0))
+        tag = img.group(0) if img else ""
+        faltando = [a for a in ("src", "width", "height", "loading", "alt")
+                    if f"{a}=" not in tag]
+        diz(not faltando, "G25", "a imagem declara src, tamanho, lazy e alt",
+            f"falta {faltando}" if faltando else "os cinco")
+
+        alt_m = re.search(r'alt="([^"]*)"', tag)
+        alt_txt = alt_m.group(1) if alt_m else ""
+        src_m = re.search(r'src="([^"]+)"', tag)
+        cam = os.path.normpath(os.path.join(os.path.dirname(A14), src_m.group(1))) \
+            if src_m else ""
+        # o G6 já confere src, mas ele varre o site inteiro: se alguém apagar
+        # o bloco, o G6 fica calado e a aula perde a prova em silêncio.
+        diz(bool(cam) and os.path.exists(cam), "G25", "o arquivo da imagem existe", cam)
+
+        legenda = re.sub(r"<[^>]+>", " ", bloco.group(1))
+        n_leg = set(re.findall(r"\d+(?:[,.]\d+)?", legenda))
+        n_alt = set(re.findall(r"\d+(?:[,.]\d+)?", alt_txt))
+        assert n_leg, "G25 sem número na legenda: a checagem passaria no vazio"
+        fora = sorted(n_leg - n_alt)
+        diz(not fora, "G25", "todo número da legenda está no alt",
+            f"só na legenda: {fora}" if fora else f"{len(n_leg)} números, todos no alt")
+
+        ctx = bloco.group(0)
+        diz("terminal" in ctx, "G25", "a legenda diz que a tela é do terminal")
+        diz("não precisa dele" in ctx, "G25",
+            "a legenda diz que o aluno não precisa do terminal")
+
 # ─────────── o fecho que faltava
 # A lista `falhas` existia desde a onda 1 e NADA a lia: o script imprimia
 # FALHA e saia com codigo 0. O README prometia o contrario havia quatro

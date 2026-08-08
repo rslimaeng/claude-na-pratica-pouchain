@@ -81,6 +81,14 @@ a:hover{color:var(--accent-dark)}
   margin-top:5px}
 @media (max-width:720px){.estrago{grid-template-columns:1fr}}
 
+/* MECANISMO · a tabela do conceito 2 é <table> de verdade, com o estilo que a
+   página já tem. Sem cor semântica nas linhas de propósito: nenhuma das duas
+   é a errada, e pintar a tranca de verde diria que instrução é o caminho ruim,
+   que é o oposto do que a aula ensina. */
+td.mec-sn{text-align:center;font-family:var(--font-mono);color:var(--text)}
+td.mec-quem{font-weight:600;color:var(--text)}
+td.mec-fim b{color:var(--text);font-weight:600}
+
 /* A BIFURCAÇÃO · três respostas, três lugares */
 .bif{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0 0}
 .bif-col{border:1px solid var(--border);border-radius:var(--radius-lg);
@@ -530,6 +538,23 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
 .vit-seta{text-align:center;color:var(--accent);font-size:18px;font-weight:600;
   padding:7px 0;line-height:1}
 
+/* PROVA · a única imagem construída desta aula, e ela é print de tela real.
+   Não foi redesenhada em HTML como a tela de Habilidades de propósito:
+   reproduzir tiraria dela exatamente o que ela tem de valor, que é ser
+   medição e não afirmação nossa. */
+.prova{margin:22px 0 0;border:1px solid var(--border);
+  border-radius:var(--radius-lg);overflow:hidden;background:var(--bg-elev)}
+/* no celular a imagem cabia em 341px e o texto do terminal ficava ilegível.
+   Ela passa a rolar dentro da própria caixa, igual às tabelas da página, e o
+   min-width segura o piso de leitura. Quem não arrastar continua tendo os
+   números na legenda, que é onde eles estão escritos. */
+.prova-scroll{overflow-x:auto}
+.prova-img{display:block;width:100%;height:auto;min-width:700px}
+.prova-rod{padding:13px 18px;border-top:1px solid var(--border);
+  background:var(--bg-warm);font-size:13.5px;line-height:1.55;
+  color:var(--text-muted)}
+.prova-rod b{color:var(--text);font-weight:600}
+
 /* VERSUS · prompt salvo de um lado, skill do outro, linha a linha */
 .versus{border:1px solid var(--border);border-radius:var(--radius-lg);
   background:var(--bg-elev);overflow:hidden;margin:22px 0 0}
@@ -755,7 +780,7 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
 .table-wrap,.fluxo,.dilui,.compare,.uau,.pilha,.ctx,.setores,.trilha,
 .facts,.pre-req,.modules,.aulas,.fio-passos,.leva,.entrega,
 .mapa,.os,.rodadas,.caminhos,.estrago,.caminhos-nota,.bif,.bif-fora,.nao-faz,
-.anat,.vitrine,.versus,.norma,.hab,.vsp,.vsp-fecho,.adv{
+.anat,.vitrine,.versus,.norma,.hab,.vsp,.vsp-fecho,.adv,.prova{
   width:min(var(--col-wide),calc(100vw - 40px));min-width:100%;
   margin-left:50%;transform:translateX(-50%)}
 
@@ -1176,8 +1201,37 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
       <p>
         Instrução escrita é forte. Mas ela não é uma tranca: é <strong>um funcionário muito bom que leu o manual</strong>. E a diferença entre as duas coisas está no mecanismo, não na força.
       </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Lê a regra?</th>
+              <th>Decide?</th>
+              <th>O que acontece quando falha</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="mec-quem">Um funcionário muito bom</td>
+              <td class="mec-sn">sim</td>
+              <td class="mec-sn">sim</td>
+              <td class="mec-fim">Às vezes ele <b>decide errado</b>, e você costuma descobrir depois</td>
+            </tr>
+            <tr>
+              <td class="mec-quem">Uma tranca</td>
+              <td class="mec-sn">não</td>
+              <td class="mec-sn">não</td>
+              <td class="mec-fim"><b>Não existe "às vezes"</b>. Não passa, e ninguém precisa lembrar</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="fig-leg">
+        A diferença não está na primeira coluna, está nas duas do meio. <strong>O que lê e decide erra em alguma frequência</strong>, por melhor que a regra esteja escrita. Escrever em CAIXA ALTA, em negrito, com "OBRIGATÓRIO" na frente <strong>não muda a regra de linha nesta tabela</strong>: só deixa você mais confiante, o que é pior.
+      </p>
       <p>
-        O funcionário <strong>lê a regra e decide</strong> aplicar. Quase sempre ele decide certo. A tranca não lê e não decide: ela simplesmente não deixa passar. Por isso a pergunta certa nunca é "essa regra é importante?", porque todas são. A pergunta é <strong>o que acontece nas vezes em que ele decide errado</strong>.
+        É por isso que "essa regra é importante?" não separa nada: <strong>a resposta é sempre sim</strong>. Ninguém escreve regra que considera dispensável. A pergunta que separa é outra, e é <strong>o que acontece nas vezes em que ele decide errado</strong>.
       </p>
       <p>
         E "quase sempre" tem um tamanho. Digamos que ele erre <strong>uma vez em cem</strong>, que já é um funcionário excelente. Se a sua área fecha 40 propostas por mês, uma falha em cem é uma proposta saindo errada a cada dois meses e meio. Para o formato da tabela, tudo bem. Para o preço, não.
@@ -1458,6 +1512,24 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
       </div>
       <p class="fig-leg">
         É por isso que a resposta muda de aula para aula. Na 1.3 a pergunta era "cabe nas instruções?", e a resposta dependia do que valia sempre. <strong>Aqui não existe essa conta:</strong> a skill pode ser detalhada à vontade, porque o detalhe dorme até a tarefa aparecer. <em>Mecanismo verificado na documentação oficial em 06/08/2026.</em>
+      </p>
+
+      <p>
+        E isso não é promessa nossa, é conta que dá para ver na tela. Esta é a janela de contexto de uma conta com <strong>43 skills instaladas</strong>, todas prontas para serem chamadas:
+      </p>
+
+      <div class="prova">
+        <div class="prova-scroll">
+          <img class="prova-img" src="../../_shared/context-usage-skills.png"
+               width="1288" height="760" loading="lazy"
+               alt="Saída do comando /context. Na lista por categoria: Skills ocupando 3,9 mil tokens, 0,4% do contexto, e espaço livre de 972,6 mil tokens, 97,3%. Mais abaixo, 112 ferramentas de conector ocupando 0 tokens, e 43 skills ocupando 3,9 mil tokens.">
+        </div>
+        <div class="prova-rod">
+          Esta tela é do <b>Claude Code, que roda no terminal</b>, e você não precisa dele em momento nenhum deste curso. Ela está aqui por um motivo só: <b>é o único lugar que mostra o número</b>. No Chat o mecanismo é o mesmo, só não existe um contador na tela para você conferir. <i>Medido em 08/08/2026.</i>
+        </div>
+      </div>
+      <p class="fig-leg">
+        <strong>43 skills ocupam 3,9 mil tokens, que são 0,4% da janela</strong>, e sobram 97,3% livres. O texto acima falou em quarenta skills, e esta tela tem 43. É a vitrine: 43 etiquetas na mesa, e nenhum passo a passo aberto.
       </p>
 
       <h4>Prompt salvo não é skill</h4>
