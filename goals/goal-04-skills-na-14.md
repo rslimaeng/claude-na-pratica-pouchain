@@ -2,7 +2,8 @@
 
 > **Branch:** `onda-27-skills-a14` · **base:** `7bfa515` na `main`
 > **Pedido do Rafael em 07/08/2026, à noite**, depois de ler a 1.4 inteira pela primeira vez.
-> **Status:** 🟡 na branch. Só vai para a `main` se ele aprovar no navegador.
+> **Status:** ✅ **aprovada e publicada em 08/08/2026.** Merge fast-forward para a `main`
+> (`7bfa515` → `efa41c6`), com o M1 fechado.
 
 ## Por que esta onda existe
 
@@ -187,6 +188,11 @@ Depois do conserto, conferido que link morto **com e sem** âncora continua repr
   e ver se o passo 2 devolve mesmo uma skill utilizável.
 - 🟡 Confirmar que a tela se chama **Habilidades** numa conta que não é a de instrutor.
   Mesma dúvida aberta do campo "Contexto" na 1.3.
-- 🟡 O exercício da 1.4 ainda baixa um `.docx`, diferente da 1.2 e da 1.3, que já têm
-  quadro preenchível na página. Aqui a impressão é o ponto, então o `.docx` se defende.
-  Se você quiser o quadro preenchível também, é uma onda curta.
+- ⚠️ Conferir se skill exige **"execução de código e criação de arquivos"** ligado nas
+  configurações. Duas fontes de creator afirmam que sim, a documentação oficial não fala
+  nada. Se for verdade, falta o primeiro passo do exercício desta aula.
+
+> **Item que saiu daqui:** a versão anterior deste arquivo listava *"o exercício da 1.4
+> ainda baixa um `.docx`"* como pendência aceitável. O terceiro commit da onda resolveu
+> isso, e a linha ficou mentindo dentro do próprio registro que descreve a correção.
+> É a mesma armadilha da contradição 1.3 → 1.4, agora em escala de parágrafo.
