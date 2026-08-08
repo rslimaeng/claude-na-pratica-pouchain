@@ -86,6 +86,11 @@ for f in HTML:
     src = open(f, encoding="utf-8").read()
     for attr, ref in re.findall(r'(href|src)="([^"#][^"]*)"', src):
         if ref.startswith(("http", "mailto", "data:")): continue
+        # link para uma âncora DE OUTRA página (`../#s06`) é legítimo, e o gate
+        # reprovava porque tentava achar um arquivo chamado "#s06". A regex já
+        # ignora href que COMEÇA com `#`; faltava cortar o fragmento do resto.
+        ref = ref.split("#", 1)[0]
+        if not ref: continue
         n_ref += 1
         alvo = os.path.normpath(os.path.join(base, ref))
         if os.path.isdir(alvo): alvo = os.path.join(alvo, "index.html")
@@ -886,6 +891,38 @@ for f in AULAS:
     diz(not fora, "G23", f,
         f"aponta para {fora}, e a maior lista tem {teto}" if fora
         else f"{len(citados)} referências · exercício={n_ex} demo={n_demo}")
+
+# ─── G24 · as oito regras da Gráfica Aurora existem em DOIS lugares na 1.4:
+#      no quadro preenchível (array do JS) e no gabarito (tabela HTML). Se as
+#      duas listas andarem separadas, a pessoa responde uma coisa e confere
+#      outra. Mesma família do G20: cópia da mesma verdade em dois arquivos.
+titulo("G24 · O QUADRO E O GABARITO CLASSIFICAM AS MESMAS OITO REGRAS")
+if os.path.exists(A14):
+    aula = open(A14, encoding="utf-8").read()
+    m = re.search(r"var FIXAS = \[(.*?)\];", aula, re.S)
+    diz(bool(m), "G24", "o quadro declara as oito regras", "" if m else "sem array FIXAS")
+    if m:
+        quadro = re.findall(r"'([^']+)'", m.group(1))
+        gab = re.search(r'<details class="gabarito".*?</details>', aula, re.S)
+        linhas = re.findall(r"<tr>\s*<td>([^<]+)</td>", gab.group(0), re.S) if gab else []
+        gabarito = [re.sub(r"\s+", " ", t).strip() for t in linhas]
+        print(f"        {'quadro':28} {len(quadro)} regras")
+        print(f"        {'gabarito':28} {len(gabarito)} regras")
+        diz(len(quadro) == 8, "G24", "o quadro tem exatamente oito", f"{len(quadro)}")
+        diz(quadro == gabarito, "G24", "as duas listas batem, na mesma ordem",
+            f"diferem em {[i + 1 for i, (a, b) in enumerate(zip(quadro, gabarito)) if a != b]}"
+            if quadro != gabarito else "8 de 8, mesma ordem")
+        # e o texto do exercício não pode prometer outro número. A checagem
+        # exige ACHAR menção: "0 menções" passando é passar no vazio, e foi o
+        # que a primeira versão desta linha fazia.
+        POR_EXTENSO = {6: "seis", 7: "sete", 8: "oito", 9: "nove", 10: "dez"}
+        certo = POR_EXTENSO[len(quadro)]
+        n_txt = re.findall(r"\b(seis|sete|oito|nove|dez)\s+(?:regras\s+)?da Gráfica Aurora", aula)
+        diz(len(n_txt) >= 2 and all(t == certo for t in n_txt), "G24",
+            f"o texto da aula promete '{certo}' em todo lugar",
+            f"achei {n_txt}, e são {len(quadro)} regras" if n_txt.count(certo) != len(n_txt)
+            else f"{len(n_txt)} menções, todas '{certo}'"
+            if len(n_txt) >= 2 else "menos de 2 menções, a checagem passaria no vazio")
 
 # ─────────── o fecho que faltava
 # A lista `falhas` existia desde a onda 1 e NADA a lia: o script imprimia

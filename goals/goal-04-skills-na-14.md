@@ -98,11 +98,44 @@ exercício foi de 4 para **7 passos**, o validador ganhou a **checagem de que a 
 entra sozinha**, e o item final passou de "os dois artefatos" para "os três". Mexeu em
 4 lugares: a 1.4, o card do hub, o hero e o checkpoint.
 
-> **Correção do Rafael na primeira olhada:** *"o tópico 5 não tá no mesmo padrão."*
-> Ele estava certo. Os passos 1 a 4 são título mais uma frase; o 5 tinha virado três
-> parágrafos com três ações empilhadas (escolher, empacotar, testar). Virou **três
-> passos curtos**, no mesmo ritmo dos outros. As alturas agora são 83 · 83 · 108 ·
-> 108 · 83 · 83 · 83 pixels, contra os ~250 do passo 5 anterior.
+### D · 🔴 O exercício sai do `.docx` e a aula ganha `exemplo/`
+
+**Aqui eu errei duas vezes com o mesmo feedback.** O Rafael disse *"o tópico 5 não tá no
+mesmo padrão"*, eu li como ritmo visual e quebrei o passo 5 em três passos curtos. Ele
+teve que explicar de novo: *"eu falei muito no sentido de ter o padrão, exemplos, não
+ser o docx, essas coisas."*
+
+**Padrão de exercício, não de layout.** O levantamento mostrou a 1.4 como a única fora:
+
+| Aula | Quadro preenchível | Pasta `exemplo/` |
+|---|---|---|
+| 1.1 | não (o insumo é planilha) | ✅ |
+| 1.2 | ✅ | não |
+| 1.3 | ✅ | ✅ |
+| **1.4 antes** | ❌ | ❌ |
+
+**O quadro da 1.4** não podia ser textarea como o das outras duas, porque o artefato é
+uma tabela de classificação. Virou 13 linhas (8 fixas mais 5 suas) com cinco opções
+cada, e **o lugar aparece sozinho na direita quando a pessoa responde**. Isso é a tese
+da aula virando mecânica: você não escolhe a tecnologia, responde onde a informação
+precisa estar. Contador de lugares distintos (verde a partir de 2, que é o item 1 do
+validador), prévia numerada **na ordem do gabarito**, botões de imprimir, copiar e
+limpar, `localStorage` e CSS de impressão. O `.docx` desceu para a linha *"prefere
+preencher à mão?"*, igual à 1.3.
+
+**A pasta `exemplo/`** mostra o caminho dos 3 passos acontecendo de verdade: a conversa
+com as quatro correções, o arquivo que voltou, e o teste na conversa nova com a
+descrição ruim ao lado da boa. No meio, o bloco que justifica a página: **a tabela de
+onde saiu cada regra do arquivo final**, que mostra 4 linhas vindas do coordenador e 2
+do Claude. É o argumento de que a skill não é trabalho novo, é trabalho que já existia
+e não estava escrito.
+
+> **A lição:** quando o Rafael diz "padrão", ele fala do **padrão de exercício do
+> módulo**, não de estética. Antes de agir num feedback de uma linha, comparar a página
+> com as irmãs.
+
+> **Nota sobre o passo 5:** a quebra em três passos curtos ficou, porque estava certa de
+> qualquer jeito. Só não era o que ele tinha pedido.
 
 ### C · Os prints viraram HTML, e não imagem
 
@@ -119,10 +152,16 @@ imagem binária, responsiva e legível no celular. A tela **Habilidades** e a sk
 | **G21** | Todo tamanho grande citado na 1.4 sai de um arquivo real: as 292 linhas do `.skill` e as 128 do `00-System_Instruction.md` da 1.3. Pula alto se o insumo não existir na máquina |
 | **G22** | A tela é nomeada como a tela nomeia (**Habilidades**, **por Você**) e a anatomia mostra as três partes na ordem |
 | **G23** | Toda referência a `passo N` aponta para passo que existe naquela aula. Nasceu ao quebrar o passo 5 em três: o validador continuou mandando voltar ao 5, que virou outro |
+| **G24** | As oito regras da Gráfica Aurora existem em dois lugares (o array do quadro e a tabela do gabarito) e têm que bater, na mesma ordem. Mais o texto da aula prometendo o mesmo número |
 
-**Os quatro foram provados contra defeito injetado**, em cópia isolada do repo, com o
+**Os cinco foram provados contra defeito injetado**, em cópia isolada do repo, com o
 defeito entrando em **uma ocorrência só** (trocar todas faria um gate furado passar).
-11 defeitos, 11 reprovados. Total do repo: **27 gates, 216 checagens, exit 0**.
+15 defeitos, 15 reprovados. Total do repo: **28 gates, 228 checagens, exit 0**.
+
+**E um gate antigo foi consertado:** o **G6** reprovava link para âncora de outra página
+(`../#s06`), porque procurava um arquivo chamado `#s06`. Não era exceção, era bug: a
+regex já ignorava href que **começa** com `#`, e faltava cortar o fragmento do resto.
+Depois do conserto, conferido que link morto **com e sem** âncora continua reprovando.
 
 > ⚠️ **O que o G23 não faz, e está escrito no código:** ele confere a **faixa**, não o
 > alvo. Se a lista cresce e a referência antiga continua dentro da faixa, ele passa.

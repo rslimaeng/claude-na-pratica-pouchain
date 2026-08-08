@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exemplo · Uma skill nascendo de uma conversa</title>
+<meta name="description" content="O caminho inteiro de uma skill da Gracia Aurora: a conversa com as correcoes, o pedido de empacotar, o arquivo que voltou e o teste na conversa nova.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F0EEE6; --bg-elev:#FFFFFF; --bg-warm:#E8E6DC; --bg-code:#F5F3EA;
+  --text:#141413; --text-muted:#3D3D3A; --text-dim:#87867F;
+  --border:rgba(20,20,19,.10); --border-strong:rgba(20,20,19,.18);
+  --accent:#1A5670; --accent-dark:#10394C; --accent-soft:#DDEAF0;
+  --accent-tinted:#F4F9FB; --accent-line:rgba(26,86,112,.22);
+  --success:#2E7D32; --success-soft:#F4F9F4;
+  --warning:#B8860B; --warning-soft:#FCF7E8;
+  --col:860px; --col-wide:1140px;
+  --radius-sm:6px; --radius:10px; --radius-lg:14px;
+  --shadow-sm:0 1px 2px rgba(20,20,19,.04),0 1px 3px rgba(20,20,19,.06);
+  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,'SF Mono','Menlo',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);
+  font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.wrap{max-width:var(--col);margin:0 auto;padding:0 24px}
+
+.topo{padding:26px 0 0}
+.volta{font-family:var(--font-mono);font-size:12px;color:var(--text-dim);margin-bottom:18px}
+.kicker{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+h1{font-size:clamp(28px,4vw,38px);font-weight:700;line-height:1.12;
+  letter-spacing:-.02em;margin-bottom:16px}
+.lead{font-size:18px;line-height:1.6;color:var(--text-muted)}
+.lead strong{color:var(--text)}
+.lead + .lead{margin-top:12px}
+.sec{margin:52px 0 0}
+.sec-rot{font-family:var(--font-mono);font-size:11px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--text-dim);margin-bottom:8px}
+h2{font-size:23px;font-weight:700;line-height:1.25;letter-spacing:-.01em;
+  margin-bottom:12px}
+h3{font-size:17px;font-weight:600;line-height:1.3;margin:30px 0 10px}
+.p{font-size:16.5px;color:var(--text-muted);line-height:1.62;margin-bottom:12px}
+.p strong{color:var(--text)}
+
+table{width:100%;border-collapse:collapse;font-size:15px;margin:22px 0 0;
+  background:var(--bg-elev);border:1px solid var(--border);
+  border-radius:var(--radius-lg);overflow:hidden}
+th{text-align:left;padding:11px 16px;background:var(--bg-warm);font-weight:600;
+  font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-dim);
+  border-bottom:1px solid var(--border)}
+td{padding:11px 16px;border-bottom:1px solid var(--border);color:var(--text-muted);
+  vertical-align:top;line-height:1.5}
+tr:last-child td{border-bottom:none}
+td strong{color:var(--text)}
+.tab-wrap{overflow-x:auto}
+.td-cor{font-style:italic;color:var(--text)}
+
+/* CONVERSA · o vai e volta que vira matéria-prima da skill */
+.conv{border:1px solid var(--border);border-radius:var(--radius-lg);
+  background:var(--bg-elev);overflow:hidden;margin:22px 0 0}
+.conv-head{padding:12px 20px;background:var(--bg-warm);
+  border-bottom:1px solid var(--border);font-family:var(--font-mono);
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim)}
+.turno{padding:15px 20px;border-bottom:1px solid var(--border);display:grid;
+  grid-template-columns:104px 1fr;gap:16px;align-items:start}
+.turno:last-child{border-bottom:none}
+.turno-quem{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--text-dim);padding-top:2px;line-height:1.3}
+.turno.eu{background:var(--accent-tinted)}
+.turno.eu .turno-quem{color:var(--accent-dark)}
+.turno-fala{font-size:15.5px;line-height:1.55;color:var(--text-muted);min-width:0}
+.turno-fala strong{color:var(--text)}
+.turno-vira{display:block;margin-top:9px;padding-top:9px;
+  border-top:1px dashed var(--border);font-family:var(--font-mono);
+  font-size:10.5px;letter-spacing:.04em;color:var(--success);line-height:1.45}
+
+/* O ARQUIVO · a skill que voltou, campo a campo */
+.skl{border:1px solid var(--accent-line);border-radius:var(--radius-lg);
+  background:var(--bg-elev);overflow:hidden;margin:22px 0 0}
+.skl-head{padding:13px 20px;background:var(--accent-soft);
+  border-bottom:1px solid var(--accent-line);display:flex;
+  justify-content:space-between;gap:12px;flex-wrap:wrap;
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--accent-dark)}
+.skl-corpo{padding:18px 20px 20px}
+.skl-campo{margin-bottom:16px}
+.skl-campo:last-child{margin-bottom:0}
+.skl-rot{display:block;font-family:var(--font-mono);font-size:10px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--accent-dark);
+  margin-bottom:5px}
+.skl-val{display:block;font-size:15px;color:var(--text-muted);line-height:1.55}
+.skl-val strong{color:var(--text)}
+.skl-cod{font-family:var(--font-mono);font-size:13.5px;color:var(--text)}
+.skl-passos{margin:0;padding-left:20px;font-size:15px;color:var(--text-muted);
+  line-height:1.55}
+.skl-passos li{margin-bottom:5px}
+.skl-passos li:last-child{margin-bottom:0}
+
+/* TESTE · a conversa nova, sem chamar pelo nome */
+.tst{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:22px 0 0}
+.tst-col{border:1px solid var(--border);border-radius:var(--radius-lg);
+  background:var(--bg-elev);overflow:hidden;display:flex;flex-direction:column}
+.tst-head{padding:12px 18px;border-bottom:1px solid var(--border);
+  font-family:var(--font-mono);font-size:10.5px;letter-spacing:.07em;
+  text-transform:uppercase}
+.tst-col.bom .tst-head{background:var(--success-soft);color:#1F5A22}
+.tst-col.ruim .tst-head{background:var(--bg-warm);color:var(--text-dim)}
+.tst-corpo{padding:15px 18px 17px;display:flex;flex-direction:column;gap:10px;flex:1}
+.tst-fala{display:block;font-family:var(--font-mono);font-size:13px;
+  background:var(--bg-code);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:11px 13px;color:var(--text);line-height:1.5}
+.tst-o{display:block;font-size:14.5px;color:var(--text-muted);line-height:1.55}
+.tst-o strong{color:var(--text)}
+.tst-veredito{display:block;margin-top:auto;padding-top:11px;
+  border-top:1px solid var(--border);font-family:var(--font-mono);
+  font-size:10.5px;letter-spacing:.05em;line-height:1.4}
+.tst-col.bom .tst-veredito{color:var(--success)}
+.tst-col.ruim .tst-veredito{color:var(--text-dim)}
+
+.nota{background:var(--warning-soft);border:1px solid rgba(184,134,11,.22);
+  border-radius:var(--radius);padding:18px 22px;margin:22px 0 0}
+.nota-t{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.09em;
+  text-transform:uppercase;color:#7A5A08;margin-bottom:8px}
+.nota p{font-size:15.5px;color:var(--text-muted);line-height:1.6}
+
+.fecho{background:var(--accent-tinted);border:1px solid var(--accent-line);
+  border-radius:var(--radius-lg);padding:22px 26px;margin:26px 0 0}
+.fecho-t{font-size:16px;font-weight:600;color:var(--accent-dark);margin-bottom:8px}
+.fecho p{font-size:15.5px;color:var(--text-muted);line-height:1.6}
+.fecho p strong{color:var(--text)}
+.fecho p + p{margin-top:10px}
+
+.rodape{margin:52px 0 60px;padding-top:22px;border-top:1px solid var(--border);
+  font-size:13.5px;color:var(--text-dim);line-height:1.6}
+
+@media (max-width:760px){
+  .tst{grid-template-columns:1fr}
+  .turno{grid-template-columns:1fr;gap:6px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topo">
+    <div class="volta"><a href="../">&larr; voltar para a aula 1.4</a></div>
+    <div class="kicker">Exemplo montado · Aula 1.4</div>
+    <h1>Uma skill nascendo de uma conversa</h1>
+    <p class="lead">
+      Esta é a skill de um coordenador de PCP da Gráfica Aurora, do começo ao fim. <strong>Ele não sentou para escrever uma skill.</strong> Ele fez a tarefa uma vez, corrigiu quatro coisas, e pediu para empacotar.
+    </p>
+    <p class="lead">
+      A página mostra os três passos na ordem em que aconteceram, e no meio tem a tabela que interessa: <strong>de onde saiu cada regra do arquivo final</strong>.
+    </p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-rot">Passo 1 · a conversa</div>
+    <h2>Ele pediu normal, e corrigiu quatro vezes</h2>
+    <p class="p">
+      A tarefa é a de sempre: montar a pauta do dia a partir do arquivo de ordens de serviço que o sistema exporta. Repare que <strong>nenhuma correção é sobre a ferramenta</strong>. Todas são sobre como a casa trabalha.
+    </p>
+
+    <div class="conv">
+      <div class="conv-head">A conversa, encurtada nas respostas dele</div>
+      <div class="turno eu">
+        <div class="turno-quem">coordenador</div>
+        <div class="turno-fala">Anexei o export de OS. Monta a pauta de produção de hoje para mim.</div>
+      </div>
+      <div class="turno">
+        <div class="turno-quem">Claude</div>
+        <div class="turno-fala">Devolveu uma lista das ordens agrupadas por cliente, em ordem alfabética.</div>
+      </div>
+      <div class="turno eu">
+        <div class="turno-quem">correção 1</div>
+        <div class="turno-fala">
+          Não é por cliente, é <strong>por máquina</strong>. Quem lê isso é o líder de turno, e ele decide olhando a máquina dele.
+          <span class="turno-vira">vira regra: agrupar por máquina, porque quem lê é o líder de turno</span>
+        </div>
+      </div>
+      <div class="turno eu">
+        <div class="turno-quem">correção 2</div>
+        <div class="turno-fala">
+          O campo de status <strong>mente</strong>. Não use ele para dizer o que está atrasado, compare a data de entrega com hoje.
+          <span class="turno-vira">vira regra: atraso se calcula pela data, nunca pelo campo de status</span>
+        </div>
+      </div>
+      <div class="turno eu">
+        <div class="turno-quem">correção 3</div>
+        <div class="turno-fala">
+          Tem OS repetida no arquivo. Quando aparecer o mesmo número duas vezes, <strong>avisa antes</strong> em vez de somar as duas.
+          <span class="turno-vira">vira regra: apontar duplicidade antes de qualquer total</span>
+        </div>
+      </div>
+      <div class="turno eu">
+        <div class="turno-quem">correção 4</div>
+        <div class="turno-fala">
+          Fecha sempre com <strong>as três decisões do dia</strong>. É isso que eu levo para a reunião, o resto é anexo.
+          <span class="turno-vira">vira regra: fechar com três decisões, e é essa a saída que importa</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="nota">
+      <div class="nota-t">O que reparar aqui</div>
+      <p>
+        Essas quatro correções o coordenador já dava <strong>de cabeça, toda vez</strong>, para qualquer pessoa nova que entrasse na função. Elas nunca tinham sido escritas em lugar nenhum. É por isso que a skill não é trabalho novo: <strong>é trabalho que já existia e não estava registrado</strong>.
+      </p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-rot">Passo 2 · empacotar</div>
+    <h2>O arquivo que voltou</h2>
+    <p class="p">
+      Na mesma conversa, ele colou o pedido de empacotar. Antes de escrever qualquer coisa, o Claude listou as quatro correções que tinha detectado, ele conferiu que estavam todas, e aí veio o arquivo:
+    </p>
+
+    <div class="skl">
+      <div class="skl-head">
+        <span>pauta-do-dia</span>
+        <span>a skill inteira</span>
+      </div>
+      <div class="skl-corpo">
+        <div class="skl-campo">
+          <b class="skl-rot">nome</b>
+          <span class="skl-val skl-cod">pauta-do-dia</span>
+        </div>
+        <div class="skl-campo">
+          <b class="skl-rot">descrição</b>
+          <span class="skl-val">
+            Monta a pauta diária de produção a partir do export de ordens de serviço, agrupada por máquina. Use quando o pedido for sobre <strong>programação de máquina, carga do dia, o que está atrasado ou o que vence esta semana</strong>. Também quando ele disser "monta a pauta" ou "o que roda hoje".
+          </span>
+        </div>
+        <div class="skl-campo">
+          <b class="skl-rot">o passo a passo</b>
+          <ol class="skl-passos">
+            <li>Normalize as datas do export antes de qualquer conta, porque vêm em formatos diferentes.</li>
+            <li>Confira se há número de OS repetido. Se houver, liste os repetidos e pare antes de somar.</li>
+            <li>Calcule o atraso comparando a data de entrega com a data de hoje. Não use o campo de status, ele não é confiável.</li>
+            <li>Agrupe por máquina, e dentro de cada máquina ordene pelo que vence primeiro.</li>
+            <li>Marque o que vence nos próximos três dias.</li>
+            <li>Feche com as três decisões do dia, e só elas.</li>
+          </ol>
+        </div>
+        <div class="skl-campo">
+          <b class="skl-rot">erros que esta tarefa costuma ter</b>
+          <span class="skl-val">Somar linha duplicada sem perceber. Confiar no campo de status. Entregar a lista inteira em vez das três decisões.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-rot">A tabela que explica tudo</div>
+    <h2>De onde saiu cada regra do arquivo</h2>
+    <p class="p">
+      Esta é a parte que costuma virar a chave para quem acha que não sabe escrever skill. <strong>Nada aqui foi inventado pelo Claude.</strong> Cada linha do arquivo tem um dono na conversa:
+    </p>
+
+    <div class="tab-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>No arquivo final</th>
+            <th>Veio de onde</th>
+            <th>Quem sabia disso antes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Agrupar por máquina</td>
+            <td class="td-cor">correção 1</td>
+            <td>O coordenador, de cabeça</td>
+          </tr>
+          <tr>
+            <td>Atraso pela data, e não pelo status</td>
+            <td class="td-cor">correção 2</td>
+            <td>O coordenador, de cabeça</td>
+          </tr>
+          <tr>
+            <td>Avisar OS repetida antes de somar</td>
+            <td class="td-cor">correção 3</td>
+            <td>O coordenador, de cabeça</td>
+          </tr>
+          <tr>
+            <td>Fechar com três decisões</td>
+            <td class="td-cor">correção 4</td>
+            <td>O coordenador, de cabeça</td>
+          </tr>
+          <tr>
+            <td>Normalizar as datas antes de contar</td>
+            <td>O Claude, ao ver o arquivo</td>
+            <td><strong>Ninguém tinha dito</strong>, ele reparou sozinho</td>
+          </tr>
+          <tr>
+            <td>Ordenar pelo que vence primeiro</td>
+            <td>O Claude, ao ver o arquivo</td>
+            <td><strong>Ninguém tinha dito</strong>, ele reparou sozinho</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fecho">
+      <div class="fecho-t">Repare na divisão das seis linhas</div>
+      <p>
+        <strong>Quatro vieram de você e duas vieram dele.</strong> As suas são as que ele não teria como saber: quem lê a pauta, que o campo de status mente, o que você leva para a reunião. As dele são as de tratamento de arquivo, que ele faz melhor mesmo.
+      </p>
+      <p>
+        É essa a divisão de trabalho da skill. <strong>Você entra com o que só quem faz o trabalho sabe</strong>, e não com formatação.
+      </p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-rot">Passo 3 · o teste</div>
+    <h2>Numa conversa nova, sem chamar pelo nome</h2>
+    <p class="p">
+      Este é o passo que quase todo mundo pula, e é o único que prova alguma coisa. A pergunta não é "a skill ficou boa", é <strong>ela entra sozinha quando eu peço do meu jeito?</strong>
+    </p>
+
+    <div class="tst">
+      <div class="tst-col ruim">
+        <div class="tst-head">a primeira descrição, que não funcionou</div>
+        <div class="tst-corpo">
+          <span class="tst-fala">Dá uma olhada no que roda hoje.</span>
+          <span class="tst-o">A descrição dizia só <strong>"organiza a produção"</strong>. Ele respondeu de forma genérica e a skill não entrou.</span>
+          <span class="tst-veredito">a descrição não tinha as palavras do dia a dia</span>
+        </div>
+      </div>
+      <div class="tst-col bom">
+        <div class="tst-head">a descrição corrigida</div>
+        <div class="tst-corpo">
+          <span class="tst-fala">Dá uma olhada no que roda hoje.</span>
+          <span class="tst-o">Com <strong>"carga do dia"</strong>, <strong>"o que roda hoje"</strong> e <strong>"programação de máquina"</strong> escritos na descrição, a skill entrou sozinha e a pauta saiu no formato certo.</span>
+          <span class="tst-veredito">entrou sem ninguém chamar pelo nome</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="nota">
+      <div class="nota-t">O conserto foi na descrição, e não no passo a passo</div>
+      <p>
+        O procedimento estava certo desde a primeira versão. O que faltava era ele <strong>ser encontrado</strong>. Sempre que uma skill sua não entrar sozinha, olhe primeiro a descrição, e escreva nela as palavras que você usa quando pede aquilo com pressa.
+      </p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-rot">O outro artefato</div>
+    <h2>E a tabela de decisão?</h2>
+    <p class="p">
+      A tabela preenchida de referência não fica aqui: ela está no <a href="../#s06">gabarito da aula</a>, com as oito regras da Gráfica Aurora classificadas e o porquê de cada uma. <strong>Abra depois de ter respondido as suas</strong>, e não antes.
+    </p>
+    <p class="p">
+      A regra desta página é a mesma: <strong>o seu vai ser diferente do meu, e tudo bem.</strong> Compare o caminho, e não o conteúdo.
+    </p>
+  </div>
+
+  <p class="rodape">
+    Exemplo da <a href="../">aula 1.4</a> · Gráfica Aurora é uma indústria gráfica fictícia criada para o treinamento. O coordenador é um personagem, e nenhuma pessoa real aparece neste material.
+  </p>
+
+</div>
+</body>
+</html>

@@ -118,7 +118,8 @@ a:hover{color:var(--accent-dark)}
 .checkpoint-primeiro .tx{display:block;font-size:16px;line-height:1.55;color:var(--text)}
 .checkpoint-primeiro .tx strong{font-weight:600}
 /* CARTÃO · a demonstração passo a passo */
-.saidas{display:grid;grid-template-columns:1fr;gap:14px;margin:26px 0 0;align-items:stretch}
+.saidas{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));
+  gap:14px;margin:26px 0 0;align-items:stretch}
 .saida{display:flex;flex-direction:column;padding:20px 22px;
   border:1px solid var(--border);border-radius:var(--radius-lg);
   background:var(--bg-elev);color:var(--text)}
@@ -659,6 +660,95 @@ td code,.step-body code,.gabarito-body code{font-family:var(--font-mono);font-si
   .vit-nivel{grid-template-columns:1fr}
   .vs-linha{grid-template-columns:1fr}
   .vs-cel + .vs-cel{border-left:none;border-top:1px solid var(--border)}
+}
+
+/* ============================================================
+   QUADRO DA TABELA DE DECISÃO · o exercício acontece na página, e não
+   num .docx que a pessoa baixa, preenche fora e não sabe como usar.
+   Mesmo componente das aulas 1.2 e 1.3, com o controle desta aula:
+   a pessoa responde a pergunta e O LUGAR APARECE SOZINHO, que é
+   literalmente a tese da aula virando mecânica.
+   ============================================================ */
+.quadro{background:var(--bg-elev);border:1px solid var(--border);
+  border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);
+  margin:24px 0 10px;overflow:hidden}
+.quadro-topo{display:flex;align-items:center;justify-content:space-between;
+  gap:14px;flex-wrap:wrap;padding:15px 24px;background:var(--bg-warm);
+  border-bottom:1px solid var(--border)}
+.quadro-titulo{font-size:15.5px;font-weight:600;color:var(--text)}
+.quadro-salvo{font-family:var(--font-mono);font-size:11px;
+  letter-spacing:.05em;color:var(--text-dim)}
+.quadro-corpo{padding:22px 24px 24px}
+.bloco-rot{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--accent-dark);margin:0 0 4px}
+.bloco-dica{font-size:14px;color:var(--text-dim);line-height:1.55;margin:0 0 14px}
+.bloco-rot + .bloco-dica{margin-top:0}
+.linhas + .bloco-rot{margin-top:26px}
+.linhas{display:flex;flex-direction:column;gap:8px}
+.lin{display:grid;grid-template-columns:1fr 344px 128px;gap:14px;
+  align-items:center;padding:11px 14px;border:1px solid var(--border);
+  border-radius:var(--radius);background:var(--bg-code)}
+.lin-regra{font-size:14.5px;color:var(--text);line-height:1.4;min-width:0}
+.lin-in{width:100%;box-sizing:border-box;font-family:var(--font-body);
+  font-size:14.5px;color:var(--text);background:var(--bg-elev);
+  border:1px solid var(--border-strong);border-radius:var(--radius-sm);
+  padding:9px 11px;line-height:1.4;transition:border-color .15s}
+.lin-in:focus{outline:none;border-color:var(--accent)}
+.lin-opts{display:flex;gap:5px;flex-wrap:wrap;min-width:0}
+.lin-opts label{display:flex;align-items:center;cursor:pointer;position:relative}
+.lin-opts input{position:absolute;opacity:0;width:100%;height:100%;
+  margin:0;cursor:pointer}
+.opt{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.03em;
+  padding:6px 9px;border-radius:var(--radius-sm);border:1px solid var(--border);
+  background:var(--bg-elev);color:var(--text-dim);line-height:1.2;
+  transition:background .12s,border-color .12s,color .12s;white-space:nowrap}
+.lin-opts input:focus-visible + .opt{outline:2px solid var(--accent);outline-offset:1px}
+.lin-opts input:checked + .opt{background:var(--accent);border-color:var(--accent);
+  color:#fff;font-weight:500}
+.lin-opts input[value="cerca"]:checked + .opt{background:var(--danger);
+  border-color:var(--danger)}
+.lin-lugar{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.04em;
+  line-height:1.3;color:var(--text-dim);text-align:right;min-width:0}
+.lin-lugar.tem{color:var(--accent-dark);font-weight:500}
+.lin-lugar.cerca{color:var(--danger);font-weight:500}
+.previa{border-top:1px solid var(--border);background:var(--bg-code);
+  padding:19px 24px 22px}
+.previa-topo{display:flex;align-items:baseline;justify-content:space-between;
+  gap:12px;flex-wrap:wrap;margin-bottom:9px}
+.previa-h{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--text-dim)}
+.conta{font-family:var(--font-mono);font-size:11.5px;color:var(--text-dim)}
+.conta b{color:var(--text)}
+.conta.dentro b{color:var(--success)}
+.previa-corpo{font-family:var(--font-mono);font-size:12.5px;line-height:1.65;
+  color:var(--text);white-space:pre-wrap;word-wrap:break-word;
+  background:var(--bg-elev);border:1px solid var(--border);
+  border-radius:var(--radius);padding:16px;max-height:340px;overflow-y:auto}
+.previa-corpo.vazio{color:var(--text-dim)}
+.quadro-acoes{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.quadro-btn{padding:11px 20px;background:var(--accent);color:#fff;
+  border:1px solid var(--accent);border-radius:var(--radius);
+  font-family:var(--font-body);font-weight:600;font-size:14.5px;
+  cursor:pointer;transition:background .15s}
+.quadro-btn:hover{background:var(--accent-dark)}
+.quadro-btn.ghost{background:transparent;color:var(--accent);
+  border-color:var(--accent-line)}
+.quadro-btn.ghost:hover{background:var(--accent-tinted);color:var(--accent-dark)}
+.papel{font-size:14px;color:var(--text-dim);line-height:1.55;margin:14px 0 0}
+.papel a{color:var(--accent);font-weight:500}
+
+@media (max-width:900px){
+  .lin{grid-template-columns:1fr;gap:9px}
+  .lin-lugar{text-align:left}
+}
+/* na impressão, o que interessa é a tabela pronta, não os controles */
+@media print{
+  .site-header,.crumbs,.hero,.destino,.step,.checagem,.checkpoint,.hook,
+  .nav-bottom,.site-footer,.ementa-nota{display:none}
+  #s05{display:block}
+  #s05 .quadro-corpo,#s05 .quadro-acoes,#s05 .passos,#s05 .callout,
+  #s05 .papel,#s05 .step-header,#s05 p{display:none}
+  .quadro,.previa-corpo{border:none;box-shadow:none;max-height:none}
 }
 
 /* BREAKOUT · figura e tabela saem da coluna de leitura, prosa fica */
@@ -1482,6 +1572,10 @@ Não invente regra que eu não disse. Se faltar alguma decisão, pergunte antes 
         Repare no <strong>segundo parágrafo</strong> do pedido. Mandar listar antes de escrever é o que impede a skill de nascer com metade das suas correções perdidas, e vale para qualquer coisa importante que você peça a ele.
       </p>
 
+      <p class="fig-leg">
+        Quer ver esse caminho inteiro acontecendo? <a href="./exemplo/">O exemplo montado desta aula</a> tem a conversa com as quatro correções, o arquivo que voltou e o teste, mais a tabela que mostra <strong>de onde saiu cada regra</strong> do arquivo final.
+      </p>
+
       <div class="callout callout-warn">
         <div class="callout-title">A primeira versão nunca é a boa, e isso é normal</div>
         <p>
@@ -1682,6 +1776,12 @@ Não invente regra que eu não disse. Se faltar alguma decisão, pergunte antes 
           <span class="s-desc">A skill que não entra, a que entra sozinha, e os outros dois gatilhos. No último passo, <strong>três regras reais de uma gráfica</strong> e onde cada uma mora: Project, skill, ou nenhum dos dois.</span>
           <span class="s-cta">ver a demonstração &rarr;</span>
         </a>
+        <a class="saida" href="./exemplo/">
+          <span class="s-rot">O exemplo montado</span>
+          <span class="s-titulo">Uma skill nascendo de uma conversa, do começo ao fim</span>
+          <span class="s-desc">A conversa com as quatro correções, o arquivo que voltou e o teste na conversa nova. No meio, a tabela que mostra <strong>de onde saiu cada regra</strong> do arquivo final.</span>
+          <span class="s-cta">ver o exemplo &rarr;</span>
+        </a>
       </div>
 </div>
   </section>
@@ -1700,21 +1800,43 @@ Não invente regra que eu não disse. Se faltar alguma decisão, pergunte antes 
         Este é o exercício que fecha o módulo 1, e saem dele <strong>duas coisas</strong>: a tabela de decisão, que fica impressa na sua mesa, e a sua primeira skill, funcionando na sua conta. As duas vão ser usadas nos módulos 2 e 3.
       </p>
 
-      <div class="download-card">
-        <div class="download-info">
-          <div class="download-filename">
-            <span class="download-icon">DOC</span>
-            <span>tabela-de-decisao-PARTIDA.docx</span>
-          </div>
-          <div class="download-meta">Oito regras da Gráfica Aurora para classificar, mais a tabela em branco para as suas. Word, para preencher e imprimir.</div>
+      <div class="quadro">
+        <div class="quadro-topo">
+          <div class="quadro-titulo">A minha tabela de decisão</div>
+          <div class="quadro-salvo" id="t-salvo">o que você marcar fica salvo neste navegador</div>
         </div>
-        <a class="download-btn" href="exercicio/tabela-de-decisao-PARTIDA.docx" download>Baixar</a>
+
+        <div class="quadro-corpo">
+          <p class="bloco-rot">Parte 1 · as oito da Gráfica Aurora</p>
+          <p class="bloco-dica">Responda só a pergunta. <strong>O lugar aparece sozinho na direita</strong>, e é essa a tese da aula: você não escolhe a tecnologia, você responde onde a informação precisa estar.</p>
+          <div class="linhas" id="t-fixas"></div>
+
+          <p class="bloco-rot">Parte 2 · as suas cinco</p>
+          <p class="bloco-dica">Volte no texto de regras da aula 1.3, tire cinco regras e escreva cada uma aqui. É bem provável que duas ou três não deveriam estar lá.</p>
+          <div class="linhas" id="t-minhas"></div>
+        </div>
+
+        <div class="previa">
+          <div class="previa-topo">
+            <div class="previa-h">A sua tabela, pronta para imprimir</div>
+            <div class="conta" id="t-conta"><b>0</b> lugares diferentes</div>
+          </div>
+          <div class="previa-corpo vazio" id="t-previa">Marque as regras acima e a tabela aparece aqui.</div>
+          <div class="quadro-acoes">
+            <button class="quadro-btn" id="t-imprimir" type="button">Imprimir a tabela</button>
+            <button class="quadro-btn ghost" id="t-copiar" type="button">Copiar</button>
+            <button class="quadro-btn ghost" id="t-limpar" type="button">Limpar</button>
+          </div>
+        </div>
       </div>
+      <p class="papel">
+        Prefere preencher à mão? A tabela em branco também está em <a href="exercicio/tabela-de-decisao-PARTIDA.docx" download>tabela-de-decisao-PARTIDA.docx</a>.
+      </p>
 
       <ol class="passos">
         <li>
           <div class="passo-title">Classifique as oito da Gráfica Aurora</div>
-          <p>Para cada uma, responda só a pergunta: <strong>sempre, às vezes ou nunca?</strong> Depois marque o lugar. Não pense em tecnologia, pense na pergunta.</p>
+          <p>Na parte 1 do quadro acima, responda só a pergunta: <strong>sempre, às vezes ou nunca?</strong> Não pense em tecnologia, pense na pergunta. O lugar aparece sozinho.</p>
         </li>
         <li>
           <div class="passo-title">Ache a que não mora em lugar nenhum</div>
@@ -1726,7 +1848,7 @@ Não invente regra que eu não disse. Se faltar alguma decisão, pergunte antes 
         </li>
         <li>
           <div class="passo-title">Imprima</div>
-          <p>Esta tabela é para ficar na sua mesa, e não no computador. Você vai usar ela nos dois módulos seguintes, toda vez que aparecer a dúvida de onde guardar uma regra nova.</p>
+          <p>Use o botão <strong>Imprimir a tabela</strong>, no fim do quadro. Ela é para ficar na sua mesa, e não no computador: você vai usar ela nos dois módulos seguintes, toda vez que aparecer a dúvida de onde guardar uma regra nova.</p>
         </li>
         <li>
           <div class="passo-title">Escolha a tarefa que vira skill</div>
@@ -2017,18 +2139,165 @@ Não invente regra que eu não disse. Se faltar alguma decisão, pergunte antes 
     document.body.removeChild(ta);
     show(deu ? 'Prompt copiado ✓' : 'Não deu para copiar. Selecione o texto e use Ctrl+C');
   }
+  function copiar(txt, ok){
+    if(!txt) return;
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(function(){ show(ok); },
+        function(){ fallback(txt); });
+    } else { fallback(txt); }
+  }
   document.querySelectorAll('.prompt-btn').forEach(function(btn){
     btn.addEventListener('click', function(){
       var box = btn.closest('.prompt-box');
-      var txt = box ? box.querySelector('.prompt-content').innerText : '';
-      if(!txt) return;
-      if(navigator.clipboard && navigator.clipboard.writeText){
-        navigator.clipboard.writeText(txt).then(
-          function(){ show('Prompt copiado ✓'); },
-          function(){ fallback(txt); });
-      } else { fallback(txt); }
+      copiar(box ? box.querySelector('.prompt-content').innerText : '', 'Prompt copiado ✓');
     });
   });
+
+  /* ── a tabela de decisão ───────────────────────────────────────────────
+     A pessoa responde a pergunta e o lugar aparece sozinho. É a tese da
+     aula virando mecânica: não se escolhe a tecnologia, se responde onde a
+     informação precisa estar.                                            */
+  var CHAVE = 'pouchain_a14_tabela_v1';
+  var OPCOES = [
+    { v:'sempre',  rot:'sempre',   lugar:'Instruções' },
+    { v:'asvezes', rot:'às vezes', lugar:'Skill ou comando' },
+    { v:'nunca',   rot:'nunca',    lugar:'Conector' },
+    { v:'pacote',  rot:'pacote',   lugar:'Plugin' },
+    { v:'cerca',   rot:'cerca',    lugar:'Fora do modelo' }
+  ];
+  // as oito da Gráfica Aurora. O gabarito da seção 06 responde estas mesmas
+  // oito, na mesma ordem, e o gate G24 confere que as duas listas batem.
+  var FIXAS = [
+    'Valor sempre em reais, com vírgula decimal',
+    'Como montar a pauta diária de produção',
+    'Nunca usar termo em inglês nas saídas',
+    'Gerar a proposta comercial no formato padrão',
+    'Buscar o pedido no sistema em vez de eu exportar',
+    'Nenhum preço vai ao cliente sem aprovação',
+    'Como conferir o ponto no fechamento do mês',
+    'Pacote com as três skills do PCP para o time todo'
+  ];
+
+  var caixaFixas = document.getElementById('t-fixas');
+  if(caixaFixas){
+    var caixaMinhas = document.getElementById('t-minhas');
+    var previa  = document.getElementById('t-previa');
+    var conta   = document.getElementById('t-conta');
+    var aviso   = document.getElementById('t-salvo');
+
+    function opcoes(nome){
+      return OPCOES.map(function(o){
+        return '<label><input type="radio" name="' + nome + '" value="' + o.v +
+               '"><span class="opt">' + o.rot + '</span></label>';
+      }).join('');
+    }
+    function linha(nome, regra){
+      var d = document.createElement('div');
+      d.className = 'lin';
+      d.innerHTML =
+        (regra !== null
+          ? '<div class="lin-regra">' + regra + '</div>'
+          : '<input class="lin-in" type="text" id="' + nome + '-txt" ' +
+            'placeholder="escreva uma regra sua">') +
+        '<div class="lin-opts">' + opcoes(nome) + '</div>' +
+        '<div class="lin-lugar" id="' + nome + '-lug">falta responder</div>';
+      return d;
+    }
+    FIXAS.forEach(function(r, i){ caixaFixas.appendChild(linha('f' + i, r)); });
+    for(var k = 0; k < 5; k++){ caixaMinhas.appendChild(linha('m' + k, null)); }
+
+    function marcada(nome){
+      var el = document.querySelector('input[name="' + nome + '"]:checked');
+      if(!el) return null;
+      for(var i = 0; i < OPCOES.length; i++){
+        if(OPCOES[i].v === el.value) return OPCOES[i];
+      }
+      return null;
+    }
+    function texto(nome, i){
+      if(nome.charAt(0) === 'f') return FIXAS[i];
+      var el = document.getElementById(nome + '-txt');
+      return el ? el.value.trim() : '';
+    }
+    function pintar(){
+      var linhas = [], lugares = {};
+      ['f', 'm'].forEach(function(p){
+        var n = p === 'f' ? FIXAS.length : 5;
+        for(var i = 0; i < n; i++){
+          var nome = p + i, o = marcada(nome), t = texto(nome, i);
+          var lug = document.getElementById(nome + '-lug');
+          lug.className = 'lin-lugar' + (o ? (o.v === 'cerca' ? ' cerca' : ' tem') : '');
+          lug.textContent = o ? o.lugar : 'falta responder';
+          // a numeração é a POSIÇÃO da regra, e não a ordem em que ela foi
+          // respondida: o gabarito lista as oito nesta ordem, e renumerar só
+          // as marcadas fazia a linha 6 virar "3" e não bater com ele.
+          if(t){ linhas.push({ p:p, n:i + 1, t:t, o:o }); }
+          if(o && t){ lugares[o.lugar] = 1; }
+        }
+      });
+      var n = Object.keys(lugares).length;
+      conta.innerHTML = '<b>' + n + '</b> lugar' + (n === 1 ? '' : 'es') + ' diferente' + (n === 1 ? '' : 's');
+      conta.className = 'conta' + (n >= 2 ? ' dentro' : '');
+      var out = [], vistos = {}, respondidas = 0;
+      linhas.forEach(function(l){
+        if(!vistos[l.p]){
+          vistos[l.p] = 1;
+          out.push((out.length ? '\n' : '') +
+            (l.p === 'f' ? 'AS OITO DA GRÁFICA AURORA' : 'AS MINHAS CINCO'));
+        }
+        if(l.o) respondidas++;
+        out.push(l.n + '. ' + l.t + '\n   ' +
+                 (l.o ? l.o.rot + ' → ' + l.o.lugar : '( falta responder )'));
+      });
+      previa.textContent = respondidas
+        ? 'TABELA DE DECISÃO · onde cada regra mora\n\n' + out.join('\n')
+        : 'Marque as regras acima e a tabela aparece aqui.';
+      previa.className = 'previa-corpo' + (respondidas ? '' : ' vazio');
+      guardar();
+    }
+    function guardar(){
+      var e = {};
+      document.querySelectorAll('.lin input[type="radio"]:checked')
+        .forEach(function(r){ e[r.name] = r.value; });
+      for(var k = 0; k < 5; k++){
+        var t = document.getElementById('m' + k + '-txt');
+        if(t && t.value) e['m' + k + '-txt'] = t.value;
+      }
+      try { localStorage.setItem(CHAVE, JSON.stringify(e)); aviso.textContent = 'salvo neste navegador'; }
+      catch(err){ aviso.textContent = 'este navegador não deixa salvar, copie antes de fechar'; }
+    }
+    try {
+      var salvo = JSON.parse(localStorage.getItem(CHAVE) || '{}');
+      Object.keys(salvo).forEach(function(k){
+        if(k.indexOf('-txt') > 0){
+          var t = document.getElementById(k); if(t) t.value = salvo[k];
+        } else {
+          var r = document.querySelector('input[name="' + k + '"][value="' + salvo[k] + '"]');
+          if(r) r.checked = true;
+        }
+      });
+    } catch(err){}
+
+    document.querySelectorAll('.lin input,.lin-in').forEach(function(el){
+      el.addEventListener('change', pintar);
+      el.addEventListener('input', pintar);
+    });
+    document.getElementById('t-copiar').addEventListener('click', function(){
+      copiar(previa.classList.contains('vazio') ? '' : previa.textContent, 'Tabela copiada ✓');
+    });
+    document.getElementById('t-imprimir').addEventListener('click', function(){
+      if(previa.classList.contains('vazio')){ show('Marque as regras antes de imprimir'); return; }
+      window.print();
+    });
+    document.getElementById('t-limpar').addEventListener('click', function(){
+      if(!confirm('Isso apaga tudo que você marcou nesta tabela. Continuar?')) return;
+      document.querySelectorAll('.lin input[type="radio"]').forEach(function(r){ r.checked = false; });
+      document.querySelectorAll('.lin-in').forEach(function(t){ t.value = ''; });
+      try { localStorage.removeItem(CHAVE); } catch(err){}
+      pintar();
+    });
+    pintar();
+  }
 })();
 </script>
 
