@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Módulo 1 · Escolher a ferramenta certa e onde guardar cada coisa</title>
-<meta name="description" content="Módulo 1 do treinamento Claude na Prática: as quatro superfícies, a física do contexto, como pedir e onde guardar a regra.">
+<title>Módulo 2 · Trabalhar nos seus arquivos e deixar a rotina rodando</title>
+<meta name="description" content="Módulo 2 do treinamento Claude na Prática: o Cowork trabalhando na pasta onde o seu relatório já cai, a skill virando arquivo, a planilha ponta a ponta e a primeira rotina agendada.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -100,6 +100,18 @@ a:hover{color:var(--accent-dark)}
 .callout p + p{margin-top:10px}
 .callout strong{color:var(--text)}
 .callout em{font-style:italic}
+/* o callout do M1 só tinha <p>, então lista dentro dele nunca teve regra: o
+   <ul> nascia com margem e recuo zero e colava no parágrafo seguinte. Mesma
+   marca e mesmo corpo de texto do resto do bloco, para a lista ler como
+   continuação da frase que a apresenta, e não como outro componente. */
+.callout ul{list-style:none;margin:11px 0;font-size:15.5px;
+  color:var(--text-muted);line-height:1.55}
+.callout li{padding-left:16px;position:relative}
+.callout li + li{margin-top:8px}
+.callout li::before{content:"·";position:absolute;left:4px;font-weight:700}
+.callout-warn li::before{color:var(--warning)}
+.callout-info li::before{color:var(--accent)}
+.callout ul + p{margin-top:11px}
 
 /* AULAS */
 .aulas{display:grid;gap:16px;margin-bottom:56px}
@@ -207,7 +219,7 @@ a:hover{color:var(--accent-dark)}
       </div>
     </a>
     <div class="header-meta">
-      <span class="chip chip-accent">Módulo 1 de 3</span>
+      <span class="chip chip-accent">Módulo 2 de 3</span>
     </div>
   </div>
 </header>
@@ -215,207 +227,267 @@ a:hover{color:var(--accent-dark)}
 <div class="crumbs">
   <a href="../">Início</a>
   <span class="sep">›</span>
-  <span>Módulo 1</span>
+  <span>Módulo 2</span>
 </div>
 
 <main class="wrap">
 
   <section class="hero">
-    <div class="hero-kicker">Módulo 1 · quatro aulas curtas</div>
-    <h1>Escolher a ferramenta certa e onde guardar cada coisa</h1>
+    <div class="hero-kicker">Módulo 2 · seis aulas curtas</div>
+    <h1>Trabalhar nos seus arquivos e deixar a rotina rodando</h1>
     <p class="hero-sub">
-      Você já conversa bem com o Claude. Aqui você <strong>para de reexplicar tudo toda vez</strong> e passa a saber onde cada coisa fica guardada. É o módulo que faz os outros dois fazerem sentido, e o único que roda inteiro no navegador, sem instalar nada.
+      No Módulo 1 você aprendeu a pedir e a guardar as suas regras, mas o arquivo ainda passa pela sua mão: você exporta, abre, copia e cola. <strong>Aqui esse trajeto acaba.</strong> O Claude passa a trabalhar dentro da pasta onde o seu relatório já cai hoje, e o que você repete toda semana vira rotina que roda sozinha.
     </p>
     <div class="hero-meta">
       <span class="meta-label">Onde roda</span>
-      <span class="chip">Claude Chat</span>
-      <span class="chip">Claude Project</span>
+      <span class="chip">Claude Cowork</span>
       <span class="meta-label" style="margin-left:12px">Níveis</span>
-      <span class="chip chip-accent">0 · 1 · 2 · 3</span>
-      <span class="chip chip-ementa">Ementa · Módulo 1</span>
+      <span class="chip chip-accent">3 · 4 · 6</span>
+      <span class="chip chip-ementa">Ementa · Módulo 2</span>
     </div>
   </section>
 
-  <div class="callout callout-info">
-    <div class="callout-title">Nada para instalar neste módulo</div>
+  <div class="callout callout-warn">
+    <div class="callout-title">Este módulo instala coisa. O que ter pronto antes</div>
     <p>
-      As quatro aulas rodam no <strong>Claude Chat e no Claude Project</strong>, no navegador. Cowork e Code entram no Módulo 2 e no Módulo 3. Se algum exercício daqui te pedir para abrir um terminal, é erro nosso. <strong>Avise</strong>.
+      O Módulo 1 roda inteiro no navegador. Este não: o <strong>Cowork é um aplicativo que fica no seu computador</strong>, e ele trabalha em pastas de verdade, com os seus arquivos de verdade. Três coisas precisam estar resolvidas <strong>antes</strong> da aula, e nenhuma delas dá para resolver na hora:
+    </p>
+    <ul>
+      <li><strong>O Cowork instalado no notebook que você vai trazer</strong>, e aberto pelo menos uma vez</li>
+      <li><strong>A sua conta Claude ativa nesse notebook</strong>, com o plano que a empresa contratou</li>
+      <li><strong>Se a conta da empresa for do tipo Team ou Enterprise</strong>, quem administra a conta precisa ter liberado os conectores antes. Nesse tipo de conta ninguém consegue conectar um sistema sozinho, por mais que queira, e isso trava a aula de conector para a turma inteira</li>
+    </ul>
+    <p>
+      Você recebe o passo a passo da instalação antes do dia. Se travar, <strong>avise antes e não no dia</strong>: vinte pessoas instalando ao mesmo tempo é o que faz um módulo de cinco horas virar de três.
     </p>
   </div>
 
   <section>
-    <div class="section-title">As quatro aulas</div>
+    <div class="section-title">As seis aulas</div>
     <p class="section-lead">
-      Cada aula termina apontando a trava que ela <strong>não</strong> resolve. É essa trava que abre a aula seguinte, por isso a ordem importa.
+      Mesma lógica do Módulo 1: cada aula termina apontando a trava que ela <strong>não</strong> resolve, e é essa trava que abre a seguinte. A diferença é que agora você trabalha em cima dos seus arquivos, e não mais em cima de texto colado.
     </p>
 
     <div class="aulas">
 
-      <a href="./a1-ecossistema-e-fisica/" class="aula-card ready">
+      <div class="aula-card soon">
         <div class="aula-top">
-          <span class="aula-num">Aula 1.1</span>
-          <span class="rec">Chat · as 4 superfícies</span>
-          <span class="chip chip-ementa">Ementa 1.1</span>
-          <span class="aula-status ok">Pronta</span>
+          <span class="aula-num">Aula 2.1</span>
+          <span class="rec">Cowork · pasta de trabalho</span>
+          <span class="chip chip-ementa">Ementa 2.1</span>
+          <span class="aula-status">Em breve</span>
         </div>
-        <h3 class="aula-title">Onde abrir, e por que ele piora no meio da conversa</h3>
+        <h3 class="aula-title">Onde ele pode entrar, e o que ele pode fazer lá dentro</h3>
         <div class="aula-body">
           <div class="aula-bloco">
             <div class="aula-bloco-label">O que você aprende</div>
             <ul>
-              <li>As quatro superfícies: Chat, Project, Cowork e Code, e o que cada uma consegue fazer</li>
-              <li>Por que a conversa longa piora, e por que não é o Claude "cansando"</li>
+              <li>Por que a pasta que você aponta é a decisão mais importante do módulo, e não um detalhe de configuração</li>
+              <li>O que ele faz sozinho, o que ele pergunta antes e o que ele nunca faz</li>
+              <li>Por que o projeto do Cowork não é o mesmo Project que você usou na aula 1.3</li>
             </ul>
           </div>
           <div class="aula-bloco">
             <div class="aula-bloco-label">Você aplica em</div>
-            <p>Uma tarefa real do seu setor, feita duas vezes: com pedido vago e com pedido situado. Você mede a diferença em <strong>número de idas e vindas</strong>.</p>
+            <p>A pasta onde o relatório que <strong>você já exporta hoje</strong> cai. Nada de pasta de exemplo: é a sua, com os seus arquivos de verdade.</p>
           </div>
         </div>
-        <div class="aula-hook">Pedido vago parece mais rápido e custa mais caro. Então como é que se pede direito?</div>
-        <div class="aula-cta">abrir aula →</div>
-      </a>
+        <div class="aula-hook">Ele alcança os seus arquivos. Mas ainda não sabe o jeito da casa.</div>
+        <div class="aula-cta">em breve</div>
+      </div>
 
-      <a href="./a2-pedir-para-entregar/" class="aula-card ready">
+      <div class="aula-card soon">
         <div class="aula-top">
-          <span class="aula-num">Aula 1.2</span>
-          <span class="rec">Chat</span>
-          <span class="chip chip-ementa">Ementa 1.4</span>
-          <span class="aula-status ok">Pronta</span>
+          <span class="aula-num">Aula 2.2</span>
+          <span class="rec">Cowork · skill em arquivo</span>
+          <span class="chip chip-ementa">Ementa 2.2</span>
+          <span class="aula-status">Em breve</span>
         </div>
-        <h3 class="aula-title">Pedir de um jeito que a primeira resposta já sirva</h3>
+        <h3 class="aula-title">A sua skill sai do navegador e vira arquivo</h3>
         <div class="aula-body">
           <div class="aula-bloco">
             <div class="aula-bloco-label">O que você aprende</div>
             <ul>
-              <li>Pedir pelo resultado, não pela tarefa</li>
-              <li>As três perguntas que todo pedido precisa responder: o que é "pronto", quais são as restrições, o que fazer na dúvida</li>
+              <li>A skill que você escreveu na aula 1.4 vira um arquivo dentro da pasta, e passa a valer para quem abrir aquela pasta</li>
+              <li>A diferença entre a skill que é só sua e a que é do seu time, e por que essa escolha muda quem consegue usar</li>
+              <li>Como testar contra o caso difícil, e não só contra o caso que você tinha em mente quando escreveu</li>
             </ul>
           </div>
           <div class="aula-bloco">
             <div class="aula-bloco-label">Você aplica em</div>
-            <p>Reescrever um pedido de verdade que você fez ao Claude esta semana.</p>
+            <p>A sua própria skill do Módulo 1, agora rodando sobre arquivos reais. Você testa em <strong>dois casos</strong>: um mês normal e um mês com exceção.</p>
           </div>
         </div>
-        <div class="aula-hook">Funcionou. Amanhã, em conversa nova, o pedido não existe mais.</div>
-        <div class="aula-cta">abrir aula →</div>
-      </a>
+        <div class="aula-hook">Funcionou no caso fácil. E quando o mês tem exceção?</div>
+        <div class="aula-cta">em breve</div>
+      </div>
 
-      <a href="./a3-regra-que-fica/" class="aula-card ready">
+      <div class="aula-card soon">
         <div class="aula-top">
-          <span class="aula-num">Aula 1.3</span>
-          <span class="rec">Project · Instruções</span>
-          <span class="chip chip-ementa">Ementa 1.2</span>
-          <span class="aula-status ok">Pronta</span>
+          <span class="aula-num">Aula 2.3</span>
+          <span class="rec">Cowork · planilha</span>
+          <span class="chip chip-ementa">Ementa 2.4</span>
+          <span class="aula-status">Em breve</span>
         </div>
-        <h3 class="aula-title">A regra que fica</h3>
+        <h3 class="aula-title">A planilha ponta a ponta, sem a montagem no meio</h3>
         <div class="aula-body">
           <div class="aula-bloco">
             <div class="aula-bloco-label">O que você aprende</div>
             <ul>
-              <li>Onde mora a regra que não pode se perder no fim da conversa</li>
-              <li>Por que encher de arquivo <strong>piora</strong> em vez de melhorar</li>
+              <li>O caminho inteiro numa passada: o relatório que saiu do sistema vira análise, e a análise vira a decisão que você precisava tomar</li>
+              <li>O que fazer com a planilha suja de verdade: coluna com nome torto, data em dois formatos, linha em branco no meio</li>
+              <li>Como pedir o resultado no formato que a sua reunião usa, e não no formato que ele escolheu</li>
             </ul>
           </div>
           <div class="aula-bloco">
             <div class="aula-bloco-label">Você aplica em</div>
-            <p>Escrever o texto das <strong>regras da sua função</strong>. Ele entra hoje no seu Project, e vira o arquivo do Módulo 2 sem mudar uma linha.</p>
+            <p>O relatório real do seu setor. É a aula em que a rotina de exportar, colar e montar na mão <strong>desaparece inteira</strong>, e você vê o tempo que ela custava.</p>
           </div>
         </div>
-        <div class="aula-hook">Seu texto tem 200 linhas e metade não serve para a tarefa de agora.</div>
-        <div class="aula-cta">abrir aula →</div>
-      </a>
+        <div class="aula-hook">E o dado que não está em planilha nenhuma, que só existe dentro do sistema?</div>
+        <div class="aula-cta">em breve</div>
+      </div>
 
-      <a href="./a4-o-mapa/" class="aula-card ready">
+      <div class="aula-card soon">
         <div class="aula-top">
-          <span class="aula-num">Aula 1.4</span>
-          <span class="rec">Skill · Comando · MCP · Plugin</span>
-          <span class="chip chip-ementa">Ementa 1.3</span>
-          <span class="aula-status ok">Pronta</span>
+          <span class="aula-num">Aula 2.4</span>
+          <span class="rec">Conector · MCP</span>
+          <span class="chip chip-ementa">Ementa 2.1</span>
+          <span class="aula-status">Em breve</span>
         </div>
-        <h3 class="aula-title">O mapa: onde cada regra mora</h3>
+        <h3 class="aula-title">Conectores, e o que fazer quando o sistema não abre a porta</h3>
         <div class="aula-body">
           <div class="aula-bloco">
             <div class="aula-bloco-label">O que você aprende</div>
             <ul>
-              <li>Skill, comando, conector e plugin sem jargão: <strong>uma pergunta decide</strong> onde cada regra mora</li>
-              <li><strong>Fazer a sua primeira skill</strong> sem código, a partir de uma conversa que você já teve</li>
-              <li>A regra que precisa valer 100% das vezes <strong>não mora em texto nenhum</strong>, e o que fazer com ela</li>
+              <li>O que um conector alcança de verdade, e a ordem em que vale a pena tentar</li>
+              <li>Por que porta aberta o tempo todo tem custo, mesmo quando ninguém está usando</li>
+              <li>O caminho honesto para o sistema que não tem como ser conectado, que é a situação mais comum na indústria</li>
             </ul>
           </div>
           <div class="aula-bloco">
             <div class="aula-bloco-label">Você aplica em</div>
-            <p>Classificar oito regras da Gráfica Aurora, depois cinco suas, e transformar uma delas em skill. Sai daqui com a <strong>tabela de decisão impressa</strong> e a <strong>primeira skill funcionando</strong>.</p>
+            <p>Uma ferramenta que você já usa, conectada na sua conta, mais a lista de cinco usos dela dentro da <strong>sua</strong> função.</p>
           </div>
         </div>
-        <div class="aula-hook">Você sabe onde cada regra mora. Só que ele continua sem enxergar os seus arquivos.</div>
-        <div class="aula-cta">abrir aula →</div>
-      </a>
+        <div class="aula-hook">Você alcançou tudo que dava para alcançar. E o que não dá?</div>
+        <div class="aula-cta">em breve</div>
+      </div>
+
+      <div class="aula-card soon">
+        <div class="aula-top">
+          <span class="aula-num">Aula 2.5</span>
+          <span class="rec">Plugin · Marketplace</span>
+          <span class="chip chip-ementa">Ementa 2.3</span>
+          <span class="aula-status">Em breve</span>
+        </div>
+        <h3 class="aula-title">Plugin: instalar de uma vez, sem abrir a porta errada</h3>
+        <div class="aula-body">
+          <div class="aula-bloco">
+            <div class="aula-bloco-label">O que você aprende</div>
+            <ul>
+              <li>O que vem dentro de um plugin, e por que ele é uma caixa com várias das coisas que você já conhece</li>
+              <li>Quando vale a pena instalar pronto e quando vale mais escrever a sua própria</li>
+              <li>O que olhar antes de instalar qualquer coisa que vai enxergar os arquivos da empresa</li>
+            </ul>
+          </div>
+          <div class="aula-bloco">
+            <div class="aula-bloco-label">Você aplica em</div>
+            <p>Avaliar um plugin de verdade com a lista de conferência na mão, e decidir, com critério escrito, se ele entra ou não.</p>
+          </div>
+        </div>
+        <div class="aula-hook">Está tudo instalado e funcionando. Só que ainda é você quem começa, toda vez.</div>
+        <div class="aula-cta">em breve</div>
+      </div>
+
+      <div class="aula-card soon">
+        <div class="aula-top">
+          <span class="aula-num">Aula 2.6</span>
+          <span class="rec">Rotina agendada</span>
+          <span class="chip chip-ementa">Ementa 2.5</span>
+          <span class="aula-status">Em breve</span>
+        </div>
+        <h3 class="aula-title">A primeira rotina que roda sem você apertar o play</h3>
+        <div class="aula-body">
+          <div class="aula-bloco">
+            <div class="aula-bloco-label">O que você aprende</div>
+            <ul>
+              <li>As quatro perguntas que decidem se uma rotina pode ou não ser automatizada, e por que a segunda reprova quase todo mundo</li>
+              <li>A ordem que não dá para pular: fazer na mão com confiança, depois virar procedimento, e só então agendar</li>
+              <li>O que uma rotina agendada precisa para de fato acontecer, e em que situação ela simplesmente não roda</li>
+            </ul>
+          </div>
+          <div class="aula-bloco">
+            <div class="aula-bloco-label">Você aplica em</div>
+            <p>A rotina que você mais quer tirar das costas. Você passa ela pelas quatro perguntas e sai sabendo <strong>se ela está pronta ou o que falta</strong>.</p>
+          </div>
+        </div>
+        <div class="aula-hook">A rotina roda sozinha. Agora, como você prova que o que ela entregou está certo antes de assinar embaixo?</div>
+        <div class="aula-cta">em breve</div>
+      </div>
 
     </div>
   </section>
 
   <section class="fio">
-    <h3>⚙️ O exercício que roda por baixo do módulo inteiro</h3>
+    <h3>⚙️ O arquivo que atravessa o módulo inteiro</h3>
     <p>
-      Desde a aula 1.1 você vai trabalhar <strong>de propósito sem nenhuma regra fixa configurada</strong>, do jeito que você já usa hoje. A única coisa que muda é que você vai <strong>anotar toda correção que precisar repetir</strong>.
+      No Módulo 1 o fio condutor foi a sua lista de correções repetidas. Aqui é outro, e ele é mais concreto: <strong>o relatório que você exporta hoje</strong>. Aquele que sai do sistema, cai numa pasta e depois passa pela sua mão até virar decisão.
     </p>
     <p>
-      "De novo ele escreveu em inglês." "De novo ele usou vírgula no lugar de ponto." "De novo ele me devolveu texto quando eu queria tabela." Anote, sem pensar muito.
-    </p>
-    <p>
-      Na aula 1.3, <strong>essas anotações são o exercício.</strong> Não vamos te entregar um modelo pronto para preencher: o texto que funciona é o que sai das correções que <em>você</em> repetiu, e essa é a recomendação da própria Anthropic sobre como montar esse arquivo.
+      Traga ele. Não uma cópia limpa, não um exemplo bonito: <strong>o arquivo do jeito que ele sai</strong>, com a coluna torta, a data em dois formatos e a linha em branco no meio. É nele que as seis aulas vão trabalhar, uma camada por vez.
     </p>
     <div class="fio-passos">
       <div class="fio-passo">
-        <div class="fio-passo-num">Aula 1.1 e 1.2</div>
-        <p>Você trabalha normal e anota cada correção que se repete.</p>
+        <div class="fio-passo-num">Aula 2.1</div>
+        <p>Ele passa a enxergar a pasta onde esse arquivo já cai, sem você anexar nada.</p>
       </div>
       <div class="fio-passo">
-        <div class="fio-passo-num">Aula 1.3</div>
-        <p>As anotações viram o texto das regras da sua função.</p>
+        <div class="fio-passo-num">Aulas 2.2 e 2.3</div>
+        <p>O seu método vira arquivo, e o relatório vira decisão sem a montagem manual.</p>
       </div>
       <div class="fio-passo">
-        <div class="fio-passo-num">Módulo 2</div>
-        <p>O mesmo texto vira o arquivo que o Cowork lê sozinho, sem você colar.</p>
+        <div class="fio-passo-num">Aula 2.6</div>
+        <p>O que sobrou de repetitivo passa a acontecer sem você começar.</p>
       </div>
     </div>
   </section>
 
   <section>
-    <div class="section-title">O que você leva do Módulo 1</div>
+    <div class="section-title">O que você leva do Módulo 2</div>
     <div class="entrega">
       <div class="entrega-item">
-        <h4>O texto das suas regras</h4>
-        <p>Funcionando no seu Project hoje, e pronto para virar arquivo no Módulo 2.</p>
+        <h4>A sua pasta configurada</h4>
+        <p>Apontada, com as permissões definidas por você, no notebook que você usa no trabalho.</p>
       </div>
       <div class="entrega-item">
-        <h4>A tabela de decisão</h4>
-        <p>Uma página impressa: para cada tipo de regra, onde ela mora. Sai da aula 1.4.</p>
+        <h4>Uma skill sua em arquivo</h4>
+        <p>A do Módulo 1, agora testada contra dois casos reais: um normal e um com exceção.</p>
       </div>
       <div class="entrega-item">
-        <h4>Sua lista de correções repetidas</h4>
-        <p>É o insumo de todo o resto do curso, e o retrato honesto do que hoje te custa tempo.</p>
+        <h4>Uma rotina aprovada nas quatro perguntas</h4>
+        <p>Ou rodando, ou com a lista exata do que falta para ela poder rodar. As duas respostas servem.</p>
       </div>
     </div>
   </section>
 
   <p class="ementa-nota">
-    Cobertura da ementa: este módulo entrega o <strong>Módulo 1 · Fundamentos do Ecossistema Claude</strong> da ementa contratada, com as quatro aulas cobrindo os itens 1.1 a 1.4. O título aqui é outro de propósito: ele diz o que muda na sua rotina, e não o nome interno do bloco. A cobertura item a item aparece no fim de cada aula.
+    Cobertura da ementa: este módulo entrega o <strong>Módulo 2 · Claude Cowork na Prática</strong> da ementa contratada, e as seis aulas cobrem os cinco itens dela. A anatomia de skill que a ementa lista no item 2.2 foi antecipada para a <a href="../m1/a4-o-mapa/">aula 1.4</a>, para que você já chegue aqui com uma skill escrita: neste módulo ela sai do navegador, vira arquivo e passa a rodar sobre os seus dados. O título acima é outro de propósito: ele diz o que muda na sua rotina, e não o nome do bloco.
   </p>
 
   <nav class="nav-bottom">
-    <a href="../" class="nav-link back">
-      <span class="nav-link-label">← voltar</span>
-      <span class="nav-link-title">Início · a trilha dos 6 degraus</span>
+    <a href="../m1/" class="nav-link back">
+      <span class="nav-link-label">← módulo anterior</span>
+      <span class="nav-link-title">Módulo 1 · Escolher a ferramenta certa e onde guardar cada coisa</span>
     </a>
-    <a href="./a1-ecossistema-e-fisica/" class="nav-link next">
-      <span class="nav-link-label">começar →</span>
-      <span class="nav-link-title">Aula 1.1 · Onde abrir, e por que ele piora no meio da conversa</span>
+    <a href="../" class="nav-link next">
+      <span class="nav-link-label">a trilha inteira →</span>
+      <span class="nav-link-title">Início · os seis degraus e os três módulos</span>
     </a>
   </nav>
 
 </main>
+
 
 <footer class="site-footer">
   <div class="wrap">

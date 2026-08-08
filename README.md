@@ -1,44 +1,40 @@
 # Claude na Prática · site do curso
 
-Material de apoio do treinamento in-company **Claude na Prática**: 12 horas, 3 módulos, 19 aulas curtas. Conduzido por Rafael Lima.
+Material de apoio do treinamento in-company **Claude na Prática**: 12 horas, 3 módulos, presencial. Conduzido por Rafael Lima.
 
-O site é o material que fica **depois** do curso: cada aula é uma página navegável, com o exercício, o arquivo de partida e o gabarito.
+O site é o material que fica **depois** do curso. Cada aula é uma página navegável, com a demonstração, o exercício, o arquivo de partida e o gabarito.
 
 ## 👉 https://rslimaeng.github.io/claude-na-pratica-pouchain/
 
 ## Como abrir
 
-Online, no link acima. Ou localmente: cada página é um HTML autossuficiente, basta abrir `index.html` no navegador, sem servidor e sem instalar nada. Também funciona offline, num pen drive.
+Online, no link acima.
 
-## Estrutura
+Ou localmente, sem instalar nada: cada página é um HTML autossuficiente. Baixe a pasta e abra o `index.html` no navegador. **Funciona offline**, inclusive de um pen drive.
 
-```
-site/
-├── CLAUDE.md            ← contexto do projeto (voz, regras de conteúdo, anatomia de aula)
-├── _shared/             ← tokens de design
-├── goals/               ← 1 arquivo por onda de produção
-├── index.html           ← landing com a trilha dos 6 degraus
-├── m1/                  ← Módulo 1
-│   ├── index.html       ← hub do módulo
-│   └── <aula>/          ← index.html + exercicio/ + gabarito/
-└── kit/                 ← Kit do participante (montado na Onda 9)
-```
+## O que está publicado
 
-## Estado
-
-| Onda | Entrega | Status |
+| Módulo | Conteúdo | Estado |
 |---|---|---|
-| 1 | Infra · landing · hub M1 · aulas 1.1 e 1.3 | 🟡 aguardando validação |
-| 2 a 9 | a definir | ⏸️ |
+| **Módulo 1** · Escolher a ferramenta certa e onde guardar cada coisa | Quatro aulas, com demonstração, exercício e gabarito | ✅ disponível |
+| **Módulo 2** · Trabalhar nos seus arquivos e deixar a rotina rodando | Seis aulas | 🟡 programa publicado, aulas em preparação |
+| **Módulo 3** · Provar que está certo e montar o que se atualiza sozinho | Sete aulas | ⏸️ em preparação |
 
-Índice completo em [`goals/README.md`](goals/README.md).
+## Como o material está organizado
 
-## Antes de publicar
-
-- [ ] `.nojekyll` na raiz (impede o Jekyll de renderizar os `.md`)
-- [ ] Os 10 gates de qualidade de [`goals/goal-01-infra-e-padrao.md`](goals/goal-01-infra-e-padrao.md) §5 passaram
-- [ ] Nenhum nome de pessoa real, nenhum dado do cliente dentro de exemplo ou insumo
+```
+index.html      a trilha dos seis degraus e os três módulos
+m1/             Módulo 1
+  index.html      a capa do módulo, com as quatro aulas
+  <aula>/
+    index.html      a aula
+    demonstracao/   o passo a passo do que acontece na tela
+    exemplo/        um caso pronto, para comparar com o seu
+    exercicio/      o arquivo de partida
+    gabarito/       a versão de referência
+m2/             Módulo 2
+```
 
 ---
 
-Todos os exemplos e planilhas pertencem à **Gráfica Aurora**, uma indústria gráfica fictícia criada para o treinamento. Nomes, números e clientes são inventados.
+Todos os exemplos e planilhas pertencem à **Gráfica Aurora**, uma indústria gráfica fictícia criada para o treinamento. Nomes, números, clientes e ordens de serviço são inventados.
