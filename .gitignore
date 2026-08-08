@@ -3,3 +3,6 @@
 node_modules/
 .superpowers/
 .claude/
+
+# previews de proposta, nunca publicados
+_preview/
