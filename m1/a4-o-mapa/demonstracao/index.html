@@ -297,17 +297,40 @@ description: Use quando o usuário anexar propostas de fornecedores e pedir
 
 <div class="toast" id="toast">copiado</div>
 <script>
-document.querySelectorAll(".pbtn").forEach(function(b){
-  b.addEventListener("click", function(e){
-    e.preventDefault();
-    var el = document.getElementById(b.dataset.alvo);
-    navigator.clipboard.writeText(el.innerText).then(function(){
-      var t = document.getElementById("toast");
-      t.classList.add("on");
-      setTimeout(function(){ t.classList.remove("on"); }, 1500);
+(function(){
+  var toast = document.getElementById("toast");
+  function show(msg){
+    toast.textContent = msg;
+    toast.classList.add("on");
+    setTimeout(function(){ toast.classList.remove("on"); }, 1800);
+  }
+  /* mesma correção da página da aula: a API moderna exige contexto seguro e
+     permissão, e sem os dois o botão ficava mudo em vez de avisar */
+  function fallback(txt){
+    var ta = document.createElement("textarea");
+    ta.value = txt;
+    ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    var deu = false;
+    try { deu = document.execCommand("copy"); } catch(e){}
+    document.body.removeChild(ta);
+    show(deu ? "copiado" : "não deu para copiar. Selecione e use Ctrl+C");
+  }
+  document.querySelectorAll(".pbtn").forEach(function(b){
+    b.addEventListener("click", function(e){
+      e.preventDefault();
+      var el = document.getElementById(b.dataset.alvo);
+      if(!el) return;
+      var txt = el.innerText;
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(txt).then(
+          function(){ show("copiado"); },
+          function(){ fallback(txt); });
+      } else { fallback(txt); }
     });
   });
-});
+})();
 </script>
 </body>
 </html>

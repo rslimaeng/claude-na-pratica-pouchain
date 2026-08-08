@@ -748,6 +748,123 @@ for f in AULAS + ["m1/index.html"] + sorted(glob.glob("m1/a*/demonstracao/index.
     achados = [t for pat in SLOTS for t in re.findall(pat, s) if TEMPO.search(t)]
     diz(not achados, "G15", f, str(achados) if achados else "")
 
+# ─── G20 · a MESMA skill aparece na aula 1.4 e na demonstração dela. Se as
+#      duas descrições andarem separadas, a aula se contradiz a um clique de
+#      distância. E o tamanho que a página afirma é recalculado do arquivo,
+#      nunca digitado: eu tinha escrito "27 linhas" e são 19.
+titulo("G20 · A SKILL DA 1.4 É A MESMA NA AULA E NA DEMONSTRAÇÃO")
+import html as _html
+A14  = "m1/a4-o-mapa/index.html"
+D14  = "m1/a4-o-mapa/demonstracao/index.html"
+if os.path.exists(A14) and os.path.exists(D14):
+    dem = open(D14, encoding="utf-8").read()
+    m = re.search(r'<div class="pconteudo" id="p1">(.*?)</div>', dem, re.S)
+    diz(bool(m), "G20", "a demonstração tem o arquivo da skill",
+        "" if m else "não achei o pconteudo p1")
+    if m:
+        skill  = _html.unescape(re.sub(r"<[^>]+>", "", m.group(1)))
+        n_lin  = len(skill.split("\n"))
+        n_pas  = len(re.findall(r"(?m)^\s*(\d+)\.", skill))
+        nome   = re.search(r"(?m)^name:\s*(\S+)", skill)
+        nome   = nome.group(1) if nome else ""
+        print(f"        {'skill · linhas':28} {n_lin}")
+        print(f"        {'skill · passos numerados':28} {n_pas}")
+        print(f"        {'skill · nome':28} {nome}")
+        aula = open(A14, encoding="utf-8").read()
+
+        # 1. o nome é o mesmo nos dois lugares
+        diz(nome and nome in aula, "G20", "a aula usa o mesmo nome de skill",
+            f"a demo diz '{nome}'")
+
+        # 2. presença não é conferência: cada "N linhas" dentro do rótulo do
+        #    cabeçalho é conferido, não a existência do número em algum canto.
+        cab = re.findall(r'class="anat-head">(.*?)</div>', aula, re.S)
+        citados = [int(n) for b in cab for n in re.findall(r"(\d{1,4}) linhas", b)]
+        diz(citados and all(c == n_lin for c in citados), "G20",
+            "o tamanho no cabeçalho bate com o arquivo",
+            f"a página diz {citados} e o arquivo tem {n_lin}"
+            if citados != [n_lin] else f"{n_lin} linhas, conferido")
+
+        # 3. os passos da aula são os mesmos passos da demonstração
+        na = len(re.findall(r"<li>", re.search(
+            r'<ol class="anat-passos">(.*?)</ol>', aula, re.S).group(1))) \
+            if re.search(r'<ol class="anat-passos">', aula) else 0
+        diz(na == n_pas, "G20", "a aula lista os mesmos passos da skill",
+            f"aula={na} demo={n_pas}")
+
+        # 4. as palavras-gatilho da descrição sobrevivem nos dois textos. É a
+        #    descrição que faz a skill entrar, e é o que a aula inteira ensina.
+        gatilhos = ["fecha essa cotação", "qual fornecedor eu escolho"]
+        faltam = [g for g in gatilhos if g not in skill or g not in aula]
+        diz(not faltam, "G20", "as palavras-gatilho estão nos dois lugares",
+            str(faltam) if faltam else f"{len(gatilhos)} gatilhos")
+
+# ─── G21 · o exemplo grande da 1.4 é um arquivo real fora do repo. Mesma
+#      regra do G13c: a página afirma o tamanho, o gate recalcula, e se o
+#      arquivo não existir nesta máquina o gate PULA alto, sem fingir que passou.
+titulo("G21 · O TAMANHO DO EXEMPLO GRANDE SAI DO ARQUIVO")
+ADV = "../insumos/exemplos/m1-aula-4/11-mentes-estrategicas/advisor-jeff-bezos.skill"
+if os.path.exists(ADV):
+    import zipfile as _zip
+    z = _zip.ZipFile(ADV)
+    dentro = [x for x in z.namelist() if x.endswith("SKILL.md")]
+    diz(bool(dentro), "G21", "o .skill tem um SKILL.md dentro")
+    if dentro:
+        n_adv = len(z.read(dentro[0]).decode("utf-8").splitlines())
+        print(f"        {'advisor · linhas':28} {n_adv}")
+        aula = open(A14, encoding="utf-8").read()
+        cab = re.findall(r'class="adv-head">(.*?)</div>', aula, re.S)
+        citados = [int(n) for b in cab for n in re.findall(r"(\d{1,4}) linhas", b)]
+        diz(citados == [n_adv], "G21", "o cabeçalho do exemplo bate com o arquivo",
+            f"a página diz {citados} e o arquivo tem {n_adv}"
+            if citados != [n_adv] else f"{n_adv} linhas, conferido")
+        # Todo tamanho grande citado na 1.4 sai de um arquivo real, e são dois
+        # arquivos diferentes: o exemplo grande daqui, e o campo de Instruções
+        # da 1.3, que a 1.4 cita para dizer que tamanho não é critério. Sem
+        # este segundo, o "128 linhas" da seção 01 é número solto: se aquele
+        # arquivo encolher, a 1.4 mente e nada acusa.
+        INST13 = "../insumos/exemplos/m1-aula-3/00-System_Instruction.md"
+        validos = {n_adv}
+        if os.path.exists(INST13):
+            n_i13 = len(open(INST13, encoding="utf-8").read().splitlines())
+            validos.add(n_i13)
+            print(f"        {'instruções da 1.3 · linhas':28} {n_i13}")
+            diz(f"{n_i13} linhas" in aula, "G21",
+                "a 1.4 cita o tamanho real do exemplo da 1.3",
+                f"precisa dizer '{n_i13} linhas'")
+        else:
+            print(f"  PULADO  {INST13} ausente, o número da 1.3 não foi conferido")
+        outros = sorted({int(n) for n in re.findall(r"(\d{2,4}) linhas", aula)
+                         if int(n) > 100 and int(n) not in validos})
+        diz(not outros, "G21", "todo tamanho grande da 1.4 sai de um arquivo",
+            f"{outros} não vêm de arquivo nenhum" if outros
+            else f"conferidos contra {sorted(validos)}")
+else:
+    print(f"  PULADO  {ADV} não existe nesta máquina, o tamanho não foi conferido")
+
+# ─── G22 · o nome do campo se copia da tela, nunca se traduz. Mesma lição do
+#      G16, que nasceu quando "Contexto" virou "Conhecimento do projeto" em
+#      seis lugares porque eu traduzi do help center em inglês.
+titulo("G22 · A TELA DE SKILL É NOMEADA COMO A TELA NOMEIA")
+print("        (é 'Habilidades' no claude.ai em pt-BR · verificado em 07/08/2026)")
+if os.path.exists(A14):
+    aula = open(A14, encoding="utf-8").read()
+    tela = re.search(r'<div class="hab">(.*?)\n      </div>', aula, re.S)
+    tela = tela.group(0) if tela else ""
+    for alvo, onde in [("Habilidades", 'class="hab-tela">'),
+                       ("por Você",    'class="hab-autor">')]:
+        diz(f'{onde}{alvo}<' in tela, "G22", f"a tela diz '{alvo}'",
+            "" if f'{onde}{alvo}<' in tela else f"não achei em {onde}")
+    # a anatomia tem as três partes, com os nomes que a aula inteira usa
+    partes = re.findall(r'class="anat-nome">([^<]*)<', aula)
+    esperado = ["nome", "descrição", "o passo a passo"]
+    diz(partes == esperado, "G22", "a anatomia mostra as três partes na ordem",
+        f"achei {partes}" if partes != esperado else "nome · descrição · passo a passo")
+    # e a página do aluno não pode chamar a tela pelo nome em inglês
+    ingles = [t for t in ["Skills tab", "aba Skills", "menu Skills"] if t in aula]
+    diz(not ingles, "G22", "não usa o nome em inglês da tela",
+        str(ingles) if ingles else "")
+
 # ─────────── o fecho que faltava
 # A lista `falhas` existia desde a onda 1 e NADA a lia: o script imprimia
 # FALHA e saia com codigo 0. O README prometia o contrario havia quatro
