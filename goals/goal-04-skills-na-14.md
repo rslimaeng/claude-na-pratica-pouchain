@@ -94,9 +94,15 @@ as cinco seções, o tamanho), nunca o conteúdo.
 ### B · O módulo passa a ter três artefatos, e não dois
 
 Se a pessoa sai sabendo fazer skill mas não faz uma, o entregável não aconteceu. O
-exercício ganhou o **passo 5**, o validador ganhou a **checagem de que a skill entra
-sozinha**, e o item final passou de "os dois artefatos" para "os três". Mexeu em 4
-lugares: a 1.4, o card do hub, o hero e o checkpoint.
+exercício foi de 4 para **7 passos**, o validador ganhou a **checagem de que a skill
+entra sozinha**, e o item final passou de "os dois artefatos" para "os três". Mexeu em
+4 lugares: a 1.4, o card do hub, o hero e o checkpoint.
+
+> **Correção do Rafael na primeira olhada:** *"o tópico 5 não tá no mesmo padrão."*
+> Ele estava certo. Os passos 1 a 4 são título mais uma frase; o 5 tinha virado três
+> parágrafos com três ações empilhadas (escolher, empacotar, testar). Virou **três
+> passos curtos**, no mesmo ritmo dos outros. As alturas agora são 83 · 83 · 108 ·
+> 108 · 83 · 83 · 83 pixels, contra os ~250 do passo 5 anterior.
 
 ### C · Os prints viraram HTML, e não imagem
 
@@ -112,10 +118,19 @@ imagem binária, responsiva e legível no celular. A tela **Habilidades** e a sk
 | **G20** | A skill `fechar-cotacao` é **a mesma** na aula e na demonstração: nome, tamanho recalculado do arquivo, número de passos e as duas palavras-gatilho |
 | **G21** | Todo tamanho grande citado na 1.4 sai de um arquivo real: as 292 linhas do `.skill` e as 128 do `00-System_Instruction.md` da 1.3. Pula alto se o insumo não existir na máquina |
 | **G22** | A tela é nomeada como a tela nomeia (**Habilidades**, **por Você**) e a anatomia mostra as três partes na ordem |
+| **G23** | Toda referência a `passo N` aponta para passo que existe naquela aula. Nasceu ao quebrar o passo 5 em três: o validador continuou mandando voltar ao 5, que virou outro |
 
-**Os três foram provados contra defeito injetado**, em cópia isolada do repo, com o
+**Os quatro foram provados contra defeito injetado**, em cópia isolada do repo, com o
 defeito entrando em **uma ocorrência só** (trocar todas faria um gate furado passar).
-9 defeitos, 9 reprovados. Total do repo: **26 gates, 211 checagens, exit 0**.
+11 defeitos, 11 reprovados. Total do repo: **27 gates, 216 checagens, exit 0**.
+
+> ⚠️ **O que o G23 não faz, e está escrito no código:** ele confere a **faixa**, não o
+> alvo. Se a lista cresce e a referência antiga continua dentro da faixa, ele passa.
+> Para o alvo certo não existe checagem mecânica, é leitura.
+>
+> A primeira tentativa de prova dele foi **mal desenhada por mim**: o defeito que eu
+> injetei criava uma classe órfã, e o **G7-ter pegou antes**, o que me daria um falso
+> "reprovou". Defeito injetado tem que testar **só** a regra em questão.
 
 ## Dois consertos que apareceram no caminho
 

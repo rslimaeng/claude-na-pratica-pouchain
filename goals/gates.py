@@ -865,6 +865,28 @@ if os.path.exists(A14):
     diz(not ingles, "G22", "não usa o nome em inglês da tela",
         str(ingles) if ingles else "")
 
+# ─── G23 · "volte ao passo N" aponta para passo que existe. Nasceu quando o
+#      passo 5 da 1.4 virou três passos e o validador continuou mandando voltar
+#      ao 5, que agora é outro. Referência a número de passo dessincroniza calada.
+#
+#      ⚠️ O que este gate NÃO faz: ele confere a FAIXA, não o alvo. Se a lista
+#      cresce e a referência antiga continua dentro da faixa, ele passa. Para o
+#      alvo certo não existe checagem mecânica, é leitura.
+titulo("G23 · REFERÊNCIA A PASSO APONTA PARA PASSO QUE EXISTE")
+for f in AULAS:
+    s = open(f, encoding="utf-8").read()
+    # duas listas de passos convivem na mesma página: a do exercício e a da
+    # demonstração. Uma referência vale se couber em alguma das duas.
+    n_ex = len(re.findall(r'<li>\s*<div class="passo-title">', s))
+    n_demo = max((len(re.findall(r"<li>", bloco)) for bloco in
+                  re.findall(r'<ol class="demo-passos">(.*?)</ol>', s, re.S)), default=0)
+    teto = max(n_ex, n_demo)
+    citados = [int(n) for n in re.findall(r"\bpasso (\d+)\b", s)]
+    fora = sorted({n for n in citados if n < 1 or n > teto})
+    diz(not fora, "G23", f,
+        f"aponta para {fora}, e a maior lista tem {teto}" if fora
+        else f"{len(citados)} referências · exercício={n_ex} demo={n_demo}")
+
 # ─────────── o fecho que faltava
 # A lista `falhas` existia desde a onda 1 e NADA a lia: o script imprimia
 # FALHA e saia com codigo 0. O README prometia o contrario havia quatro
