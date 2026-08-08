@@ -86,7 +86,11 @@ a:hover{color:var(--accent-dark)}
 .section-lead strong{color:var(--text)}
 
 /* CALLOUT */
-.callout{border-radius:var(--radius);padding:20px 22px;margin:0 0 56px}
+/* o callout nascia sem margem de topo, então o espaço acima dele era o que
+   sobrasse do vizinho: depois da legenda das três frases, que fecha com zero,
+   ele encostava. As páginas de aula já usam `24px 0`. Margem de irmãos colapsa
+   pelo MAIOR valor, então declarar 32 aqui não soma com quem já tem margem. */
+.callout{border-radius:var(--radius);padding:20px 22px;margin:32px 0 56px}
 .callout-info{background:var(--accent-tinted);border:1px solid var(--accent-line)}
 .callout-warn{background:var(--warning-soft);border:1px solid rgba(184,134,11,.22)}
 .callout-title{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;
@@ -150,15 +154,21 @@ a:hover{color:var(--accent-dark)}
 .cl.foco .cl-pe{background:var(--accent-soft);color:var(--accent-dark)}
 .cl-pe b{color:var(--text);font-weight:600}
 .cl.foco .cl-pe b{color:var(--accent-dark)}
-/* a frase da Anthropic que resume os três, em faixa própria */
-.tres-frase{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+/* a frase da Anthropic que resume os três, em faixa própria. São duas grades de
+   três colunas seguidas, com os mesmos três nomes: com 18px entre elas o olho
+   lia tudo como um bloco só. O respiro é o que separa a ficha do resumo. */
+.tres-frase{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
 .tres-item{border:1px solid var(--border);border-radius:var(--radius);
   background:var(--bg-warm);padding:15px 20px;font-size:15px;line-height:1.5;
   color:var(--text-muted)}
-.tres-item b{color:var(--text);font-weight:600;display:block;margin-bottom:4px;
+/* o nome fica em linha própria, e por isso é <div> e não <b>. Forçar uma tag
+   inline a display:block é justamente o defeito que o G11 procura, e era o que
+   eu estava fazendo aqui: o rótulo é bloco, então nasce bloco. */
+.tres-nome{color:var(--text);font-weight:600;margin-bottom:4px;
   font-family:var(--font-mono);font-size:12px;letter-spacing:.04em}
-/* a legenda vinha colada na faixa das três frases */
-.tres-frase + .fig-leg{margin-top:18px}
+/* a legenda vinha colada na faixa das três frases. Ela não é legenda curta de
+   figura: é parágrafo de leitura, e por isso pede distância de parágrafo. */
+.tres-frase + .fig-leg{margin-top:22px}
 @media (max-width:820px){
   .claudes,.tres-frase{grid-template-columns:1fr}
 }
@@ -369,13 +379,13 @@ a:hover{color:var(--accent-dark)}
     </div>
 
     <div class="tres-frase">
-      <div class="tres-item"><b>Chat</b>é para <strong>pensar</strong> com ele.</div>
-      <div class="tres-item"><b>Cowork</b>é para <strong>delegar</strong> para ele.</div>
-      <div class="tres-item"><b>Code</b>é para <strong>construir</strong> com ele.</div>
+      <div class="tres-item"><div class="tres-nome">Chat</div>é para <strong>pensar</strong> com ele.</div>
+      <div class="tres-item"><div class="tres-nome">Cowork</div>é para <strong>delegar</strong> para ele.</div>
+      <div class="tres-item"><div class="tres-nome">Code</div>é para <strong>construir</strong> com ele.</div>
     </div>
 
     <p class="fig-leg">
-      Essas três frases são da própria Anthropic, e são o resumo mais curto que existe. A diferença que mais pesa no seu dia é a do meio: <strong>no Chat você anexa um arquivo e recebe um texto de volta. No Cowork ele mexe no arquivo que já está lá e devolve outro arquivo, salvo na sua pasta.</strong> <em>Verificado na documentação oficial em 08/08/2026.</em>
+      Essas três frases são da própria Anthropic, e são o resumo mais curto que existe. A diferença que mais pesa no seu dia é a do meio: <strong>no Chat você anexa um arquivo e recebe um texto de volta. No Cowork ele mexe no arquivo que já está lá e devolve outro arquivo, salvo na sua pasta.</strong>
     </p>
   </section>
 
