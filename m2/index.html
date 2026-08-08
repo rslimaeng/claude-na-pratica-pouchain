@@ -117,12 +117,12 @@ a:hover{color:var(--accent-dark)}
    o corte que a 1.1 já fez. Cor semântica e não identidade: os três cards são
    neutros e só o Cowork acende, porque é dele que este módulo trata. Pintar os
    três de cores diferentes seria decoração, e o §8 não permite. */
-.claudes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0 0;
+.claudes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:24px 0 0;
   align-items:stretch}
 .cl{border:1px solid var(--border);border-radius:var(--radius-lg);
   background:var(--bg-elev);display:flex;flex-direction:column;overflow:hidden}
 .cl.foco{border-color:var(--accent-line);box-shadow:var(--shadow-md)}
-.cl-topo{padding:16px 18px 14px;border-bottom:1px solid var(--border)}
+.cl-topo{padding:19px 22px 17px;border-bottom:1px solid var(--border)}
 .cl.foco .cl-topo{background:var(--accent-tinted)}
 .cl-selo{display:inline-block;font-family:var(--font-mono);font-size:9.5px;
   letter-spacing:.09em;text-transform:uppercase;padding:3px 8px;
@@ -136,27 +136,29 @@ a:hover{color:var(--accent-dark)}
    altura diferente e desalinhava os três lado a lado */
 .cl-verbo{font-size:14px;color:var(--text-dim);margin-top:5px;line-height:1.4;
   min-height:2.8em}
-.cl-corpo{padding:15px 18px;flex:1}
+.cl-corpo{padding:18px 22px 20px;flex:1}
 .cl-rot{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.09em;
-  text-transform:uppercase;color:var(--text-dim);margin-bottom:9px}
-.cl-corpo ul{list-style:none;font-size:14px;color:var(--text-muted);line-height:1.45}
-.cl-corpo li{padding-left:14px;position:relative}
-.cl-corpo li + li{margin-top:7px}
+  text-transform:uppercase;color:var(--text-dim);margin-bottom:12px}
+.cl-corpo ul{list-style:none;font-size:14.5px;color:var(--text-muted);line-height:1.5}
+.cl-corpo li{padding-left:15px;position:relative}
+.cl-corpo li + li{margin-top:11px}
 .cl-corpo li::before{content:"·";position:absolute;left:3px;color:var(--text-dim);
   font-weight:700}
 .cl.foco .cl-corpo li::before{color:var(--accent)}
-.cl-pe{padding:13px 18px;border-top:1px solid var(--border);background:var(--bg-code);
-  font-size:13.5px;line-height:1.45;color:var(--text-muted)}
+.cl-pe{padding:15px 22px;border-top:1px solid var(--border);background:var(--bg-code);
+  font-size:14px;line-height:1.5;color:var(--text-muted)}
 .cl.foco .cl-pe{background:var(--accent-soft);color:var(--accent-dark)}
 .cl-pe b{color:var(--text);font-weight:600}
 .cl.foco .cl-pe b{color:var(--accent-dark)}
 /* a frase da Anthropic que resume os três, em faixa própria */
-.tres-frase{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+.tres-frase{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
 .tres-item{border:1px solid var(--border);border-radius:var(--radius);
-  background:var(--bg-warm);padding:13px 16px;font-size:14.5px;line-height:1.45;
+  background:var(--bg-warm);padding:15px 20px;font-size:15px;line-height:1.5;
   color:var(--text-muted)}
-.tres-item b{color:var(--text);font-weight:600;display:block;margin-bottom:2px;
+.tres-item b{color:var(--text);font-weight:600;display:block;margin-bottom:4px;
   font-family:var(--font-mono);font-size:12px;letter-spacing:.04em}
+/* a legenda vinha colada na faixa das três frases */
+.tres-frase + .fig-leg{margin-top:18px}
 @media (max-width:820px){
   .claudes,.tres-frase{grid-template-columns:1fr}
 }
@@ -245,7 +247,7 @@ a:hover{color:var(--accent-dark)}
 
 /* BREAKOUT · figura e tabela saem da coluna de leitura, prosa fica */
 .table-wrap,.fluxo,.dilui,.compare,.uau,.pilha,.ctx,.setores,.trilha,
-.facts,.pre-req,.modules,.aulas,.fio-passos,.leva,.entrega{
+.facts,.pre-req,.modules,.aulas,.fio-passos,.leva,.entrega,.claudes,.tres-frase{
   width:min(var(--col-wide),calc(100vw - 40px));min-width:100%;
   margin-left:50%;transform:translateX(-50%)}
 
