@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aula 2.1 · Onde ele pode entrar, e o que ele pode fazer lá dentro</title>
+<meta name="description" content="A pasta que voce libera e o alcance dele, e o modo de aprovacao decide o que ele faz la dentro. Primeira aula do Modulo 2.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F0EEE6; --bg-elev:#FFFFFF; --bg-warm:#E8E6DC; --bg-code:#F5F3EA;
+  --text:#141413; --text-muted:#3D3D3A; --text-dim:#87867F;
+  --border:rgba(20,20,19,.10); --border-strong:rgba(20,20,19,.18);
+  --accent:#1A5670; --accent-dark:#10394C; --accent-soft:#DDEAF0;
+  --accent-tinted:#F4F9FB; --accent-line:rgba(26,86,112,.22);
+  --success:#2E7D32; --success-soft:#F4F9F4;
+  --warning:#B8860B; --warning-soft:#FCF7E8;
+  --danger:#B85C5C; --danger-soft:#FBF5F5;
+  --measure:none; --col:780px; --col-wide:1140px;
+  --radius-sm:6px; --radius:10px; --radius-lg:14px;
+  --shadow-sm:0 1px 2px rgba(20,20,19,.04),0 1px 3px rgba(20,20,19,.06);
+  --shadow-md:0 4px 12px rgba(20,20,19,.06),0 2px 4px rgba(20,20,19,.04);
+  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,'SF Mono','Menlo',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);
+  font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--accent-dark)}
+
+.site-header{position:sticky;top:0;z-index:50;background:rgba(240,238,230,.92);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border)}
+.site-header-inner{max-width:var(--col-wide);margin:0 auto;padding:14px 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--text)}
+.brand-mark{width:32px;height:32px;border-radius:8px;background:var(--accent);
+  color:#fff;display:grid;place-items:center;font-weight:700;font-size:13px;
+  font-family:var(--font-mono);flex-shrink:0}
+.brand-title{font-weight:600;font-size:14px}
+.brand-sub{font-size:12px;color:var(--text-dim)}
+.chip{display:inline-flex;align-items:center;padding:4px 10px;border-radius:999px;
+  font-size:12px;font-weight:500;background:var(--bg-warm);color:var(--text-muted)}
+.chip-accent{background:var(--accent-soft);color:var(--accent-dark)}
+.chip-ementa{background:transparent;border:1px solid var(--border-strong);
+  color:var(--text-dim);font-family:var(--font-mono);font-size:11px}
+.cam.ruim .cam-head{background:var(--danger-soft)}
+.cam.ruim .cam-tipo{color:var(--danger)}
+.cam.bom .cam-head{background:var(--success-soft)}
+.cam.bom .cam-tipo{color:var(--success)}
+.cam.ruim .cam-val b{color:var(--danger)}
+.cam.bom .cam-val b{color:var(--success)}
+
+/* CARTÕES · a demonstração, e o resultado que sai dela */
+.saidas{display:grid;grid-template-columns:1.25fr 1fr;gap:14px;margin:26px 0 0;
+  align-items:stretch}
+.saida{display:flex;flex-direction:column;padding:20px 22px;
+  border:1px solid var(--border);border-radius:var(--radius-lg);
+  background:var(--bg-elev);color:var(--text)}
+.saida:hover{border-color:var(--accent)}
+.saida.principal{background:var(--accent-tinted);border-color:var(--accent-line)}
+.saida.principal:hover{background:var(--accent-soft)}
+.s-rot{display:block;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--text-dim);margin-bottom:8px}
+.saida.principal .s-rot{color:var(--accent)}
+.s-titulo{display:block;font-size:18px;font-weight:600;letter-spacing:-.01em;
+  line-height:1.3;margin-bottom:7px}
+.s-desc{display:block;font-size:15.5px;line-height:1.58;color:var(--text-muted);
+  max-width:62ch}  /* enche o card, que agora vive na coluna de leitura */  /* ~78 caracteres · 1ch no Inter vale 1,34 caractere */
+.s-cta{display:block;font-size:14px;font-weight:600;color:var(--accent);margin-top:auto;
+  padding-top:12px}
+@media (max-width:820px){.saidas{grid-template-columns:1fr}}
+
+/* CARTÃO · ver o artefato pronto antes de tentar */
+.ver-pronto{display:block;margin:24px 0 0;padding:20px 22px;
+  background:var(--accent-tinted);border:1px solid var(--accent-line);
+  border-radius:var(--radius-lg);color:var(--text)}
+.ver-pronto:hover{border-color:var(--accent);background:var(--accent-soft)}
+.vp-rot{display:block;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.vp-titulo{display:block;font-size:18px;font-weight:600;letter-spacing:-.01em;
+  line-height:1.3;margin-bottom:7px}
+.vp-desc{display:block;font-size:14.5px;line-height:1.55;color:var(--text-muted)}
+.vp-cta{display:block;font-size:14px;font-weight:600;color:var(--accent);margin-top:11px}}
+.checkpoint-primeiro{margin-top:17px;padding-top:15px;border-top:1px solid var(--success-line,rgba(46,125,50,.22))}
+.checkpoint-primeiro .rot{display:block;font-family:var(--font-mono);font-size:10.5px;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--success);margin-bottom:6px}
+.checkpoint-primeiro .tx{display:block;font-size:16px;line-height:1.55;color:var(--text)}
+.checkpoint-primeiro .tx strong{font-weight:600}
+.rec{display:inline-flex;align-items:center;font-family:var(--font-mono);
+  font-size:11px;font-weight:500;background:var(--accent-soft);color:var(--accent-dark);
+  padding:4px 9px;border-radius:var(--radius-sm)}
+.rec.livre{background:var(--bg-warm);color:var(--text-dim)}
+.destino-quando{margin-top:16px;padding-top:14px;border-top:1px solid var(--accent-line);
+  font-size:15.5px;line-height:1.55;color:var(--text-muted)}
+.destino-quando .rot{display:block;font-family:var(--font-mono);font-size:10.5px;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--accent);margin-bottom:5px}
+
+.header-meta{display:flex;gap:8px;flex-shrink:0}
+
+.crumbs{max-width:var(--col-wide);margin:0 auto;padding:20px 24px 0;
+  font-family:var(--font-mono);font-size:12px;color:var(--text-dim)}
+.crumbs a{color:var(--text-muted)}
+.crumbs a:hover{color:var(--accent)}
+.crumbs .sep{margin:0 8px}
+
+.wrap{max-width:var(--col);margin:0 auto;padding:0 24px}
+
+.hero{padding:30px 0 36px}
+.hero-kicker{font-family:var(--font-mono);font-size:12px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+.hero h1{font-size:clamp(32px,4.5vw,46px);font-weight:700;line-height:1.08;
+  letter-spacing:-.02em;margin-bottom:20px}
+.hero-sub{font-size:18.5px;line-height:1.55;color:var(--text-muted);max-width:var(--measure);
+  margin-bottom:22px}
+.hero-sub strong{color:var(--text)}
+.hero-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.meta-label{font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--text-dim);margin-right:4px}
+
+/* DESTINO */
+.destino{background:var(--accent-tinted);border:1px solid var(--accent-line);
+  border-radius:var(--radius-lg);padding:26px 28px;margin-bottom:8px}
+.destino-title{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--accent-dark);margin-bottom:14px}
+.destino ul{list-style:none}
+.destino li{font-size:17.5px;color:var(--text);line-height:1.5;padding-left:26px;
+  position:relative;margin-bottom:9px}
+.destino li:last-child{margin-bottom:0}
+.destino li::before{content:"→";position:absolute;left:0;color:var(--accent);
+  font-weight:600}
+
+/* STEP */
+.step{padding:52px 0;border-top:1px solid var(--border)}
+.step:first-of-type{border-top:none}
+.step-header{display:flex;align-items:baseline;gap:20px;margin-bottom:24px}
+.step-num{font-family:var(--font-mono);font-size:48px;font-weight:500;line-height:1;
+  color:var(--accent);letter-spacing:-.02em;flex-shrink:0}
+.step-title-block{flex:1}
+.step-eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--text-dim);margin-bottom:6px}
+.step-title{font-size:27px;font-weight:600;line-height:1.2;letter-spacing:-.01em}
+.step-body{max-width:none}
+.step-body p{color:var(--text-muted);font-size:18.5px;margin-bottom:15px;
+  line-height:1.68;max-width:var(--measure)}
+.step-body p:last-child{margin-bottom:0}
+.step-body strong{color:var(--text)}
+.step-body h4{font-size:18px;font-weight:600;margin:30px 0 10px;
+  letter-spacing:-.01em;max-width:var(--measure)}
+.step-body ol,.step-body ul{margin:0 0 15px 0;padding-left:22px;
+  color:var(--text-muted);font-size:18px;max-width:var(--measure)}
+.step-body li{margin-bottom:8px;line-height:1.55}
+.step-body li strong{color:var(--text)}
+.frase-dor{font-size:20px;line-height:1.45;font-weight:500;color:var(--text);
+  border-left:3px solid var(--accent-line);padding-left:20px;margin:0 0 20px;
+  max-width:var(--measure)}
+
+/* TABELA */
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:var(--radius);
+  margin:20px 0;background:var(--bg-elev)}
+table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:560px}
+th{text-align:left;padding:12px 16px;background:var(--bg-warm);font-weight:600;
+  font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);
+  border-bottom:1px solid var(--border)}
+td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text-muted);
+  vertical-align:top;line-height:1.5}
+tr:last-child td{border-bottom:none}
+td strong{color:var(--text)}
+td code{font-family:var(--font-mono);font-size:12.5px;background:var(--bg-code);
+  padding:2px 5px;border-radius:4px;color:var(--text)}
+.td-nao{color:var(--text-dim)}
+
+/* ANALOGIA */
+.analogia{background:var(--bg-elev);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:26px 28px;margin:28px 0}
+.analogia-title{font-size:17px;font-weight:600;margin-bottom:12px;
+  display:flex;align-items:center;gap:9px}
+.analogia p{font-size:16.5px;color:var(--text-muted);line-height:1.6;max-width:var(--measure)}
+.analogia p + p{margin-top:11px}
+.analogia strong{color:var(--text)}
+
+/* CALLOUT */
+.callout{border-radius:var(--radius);padding:20px 22px;margin:24px 0}
+.callout-info{background:var(--accent-tinted);border:1px solid var(--accent-line)}
+.callout-warn{background:var(--warning-soft);border:1px solid rgba(184,134,11,.22)}
+.callout-cerca{background:var(--danger-soft);border:1px solid rgba(184,92,92,.24)}
+.callout-ok{background:var(--success-soft);border:1px solid rgba(46,125,50,.20)}
+.callout-title{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px;
+  color:var(--accent-dark)}
+.callout-title::before{content:"";width:7px;height:7px;border-radius:50%;
+  background:var(--accent);flex-shrink:0}
+.callout-warn .callout-title{color:#7A5A08}
+.callout-warn .callout-title::before{background:var(--warning)}
+.callout-cerca .callout-title{color:#8A3A3A}
+.callout-cerca .callout-title::before{background:var(--danger)}
+.callout-ok .callout-title{color:#1F5A22}
+.callout-ok .callout-title::before{background:var(--success)}
+.callout p{font-size:15.5px;color:var(--text-muted);line-height:1.55}
+.callout p + p{margin-top:10px}
+.callout strong{color:var(--text)}
+.callout ul{margin:8px 0 0 0;padding-left:20px;font-size:15.5px;color:var(--text-muted)}
+.callout li{margin-bottom:6px;line-height:1.5}
+.compare-col.ruim{background:var(--danger-soft);border-color:rgba(184,92,92,.20)}
+.compare-col.bom{background:var(--success-soft);border-color:rgba(46,125,50,.18)}
+.compare-col.ruim .compare-label{color:#8A3A3A}
+.compare-col.bom .compare-label{color:#1F5A22}
+
+/* DEMO */
+.demo{background:var(--bg-elev);border:1px solid var(--border);
+  border-radius:var(--radius-lg);overflow:hidden;margin:20px 0}
+.demo-head{padding:12px 20px;background:var(--bg-warm);border-bottom:1px solid var(--border);
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--text-dim)}
+.demo-body{padding:24px}
+.demo-body p{font-size:15px;color:var(--text-muted);line-height:1.6;margin-bottom:12px}
+.demo-body p:last-child{margin-bottom:0}
+.demo-body strong{color:var(--text)}
+.demo-passos{list-style:none;counter-reset:d;margin:0}
+.demo-passos li{counter-increment:d;padding-left:38px;position:relative;
+  margin-bottom:14px;font-size:16.5px;color:var(--text-muted);line-height:1.55}
+.demo-passos li:last-child{margin-bottom:0}
+.demo-passos li::before{content:counter(d);position:absolute;left:0;top:1px;
+  width:24px;height:24px;border-radius:6px;background:var(--accent-soft);
+  color:var(--accent-dark);display:grid;place-items:center;
+  font-family:var(--font-mono);font-size:12px;font-weight:600}
+.demo-passos strong{color:var(--text)}
+
+/* PROMPT BOX */
+.prompt-box{background:var(--bg-code);border:1px solid var(--border);
+  border-radius:var(--radius);margin:18px 0;overflow:hidden}
+.prompt-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:10px 16px;background:var(--bg-warm);border-bottom:1px solid var(--border);
+  font-family:var(--font-mono);font-size:11px;color:var(--text-dim);
+  letter-spacing:.06em;text-transform:uppercase}
+.prompt-btn{font-family:var(--font-mono);font-size:11px;padding:5px 11px;
+  border-radius:4px;background:var(--accent);color:#fff;border:1px solid var(--accent);
+  cursor:pointer;letter-spacing:.06em;text-transform:uppercase;transition:background .15s;
+  flex-shrink:0}
+.prompt-btn:hover{background:var(--accent-dark)}
+.prompt-content{padding:18px;font-family:var(--font-mono);font-size:12.5px;
+  line-height:1.6;color:var(--text);white-space:pre-wrap;word-wrap:break-word;
+  max-height:440px;overflow-y:auto}
+
+/* DOWNLOAD */
+.download-card{background:var(--bg-elev);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:22px 26px;margin:20px 0;
+  display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap}
+.download-info{flex:1;min-width:200px}
+.download-filename{font-family:var(--font-mono);font-size:14px;font-weight:500;
+  color:var(--text);margin-bottom:5px;display:flex;align-items:center;gap:10px}
+.download-icon{width:28px;height:28px;border-radius:6px;background:var(--accent-soft);
+  color:var(--accent-dark);display:grid;place-items:center;font-size:11px;
+  font-weight:600;flex-shrink:0;font-family:var(--font-mono)}
+.download-meta{font-size:13px;color:var(--text-dim)}
+.download-btn{padding:11px 20px;background:var(--accent);color:#fff;
+  border-radius:var(--radius);font-weight:600;font-size:14px;flex-shrink:0}
+.download-btn:hover{background:var(--accent-dark);color:#fff}
+
+/* PASSOS DO EXERCÍCIO */
+.passos{list-style:none;counter-reset:p;margin:22px 0 0}
+.passos > li{counter-increment:p;padding-left:44px;position:relative;
+  margin-bottom:22px}
+.passos > li::before{content:counter(p);position:absolute;left:0;top:-1px;
+  width:30px;height:30px;border-radius:8px;background:var(--accent);color:#fff;
+  display:grid;place-items:center;font-family:var(--font-mono);font-size:13px;
+  font-weight:600}
+.passo-title{font-size:16.5px;font-weight:600;margin-bottom:6px}
+.passos p{font-size:16.5px;color:var(--text-muted);line-height:1.55;margin-bottom:8px}
+
+/* GABARITO */
+.gabarito{border:1px solid var(--accent-line);border-radius:var(--radius-lg);
+  background:var(--bg-elev);margin:22px 0;overflow:hidden}
+.gabarito > summary{padding:20px 24px;cursor:pointer;font-weight:600;font-size:16px;
+  list-style:none;display:flex;align-items:center;gap:12px;background:var(--accent-tinted)}
+.gabarito > summary::-webkit-details-marker{display:none}
+.gabarito > summary::before{content:"▸";color:var(--accent);font-size:15px;
+  transition:transform .2s;display:inline-block}
+.gabarito[open] > summary::before{transform:rotate(90deg)}
+.gabarito-sub{font-weight:400;font-size:13.5px;color:var(--text-dim);margin-left:auto;
+  font-family:var(--font-mono)}
+.gabarito-body{padding:24px;border-top:1px solid var(--border)}
+.gabarito-body p{font-size:16.5px;color:var(--text-muted);line-height:1.6;margin-bottom:12px}
+.gabarito-body strong{color:var(--text)}
+.gabarito-body h4{font-size:16px;font-weight:600;margin:22px 0 10px}
+.gabarito-body h4:first-child{margin-top:0}
+
+/* CHECKPOINT */
+.checkpoint{background:var(--success-soft);border:1px solid rgba(46,125,50,.20);
+  border-radius:var(--radius-lg);padding:24px 26px;margin:48px 0 0}
+.checkpoint-title{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:#1F5A22;margin-bottom:14px}
+.checkpoint ul{list-style:none}
+.checkpoint li{font-size:15.5px;color:var(--text);padding-left:26px;position:relative;
+  margin-bottom:8px;line-height:1.5}
+.checkpoint li:last-child{margin-bottom:0}
+.checkpoint li::before{content:"✓";position:absolute;left:0;color:var(--success);
+  font-weight:700}
+
+/* HOOK */
+.hook{background:var(--accent);color:#fff;border-radius:var(--radius-lg);
+  padding:30px 32px;margin:20px 0 0}
+.hook-label{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;opacity:.75;margin-bottom:12px}
+.hook-frase{font-size:clamp(19px,2.6vw,25px);font-weight:600;line-height:1.35;
+  letter-spacing:-.01em;margin-bottom:14px}
+.hook p{font-size:15px;opacity:.9;line-height:1.55;max-width:var(--measure)}
+.hook a{color:#fff;text-decoration:underline;font-weight:600}
+
+.ementa-nota{font-size:13px;color:var(--text-dim);margin:36px 0 0;
+  padding-top:18px;border-top:1px solid var(--border)}
+
+.nav-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  padding:28px 0 8px;border-top:1px solid var(--border);margin:36px 0 40px}
+.nav-link{display:flex;flex-direction:column;gap:3px;padding:14px 18px;
+  background:var(--bg-elev);border:1px solid var(--border);border-radius:var(--radius);
+  color:var(--text);transition:border-color .2s;max-width:47%}
+.nav-link:hover{border-color:var(--accent-line);color:var(--text)}
+.nav-link.back{text-align:left}
+.nav-link.next{text-align:right;margin-left:auto}
+.nav-link-label{font-family:var(--font-mono);font-size:11px;color:var(--text-dim);
+  letter-spacing:.06em}
+.nav-link-title{font-size:14.5px;font-weight:600}
+
+.site-footer{padding:32px 0 48px;border-top:1px solid var(--border);
+  color:var(--text-dim);font-size:13px}
+.site-footer a{color:var(--text-muted);font-weight:500}
+.site-footer a:hover{color:var(--accent)}
+
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);
+  background:var(--text);color:#fff;padding:12px 22px;border-radius:999px;
+  font-size:14px;opacity:0;transition:all .25s;z-index:100;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+}
+@media (max-width:720px){
+  .hero{padding:24px 0 28px}
+  .hero h1{font-size:29px}
+  .hero-sub{font-size:16.5px}
+  .step{padding:40px 0}
+  .step-header{gap:14px}
+  .step-num{font-size:34px}
+  .step-title{font-size:22px}
+  .site-header-inner{padding:12px 16px}
+  .wrap,.crumbs{padding-left:16px;padding-right:16px}
+  .nav-link{max-width:100%}
+  .brand-sub{display:none}
+}
+
+/* ============================================================
+   VALIDADOR DE FIM DE AULA
+   Camada 1 do harness traduzida: critério objetivo, que o aluno
+   confere sozinho, sem depender do instrutor.
+   ============================================================ */
+.checagem{border:1px solid var(--border);border-radius:var(--radius-lg);
+  background:var(--bg-elev);margin:32px 0 0;overflow:hidden}
+.checagem-head{padding:18px 24px;background:var(--bg-warm);
+  border-bottom:1px solid var(--border)}
+.checagem-title{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--text-muted);margin-bottom:7px}
+.checagem-lead{font-size:15px;color:var(--text-muted);line-height:1.5}
+.checagem-lead strong{color:var(--text)}
+.checagem-lista{list-style:none;counter-reset:c;margin:0;padding:0}
+.checagem-lista > li{counter-increment:c;display:grid;
+  grid-template-columns:34px 1.05fr 1fr;align-items:start;gap:18px;
+  padding:17px 24px;border-bottom:1px solid var(--border)}
+.checagem-lista > li:last-child{border-bottom:none}
+.checagem-lista > li::before{content:counter(c);width:25px;height:25px;
+  border-radius:6px;background:var(--bg-code);border:1px solid var(--border);
+  color:var(--text-muted);display:grid;place-items:center;
+  font-family:var(--font-mono);font-size:12px;font-weight:600;margin-top:1px}
+.checagem-o{font-size:16px;color:var(--text);line-height:1.5}
+.checagem-como{font-size:14.5px;color:var(--text-muted);line-height:1.5}
+.rot{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--text-dim);display:block;
+  margin-bottom:4px;font-weight:500}
+.checagem-falhou{background:var(--warning-soft);
+  border-top:1px solid rgba(184,134,11,.22);padding:16px 24px;
+  font-size:14.5px;color:#7A5A08;line-height:1.55}
+.checagem-falhou strong{color:#5E4506}
+.rodada{width:36px;height:32px;border-radius:var(--radius-sm);
+  display:grid;place-items:center;font-family:var(--font-mono);font-size:11px;
+  border:1px solid var(--border);flex-shrink:0}
+.rodada.perdida{background:#F2DEDE;border-color:rgba(184,92,92,.42);color:#8A3A3A}
+.rodada.util{background:#DCEEDD;border-color:rgba(46,125,50,.45);
+  color:#1F5A22;font-weight:600}
+.exemplo-volta .rot{color:#1F5A22}
+.mapa-carga.sempre{background:var(--accent-soft);color:var(--accent-dark)}
+.mapa-carga.chamada{background:var(--success-soft);color:#1F5A22}
+.mapa-carga.porta{background:var(--warning-soft);color:#7A5A08}
+}
+@media (max-width:760px){
+  .checagem-lista > li{grid-template-columns:34px 1fr;gap:8px 16px}
+  .checagem-lista > li .checagem-como{grid-column:2}
+}
+
+.rodadas-chave i.perdida{background:#F2DEDE;border-color:rgba(184,92,92,.42)}
+.rodadas-chave i.util{background:#DCEEDD;border-color:rgba(46,125,50,.45)}
+
+/* BREAKOUT · figura e tabela saem da coluna de leitura, prosa fica.
+   A lista tem só o que ESTA página usa: herdar a lista inteira da 1.1 deixaria
+   aqui vinte classes que não existem, e a próxima pessoa acharia que existem.
+   As duas figuras da aula sangram; a legenda de cada uma fica na coluna, porque
+   legenda é prosa e se lê na mesma medida do resto. */
+.table-wrap,.escopo,.ponte{
+  width:min(var(--col-wide),calc(100vw - 40px));min-width:100%;
+  margin-left:50%;transform:translateX(-50%)}
+
+/* ═══ COMPONENTES DA 2.1 ═══════════════════════════════════════════════ */
+
+/* legenda de figura · toda figura tem uma frase de leitura embaixo. Mesma
+   regra da 1.4, copiada porque cada página aqui é um arquivo só. */
+.fig-leg{font-size:14px;color:var(--text-dim);line-height:1.55;margin:14px 0 0}
+.fig-leg strong{color:var(--text-muted)}
+
+/* lista de caminhos · é enumeração de opções, e não passo a passo numerado,
+   então não usa `.passos`, que numera e sugere ordem que aqui não existe. */
+.lista-caminhos{list-style:none;margin:16px 0 0}
+.lista-caminhos li{padding-left:18px;position:relative;line-height:1.65;
+  color:var(--text-muted);font-size:16px}
+.lista-caminhos li + li{margin-top:11px}
+.lista-caminhos li::before{content:"·";position:absolute;left:5px;
+  color:var(--accent);font-weight:700}
+.lista-caminhos strong{color:var(--text)}
+
+/* ESCOPO · as duas pastas lado a lado. É o desenho central do conceito 1:
+   a mesma tarefa, duas decisões de alcance. Cor semântica e não decorativa:
+   só o que NÃO devia estar ao alcance acende, e acende em aviso. */
+/* `margin-top` e nao o atalho `margin`: o atalho zera o margin-left:50% da
+   regra de sangramento e joga o bloco 570px para a esquerda. */
+/* `stretch` e não `start`: as duas pastas têm quantidade de arquivo bem
+   diferente, que é a mensagem, mas com alturas soltas os dois rodapés ficavam
+   em linhas diferentes. Esticando, a comparação de peso fica no espaço vazio
+   da caixa da direita, e as duas conclusões se leem lado a lado. */
+.escopo{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px;
+  align-items:stretch}
+.esc{border:1px solid var(--border);border-radius:var(--radius-lg);
+  background:var(--bg-elev);overflow:hidden;display:flex;flex-direction:column}
+.esc.certa{border-color:rgba(46,125,50,.4)}
+.esc-topo{padding:14px 18px;border-bottom:1px solid var(--border);
+  background:var(--bg-warm)}
+.esc.certa .esc-topo{background:#F1F7F1}
+.esc-rot{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--text-dim);margin-bottom:7px}
+.esc.certa .esc-rot{color:#2E7D32}
+.esc-nome{font-family:var(--font-mono);font-size:14px;color:var(--text);
+  font-weight:500}
+.esc-arv{padding:15px 18px 17px;font-family:var(--font-mono);font-size:12.5px;
+  line-height:1.85;color:var(--text-muted);flex:1}
+.esc-arv i{font-style:normal;color:var(--text-dim)}
+.esc-arv b{font-weight:400;color:var(--text)}
+.esc-arv .risco{color:#9A3B3B}
+.esc-arv .risco::after{content:" ⚠";font-size:11px}
+.esc-arv .quer::after{content:" ← o que você queria";color:var(--text-dim);
+  font-size:11px;font-family:var(--font-sans)}
+.esc-pe{padding:13px 18px;border-top:1px solid var(--border);
+  background:var(--bg-code);font-size:14px;line-height:1.5;color:var(--text-muted)}
+.esc.certa .esc-pe{background:#F1F7F1;color:#2E5C2E}
+.esc-pe b{color:var(--text);font-weight:600}
+.esc.certa .esc-pe b{color:#2E5C2E}
+
+/* PONTE · onde o trabalho acontece e por onde ele alcança a sua pasta.
+   Três caixas em linha, e a do meio é a que o aluno precisa manter aberta. */
+.ponte{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:0;
+  align-items:stretch;margin-top:20px}
+.pn{border:1px solid var(--border);border-radius:var(--radius);
+  background:var(--bg-elev);padding:16px 18px;text-align:center}
+.pn.meio{border-color:var(--accent-line);background:var(--accent-tinted)}
+.pn-rot{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--text-dim);margin-bottom:9px}
+.pn.meio .pn-rot{color:var(--accent-dark)}
+.pn-nome{font-size:15px;font-weight:600;color:var(--text);line-height:1.35;
+  margin-bottom:6px}
+.pn.meio .pn-nome{color:var(--accent-dark)}
+.pn-desc{font-size:13.5px;line-height:1.5;color:var(--text-muted)}
+.pn-liga{display:flex;align-items:center;justify-content:center;
+  padding:0 10px;color:var(--text-dim);font-size:15px}
+.ponte-leg{margin-top:14px}
+
+/* MODOS · a coluna do meio da tabela pode não existir na conta do aluno, e
+   a ressalva sobre isso é conteúdo, não rodapé. Fica marcada na própria célula. */
+td.modo-nome{font-weight:600;color:var(--text)}
+/* o nome em ingles fica em linha propria, e por isso e <div> e nao <i>:
+   forcar tag inline a display:block e o defeito que o G11 procura. */
+.modo-eng{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.05em;
+  color:var(--text-dim);text-transform:uppercase;margin-top:4px;font-weight:400}
+tr.modo-trava td{background:var(--bg-warm);color:var(--text)}
+tr.modo-trava td:first-child{font-weight:600}
+
+@media (max-width:820px){
+  .escopo{grid-template-columns:1fr}
+  .ponte{grid-template-columns:1fr}
+  .pn-liga{padding:8px 0;transform:rotate(90deg)}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a href="../../" class="brand">
+      <div class="brand-mark">CP</div>
+      <div>
+        <div class="brand-title">Claude na Prática</div>
+        <div class="brand-sub">Treinamento in-company · Rafael Lima</div>
+      </div>
+    </a>
+    <div class="header-meta">
+      <span class="chip chip-accent">Módulo 2 · Aula 1 de 6</span>
+    </div>
+  </div>
+</header>
+
+<div class="crumbs">
+  <a href="../../">Início</a>
+  <span class="sep">›</span>
+  <a href="../">Módulo 2</a>
+  <span class="sep">›</span>
+  <span>Aula 2.1 · Onde ele pode entrar, e o que ele pode fazer lá dentro</span>
+</div>
+
+<main class="wrap">
+
+  <section class="hero">
+    <div class="hero-kicker">Aula 2.1 · Nível 4 de 6</div>
+    <h1>Onde ele pode entrar, e o que ele pode fazer lá dentro</h1>
+    <p class="hero-sub">
+      Até aqui você anexava. A partir de agora ele abre a pasta sozinho, e por isso a pergunta muda: <strong>até onde ele enxerga, e o que ele pode fazer com o que encontrar lá</strong>. Essa é a decisão mais importante do módulo, e ela leva dez segundos para ser tomada errado.
+    </p>
+    <div class="hero-meta">
+      <span class="meta-label">Você leva</span>
+      <span class="chip chip-accent">Uma pasta sua, liberada e testada</span>
+      <span class="meta-label" style="margin-left:12px">Precisa de</span>
+      <span class="chip">O aplicativo instalado e uma conta paga</span>
+      <span class="meta-label" style="margin-left:12px">No Claude</span>
+      <span class="rec">Cowork · pasta e permissões</span>
+      <span class="chip chip-ementa">Ementa 2.1</span>
+    </div>
+  </section>
+
+  <div class="destino">
+    <div class="destino-title">🎯 O que você vai saber fazer</div>
+    <ul>
+      <li>Escolher qual pasta liberar, e saber explicar por que não é a pasta de cima</li>
+      <li>Escolher entre os modos de aprovação sabendo <strong>o que cada um deixa de conferir</strong>, e não pelo que é mais rápido</li>
+      <li>Trazer para cá o Project que você montou na aula 1.3, com as regras junto, em vez de escrever tudo de novo</li>
+      <li>Reconhecer, olhando para a tela, quando parar uma tarefa no meio</li>
+    </ul>
+    <div class="destino-quando">
+      <b class="rot">Onde isso aparece na sua semana</b>
+      Na primeira vez que você for pedir alguma coisa em cima de um arquivo que já está no seu computador. Você decide <strong>o que ele alcança antes de pedir</strong>, em vez de liberar tudo e torcer.
+    </div>
+  </div>
+
+  <!-- 01 SITUAÇÃO -->
+  <section class="step" id="s01">
+    <div class="step-header">
+      <div class="step-num">01</div>
+      <div class="step-title-block">
+        <div class="step-eyebrow">A situação</div>
+        <div class="step-title">O arquivo que você anexa toda semana já está no seu computador</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <p class="frase-dor">
+        Eu exporto do sistema, salvo na pasta, abro o Claude, anexo, espero, copio a resposta e colo de volta numa planilha. Toda semana. E o arquivo estava ali o tempo todo.
+      </p>
+      <p>
+        O Módulo 1 inteiro aconteceu assim, e funcionou: você aprendeu a pedir de um jeito que volta pronto e a guardar as suas regras para não reexplicar. Mas <strong>o transporte continuou sendo você</strong>. Exporta, anexa, copia, cola.
+      </p>
+      <p>
+        E tem a segunda metade do incômodo, que é mais silenciosa: <strong>o que volta é texto.</strong> Você pediu um resumo do fechamento e recebeu um resumo do fechamento, escrito na tela, que você ainda precisa transformar em arquivo para mandar para alguém.
+      </p>
+      <p>
+        Nesta aula esses dois passos somem. Ele abre a pasta e devolve arquivo. E é justamente por isso que a primeira pergunta desta aula não é <em>"como faço"</em>, é <strong>"até onde ele pode ir"</strong>.
+      </p>
+    </div>
+  </section>
+
+  <!-- 02 CONCEITO -->
+  <section class="step" id="s02">
+    <div class="step-header">
+      <div class="step-num">02</div>
+      <div class="step-title-block">
+        <div class="step-eyebrow">O conceito</div>
+        <div class="step-title">A pasta é o alcance, e o modo é a coleira</div>
+      </div>
+    </div>
+    <div class="step-body">
+
+      <h4>Conceito 1 · Ele enxerga a pasta inteira, não o arquivo que você tinha em mente</h4>
+      <p>
+        Na aula 1.1 a comparação foi essa: o Cowork é o funcionário com <strong>a chave do arquivo</strong>. Esta aula é sobre qual chave você entrega.
+      </p>
+      <p>
+        Quando você libera uma pasta, você não liberou um arquivo. Liberou <strong>tudo que está lá dentro</strong>, inclusive o que você esqueceu que estava lá. E ele vai olhar, porque foi o que você pediu.
+      </p>
+
+      <div class="escopo">
+        <div class="esc">
+          <div class="esc-topo">
+            <div class="esc-rot">O caminho rápido</div>
+            <div class="esc-nome">📁 Documentos</div>
+          </div>
+          <div class="esc-arv">
+            <b class="quer">fechamento-julho.xlsx</b><br>
+            <i>cotacoes-marco.xlsx</i><br>
+            <i class="risco">folha-pagamento-2025.xlsx</i><br>
+            <i class="risco">contrato-fornecedor-assinado.pdf</i><br>
+            <i class="risco">atestado-medico-equipe.pdf</i><br>
+            <i>(mais 312 arquivos de quatro anos)</i>
+          </div>
+          <div class="esc-pe">
+            Levou dez segundos e resolveu a tarefa de hoje. <b>E entregou quatro anos de arquivo junto.</b>
+          </div>
+        </div>
+        <div class="esc certa">
+          <div class="esc-topo">
+            <div class="esc-rot">O caminho que esta aula ensina</div>
+            <div class="esc-nome">📁 fechamento-claude</div>
+          </div>
+          <div class="esc-arv">
+            <b class="quer">fechamento-julho.xlsx</b>
+          </div>
+          <div class="esc-pe">
+            Levou trinta segundos: criar a pasta e copiar um arquivo para dentro. <b>Ele resolve a mesma tarefa e não tem como olhar mais nada.</b>
+          </div>
+        </div>
+      </div>
+      <p class="fig-leg">
+        As duas pastas resolvem o fechamento de julho igualmente bem. A diferença não aparece hoje: aparece no dia em que alguém pedir alguma coisa mais aberta, do tipo <em>"veja o que tem aqui e organize"</em>, e a folha de pagamento estiver ao alcance.
+      </p>
+
+      <p>
+        A regra da própria Anthropic é curta: <strong>crie uma pasta dedicada para o Claude, em vez de dar acesso amplo</strong>. Não é desconfiança da ferramenta. É a mesma lógica de não deixar a chave-mestra do prédio com quem só precisa entrar numa sala.
+      </p>
+
+      <div class="analogia">
+        <div class="analogia-title">💡 A pasta não é uma configuração, é uma decisão de quem entra onde</div>
+        <p>
+          Ninguém acha estranho que o estagiário do financeiro não tenha a chave da sala do RH. <strong>Não é sobre confiar nele</strong>, é sobre não precisar confiar: se ele não alcança, o assunto nem existe.
+        </p>
+        <p>
+          Aqui é igual, com uma diferença que joga a favor: <strong>a pasta se troca em dois cliques</strong>. Começar apertado não custa nada, e abrir depois é fácil. O caminho contrário, descobrir que ele leu o que não devia, não tem volta.
+        </p>
+      </div>
+
+      <h4>Conceito 2 · Você escolhe quanto ele para para perguntar</h4>
+      <p>
+        Alcançar a pasta é uma coisa. <strong>Fazer</strong> alguma coisa lá dentro é outra, e é aqui que entra a segunda decisão: de quanto em quanto ele para e pede autorização.
+      </p>
+
+      <div class="table-wrap"><table>
+        <thead><tr><th>O modo</th><th>O que ele faz</th><th>Quando este é o certo</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="modo-nome">Conferir cada passo<div class="modo-eng">manually approve</div></td>
+            <td>Para antes de cada ação e espera você autorizar. Você lê o que ele quer fazer e responde sim ou não</td>
+            <td><strong>A primeira vez, sempre.</strong> E toda vez que a tarefa toca arquivo que importa, ou faz algo difícil de desfazer</td>
+          </tr>
+          <tr>
+            <td class="modo-nome">Deixar correr com conferência<div class="modo-eng">automatically approve</div></td>
+            <td>Não para a cada passo, mas <strong>confere cada ação antes de executar</strong> e bloqueia o que julgar perigoso. Se apanhar demais, volta sozinho a perguntar</td>
+            <td>Tarefa que você já viu funcionar de ponta a ponta e vai repetir. Consome mais da sua cota do que os outros dois</td>
+          </tr>
+          <tr>
+            <td class="modo-nome">Não perguntar nada<div class="modo-eng">skip all approvals</div></td>
+            <td>Não para, e <strong>nada confere</strong> as ações dele</td>
+            <td>Só quando você confia em cada arquivo, cada site e cada ferramenta envolvida. Na dúvida, não é este</td>
+          </tr>
+          <tr class="modo-trava">
+            <td>Apagar arquivo</td>
+            <td colspan="2"><strong>Pergunta sempre, nos três modos, e isso não tem como desligar.</strong> Aparece um pedido de permissão e nada é apagado até você autorizar</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <div class="callout callout-info">
+        <div class="callout-title">O modo do meio pode não aparecer na sua conta</div>
+        <p>
+          Ele depende do tipo de plano. Se você só encontrar dois, a escolha fica entre <strong>conferir cada passo</strong> e <strong>não perguntar nada</strong>, e aí a resposta é ainda mais fácil: fique no primeiro. O terceiro não é "o modo rápido", é o modo sem conferência nenhuma.
+        </p>
+      </div>
+
+      <p>
+        Repare no que a linha do meio da tabela realmente oferece, porque é sutil e é o motivo de ela existir: <strong>ela não deixa de conferir, ela deixa de perguntar.</strong> A conferência continua acontecendo, feita por ele, antes de cada ação. O terceiro modo é o único em que ninguém confere nada.
+      </p>
+    </div>
+  </section>
+
+  <!-- 03 COMO FUNCIONA -->
+  <section class="step" id="s03">
+    <div class="step-header">
+      <div class="step-num">03</div>
+      <div class="step-title-block">
+        <div class="step-eyebrow">Como funciona</div>
+        <div class="step-title">O trabalho não acontece na sua máquina, mas passa por ela</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <p>
+        Isso confunde no começo e vale entender uma vez só, porque explica quase todo comportamento estranho que você vai encontrar.
+      </p>
+
+      <div class="ponte">
+        <div class="pn">
+          <div class="pn-rot">onde o trabalho roda</div>
+          <div class="pn-nome">Nos servidores da Anthropic</div>
+          <div class="pn-desc">Ele lê, calcula, escreve e monta o arquivo aqui. Continua rodando mesmo se você fechar o notebook</div>
+        </div>
+        <div class="pn-liga">→</div>
+        <div class="pn meio">
+          <div class="pn-rot">a ponte</div>
+          <div class="pn-nome">O aplicativo aberto na sua máquina</div>
+          <div class="pn-desc">É por aqui, e só por aqui, que ele chega nas suas pastas</div>
+        </div>
+        <div class="pn-liga">→</div>
+        <div class="pn">
+          <div class="pn-rot">o que ele alcança</div>
+          <div class="pn-nome">As pastas que você liberou</div>
+          <div class="pn-desc">Só essas. Nem uma pasta a mais, nem enquanto o aplicativo estiver fechado</div>
+        </div>
+      </div>
+      <p class="fig-leg ponte-leg">
+        A consequência prática é uma só, e é a que resolve o susto mais comum: <strong>se você fechar o aplicativo no meio de uma tarefa, ela não morre.</strong> Ela continua rodando e só perde o alcance dos seus arquivos. Se o que faltava era ler a sua planilha, ela fica esperando; se o que faltava era escrever o texto, ela termina sem você.
+      </p>
+
+      <h4>O projeto, e por que você não vai remontar o da aula 1.3</h4>
+      <p>
+        Na aula 1.3 você montou um Project com as suas regras e os seus arquivos de apoio. Ele não fica preso lá. No painel da esquerda existe uma área de projetos, e ao criar um projeto novo aparecem <strong>três caminhos</strong>:
+      </p>
+      <ul class="lista-caminhos">
+        <li><strong>Começar do zero</strong>, montando uma pasta nova com instruções e arquivos</li>
+        <li><strong>Trazer um Project que você já tem</strong>, buscando pelo nome. Ele transfere os arquivos e as instruções que você escreveu, e você escolhe onde isso vai ficar salvo no seu computador</li>
+        <li><strong>Usar uma pasta que já existe</strong> na sua máquina, dando a ela instruções próprias</li>
+      </ul>
+      <p>
+        O segundo caminho é o desta aula. <strong>As regras que você escreveu no Módulo 1 continuam valendo aqui</strong>, e você não digita nada de novo.
+      </p>
+      <p>
+        E um projeto daqui guarda quatro coisas: as <strong>instruções</strong>, o <strong>contexto</strong> (a pasta, um Project do chat, um endereço), as <strong>rotinas agendadas</strong> que são só dele, e a <strong>memória</strong> do que já foi feito ali. Essa memória é por projeto: o que ele aprende num não vaza para os outros.
+      </p>
+
+      <div class="callout callout-warn">
+        <div class="callout-title">A tela ainda mistura português e inglês</div>
+        <p>
+          O recurso é novo e a tradução está em andamento, então é normal encontrar um botão em português ao lado de outro em inglês, e é normal que um nome mude de uma versão para a outra. <strong>Se algo aqui estiver com outro nome na sua tela, procure pela função e não pela palavra:</strong> a área de projetos, o botão de criar, o seletor de modo ao lado de onde você escreve.
+        </p>
+        <p>
+          Vale para o curso inteiro daqui para a frente. <strong>O que muda de nome é o rótulo, não o que ele faz.</strong>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 DEMONSTRAÇÃO -->
+  <section class="step" id="s04">
+    <div class="step-header">
+      <div class="step-num">04</div>
+      <div class="step-title-block">
+        <div class="step-eyebrow">Demonstração</div>
+        <div class="step-title">Uma pasta do financeiro, sem anexar nada</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <p>
+        O caso é do financeiro, e o seu exercício vai ser na sua própria pasta. <strong>O que interessa aqui é o mecanismo</strong>, e ele é o mesmo em qualquer setor: liberar pouco, ver o plano antes, autorizar, receber arquivo.
+      </p>
+
+      <div class="demo">
+        <div class="demo-head">O que acontece na tela</div>
+        <div class="demo-body">
+          <ol class="demo-passos">
+            <li>
+              Uma pasta com <strong>dois meses de fechamento e a norma interna em Word</strong> é liberada. Nada é anexado em conversa nenhuma: a pasta simplesmente passa a estar ao alcance.
+            </li>
+            <li>
+              Vem um pedido de uma linha só, e ele <strong>lista o que encontrou na pasta antes de fazer qualquer coisa</strong>. Repare que ele nomeia os arquivos: é a primeira prova de que está lendo de verdade, e não adivinhando.
+            </li>
+            <li>
+              Antes de executar, aparece <strong>o plano</strong>: o que ele vai abrir, o que vai comparar e o que vai gerar. Esse é o momento de corrigir o rumo, e é mais barato aqui do que depois.
+            </li>
+            <li>
+              Na hora de <strong>criar o arquivo novo</strong>, ele para e pede autorização. É o modo de conferir cada passo funcionando: nada é escrito na sua pasta sem você dizer sim.
+            </li>
+            <li>
+              O resultado não é um texto na tela. É <strong>uma planilha salva na pasta</strong>, com o nome que ele informa, do lado dos arquivos que ele leu.
+            </li>
+            <li>
+              <strong>Pare aqui e responda para você mesmo:</strong> quantos passos manuais desapareceram entre o pedido e o arquivo pronto? Guarde esse número, ele é a diferença entre este módulo e o anterior.
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="saidas">
+        <a class="saida" href="./demonstracao/">
+          <div class="s-rot">Passo a passo completo</div>
+          <div class="s-titulo">A pasta do financeiro, com os prompts literais</div>
+          <div class="s-desc">Cada passo com o que aparece na tela, o que reparar e o que aquilo ensina. Serve para você refazer depois, sozinho.</div>
+          <span class="s-cta">Abrir a demonstração →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 SUA VEZ -->
+  <section class="step" id="s05">
+    <div class="step-header">
+      <div class="step-num">05</div>
+      <div class="step-title-block">
+        <div class="step-eyebrow">Sua vez</div>
+        <div class="step-title">A sua pasta, liberada do jeito certo</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <p>
+        Aqui não tem planilha para baixar de propósito: <strong>o insumo é seu</strong>. É o relatório que você exporta de verdade, com a coluna torta e a linha em branco no meio.
+      </p>
+
+      <div class="callout callout-info">
+        <div class="callout-title">Se você não trouxe nada, use o Módulo 1</div>
+        <p>
+          As planilhas das aulas 1.1 e 1.2 já estão baixadas no seu computador. Elas servem perfeitamente para este exercício, e a única coisa que muda é que o resultado não vai para o seu trabalho hoje.
+        </p>
+      </div>
+
+      <ol class="passos">
+        <li>
+          <div class="passo-title">Crie uma pasta nova e copie para dentro dela só o que a tarefa precisa</div>
+          <p>
+            Um nome que você reconheça depois, do tipo <code>claude-fechamento</code>. <strong>Copie, não mova</strong>: o original continua onde estava, e você fica livre para testar sem medo. Se for um arquivo só, é um arquivo só.
+          </p>
+        </li>
+        <li>
+          <div class="passo-title">Libere essa pasta, e confirme que foi essa mesmo</div>
+          <p>
+            Depois de liberar, olhe o nome da pasta que aparece na tela e leia com atenção. <strong>É o erro mais comum do dia:</strong> escolher a pasta de cima sem perceber, porque ela estava aberta na janela.
+          </p>
+        </li>
+        <li>
+          <div class="passo-title">Deixe no modo de conferir cada passo</div>
+          <p>
+            Nesta primeira vez você quer ser interrompido. É assim que você descobre <strong>o que ele tentaria fazer sozinho</strong> se você não estivesse olhando.
+          </p>
+        </li>
+        <li>
+          <div class="passo-title">Peça, sem anexar nada</div>
+          <p>
+            Este pedido é de propósito duas coisas ao mesmo tempo: ele obriga o Claude a <strong>ler a pasta</strong> e a <strong>escrever um arquivo</strong>. É o par que o Módulo 1 não conseguia fazer.
+          </p>
+          <div class="prompt-box">
+            <div class="prompt-toolbar">
+              <span>pedido do exercício · pronto para colar</span>
+              <button class="prompt-btn" data-copy="p-21">Copiar</button>
+            </div>
+            <div class="prompt-content" id="p-21">Antes de fazer qualquer coisa, liste os arquivos que você está enxergando nesta pasta, com o nome de cada um.
+
+Depois, abra o relatório que está aí dentro e me diga, em no máximo cinco linhas, o que ele contém: quantas linhas, quais colunas, e qual o período que ele cobre.
+
+Por fim, gere uma planilha nova nesta mesma pasta, chamada resumo-conferencia.xlsx, com uma aba só, contendo: nome da coluna, tipo de dado que aparece nela, e quantos valores estão vazios ou fora do padrão.
+
+Me diga o caminho completo do arquivo que você salvou.</div>
+          </div>
+        </li>
+        <li>
+          <div class="passo-title">Conte quantas vezes ele parou para pedir autorização</div>
+          <p>
+            Anote esse número. Ele é o que você vai comparar quando testar os outros modos, e é a medida concreta do que você abriria mão ao trocar de modo.
+          </p>
+        </li>
+        <li>
+          <div class="passo-title">Abra a pasta no seu computador e confirme que o arquivo está lá</div>
+          <p>
+            Não confie no que ele disse na tela. <strong>Abra a pasta.</strong> O arquivo existe? Abre? Tem conteúdo dentro? Essa conferência de dez segundos é o hábito que o módulo inteiro depende.
+          </p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 06 GABARITO -->
+  <section class="step" id="s06">
+    <div class="step-header">
+      <div class="step-num">06</div>
+      <div class="step-title-block">
+        <div class="step-eyebrow">Confira</div>
+        <div class="step-title">O que uma boa resposta tinha que ter</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <p>
+        Tente primeiro. Depois abra e compare, porque o valor está na diferença entre o que você recebeu e o que estava previsto.
+      </p>
+      <details class="gabarito">
+        <summary>Ver o gabarito do exercício</summary>
+        <div class="gabarito-body">
+          <div class="gabarito-sub">Os quatro sinais de que deu certo</div>
+          <ol class="passos">
+            <li>
+              <div class="passo-title">Ele nomeou os arquivos da pasta, um por um</div>
+              <p>
+                Se ele respondeu de forma genérica, do tipo "encontrei alguns arquivos de planilha", <strong>ele não está lendo a pasta</strong>. Ou a pasta liberada não é a que você acha que é, ou o aplicativo não está aberto na máquina.
+              </p>
+            </li>
+            <li>
+              <div class="passo-title">Os números que ele deu sobre o relatório batem com o arquivo</div>
+              <p>
+                Abra a planilha e confira a quantidade de linhas e o período. <strong>É a conferência mais importante das quatro:</strong> se ele acertou o nome do arquivo mas errou o conteúdo, alguma coisa está sendo lida pela metade.
+              </p>
+            </li>
+            <li>
+              <div class="passo-title">Ele parou pelo menos uma vez pedindo autorização</div>
+              <p>
+                No modo de conferir cada passo, criar um arquivo novo na sua pasta é exatamente o tipo de ação que para. Se ele não parou nenhuma vez, <strong>confira em que modo você está</strong>, porque provavelmente não é o primeiro.
+              </p>
+            </li>
+            <li>
+              <div class="passo-title">O arquivo existe na pasta, e abre</div>
+              <p>
+                Ele informou um caminho. Vá até lá pelo seu computador, não pela tela do Claude. Arquivo que só existe na resposta <strong>não existe</strong>.
+              </p>
+            </li>
+          </ol>
+          <p>
+            Se os quatro deram certo, você acabou de fazer no seu computador o que o Módulo 1 inteiro não conseguia fazer: <strong>pedir uma vez e receber um arquivo</strong>, sem transporte manual em nenhuma ponta.
+          </p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- 07 PEGADINHAS -->
+  <section class="step" id="s07">
+    <div class="step-header">
+      <div class="step-num">07</div>
+      <div class="step-title-block">
+        <div class="step-eyebrow">Pegadinhas</div>
+        <div class="step-title">Cinco coisas que dão errado na primeira semana</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <ol class="passos">
+        <li>
+          <div class="passo-title">Liberar a pasta de cima "para não ter que trocar depois"</div>
+          <p>
+            É o erro que esta aula inteira existe para evitar, e ele é confortável porque parece eficiente. <strong>Trocar de pasta leva dois cliques.</strong> Descobrir que ele leu a folha de pagamento não tem passo para desfazer.
+          </p>
+        </li>
+        <li>
+          <div class="passo-title">Testar direto na pasta onde está o arquivo de verdade</div>
+          <p>
+            Na primeira vez, trabalhe numa <strong>cópia</strong>. Vale para arquivo e vale para volume: se são mil linhas para transformar, comece pedindo em cima de vinte e veja se o resultado é o que você esperava. Confiar de primeira em cima do original é apostar num comportamento que você ainda não viu.
+          </p>
+        </li>
+        <li>
+          <div class="passo-title">Achar que fechar o aplicativo cancela a tarefa</div>
+          <p>
+            Não cancela. Ela continua rodando e <strong>só perde o acesso às suas pastas</strong>. Se você quer parar de verdade, pare a tarefa; fechar a janela não é parar.
+          </p>
+        </li>
+        <li>
+          <div class="passo-title">Confundir o projeto daqui com o Project da aula 1.3</div>
+          <p>
+            São parecidos e conversam entre si, mas o daqui <strong>vive no seu computador</strong> e é o que aponta para uma pasta. O jeito certo de pensar: o da 1.3 guarda as regras, o daqui guarda as regras <strong>e o lugar onde o trabalho acontece</strong>.
+          </p>
+        </li>
+        <li>
+          <div class="passo-title">Ler a resposta e não abrir o arquivo</div>
+          <p>
+            Ele descreve bem o que fez, e a descrição é convincente. <strong>Abrir a pasta leva dez segundos</strong>, e é o que separa quem confere de quem confia.
+          </p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 08 A CERCA -->
+  <section class="step" id="s08">
+    <div class="step-header">
+      <div class="step-num">08</div>
+      <div class="step-title-block">
+        <div class="step-eyebrow">A cerca</div>
+        <div class="step-title">🔒 Neste nível, o que nunca pode acontecer</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <div class="callout callout-cerca">
+        <div class="callout-title">Três regras que não têm exceção</div>
+        <ul>
+          <li>
+            <strong>Nunca libere uma pasta que contenha folha de pagamento, contrato assinado, documento de pessoa ou dado de saúde.</strong> Se o arquivo que você precisa está numa pasta assim, copie ele para uma pasta nova e libere a pasta nova
+          </li>
+          <li>
+            <strong>Se algo parecer estranho, pare a tarefa.</strong> Ele acessando arquivo que você não mencionou, ou o trabalho crescendo além do que você pediu, são motivos suficientes. Parar é barato
+          </li>
+          <li>
+            <strong>O que ele faz, você fez.</strong> Arquivo alterado, mensagem enviada, informação acessada: a responsabilidade é de quem autorizou, e quem autorizou foi você. Vale a pena reler isso antes de escolher um modo que não pergunta
+          </li>
+        </ul>
+      </div>
+      <p>
+        Existe um risco menos óbvio e vale saber que ele existe, porque volta na aula 2.4: <strong>um arquivo ou um site que ele lê pode conter instruções escritas para ele</strong>, e não para você. Um pedido escondido no meio de um documento, do tipo "esqueça o que mandaram e faça outra coisa".
+      </p>
+      <p>
+        A defesa é a mesma dos dois conceitos desta aula, e por isso ela vem aqui: <strong>ele só lê o que você liberou, e só faz o que você autorizou.</strong> Um ataque desses precisa das duas coisas ao mesmo tempo para funcionar. Quebre uma e ele deixa de ter para onde ir.
+      </p>
+    </div>
+  </section>
+
+  <!-- VALIDADOR -->
+  <div class="checagem">
+    <div class="checagem-head">
+      <div class="checagem-title">Confira você mesmo, antes de seguir</div>
+      <p class="checagem-lead">Quatro conferências objetivas. <strong>Nenhuma delas é "ficou bom?"</strong>, porque isso ninguém responde sozinho. Se alguma falhar, o item diz para onde voltar.</p>
+    </div>
+    <ol class="checagem-lista">
+      <li>
+        <div class="checagem-o">A pasta que você liberou contém só o que a tarefa precisava</div>
+        <div class="checagem-como"><b class="rot">Como conferir</b> Abra a pasta no seu computador e conte os arquivos. Se tem arquivo ali que não tem nada a ver com o pedido que você fez, <strong>a pasta está grande demais</strong>. Volte ao passo 1 do exercício e copie menos coisa.</div>
+      </li>
+      <li>
+        <div class="checagem-o">Ele nomeou os arquivos da pasta antes de trabalhar</div>
+        <div class="checagem-como"><b class="rot">Como conferir</b> Procure na resposta os nomes dos arquivos escritos por extenso. Se ele falou "os arquivos da pasta" sem nomear nenhum, ou ele não está alcançando a pasta, ou o aplicativo estava fechado. Ver a seção <a href="#s03">03</a>.</div>
+      </li>
+      <li>
+        <div class="checagem-o">Você tem um número anotado de quantas vezes ele pediu autorização</div>
+        <div class="checagem-como"><b class="rot">Como conferir</b> É um número, não uma impressão. Se você não conseguiu contar porque ele não parou nenhuma vez, confira o modo em que está: no de conferir cada passo, criar arquivo para. Ver a tabela da seção <a href="#s02">02</a>.</div>
+      </li>
+      <li>
+        <div class="checagem-o">O arquivo que ele disse ter criado abre no seu computador</div>
+        <div class="checagem-como"><b class="rot">Como conferir</b> Vá até a pasta pelo seu computador e abra o arquivo. Não vale conferir pela tela do Claude. <strong>Se não abre ou está vazio, a tarefa não terminou</strong>, e o lugar de descobrir isso é aqui e não na frente do seu gestor.</div>
+      </li>
+    </ol>
+    <div class="checagem-falhou">
+      <b class="rot">Se duas ou mais falharam</b>
+      Quase sempre é uma causa só, e são duas candidatas: a pasta liberada não é a que você pensa, ou o aplicativo não estava aberto na máquina. Confira as duas antes de refazer o exercício.
+    </div>
+  </div>
+
+  <div class="checkpoint">
+    <div class="checkpoint-title">✅ Checkpoint, você agora sabe</div>
+    <ul>
+      <li>Escolher a pasta pelo critério certo: a menor que contém o que a tarefa precisa</li>
+      <li>Dizer o que cada modo de aprovação deixa de conferir, e por que o do meio não é o modo rápido</li>
+      <li>Nomear a única trava que não desliga em modo nenhum</li>
+      <li>Explicar por que fechar o aplicativo não cancela a tarefa, e o que ela perde quando isso acontece</li>
+      <li>Trazer o Project do Módulo 1 para cá sem reescrever as regras</li>
+    </ul>
+    <div class="checkpoint-primeiro">
+      <b class="rot">A primeira coisa a fazer · Ainda esta semana</b>
+      <span class="tx">Crie a pasta dedicada do seu trabalho de verdade e copie para dentro dela <strong>o relatório que você mais repete</strong>. Só ele. Essa pasta é o endereço das próximas cinco aulas, e ter ela pronta é o que decide se você vai acompanhar ou assistir.</span>
+    </div>
+  </div>
+
+  <div class="hook">
+    <div class="hook-label">➜ A trava que esta aula não resolve</div>
+    <div class="hook-frase">
+      Ele alcança os seus arquivos e devolve arquivo. Só que ele <strong>ainda não sabe o jeito da casa</strong>.
+    </div>
+    <p>
+      Toda vez que você pedir alguma coisa nessa pasta, vai ter que explicar de novo como a sua área faz: qual formato, qual regra, o que nunca pode. Você já escreveu isso uma vez, na aula 1.4, e aquilo ficou no navegador. <strong>A próxima aula traz o seu método para dentro da pasta</strong>, em forma de arquivo. <a href="../">Voltar ao módulo 2 →</a>
+    </p>
+  </div>
+
+  <p class="ementa-nota">
+    <strong>Cobertura da ementa:</strong> esta aula entrega o item <strong>2.1 · Configuração e primeiro contato com o Cowork</strong>. Ela abre o módulo porque decidir o alcance vem antes de qualquer tarefa: as cinco aulas seguintes acontecem todas dentro da pasta que você escolher aqui.
+  </p>
+
+  <nav class="nav-bottom">
+    <a href="../" class="nav-link back">
+      <span class="nav-link-label">← voltar</span>
+      <span class="nav-link-title">Módulo 2 · as seis aulas</span>
+    </a>
+    <a href="../../m1/a4-o-mapa/" class="nav-link">
+      <span class="nav-link-label">aula anterior</span>
+      <span class="nav-link-title">1.4 · Skill, comando, MCP e plugin</span>
+    </a>
+  </nav>
+
+</main>
+
+<footer class="site-footer">
+  Claude na Prática · Treinamento in-company · Rafael Lima
+</footer>
+
+<div class="toast" id="toast">Copiado</div>
+
+<script>
+(function(){
+  var toast = document.getElementById('toast');
+  function show(msg){
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(function(){ toast.classList.remove('show'); }, 1800);
+  }
+  document.querySelectorAll('[data-copy]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var el = document.getElementById(btn.getAttribute('data-copy'));
+      if(!el) return;
+      var text = el.textContent;
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(function(){ show('Copiado ✓'); },
+          function(){ fallback(text); });
+      } else { fallback(text); }
+    });
+  });
+  function fallback(text){
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    try{ document.execCommand('copy'); show('Copiado ✓'); }
+    catch(e){ show('Não foi possível copiar'); }
+    document.body.removeChild(ta);
+  }
+})();
+</script>
+
+</body>
+</html>

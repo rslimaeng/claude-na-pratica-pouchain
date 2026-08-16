@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demonstração · aula 2.1 · Uma pasta do financeiro, sem anexar nada</title>
+<meta name="description" content="Passo a passo do primeiro trabalho dentro de uma pasta liberada: inventario, plano antes da acao, autorizacao e o arquivo conferido fora da tela.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F0EEE6; --bg-elev:#FFFFFF; --bg-code:#F5F3EA;
+  --text:#141413; --text-muted:#3D3D3A; --text-dim:#87867F;
+  --border:rgba(20,20,19,.10); --border-strong:rgba(20,20,19,.18);
+  --accent:#1A5670; --accent-dark:#10394C; --accent-soft:#DDEAF0;
+  --accent-line:rgba(26,86,112,.22);
+  --col:860px;
+  --radius-sm:6px; --radius:10px; --radius-lg:14px;
+  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,'SF Mono','Menlo',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);
+  font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.wrap{max-width:var(--col);margin:0 auto;padding:0 24px}
+
+.topo{padding:26px 0 0}
+.volta{font-family:var(--font-mono);font-size:12px;color:var(--text-dim);margin-bottom:18px}
+.kicker{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+h1{font-size:clamp(28px,4vw,38px);font-weight:700;line-height:1.12;
+  letter-spacing:-.02em;margin-bottom:16px}
+.lead{font-size:18px;line-height:1.6;color:var(--text-muted)}
+.lead strong{color:var(--text)}
+.lead + .lead{margin-top:12px}
+
+/* o arquivo usado na demonstracao */
+.arq{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  flex-wrap:wrap;margin-top:24px;background:var(--bg-elev);
+  border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px}
+.arq-info{min-width:0}
+.arq-nome{display:block;font-family:var(--font-mono);font-size:14px;
+  color:var(--text);font-weight:500}
+.arq-meta{display:block;font-size:13.5px;color:var(--text-dim);margin-top:4px}
+.arq-btn{font-size:14px;font-weight:500;background:var(--accent);color:#fff;
+  border-radius:var(--radius-sm);padding:9px 16px;text-decoration:none;white-space:nowrap}
+.arq-btn:hover{background:var(--accent-dark)}
+
+/* os passos */
+.passo{display:grid;grid-template-columns:74px 1fr;gap:20px;margin-top:44px;
+  align-items:start}
+.passo-n{font-family:var(--font-mono);font-size:26px;font-weight:600;
+  color:var(--accent);line-height:1;letter-spacing:-.02em;position:sticky;top:20px}
+.passo-corpo{min-width:0;border-left:1px solid var(--border);padding-left:22px;
+  padding-bottom:4px}
+.passo-titulo{font-size:22px;font-weight:600;letter-spacing:-.015em;
+  line-height:1.26;margin-bottom:18px}
+
+.bloco{margin-bottom:18px}
+.bloco:last-child{margin-bottom:0}
+.b-rot{display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--text-dim);margin-bottom:6px}
+.b-tx{display:block;font-size:16.5px;line-height:1.55;color:var(--text-muted)}
+.b-tx b{color:var(--text);font-weight:600}
+.b-tx code{font-family:var(--font-mono);font-size:14px;background:var(--bg-code);
+  padding:2px 6px;border-radius:4px;color:var(--accent-dark)}
+
+/* a unica caixa colorida: o que o aluno precisa notar na tela */
+.repare{background:var(--accent-soft);border-radius:var(--radius);
+  padding:17px 19px;margin-bottom:18px}
+.repare .b-rot{color:var(--accent-dark)}
+.repare .b-tx{color:var(--accent-dark);font-size:17px}
+.repare .b-tx b{color:var(--accent-dark);font-weight:700}
+
+/* lista de itens dentro de um passo */
+.lista{margin-bottom:18px}
+.lista ul{list-style:none;margin-top:2px}
+.lista li{font-size:16.5px;line-height:1.5;color:var(--text-muted);
+  padding-left:22px;position:relative;margin-bottom:10px}
+.lista li:last-child{margin-bottom:0}
+.lista li::before{content:"";position:absolute;left:2px;top:11px;width:6px;
+  height:6px;border-radius:50%;background:var(--accent-line)}
+.lista li b{color:var(--text);font-weight:600}
+
+.ensina{margin-bottom:18px;padding-top:15px;border-top:1px solid var(--border)}
+.ensina .b-tx{font-size:16px}
+
+/* prompt: fechado, para nao cortar a leitura */
+.pbox{border:1px solid var(--border);border-radius:var(--radius);margin-bottom:18px;
+  background:var(--bg-elev);overflow:hidden}
+.pbox > summary{list-style:none;cursor:pointer;display:flex;align-items:center;
+  justify-content:space-between;gap:12px;padding:12px 15px}
+.pbox > summary::-webkit-details-marker{display:none}
+.pbox > summary:hover{background:var(--bg-code)}
+.p-nome{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.05em;
+  color:var(--text-muted)}
+.p-abre{font-family:var(--font-mono);font-size:11px;color:var(--accent)}
+.pbox[open] .p-abre::after{content:" \25B4"}
+.pbox:not([open]) .p-abre::after{content:" \25BE"}
+.pconteudo{font-family:var(--font-mono);font-size:13.5px;line-height:1.62;
+  white-space:pre-wrap;padding:14px 15px 15px;color:var(--text-muted);
+  border-top:1px solid var(--border)}
+.p-rodape{display:flex;justify-content:flex-end;padding:0 15px 13px}
+.pbtn{font-family:var(--font-mono);font-size:11px;font-weight:500;cursor:pointer;
+  background:var(--accent);color:#fff;border:none;padding:7px 15px;
+  border-radius:var(--radius-sm)}
+.pbtn:hover{background:var(--accent-dark)}
+.pbox.curto .pconteudo{font-size:16px;color:var(--text)}
+
+.fecho{margin:48px 0 0;background:var(--accent-soft);border-radius:var(--radius-lg);
+  padding:24px 26px}
+.fecho-rot{display:block;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--accent-dark);margin-bottom:11px}
+.fecho-frase{display:block;font-size:21px;font-weight:600;line-height:1.34;
+  letter-spacing:-.015em;color:var(--accent-dark);margin-bottom:13px}
+.fecho p{font-size:16px;line-height:1.6;color:var(--accent-dark);opacity:.92}
+.fecho strong{opacity:1;font-weight:600}
+
+.rodape{margin:44px 0 60px;padding-top:20px;border-top:1px solid var(--border);
+  font-size:14.5px;color:var(--text-dim);line-height:1.6}
+
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);
+  background:var(--text);color:#fff;padding:11px 20px;border-radius:999px;
+  font-size:14px;transition:transform .22s;z-index:99}
+.toast.on{transform:translateX(-50%) translateY(0)}
+
+@media (max-width:720px){
+  .passo{grid-template-columns:1fr;gap:8px}
+  .passo-n{position:static}
+  .passo-corpo{border-left:none;padding-left:0}
+  .arq{flex-direction:column;align-items:stretch}
+  .arq-btn{text-align:center}
+}
+
+/* fecho da demonstração · o convite de refazer sozinho, que a demo da 1.1 não
+   tinha porque ali o insumo vinha pronto. Aqui o aluno repete na pasta dele. */
+.fecho{margin:34px 0 0;padding:20px 22px;border:1px solid var(--border);
+  border-radius:12px;background:var(--bg-elev);font-size:15px;line-height:1.6;
+  color:var(--text-muted)}
+.fecho p + p{margin-top:11px}
+.fecho strong{color:var(--text)}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="topo">
+    <div class="volta"><a href="../">&larr; voltar para a aula 2.1</a></div>
+    <div class="kicker">Demonstração · aula 2.1</div>
+    <h1>Uma pasta do financeiro, sem anexar nada</h1>
+    <p class="lead">Tudo aqui acontece no <strong>Cowork, com uma pasta liberada</strong>, no modo que confere cada passo. Você pode refazer sozinho depois, na sua própria pasta.</p>
+    <p class="lead">O caso é de <strong>Financeiro</strong>. O do seu exercício é o seu relatório de verdade. É de propósito: você vê o mecanismo acontecer num caso e refaz no seu.</p>
+
+    <div class="arq">
+      <div class="arq-info">
+        <span class="arq-nome">fechamento-dois-meses.xlsx</span>
+        <span class="arq-meta">O fechamento que você já baixou na aula 1.2 · é ele que vai para dentro da pasta</span>
+      </div>
+      <a class="arq-btn" href="../../../m1/a2-pedir-para-entregar/exercicio/fechamento-dois-meses.xlsx" download>Baixar &darr;</a>
+    </div>
+    <div class="arq">
+      <div class="arq-info">
+        <span class="arq-nome">cotacoes-fornecedores.xlsx</span>
+        <span class="arq-meta">Compras, não financeiro. Entra na pasta de propósito, e o passo 02 explica por quê</span>
+      </div>
+      <a class="arq-btn" href="../../../m1/a2-pedir-para-entregar/exercicio/cotacoes-fornecedores.xlsx" download>Baixar &darr;</a>
+    </div>
+  </div>
+
+  <div class="passo">
+    <div class="passo-n">01</div>
+    <div class="passo-corpo">
+      <div class="passo-titulo">A pasta é criada antes de qualquer pedido</div>
+
+      <div class="bloco">
+        <span class="b-rot">O que fazer</span>
+        <span class="b-tx">Uma pasta nova, com nome próprio, e os dois arquivos copiados para dentro dela. A pasta nasce para este trabalho e contém só o que ele precisa.</span>
+      </div>
+      <div class="bloco">
+        <span class="b-rot">O que aparece na tela</span>
+        <span class="b-tx">Nada ainda. Este passo acontece inteiro no seu computador, e é justamente por isso que ele é o passo 01: <b>a decisão de alcance vem antes do Claude entrar na história</b>.</span>
+      </div>
+      <div class="repare">
+        <span class="b-rot">Repare nisto</span>
+        <span class="b-tx">Os arquivos foram <b>copiados</b>, e não movidos. Os originais continuam onde estavam. Se algo der errado aqui dentro, não aconteceu nada com o que importa.</span>
+      </div>
+      <div class="bloco">
+        <span class="b-rot">O que isso ensina</span>
+        <span class="b-tx">Trabalhar em cópia na primeira vez não é excesso de cuidado: é o que permite testar sem pesar a decisão. Depois que você já viu o comportamento, aí sim vale apontar para a pasta de verdade.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="passo">
+    <div class="passo-n">02</div>
+    <div class="passo-corpo">
+      <div class="passo-titulo">A pasta é liberada, e a primeira pergunta é o que ele enxerga</div>
+
+      <div class="bloco">
+        <span class="b-rot">O que fazer</span>
+        <span class="b-tx">A pasta recém-criada é liberada para o Claude, e o modo fica no que confere cada passo. Antes de pedir qualquer trabalho, vem um pedido só de inventário.</span>
+      </div>
+      <details class="pbox curto" open>
+        <summary>
+          <span class="p-nome">inventário · uma linha</span>
+          <span class="p-abre">fechar</span>
+        </summary>
+        <div class="pconteudo" id="d1">Liste os arquivos que você está enxergando nesta pasta, com o nome completo de cada um. Não abra nenhum ainda.</div>
+        <div class="p-rodape"><button class="pbtn" data-alvo="d1">Copiar</button></div>
+      </details>
+      <div class="bloco">
+        <span class="b-rot">O que aparece na tela</span>
+        <span class="b-tx">Os dois nomes de arquivo, escritos por extenso: o fechamento e a planilha de cotações.</span>
+      </div>
+      <div class="repare">
+        <span class="b-rot">Repare nisto</span>
+        <span class="b-tx">A planilha de cotações é de <b>Compras</b>, e ninguém pediu nada sobre ela. Ela apareceu porque estava na pasta, e é exatamente assim que a folha de pagamento apareceria se estivesse ali.</span>
+      </div>
+      <div class="bloco">
+        <span class="b-rot">O que isso ensina</span>
+        <span class="b-tx">Este pedido de uma linha é o teste mais barato que existe, e vale fazer sempre que você liberar uma pasta nova. <b>Ele responde a única pergunta que importa antes de começar: até onde eu deixei ele ver?</b></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="passo">
+    <div class="passo-n">03</div>
+    <div class="passo-corpo">
+      <div class="passo-titulo">O pedido de trabalho, e o plano que vem antes da ação</div>
+
+      <div class="bloco">
+        <span class="b-rot">O que fazer</span>
+        <span class="b-tx">Agora vem o pedido de verdade. Ele é específico sobre qual arquivo usar, porque a pasta tem dois e só um interessa.</span>
+      </div>
+      <details class="pbox" open>
+        <summary>
+          <span class="p-nome">pedido de trabalho · pronto para colar</span>
+          <span class="p-abre">fechar</span>
+        </summary>
+        <div class="pconteudo" id="d2">Trabalhe apenas com o arquivo de fechamento que está nesta pasta. Ignore os outros.
+
+Compare os dois meses e me diga, em no máximo oito linhas: quais contas cresceram mais de 15% de um mês para o outro, quais caíram, e se tem alguma linha que aparece num mês e some no outro.
+
+Antes de executar, me mostre o que você pretende fazer.</div>
+        <div class="p-rodape"><button class="pbtn" data-alvo="d2">Copiar</button></div>
+      </details>
+      <div class="bloco">
+        <span class="b-rot">O que aparece na tela</span>
+        <span class="b-tx">Um plano curto, em passos, do que ele vai abrir e do que vai comparar. Depois do plano, a execução, com o andamento aparecendo passo a passo.</span>
+      </div>
+      <div class="repare">
+        <span class="b-rot">Repare nisto</span>
+        <span class="b-tx">A última linha do pedido é <b>"antes de executar, me mostre o que você pretende fazer"</b>. É a frase mais barata desta aula: corrigir o rumo no plano custa nada, corrigir depois custa refazer.</span>
+      </div>
+      <div class="bloco">
+        <span class="b-rot">O que isso ensina</span>
+        <span class="b-tx">Pedir o plano antes é o equivalente a conferir o pedido de compra antes de assinar. E funciona em qualquer modo de aprovação, inclusive nos que não param sozinhos.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="passo">
+    <div class="passo-n">04</div>
+    <div class="passo-corpo">
+      <div class="passo-titulo">A hora em que ele para e pede autorização</div>
+
+      <div class="bloco">
+        <span class="b-rot">O que fazer</span>
+        <span class="b-tx">Vem o segundo pedido, e este manda escrever. É onde o modo de aprovação deixa de ser teoria.</span>
+      </div>
+      <details class="pbox" open>
+        <summary>
+          <span class="p-nome">pedido que escreve na sua pasta</span>
+          <span class="p-abre">fechar</span>
+        </summary>
+        <div class="pconteudo" id="d3">Gere uma planilha nova nesta mesma pasta, chamada variacao-mensal.xlsx, com uma aba só: conta, valor do primeiro mês, valor do segundo mês, variação em reais e variação em percentual, ordenada da maior variação para a menor.
+
+Me diga o caminho completo do arquivo depois de salvar.</div>
+        <div class="p-rodape"><button class="pbtn" data-alvo="d3">Copiar</button></div>
+      </details>
+      <div class="bloco">
+        <span class="b-rot">O que aparece na tela</span>
+        <span class="b-tx">Antes de criar o arquivo, aparece um pedido de permissão dizendo o que ele quer fazer. Nada é escrito na pasta até a autorização.</span>
+      </div>
+      <div class="repare">
+        <span class="b-rot">Repare nisto</span>
+        <span class="b-tx">Este é o modo que confere cada passo funcionando. Nos outros modos essa parada <b>não acontece</b>, e a planilha simplesmente aparece. A única parada que existe em qualquer modo é a de apagar arquivo.</span>
+      </div>
+      <div class="bloco">
+        <span class="b-rot">O que isso ensina</span>
+        <span class="b-tx">O momento da autorização é a única chance de dizer não. Ler o que está escrito ali, em vez de autorizar no automático, é a diferença entre supervisionar e assinar embaixo de olhos fechados.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="passo">
+    <div class="passo-n">05</div>
+    <div class="passo-corpo">
+      <div class="passo-titulo">O resultado é um arquivo, e ele é conferido fora da tela</div>
+
+      <div class="bloco">
+        <span class="b-rot">O que fazer</span>
+        <span class="b-tx">A pasta é aberta no próprio computador, pelo explorador de arquivos, e a planilha nova é aberta.</span>
+      </div>
+      <div class="bloco">
+        <span class="b-rot">O que aparece na tela</span>
+        <span class="b-tx">A planilha existe, do lado dos dois arquivos originais, e abre com as colunas pedidas preenchidas.</span>
+      </div>
+      <div class="repare">
+        <span class="b-rot">Repare nisto</span>
+        <span class="b-tx">Em nenhum momento houve anexo, cópia de resposta ou colagem em planilha. <b>O arquivo entrou pela pasta e o resultado saiu pela pasta.</b> É a diferença inteira entre o Módulo 1 e este.</span>
+      </div>
+      <div class="bloco">
+        <span class="b-rot">O que isso ensina</span>
+        <span class="b-tx">Conferir pelo computador, e não pela tela da conversa, é o hábito que sustenta as próximas cinco aulas. A resposta descreve o que foi feito; a pasta prova.</span>
+      </div>
+      <div class="bloco">
+        <span class="b-rot">Lista · o que desapareceu em relação ao Módulo 1</span>
+        <span class="b-tx">Exportar e salvar num lugar que o Claude alcance, anexar o arquivo na conversa, copiar a resposta, colar numa planilha nova, formatar a planilha. Cinco passos manuais que não existem mais.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="fecho">
+    <p><strong>Para refazer sozinho:</strong> crie uma pasta, copie para dentro um relatório seu, libere a pasta, e comece pelo pedido de inventário do passo 02. Os outros três pedidos funcionam em cima de qualquer planilha que tenha dois períodos para comparar.</p>
+    <p><a href="../">&larr; voltar para a aula 2.1</a></p>
+  </div>
+
+</div>
+
+<div class="toast" id="toast">Copiado</div>
+
+<script>
+document.querySelectorAll(".pbtn").forEach(function(b){
+  b.addEventListener("click", function(e){
+    e.preventDefault();
+    var el = document.getElementById(b.dataset.alvo);
+    navigator.clipboard.writeText(el.innerText).then(function(){
+      var t = document.getElementById("toast");
+      t.classList.add("on");
+      setTimeout(function(){ t.classList.remove("on"); }, 1500);
+    });
+  });
+});
+</script>
+
+</body>
+</html>
